@@ -146,24 +146,24 @@ az általánosítási hibát $R$.
 Senki sem mondja meg nekünk a $p(\mathbf{x}, y)$ sűrűségfüggvény pontos alakját.
 Ezenkívül nem tudunk végtelen adatpontot mintavételezni.
 Ezért a gyakorlatban *becsülnünk* kell az általánosítási hibát
-azáltal, hogy a modellünket egy független tesztelési halmazra alkalmazzuk,
-amely a tanítási halmazból visszatartott
+azáltal, hogy a modellünket egy független teszthalmazra alkalmazzuk,
+amely a tanítóhalmazból visszatartott
 $\mathbf{X}'$ példányok és $\mathbf{y}'$ címkék
 véletlenszerű kiválasztásából áll.
 Ez ugyanazon képlet alkalmazásából áll,
 amelyet az empirikus tanítási hiba kiszámításához használtunk,
-de egy $\mathbf{X}', \mathbf{y}'$ tesztelési halmazra.
+de egy $\mathbf{X}', \mathbf{y}'$ teszthalmazra.
 
 
-Döntő fontosságú, hogy amikor az osztályozónkat a tesztelési halmazon értékeljük,
+Döntő fontosságú, hogy amikor az osztályozónkat a teszthalmazon értékeljük,
 egy *rögzített* osztályozóval dolgozunk
-(amely nem függ a tesztelési halmaz mintájától),
+(amely nem függ a teszthalmaz mintájától),
 és így a hibájának becslése
 egyszerűen az átlag becslésének problémája.
 Azonban ugyanez nem mondható el
-a tanítási halmazra.
+a tanítóhalmazra.
 Vegyük észre, hogy az általunk kapott modell
-explicit módon függ a tanítási halmaz kiválasztásától,
+explicit módon függ a tanítóhalmaz kiválasztásától,
 és így a tanítási hiba általában
 egy elfogult becslés lesz az alap populáción
 valódi hibára vonatkozóan.
@@ -316,7 +316,7 @@ Valójában, valahányszor minden adatpéldánynak
 különböző $x$ értéke van,
 egy olyan polinomfüggvény, amelynek foka
 egyenlő az adatpéldányok számával,
-tökéletesen illeszkedhet a tanítási halmazra.
+tökéletesen illeszkedhet a tanítóhalmazra.
 Összehasonlítjuk a polinom foka (modell-komplexitás)
 és az alulillesztés, illetve túlillesztés közötti kapcsolatot a :numref:`fig_capacity_vs_error` részben.
 
@@ -362,7 +362,7 @@ tanulási ráták stb.).
 A sok modell közül való választást találóan
 *modellválasztásnak* nevezzük.
 
-Elvben nem szabad megérintenünk a tesztelési halmazunkat
+Elvben nem szabad megérintenünk a teszthalmazunkat
 addig, amíg az összes hiperparaméterünket ki nem választottuk.
 Ha a tesztelési adatokat a modellválasztási folyamatban alkalmaznánk,
 fennáll a veszélye, hogy túlillesztjük a tesztelési adatokat.
@@ -386,13 +386,13 @@ Bár ideális esetben csak egyszer érintenénk a tesztelési adatokat,
 a legjobb modell értékeléséhez vagy
 kis számú modell összehasonlításához,
 a valós tesztelési adatokat ritkán vetik el csak egy használat után.
-Ritkán engedhetjük meg magunknak, hogy minden kísérleti körhöz új tesztelési halmazt alkalmazzunk.
+Ritkán engedhetjük meg magunknak, hogy minden kísérleti körhöz új teszthalmazt alkalmazzunk.
 Sőt, a benchmark adatok évtizedekig tartó újrahasznosítása
 jelentős hatással lehet az algoritmusok fejlesztésére,
 pl. [képosztályozáshoz](https://paperswithcode.com/sota/image-classification-on-imagenet)
 és [optikai karakterfelismeréshez](https://paperswithcode.com/sota/image-classification-on-mnist).
 
-Az általános megközelítés a *tesztelési halmazon való tanítás* problémájának kezeléséhez
+Az általános megközelítés a *teszthalmazon való tanítás* problémájának kezeléséhez
 az adatok háromféle felosztása,
 amely magában foglalja a *validációs halmazt*
 a tanítási és tesztelési adathalmazok mellett.
@@ -400,9 +400,9 @@ Az eredmény egy zavaros üzlet, ahol a határok
 a validációs és tesztelési adatok között aggasztóan kétértelműek.
 Hacsak másképpen nincs jelezve, a könyv kísérleteiben
 valójában olyan adatokkal dolgozunk, amelyeket helyesen
-tanítási adatoknak és validációs adatoknak kellene nevezni, valódi tesztelési halmazok nélkül.
+tanítási adatoknak és validációs adatoknak kellene nevezni, valódi teszthalmazok nélkül.
 Ezért a könyv egyes kísérleteiben közölt pontosság valójában
-validációs pontosság, nem valódi tesztelési halmaz pontossága.
+validációs pontosság, nem valódi teszthalmaz pontossága.
 
 ### Keresztvalidáció
 

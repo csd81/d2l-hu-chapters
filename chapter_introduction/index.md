@@ -1111,7 +1111,7 @@ szívében néhány kulcselv található:
 
 * Lineáris és nemlineáris feldolgozóegységek váltakozása, amelyeket gyakran *rétegeknek* nevezünk.
 * A láncszabály
-  (más néven *backpropagation*, visszaterjesztés) használata arra, hogy a
+  (más néven *visszaterjesztés*, visszaterjesztés) használata arra, hogy a
   teljes hálózat paramétereit egyszerre igazítsuk.
 
 Az első gyors előrehaladás után a neurális hálózatok kutatása nagyjából

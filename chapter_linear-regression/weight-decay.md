@@ -231,7 +231,7 @@ amelynek várható értéke nulla és szórása 0.01.
 Illusztrációs céljából
 a túlillesztés hatásait hangsúlyossá tehetjük,
 ha a probléma dimenzionalitását $d = 200$-ra növeljük,
-és csak 20 példánnyal rendelkező kis tanítási halmazon dolgozunk.
+és csak 20 példánnyal rendelkező kis tanítóhalmazon dolgozunk.
 
 ```{.python .input}
 %%tab all
@@ -303,7 +303,7 @@ class WeightDecayScratch(d2l.LinearRegressionScratch):
                 self.lambd * l2_penalty(params['w']))
 ```
 
-A következő kód illeszti a modellünket 20 példányból álló tanítási halmazra és kiértékeli 100 példányos validációs halmazon.
+A következő kód illeszti a modellünket 20 példányból álló tanítóhalmazra és kiértékeli 100 példányos validációs halmazon.
 
 ```{.python .input}
 %%tab all

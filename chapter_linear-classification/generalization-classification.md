@@ -11,14 +11,14 @@ levezettük és indokoltuk a keresztentrópia-veszteség függvényt,
 amely a negatív log-valószínűséget számítja ki,
 amelyet modellünk (rögzített paraméterhalmazra) a tényleges címkékhez rendel.
 Végül ezeket az eszközöket a gyakorlatba is átültettük
-a modell tanítási halmazra való illesztésével.
+a modell tanítóhalmazra való illesztésével.
 Azonban — ahogy mindig — célunk *általános mintákat* megtanulni,
 amelyeket empirikusan, korábban nem látott adatokon (teszthalmaz) értékelünk.
-A tanítási halmazon elért magas pontosság semmit sem jelent.
+A tanítóhalmazon elért magas pontosság semmit sem jelent.
 Valahányszor minden bemeneti adat egyedi
 (ami a legtöbb nagy dimenziójú adathalmazban igaz),
 az első tanítási epokon az adathalmaz egyszerű memorizálásával
-tökéletes pontosságot érhetünk el a tanítási halmazon,
+tökéletes pontosságot érhetünk el a tanítóhalmazon,
 majd a megfelelő címkét visszakereshetjük, ha új képet látunk.
 Azonban a pontos tanítási példákhoz tartozó pontos címkék memorizálása
 nem mondja meg, hogyan osztályozzuk az új példákat.
@@ -29,7 +29,7 @@ Számos égető kérdés azonnali figyelmet igényel:
 
 1. Hány tesztpéldányra van szükségünk ahhoz, hogy jó becslést adjunk az osztályozóink pontosságáról az alapul szolgáló populáción?
 1. Mi történik, ha ismételten modelleket értékelünk ki ugyanazon a teszthalmazon?
-1. Miért várhatjuk, hogy a lineáris modellek tanítási halmazra való illesztése jobb eredményt ad, mint a naiv memorizálási megközelítés?
+1. Miért várhatjuk, hogy a lineáris modellek tanítóhalmazra való illesztése jobb eredményt ad, mint a naiv memorizálási megközelítés?
 
 
 Míg a :numref:`sec_generalization_basics` szakasz bevezette
@@ -42,7 +42,7 @@ sok modell esetén,
 és bármely kívánt felső korláthoz
 az általánosítási résen $\epsilon$-on,
 meg tudunk határozni egy szükséges mintaszámot $n$,
-úgy, hogy ha tanítási halmazunk legalább $n$ mintát tartalmaz,
+úgy, hogy ha tanítóhalmazunk legalább $n$ mintát tartalmaz,
 az empirikus hibánk $\epsilon$-on belül lesz a valódi hibától,
 *bármely adatgeneráló eloszlásra*.
 Sajnos az is kiderül,
@@ -328,7 +328,7 @@ a modelltulajdonságok és az adathalmaz mintaszáma közötti kapcsolat feltár
 A tanuláselméleti kutatók célja korlátot adni
 a tanult $f_\mathcal{S}$ osztályozó
 $\epsilon_\mathcal{S}(f_\mathcal{S})$ *empirikus hibája*
-(amelyet a $\mathcal{S}$ tanítási halmazon tanítottak és értékeltek ki)
+(amelyet a $\mathcal{S}$ tanítóhalmazon tanítottak és értékeltek ki)
 és ugyanazon osztályozó
 $\epsilon(f_\mathcal{S})$ valódi hibája közötti különbségre
 az alapul szolgáló populáción.

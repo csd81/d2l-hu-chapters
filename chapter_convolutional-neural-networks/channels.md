@@ -175,7 +175,7 @@ Megjegyezzük azonban, hogy ez a rugalmasság árat jelent. Egy $(h \times w)$ m
     1. Mekkora az ekvivalens egyetlen konvolúció dimenzionalitása?
     1. Igaz-e az ellenkezője, azaz mindig felbontható-e egy konvolúció két kisebbre?
 1. Feltételezve egy $c_\textrm{i}\times h\times w$ alakú bemenetet és egy $c_\textrm{o}\times c_\textrm{i}\times k_\textrm{h}\times k_\textrm{w}$ alakú konvolúciós kernelt, $(p_\textrm{h}, p_\textrm{w})$ párnázással és $(s_\textrm{h}, s_\textrm{w})$ lépésközzel.
-    1. Mekkora az előre-terjedés számítási költsége (szorzások és összeadások)?
+    1. Mekkora az előreterjesztés számítási költsége (szorzások és összeadások)?
     1. Mekkora a memóriaigény?
     1. Mekkora a memóriaigény a visszaterjesztési számításhoz?
     1. Mekkora a visszaterjesztés számítási költsége?

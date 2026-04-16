@@ -116,7 +116,7 @@ A tesztelési fázisban a :numref:`fig_cat-dog-test` ábrán szereplő képeket 
 ![Tesztadatok macskák és kutyák megkülönböztetéséhez (illusztrációk: SIBAS_minich / iStock / Getty Images Plus; Ghrzuzudu / iStock / Getty Images Plus; id-work / DigitalVision Vectors / Getty Images; Yime / iStock / Getty Images Plus).](../img/cat-dog-test.png)
 :label:`fig_cat-dog-test`
 
-A tanítási halmaz fényképekből áll,
+A tanítóhalmaz fényképekből áll,
 míg a teszthalmaz kizárólag rajzfilmszerű képeket tartalmaz.
 Ha egy lényegesen eltérő jellemzőkkel rendelkező adathalmazon tanítunk,
 mint a teszthalmaz, gondok adódhatnak,
@@ -269,7 +269,7 @@ Néhány tipikus eset:
 
 ### További anekdoták
 
-* Arcdetektort építünk. Jól működik minden referenciahalmazon. Sajnos megbukik a tesztadatokon — az ütköző példányok közelképek, ahol az arc az egész képet kitölti (ilyen adatok nem voltak a tanítási halmazban).
+* Arcdetektort építünk. Jól működik minden referenciahalmazon. Sajnos megbukik a tesztadatokon — az ütköző példányok közelképek, ahol az arc az egész képet kitölti (ilyen adatok nem voltak a tanítóhalmazban).
 * Webes keresőmotort építünk az USA piacára, majd az Egyesült Királyságban szeretnénk telepíteni.
 * Képosztályozót tanítunk egy nagy adathalmaz összeállításával, ahol a nagy osztályok mindegyike egyenlő arányban szerepel, mondjuk 1000 kategória, egyenként 1000 képpel. Majd a valós világban telepítjük a rendszert, ahol a fényképek tényleges felirat eloszlása határozottan nem egyenletes.
 
@@ -407,7 +407,7 @@ az :eqref:`eq_weighted-empirical-risk-min` alapján,
 ahol a tagokat $\beta_i$-vel súlyozzuk.
 
 Most már leírhatunk egy korrekciós algoritmust.
-Tegyük fel, hogy rendelkezünk egy $\{(\mathbf{x}_1, y_1), \ldots, (\mathbf{x}_n, y_n)\}$ tanítási halmazzal és egy $\{\mathbf{u}_1, \ldots, \mathbf{u}_m\}$ osztályozatlan teszthalmazra.
+Tegyük fel, hogy rendelkezünk egy $\{(\mathbf{x}_1, y_1), \ldots, (\mathbf{x}_n, y_n)\}$ tanítóhalmazzal és egy $\{\mathbf{u}_1, \ldots, \mathbf{u}_m\}$ osztályozatlan teszthalmazra.
 Kovariáns eltolódás esetén
 feltételezzük, hogy az $\mathbf{x}_i$ értékek minden $1 \leq i \leq n$-re valamely forrás eloszlásból,
 és az $\mathbf{u}_i$ értékek minden $1 \leq i \leq m$-re a cél eloszlásból kerültek kihúzásra.
@@ -628,7 +628,7 @@ amellyel a gépi tanulásban való karriered során találkozhatsz.
 
 ## Összefoglalás
 
-Sok esetben a tanítási és tesztelési halmazok nem ugyanabból az eloszlásból kerülnek ki. Ezt eloszláseltolódásnak nevezzük.
+Sok esetben a tanítási és teszthalmazok nem ugyanabból az eloszlásból kerülnek ki. Ezt eloszláseltolódásnak nevezzük.
 A kockázat a veszteség várható értéke az összes, valódi eloszlásból vett adaton. Ez az összes populáció azonban általában nem elérhető. Az empirikus kockázat a tanítási adatokon számolt átlagos veszteség a kockázat közelítésére. A gyakorlatban empirikus kockázat minimalizálást hajtunk végre.
 A megfelelő feltételezések alatt a kovariáns és felirateltolódás tesztelési időben érzékelhető és korrigálható. E torzítás figyelmen kívül hagyása problémás lehet tesztelési időben.
 Egyes esetekben a környezet emlékezhet az automatizált cselekvésekre, és meglepő módon reagálhat. Ezt a lehetőséget figyelembe kell venni a modellek építésekor, és folytatni kell az élő rendszerek monitorozását, nyitva a lehetőségre, hogy modelljeink és a környezet váratlan módokon fonódhatnak össze.

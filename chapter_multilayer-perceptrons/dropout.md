@@ -41,7 +41,7 @@ Majd :citet:`Srivastava.Hinton.Krizhevsky.ea.2014`
 egy okos ötletet dolgozott ki arra, hogyan alkalmazza Bishop ötletét
 a hálózat belső rétegeire is.
 Ötletüket, amelyet *dropoutnak* hívnak, az az elképzelés jellemez,
-hogy zajt injektálnak az előre irányú terjesztés során
+hogy zajt injektálnak az előreterjesztés során
 minden belső réteg kiszámításakor,
 és ez a technika standard módszerré vált
 a neurális hálózatok tanításában.

@@ -63,7 +63,7 @@ az adatpárhuzamossággal végzett tanítást,
 amikor $k=2$.
 
 
-![Minibatch sztochasztikus gradienscsökkenés kiszámítása adatpárhuzamossággal két GPU-n.](../img/data-parallel.svg)
+![mini-batch sztochasztikus gradienscsökkenés kiszámítása adatpárhuzamossággal két GPU-n.](../img/data-parallel.svg)
 :label:`fig_data_parallel`
 
 Általánosságban a tanítás a következőképpen zajlik:

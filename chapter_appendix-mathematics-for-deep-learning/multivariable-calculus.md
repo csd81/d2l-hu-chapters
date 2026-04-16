@@ -392,7 +392,7 @@ print(f'df/dy at {w}, {x}, {y}, {z} is {df_dy}')
 print(f'df/dz at {w}, {x}, {y}, {z} is {df_dz}')
 ```
 
-Az a tény, hogy a deriváltakat $f$-től visszafelé, a bemenetek felé számítjuk ki – nem pedig a bemenetektől előre a kimenet felé (ahogy az első kódrészletben tettük) –, adja az algoritmus nevét: *visszaterjesztés* (backpropagation). Vegyük észre, hogy két lépésből áll:
+Az a tény, hogy a deriváltakat $f$-től visszafelé, a bemenetek felé számítjuk ki – nem pedig a bemenetektől előre a kimenet felé (ahogy az első kódrészletben tettük) –, adja az algoritmus nevét: *visszaterjesztés* (visszaterjesztés). Vegyük észre, hogy két lépésből áll:
 1. Kiszámítjuk a függvény értékét és az egylépéses parciális deriváltakat előlről hátra. Bár fent nem így tettük, ez egyetlen *előre menetbe* kombinálható.
 2. Kiszámítjuk $f$ gradiensét hátulról előre. Ezt *visszameneti lépésnek* nevezzük.
 

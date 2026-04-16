@@ -195,7 +195,7 @@ class Decoder(nn.Module):  #@save
 
 ## **A Kódoló és a Dekódoló Összeillesztése**
 
-Az előre irányú terjesztésben
+Az előreterjesztésben
 a kódoló kimenete a kódolt állapot előállítására szolgál,
 és ezt az állapotot a dekódoló az egyik bemenetként fogja tovább használni.
 

@@ -180,7 +180,7 @@ Csupán egy fő probléma van: a bemenetek száma,
 $x_{t-1}, \ldots, x_1$, $t$-től függően változik.
 Más szóval, a bemenetek száma növekszik
 az általunk tapasztalt adatok mennyiségével.
-Tehát ha a korábbi adatainkat tanítási halmazként kívánjuk kezelni,
+Tehát ha a korábbi adatainkat tanítóhalmazként kívánjuk kezelni,
 azzal a problémával szembesülünk,
 hogy minden példának eltérő számú jellemzője van.
 Az ebben a fejezetben következő tartalom nagy részének

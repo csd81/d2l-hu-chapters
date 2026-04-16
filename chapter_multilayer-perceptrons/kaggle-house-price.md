@@ -137,9 +137,9 @@ más jellemzők lebegőpontos számokkal.
 néhány példánynál egyes adatok teljesen hiányoznak,
 a hiányzó értéket egyszerűen „na"-val jelölve.
 A házak ára csak
-a tanítási halmazban szerepel
+a tanítóhalmazban szerepel
 (ez mégiscsak egy verseny).
-A tanítási halmazt el szeretnénk osztani
+A tanítóhalmazt el szeretnénk osztani
 egy validációs halmaz létrehozásához,
 de a modelleket csak a hivatalos teszt halmazon értékelhetjük
 az előrejelzések Kaggle-ra való feltöltése után.

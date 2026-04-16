@@ -110,7 +110,7 @@ class FashionMNIST(d2l.DataModule):  #@save
 A Fashion-MNIST 10 kategóriából álló képeket tartalmaz; minden kategóriát
 6000 kép képvisel a tanítási adathalmazban és 1000 a tesztadathalmazban.
 A *tesztadathalmazt* a modell teljesítményének kiértékelésére használjuk (tanításhoz nem szabad felhasználni).
-Ebből következően a tanítási halmaz és a teszthalmaz rendre 60 000 és 10 000 képet tartalmaz.
+Ebből következően a tanítóhalmaz és a teszthalmaz rendre 60 000 és 10 000 képet tartalmaz.
 
 ```{.python .input}
 %%tab mxnet, pytorch
@@ -147,7 +147,7 @@ def text_labels(self, indices):
     return [labels[int(i)] for i in indices]
 ```
 
-## Minibatch olvasása
+## mini-batch olvasása
 
 Hogy megkönnyítsük az életünket a tanítási és teszthalmazból való olvasáskor,
 a beépített adatiterátort használjuk ahelyett, hogy nulláról hoznánk létre egyet.

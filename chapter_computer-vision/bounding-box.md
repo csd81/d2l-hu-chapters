@@ -1,4 +1,4 @@
-# Objektumfelismerés és befoglaló téglalapok
+# objektumdetektálás és befoglaló téglalapok
 :label:`sec_bbox`
 
 

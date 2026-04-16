@@ -131,7 +131,7 @@ class BananasDataset(torch.utils.data.Dataset):
         return len(self.features)
 ```
 
-Végül definiáljuk a `load_data_bananas` függvényt, amely [**visszaad két adatiterátor-példányt mind a tanítási, mind a tesztelési halmazhoz.**]
+Végül definiáljuk a `load_data_bananas` függvényt, amely [**visszaad két adatiterátor-példányt mind a tanítási, mind a teszthalmazhoz.**]
 A tesztelési adathalmaznál nincs szükség véletlenszerű sorrendben való olvasásra.
 
 ```{.python .input}

@@ -27,17 +27,17 @@ az automatikus differenciálás
 visszafelé halad ezen a gráfon,
 alkalmazva a lánc-szabályt.
 A lánc-szabálynak ezt a számítási algoritmusát
-*backpropagation*-nak nevezzük.
+*visszaterjesztés*-nak nevezzük.
 
 Bár az autograd könyvtárak az elmúlt évtizedben
 egyre nagyobb figyelmet kaptak,
 hosszú történelemre tekintenek vissza.
 A legkorábbi hivatkozások az autograd-ra
 több mint fél évszázaddal ezelőttre nyúlnak vissza :cite:`Wengert.1964`.
-A modern backpropagation mögötti alapötletek
+A modern visszaterjesztés mögötti alapötletek
 egy 1980-as PhD-dolgozathoz köthetők :cite:`Speelpenning.1980`,
 és a 1980-as évek végén fejlődtek tovább :cite:`Griewank.1989`.
-Bár a backpropagation mára az alapértelmezett módszerré vált
+Bár a visszaterjesztés mára az alapértelmezett módszerré vált
 a gradiensek kiszámítására, nem ez az egyetlen lehetőség.
 Például a Julia programozási nyelv
 előreterjesztést (forward propagation) alkalmaz :cite:`Revels.Lubin.Papamarkou.2016`.
@@ -645,13 +645,13 @@ amely létfontosságú a keretrendszer-tervezők számára.
 Itt fordítóktól és gráfmanipulációtól vett eszközöket alkalmaznak,
 hogy az eredményeket a leggyorsabb és legmemória-hatékonyabb módon számítsák ki.
 
-Egyelőre próbáld megjegyezni ezeket az alapokat: (i) csatold a gradienseket azokhoz a változókhoz, amelyek szerint deriváltat szeretnél; (ii) rögzítsd a célérték számítását; (iii) hajtsd végre a backpropagation függvényt; és (iv) érd el az eredményt tartalmazó gradienst.
+Egyelőre próbáld megjegyezni ezeket az alapokat: (i) csatold a gradienseket azokhoz a változókhoz, amelyek szerint deriváltat szeretnél; (ii) rögzítsd a célérték számítását; (iii) hajtsd végre a visszaterjesztés függvényt; és (iv) érd el az eredményt tartalmazó gradienst.
 
 
 ## Feladatok
 
 1. Miért sokkal drágább a második derivált kiszámítása, mint az elsőé?
-1. A backpropagation függvény lefuttatása után futtasd le azonnal újra, és figyeld meg, mi történik. Vizsgáld meg!
+1. A visszaterjesztés függvény lefuttatása után futtasd le azonnal újra, és figyeld meg, mi történik. Vizsgáld meg!
 1. A vezérlési folyam példájában, ahol `d` deriváltját számítjuk `a`-hoz képest, mi történne, ha az `a` változót véletlenszerű vektorrá vagy mátrixszá változtatnád? Ekkor az `f(a)` számítás eredménye már nem skaláris. Mi történik az eredménnyel? Hogyan elemzed ezt?
 1. Legyen $f(x) = \sin(x)$. Rajzold fel $f$ és $f'$ deriváltjának grafikonját. Ne használd ki, hogy $f'(x) = \cos(x)$, hanem automatikus differenciálással kapd meg az eredményt.
 1. Legyen $f(x) = ((\log x^2) \cdot \sin x) + x^{-1}$. Írj fel egy függőségi gráfot, amely $x$-től $f(x)$-ig nyomkövet az eredményeken.

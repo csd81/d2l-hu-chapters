@@ -19,7 +19,7 @@ De a lényeg az, hogy az optimalizálás csupán eszköz a célhoz.
 Alapvetően a gépi tanulás statisztikai tudományág,
 és a tanítási veszteséget csak annyiban kívánjuk optimalizálni,
 amennyiben valamely statisztikai elv (ismert vagy ismeretlen)
-arra vezeti az eredményes modelleket, hogy általánosítsanak a tanítási halmazon túlra.
+arra vezeti az eredményes modelleket, hogy általánosítsanak a tanítóhalmazon túlra.
 
 
 A pozitív oldal az, hogy a sztochasztikus gradienscsökkenéssel tanított
@@ -74,7 +74,7 @@ a kutatás és a gyakorlat jelenlegi állapotáról.
 
 :citet:`wolpert1995no` „nincsen ingyenes ebéd" tétele szerint
 bármely tanulási algoritmus jobban általánosít bizonyos eloszlású adatokon, és rosszabbul más eloszlásokon.
-Így egy véges tanítási halmaz esetén
+Így egy véges tanítóhalmaz esetén
 egy modell bizonyos feltételezésekre támaszkodik:
 az emberi szintű teljesítmény eléréséhez
 hasznos lehet azonosítani az *induktív torzításokat*,
@@ -241,7 +241,7 @@ a neurális hálózatok hajlamosak először a tisztán címkézett adatokra ill
 Ráadásul megállapítást nyert, hogy ez a jelenség
 közvetlenül átfordítható az általánosítás garanciájává:
 amikor egy modell illeszkedett a tisztán címkézett adatokra,
-de nem a tanítási halmazban szereplő véletlenszerűen megcímkézett példányokra,
+de nem a tanítóhalmazban szereplő véletlenszerűen megcímkézett példányokra,
 valóban általánosított :cite:`Garg.Balakrishnan.Kolter.Lipton.2021`.
 
 Ezek az eredmények együttesen motiválják a *korai megállást*,
@@ -330,7 +330,7 @@ A klasszikus lineáris modellektől eltérően,
 amelyeknek általában kevesebb paramétere van, mint a példányoknak,
 a mély hálózatok általában túlparametrizáltak,
 és a legtöbb feladatnál képesek
-a tanítási halmazt tökéletesen illeszteni.
+a tanítóhalmazt tökéletesen illeszteni.
 Ez az *interpolációs rezsim* kihívást jelent
 sok erősen tartott intuícióval szemben.
 Funkcionálisan a neurális hálózatok parametrikus modelleknek tűnnek.

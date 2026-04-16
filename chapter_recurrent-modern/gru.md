@@ -354,7 +354,7 @@ if tab.selected('tensorflow'):
 trainer.fit(model, data)
 ```
 
-A tanítás után kiíratjuk a perplexitást a tanítási halmazon
+A tanítás után kiíratjuk a perplexitást a tanítóhalmazon
 és az adott előtagot követő előrejelzett sorozatot.
 
 ```{.python .input}

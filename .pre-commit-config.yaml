@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: check-terminology
+        name: Hungarian terminology check
+        entry: python scripts/check_terminology.py
+        language: python
+        types: [markdown]
+        pass_filenames: true

@@ -1,10 +1,10 @@
-# Nagy Méretű Előtanítás Transzformerekkel
+# Nagy Méretű Előtanítás Transformerekkel
 :label:`sec_large-pretraining-transformers`
 
 Eddig a képbesorolási és gépi fordítási kísérleteinkben
 a modelleket *semmiből* tanítottuk be adathalmazokon
 bemenet-kimenet példákkal konkrét feladatok elvégzésére.
-Például egy Transzformert angol-francia párokkal tanítottunk be
+Például egy Transformert angol-francia párokkal tanítottunk be
 (:numref:`sec_transformer`)
 úgy, hogy ez a modell bemeneti angol szöveget franciára fordítson.
 Ennek eredményeként minden modell *specifikus szakértővé* válik,
@@ -14,49 +14,49 @@ Jobban általánosított modellek, vagy még kompetensebb *generalisták*
 érdekében, amelyek több feladatot képesek elvégezni adaptációval vagy anélkül,
 a modellek *előtanítása* nagy adatmennyiségeken egyre gyakoribb.
 
-Nagyobb előtanítási adatmennyiség esetén a Transzformer architektúra
+Nagyobb előtanítási adatmennyiség esetén a Transformer architektúra
 jobban teljesít megnövelt modellmérettel és számítási kapacitással,
 kimagasló *skálázási* viselkedést mutatva.
-Konkrétan, a Transzformer-alapú nyelvi modellek teljesítménye
+Konkrétan, a Transformer-alapú nyelvi modellek teljesítménye
 hatványtörvény szerint skálázódik a modellparaméterek,
 tanító tokenek és számítási kapacitás mennyiségével :cite:`kaplan2020scaling`.
-A Transzformerek skálázhatóságát az is bizonyítja,
-hogy a nagyobb adaton tanított nagyobb látási Transzformerek
+A Transformerek skálázhatóságát az is bizonyítja,
+hogy a nagyobb adaton tanított nagyobb látási Transformerek
 jelentősen jobb teljesítményt mutatnak
 (a :numref:`sec_vision-transformer`-ben tárgyalva).
 Frissebb sikertörténetek közé tartozik a Gato, egy *generalista* modell,
-ami Atarit játszhat, képeket feliratozhat, cseveghet és robotként viselkedhet :cite:`reed2022generalist`. A Gato egyetlen Transzformer, amely jól skálázódik különböző modalitásokon
+ami Atarit játszhat, képeket feliratozhat, cseveghet és robotként viselkedhet :cite:`reed2022generalist`. A Gato egyetlen Transformer, amely jól skálázódik különböző modalitásokon
 való előtanítás során, beleértve szöveget, képeket, ízületi nyomatékokat és gombnyomásokat.
 Figyelemre méltó, hogy minden ilyen multimodális adat lapos token-szekvenciává
 sorozatosítódik, amely feldolgozható hasonlóan szövegtokenekhez (:numref:`sec_transformer`)
-vagy képfoltokhoz (:numref:`sec_vision-transformer`) Transzformerek által.
+vagy képfoltokhoz (:numref:`sec_vision-transformer`) Transformerek által.
 
-A Transzformerek multimodális adatokon való előtanításának meggyőző sikere előtt
-a Transzformereket széles körben előtanították gazdag szöveges anyaggal.
+A Transformerek multimodális adatokon való előtanításának meggyőző sikere előtt
+a Transformereket széles körben előtanították gazdag szöveges anyaggal.
 Eredetileg gépi fordításra javasolták,
-a :numref:`fig_transformer`-ben látható Transzformer architektúra
+a :numref:`fig_transformer`-ben látható Transformer architektúra
 bemeneti szekvenciák reprezentálására szolgáló kódolóból
 és cél szekvenciák generálására szolgáló dekóderből áll.
-Elsődlegesen a Transzformerek három különböző módban használhatók:
+Elsődlegesen a Transformerek három különböző módban használhatók:
 *csupán kódoló*, *kódoló-dekóder*, és *csupán dekóder*.
 A fejezet befejezéseként áttekintjük ezt a három módot
-és elmagyarázzuk a Transzformerek előtanításának skálázhatóságát.
+és elmagyarázzuk a Transformerek előtanításának skálázhatóságát.
 
 ## Csak Kódoló
 
-Ha csak a Transzformer kódolót használjuk,
+Ha csak a Transformer kódolót használjuk,
 a bemeneti tokenek sorozata
 ugyanannyi reprezentációvá alakul,
 ami tovább vetíthető kimenetre
-(például besorolás). Egy Transzformer kódoló
+(például besorolás). Egy Transformer kódoló
 önfigyelem rétegekből áll,
 ahol minden bemeneti token figyel minden másikra.
-Például a :numref:`fig_vit`-ben ábrázolt látási Transzformerek
+Például a :numref:`fig_vit`-ben ábrázolt látási Transformerek
 csak kódolóból állnak, bemeneti képfoltok sorozatát
 átalakítják egy speciális "&lt;cls&gt;" token reprezentációjává.
 Mivel ez a reprezentáció minden bemeneti tokentől függ,
 tovább vetítik besorolási címkékre.
-Ezt a tervezetet egy korábbi, csak kódolóból álló Transzformer
+Ezt a tervezetet egy korábbi, csak kódolóból álló Transformer
 inspirálta, amelyet szövegen előtanítottak: BERT (Bidirectional Encoder Representations from Transformers) :cite:`Devlin.Chang.Lee.ea.2018`.
 
 

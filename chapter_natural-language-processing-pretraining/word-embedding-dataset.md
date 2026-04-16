@@ -305,7 +305,7 @@ def get_negatives(all_contexts, vocab, counter, K):
 all_negatives = get_negatives(all_contexts, vocab, counter, 5)
 ```
 
-## Tanítási Példák Betöltése Minibatch-ekben
+## Tanítási Példák Betöltése mini-batch-ekben
 :label:`subsec_word2vec-mini-batch-loading`
 
 Miután

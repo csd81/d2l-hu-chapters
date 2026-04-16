@@ -2,7 +2,7 @@
 :label:`sec_lstm`
 
 
-Röviddel azután, hogy az első Elman-stílusú RNN-eket betanították backpropagation segítségével
+Röviddel azután, hogy az első Elman-stílusú RNN-eket betanították visszaterjesztés segítségével
 :cite:`elman1990finding`, a hosszú távú függőségek tanulásának problémái
 (az eltűnő és robbanó gradiensek miatt)
 hangsúlyossá váltak, amelyeket Bengio és Hochreiter tárgyalt

@@ -279,7 +279,7 @@ Bár az analitikus megoldások szép matematikai elemzést tesznek lehetővé,
 az analitikus megoldás követelménye annyira korlátozó,
 hogy szinte a deep learning összes izgalmas aspektusát kizárná.
 
-### Minibatch sztochasztikus gradiens módszer
+### mini-batch sztochasztikus gradiens módszer
 
 Szerencsére, még azokban az esetekben is, amikor a modelleket
 nem tudjuk analitikusan megoldani,

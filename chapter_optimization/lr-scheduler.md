@@ -1,4 +1,4 @@
-# Tanulási sebesség ütemezése
+# tanulási ráta ütemezése
 :label:`sec_scheduler`
 
 Eddig elsősorban az optimalizálási *algoritmusokra* összpontosítottunk, arra, hogyan frissítsük a súlyvektorokat, nem pedig arra a *sebességre*, amellyel a frissítések történnek. Ennek ellenére a tanulási ráta módosítása éppoly fontos, mint maga az algoritmus. Számos szempontot kell figyelembe venni:

@@ -357,7 +357,7 @@ ezért a `MaskLM` és `NextSentencePred` osztályokban alkalmazott MLP-k paramé
 Az elavult gradiensekkel rendelkező paraméterek engedélyezéséhez
 az `ignore_stale_grad=True` jelző van beállítva a `d2l.train_batch_ch13` `step` függvényében.
 Ezt a függvényt használjuk a `net` modell tanítására és kiértékelésére az SNLI
-tanítóhalmaza (`train_iter`) és tesztelési halmaza (`test_iter`) segítségével.
+tanítóhalmaza (`train_iter`) és teszthalmaza (`test_iter`) segítségével.
 A korlátozott számítási erőforrások miatt, [**a tanítási**] és tesztelési pontosság
 tovább javítható: megvitatásukat a feladatokra hagyjuk.
 

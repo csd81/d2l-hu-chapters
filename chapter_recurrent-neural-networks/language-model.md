@@ -122,7 +122,7 @@ Hacsak nem biztosítunk valamiféle megoldást arra, hogy ilyen szókombináció
 Egy általános stratégia valamilyen *Laplace-simítás* elvégzése.
 A megoldás az,
 hogy egy kis konstanst adunk hozzá minden számhoz.
-Jelöljük $n$-nel a tanítási halmaz szavainak teljes számát
+Jelöljük $n$-nel a tanítóhalmaz szavainak teljes számát
 és $m$-mel az egyedi szavak számát.
 Ez a megoldás segít az egyes szavakon, pl. az alábbi formában:
 

@@ -1,4 +1,4 @@
-# Minibatch sztochasztikus gradienscsökkenés
+# mini-batch sztochasztikus gradienscsökkenés
 :label:`sec_mini-batch_sgd`
 
 Eddig két szélsőséget tapasztaltunk a gradiens alapú tanulás megközelítésében: a :numref:`sec_gd` szakasz a teljes adathalmazt használja a gradiensek kiszámításához és a paraméterek frissítéséhez, egyszerre egy átmenetben. Ezzel szemben a :numref:`sec_sgd` szakasz egyszerre egy tanítási példát dolgoz fel a haladás érdekében.
@@ -213,7 +213,7 @@ print(f'performance in Gigaflops: element {gigaflops[0]:.3f}, '
       f'column {gigaflops[1]:.3f}, full {gigaflops[2]:.3f}')
 ```
 
-## Minibatchek
+## mini-batchek
 
 :label:`sec_mini-batches`
 

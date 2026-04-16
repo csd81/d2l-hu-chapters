@@ -94,7 +94,7 @@ def show_trace(results, f):
 show_trace(results, f)
 ```
 
-### Tanulási sebesség
+### tanulási ráta
 :label:`subsec_gd-learningrate`
 
 A $\eta$ tanulási rátát az algoritmus tervezője állíthatja be. Ha túl kis tanulási rátát alkalmazunk, $x$ nagyon lassan frissül, és több iteráció szükséges a jobb megoldás eléréséhez. Ennek szemléltetéséhez tekintsük az ugyanolyan optimalizálási probléma haladását $\eta = 0.05$ esetén. Ahogy látható, még 10 lépés után is messze vagyunk az optimális megoldástól.

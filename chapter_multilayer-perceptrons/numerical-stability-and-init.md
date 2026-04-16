@@ -242,7 +242,7 @@ Szemléltetésül tegyük fel, hogy a kimeneti réteg
 a két rejtett egységet egyetlen kimeneti egységgé transzformálja.
 Képzeljük el, mi történne, ha a rejtett réteg összes paraméterét
 $\mathbf{W}^{(1)} = c$ értékre inicializálnánk valamely $c$ konstanssal.
-Ebben az esetben az előre irányú terjesztés során
+Ebben az esetben az előreterjesztés során
 mindkét rejtett egység ugyanazokat a bemeneteket és paramétereket kapja,
 ugyanolyan aktivációt produkálva,
 amelyet a kimeneti egységbe táplálnak.
@@ -321,7 +321,7 @@ az $n_\textrm{in} \sigma^2 = 1$ feltétel teljesítése.
 Most tekintsük a visszaterjesztést.
 Ott hasonló problémával szembesülünk,
 bár a gradiensek a kimenethez közelebbi rétegekből terjednek.
-Ugyanolyan érveléssel, mint az előre irányú terjesztés esetén,
+Ugyanolyan érveléssel, mint az előreterjesztés esetén,
 láthatjuk, hogy a gradiensek varianciája felrobbanhat,
 hacsak nem teljesül az $n_\textrm{out} \sigma^2 = 1$ feltétel,
 ahol $n_\textrm{out}$ ennek a rétegnek a kimeneteinek száma.

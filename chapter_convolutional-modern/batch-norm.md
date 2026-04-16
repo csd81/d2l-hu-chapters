@@ -3,7 +3,7 @@
 tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 ```
 
-# Batch Normalizáció
+# batchnormalizáció
 :label:`sec_batch_norm`
 
 A mély neurális hálózatok tanítása nehéz feladat.
@@ -110,7 +110,7 @@ Ez az általános gyakorlat a batchnormalizációt alkalmazó modelleknél; ezé
 Ebben a formában szorosan hasonlítanak a :numref:`sec_dropout` dropout regularizáció viselkedéséhez, ahol a zajt csak tanítás közben injektálják.
 
 
-## Batch Normalizációs Rétegek
+## batchnormalizációs Rétegek
 
 A teljesen összekötött rétegek és a konvolúciós rétegek batchnormalizáció implementációja kissé eltérő.
 Az egyik fő különbség a batchnormalizáció és más rétegek között az, hogy mivel az előbbi egyszerre egy teljes mini-batch-en dolgozik, nem hagyhatjuk figyelmen kívül a batch dimenziót, ahogy más rétegek bevezetésekor tettük.
@@ -150,7 +150,7 @@ Mint korábban, kis $\epsilon > 0$ eltolást adunk hozzá a nullával való oszt
 
 A rétegnormalizáció másik előnye, hogy nem függ a mini-batch méretétől. Szintén független attól, hogy tanítási vagy tesztelési módban vagyunk. Más szóval, csupán egy determinisztikus transzformáció, amely az aktivációkat adott skálára standardizálja. Ez nagyon hasznos lehet az optimalizálásbeli divergencia megakadályozásában. Kihagyjuk a további részleteket, és az érdeklődőknek az eredeti cikk elolvasását ajánljuk.
 
-### Batch Normalizáció Predikció Során
+### batchnormalizáció Predikció Során
 
 Ahogy korábban említettük, a batchnormalizáció tanítási módban jellemzően más viselkedést mutat, mint predikciós módban.
 Először is, a mini-batch-enként becsült mintaátlagban és mintavarianciában lévő zaj már nem kívánatos, amint betanítottuk a modellt.
@@ -435,7 +435,7 @@ class BatchNorm(nn.Module):
 
 A múltbeli átlag- és varianciabecsléseket a `momentum` segítségével aggregáljuk. Ez némileg félrevezető elnevezés, mivel semmi köze sincs az optimalizálás *momentum* tagjához. Mindazonáltal ez az általánosan elfogadott neve ennek a tagnak, és az API elnevezési konvenciónak való tisztelet jegyében ugyanazt a változónevet használjuk a kódunkban.
 
-## [**LeNet Batch Normalizációval**]
+## [**LeNet batchnormalizációval**]
 
 Hogy lássuk, hogyan alkalmazzuk a `BatchNorm`-ot kontextusban, alább egy hagyományos LeNet modellre alkalmazzuk (:numref:`sec_lenet`).
 Ne feledjük, hogy a batchnormalizációt a konvolúciós rétegek vagy teljesen összekötött rétegek után, de a megfelelő aktivációs függvények előtt alkalmazzuk.

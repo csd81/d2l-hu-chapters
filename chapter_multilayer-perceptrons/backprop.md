@@ -1,9 +1,9 @@
-# Előre irányú terjesztés, visszaterjesztés és számítási gráfok
+# előreterjesztés, visszaterjesztés és számítási gráfok
 :label:`sec_backprop`
 
 Eddig mini-batch sztochasztikus gradienscsökkenés segítségével tanítottuk modelleinket.
 Amikor azonban az algoritmust implementáltuk,
-csak a modellen keresztüli *előre irányú terjesztés* számításaival foglalkoztunk.
+csak a modellen keresztüli *előreterjesztés* számításaival foglalkoztunk.
 Amikor a gradiensek kiszámítására került sor,
 egyszerűen meghívtuk a mély tanulási keretrendszer által biztosított visszaterjesztési függvényt.
 
@@ -29,9 +29,9 @@ néhány alapvető matematikán és számítási gráfon támaszkodunk.
 Először egy egyetlen rejtett réteges MLP-re összpontosítunk
 súlybomlással ($\ell_2$ regularizáció, amelyet a következő fejezetekben tárgyalunk).
 
-## Előre irányú terjesztés
+## előreterjesztés
 
-Az *előre irányú terjesztés* (vagy *előre irányú menet*) a köztes változók (beleértve a kimeneteket) kiszámítására és tárolására utal
+Az *előreterjesztés* (vagy *előre irányú menet*) a köztes változók (beleértve a kimeneteket) kiszámítására és tárolására utal
 egy neurális hálózatban, a bemeneti rétegtől a kimeneti réteg felé haladva.
 Most lépésről lépésre végigjárjuk egy egyetlen rejtett réteges neurális hálózat mechanizmusait.
 Ez kissé fáradságosnak tűnhet, de minden mélyebb megértésnek megvan az ára.
@@ -82,7 +82,7 @@ $$J = L + s.$$
 A következőkben $J$-t *célfüggvénynek* nevezzük.
 
 
-## Az előre irányú terjesztés számítási gráfja
+## Az előreterjesztés számítási gráfja
 
 A *számítási gráfok* ábrázolása segít vizualizálni
 az operátorok és változók függőségeit a számítás során.
@@ -94,7 +94,7 @@ Vegyük észre, hogy a nyilak iránya
 (amelyek az adatáramlást illusztrálják)
 elsősorban jobbra és felfelé mutat.
 
-![Az előre irányú terjesztés számítási gráfja.](../img/forward.svg)
+![Az előreterjesztés számítási gráfja.](../img/forward.svg)
 :label:`fig_forward`
 
 ## Visszaterjesztés
@@ -134,7 +134,7 @@ $\partial J/\partial \mathbf{W}^{(1)}$
 Ehhez alkalmazzuk a láncszabályt,
 és sorban kiszámítjuk minden köztes változó és paraméter gradiensét.
 A számítások sorrendje fordított
-az előre irányú terjesztésben elvégzettekhez képest,
+az előreterjesztésben elvégzettekhez képest,
 mivel a számítási gráf kimenetéből kell kiindulni
 és a paraméterek felé haladni.
 Az első lépés a $J=L+s$ célfüggvény gradienseinek kiszámítása
@@ -206,7 +206,7 @@ $$
 
 Neurális hálózatok tanításakor
 az előre irányú és a visszafelé irányú terjesztés kölcsönösen függenek egymástól.
-Különösen az előre irányú terjesztéskor
+Különösen az előreterjesztéskor
 a számítási gráfot a függőségek irányában járjuk be,
 és kiszámítjuk az útvonalán lévő összes változót.
 Ezeket aztán a visszaterjesztésnél alkalmazzuk,
@@ -214,19 +214,19 @@ ahol a gráf számítási sorrendje fordított.
 
 Vegyük a fentebb említett egyszerű hálózatot szemléltetésként.
 Egyrészt, a regularizációs tag :eqref:`eq_forward-s` kiszámítása
-az előre irányú terjesztés során
+az előreterjesztés során
 a $\mathbf{W}^{(1)}$ és $\mathbf{W}^{(2)}$ modellparaméterek aktuális értékeitől függ.
 Ezeket az optimalizálási algoritmus a legutóbbi iteráció visszaterjesztése alapján adja meg.
 Másrészt a :eqref:`eq_backprop-J-h` paraméter gradiens kiszámítása
 a visszaterjesztés során
 a $\mathbf{h}$ rejtett réteg kimenet aktuális értékétől függ,
-amelyet az előre irányú terjesztés ad meg.
+amelyet az előreterjesztés ad meg.
 
 
 Ezért neurális hálózatok tanításakor, amint a modell paraméterei inicializálva vannak,
-felváltva hajtjuk végre az előre irányú terjesztést és a visszaterjesztést,
+felváltva hajtjuk végre az előreterjesztést és a visszaterjesztést,
 a modell paramétereit a visszaterjesztés által adott gradiensekkel frissítve.
-Vegyük észre, hogy a visszaterjesztés az előre irányú terjesztésből tárolt köztes értékeket újrahasználja
+Vegyük észre, hogy a visszaterjesztés az előreterjesztésből tárolt köztes értékeket újrahasználja
 az ismételt számítások elkerülése érdekében.
 Ennek egyik következménye, hogy meg kell tartani
 a köztes értékeket a visszaterjesztés befejezéséig.
@@ -240,9 +240,9 @@ könnyebben *memória kifogyási* hibákhoz vezet.
 
 ## Összefoglalás
 
-Az előre irányú terjesztés sorban kiszámítja és tárolja a neurális hálózat által meghatározott számítási gráf köztes változóit. A bemeneti rétegtől a kimeneti réteg felé halad.
+Az előreterjesztés sorban kiszámítja és tárolja a neurális hálózat által meghatározott számítási gráf köztes változóit. A bemeneti rétegtől a kimeneti réteg felé halad.
 A visszaterjesztés sorban kiszámítja és tárolja a neurális hálózat köztes változóinak és paramétereinek gradienseit fordított sorrendben.
-Mély tanulási modellek tanításakor az előre irányú terjesztés és a visszaterjesztés egymástól függ,
+Mély tanulási modellek tanításakor az előreterjesztés és a visszaterjesztés egymástól függ,
 és a tanítás lényegesen több memóriát igényel, mint az előrejelzés.
 
 
