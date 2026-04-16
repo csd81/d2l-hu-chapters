@@ -154,7 +154,7 @@ Megmutatjuk, hogyan működik ez egy konkrét példán keresztül a :numref:`sec
 * Több léptéken különböző méretű horgonydobozokat generálhatunk különböző méretű objektumok felismeréséhez.
 * A jellemzőtérképek alakjának meghatározásával meghatározhatjuk az egyenletesen mintavételezett horgonydobozok középpontjait bármely képen.
 * A bemeneti kép egy bizonyos receptív mezőben lévő információit a bemeneti képen ahhoz a receptív mezőhöz közel elhelyezkedő horgonydobozok osztályainak és eltolásainak megjóslására használjuk.
-* Deep learning segítségével kihasználhatjuk a képek rétegenkénti, több szintű reprezentációit a többléptékű objektumdetektáláshoz.
+* mélytanulás segítségével kihasználhatjuk a képek rétegenkénti, több szintű reprezentációit a többléptékű objektumdetektáláshoz.
 
 
 ## Feladatok

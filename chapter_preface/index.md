@@ -1,6 +1,6 @@
 # Előszó
 
-Néhány évvel ezelőtt még nem dolgoztak deep learning kutatók seregei
+Néhány évvel ezelőtt még nem dolgoztak mélytanulás kutatók seregei
 nagyvállalatoknál és startupoknál azon, hogy intelligens termékeket és
 szolgáltatásokat hozzanak létre. Amikor mi beléptünk erre a területre, a
 gépi tanulás nem szerepelt a napilapok címlapjain. A szüleink azt sem
@@ -12,15 +12,15 @@ például a beszédfelismerésre és a számítógépes látásra. Ráadásul ez
 közül sok alkalmazás annyi speciális szaktudást igényelt, hogy gyakran
 teljesen különálló területként tekintettek rájuk, amelyekben a gépi
 tanulás csak egy kisebb alkotóelem volt. Abban az időben a neurális
-hálózatokat, vagyis azoknak a deep learning módszereknek az elődeit,
+hálózatokat, vagyis azoknak a mélytanulás módszereknek az elődeit,
 amelyekre ebben a könyvben összpontosítunk, általában elavultnak
 tartották.
 
-Néhány év alatt azonban a deep learning teljesen meglepte a világot, és
+Néhány év alatt azonban a mélytanulás teljesen meglepte a világot, és
 gyors fejlődést indított el olyan sokféle területen, mint a
 számítógépes látás, a természetesnyelv-feldolgozás, az automatikus
 beszédfelismerés, a megerősítéses tanulás és a biomedikai informatika.
-Sőt, a deep learning sikere számos, a gyakorlatban is fontos feladatban
+Sőt, a mélytanulás sikere számos, a gyakorlatban is fontos feladatban
 még az elméleti gépi tanulás és a statisztika fejlődését is ösztönözte.
 Ezekre az eredményekre támaszkodva ma már olyan autókat tudunk építeni,
 amelyek minden korábbinál nagyobb önállósággal vezetnek maguktól
@@ -39,7 +39,7 @@ biomedicináig.
 
 ## A könyvről
 
-Ez a könyv arra tett kísérletünk, hogy a deep learninget közel hozzuk az
+Ez a könyv arra tett kísérletünk, hogy a mélytanuláset közel hozzuk az
 olvasóhoz, és egyszerre tanítsuk meg a *fogalmakat*, az
 *összefüggéseket* és a *kódot*.
 
@@ -61,9 +61,9 @@ vállalkozókat segítő lehetőségei igazán csak az elmúlt tíz évben
 teljesedtek ki, részben az erős és jól dokumentált keretrendszerek
 megjelenésének köszönhetően.
 
-A deep learning lehetőségeinek kipróbálása különleges kihívásokat jelent,
+A mélytanulás lehetőségeinek kipróbálása különleges kihívásokat jelent,
 mert már egyetlen alkalmazás is számos különböző tudásterületet kapcsol
-össze. A deep learning alkalmazásához egyszerre kell érteni
+össze. A mélytanulás alkalmazásához egyszerre kell érteni
 (i) egy probléma adott módon történő megfogalmazásának motivációit;
 (ii) egy adott modell matematikai alakját;
 (iii) azokat az optimalizálási algoritmusokat, amelyekkel a modelleket az
@@ -87,7 +87,7 @@ gyakorlat széles spektrumát; és
 (iii) ötvözte volna a tankönyvektől elvárható minőségű magyarázatot a
 gyakorlati útmutatóktól elvárt tiszta, futtatható kóddal.
 Rengeteg példakódot találtunk, amelyek megmutatták, hogyan kell egy adott
-deep learning keretrendszert használni (például mátrixokkal számolni
+mélytanulás keretrendszert használni (például mátrixokkal számolni
 TensorFlow-ban), vagy hogyan lehet egy-egy konkrét technikát
 megvalósítani (például LeNet, AlexNet, ResNet stb.), szétszórva
 blogbejegyzésekben és GitHub-repókban. Ezek a példák azonban jellemzően
@@ -95,11 +95,11 @@ arra koncentráltak, *hogyan* kell egy adott megközelítést implementálni,
 és nem tárgyalták, *miért* születnek bizonyos algoritmikus döntések.
 Időről időre felbukkantak interaktív források is, amelyek egy-egy témát
 próbáltak feldolgozni, például a [Distill](http://distill.pub) oldal
-igényes cikkei vagy személyes blogok, de ezek csak a deep learning néhány
+igényes cikkei vagy személyes blogok, de ezek csak a mélytanulás néhány
 kiválasztott területét fedték le, és gyakran nem tartalmaztak kapcsolódó
-kódot. Másfelől több deep learning tankönyv is megjelent, például
+kódot. Másfelől több mélytanulás tankönyv is megjelent, például
 :citet:`Goodfellow.Bengio.Courville.2016`, amely átfogó áttekintést ad a
-deep learning alapjairól, de ezek a források nem kötötték össze a
+mélytanulás alapjairól, de ezek a források nem kötötték össze a
 leírásokat a fogalmak kódbeli megvalósításával, így az olvasó gyakran
 nem kapott kapaszkodót ahhoz, hogyan valósítsa meg mindezt a gyakorlatban.
 Ráadásul túl sok hasznos anyag rejtőzött kereskedelmi kurzusszolgáltatók
@@ -128,7 +128,7 @@ egyenletek és a szöveg együtt kezelésére a Jupyter notebookokat; a
 renderelő motornak a Sphinxet; a beszélgetések platformjának pedig a
 Discourse-t. Bár a rendszerünk nem tökéletes, ezek a választások ésszerű
 kompromisszumot jelentenek a versengő szempontok között. Úgy gondoljuk,
-hogy a *Dive into Deep Learning* talán az első olyan könyv, amely ilyen
+hogy a *Dive into mélytanulás* talán az első olyan könyv, amely ilyen
 integrált munkafolyamattal jelent meg.
 
 
@@ -170,15 +170,15 @@ Ez segít abban, hogy a gyakorlati felhasználók gyorsan megkapják a
 problémák megoldásához szükséges eszköztárat, cserébe viszont az olvasónak
 időnként el kell fogadnia néhány szerkesztői döntésünket.
 
-Ez a könyv a deep learning fogalmait az alapoktól tanítja. Néha olyan
+Ez a könyv a mélytanulás fogalmait az alapoktól tanítja. Néha olyan
 aprólékos részletekbe is belemegyünk modellekkel kapcsolatban, amelyeket a
-modern deep learning keretrendszerek általában elrejtenének a
+modern mélytanulás keretrendszerek általában elrejtenének a
 felhasználók elől. Ez főleg az alapozó bemutatókban jelenik meg, ahol azt
 szeretnénk, hogy pontosan lásd, mi történik egy adott rétegben vagy
 optimalizálóban. Ilyenkor gyakran kétféle változatot mutatunk be:
 egyet, ahol mindent a nulláról implementálunk, csupán NumPy-szerű
 funkcionalitásra és automatikus differenciálásra támaszkodva; valamint
-egy gyakorlatiasabb példát, ahol tömör kódot írunk a deep learning
+egy gyakorlatiasabb példát, ahol tömör kódot írunk a mélytanulás
 keretrendszerek magas szintű API-jait használva. Miután elmagyaráztuk,
 hogyan működik egy adott komponens, a későbbi bemutatókban már a
 magas szintű API-kra támaszkodunk.
@@ -186,7 +186,7 @@ magas szintű API-kra támaszkodunk.
 
 ### Tartalom és felépítés
 
-A könyv nagyjából három részre osztható: az alapozásra, a deep learning
+A könyv nagyjából három részre osztható: az alapozásra, a mélytanulás
 technikákra, valamint a valós rendszerekre és alkalmazásokra fókuszáló
 haladó témákra (:numref:`fig_book_org`).
 
@@ -195,19 +195,19 @@ haladó témákra (:numref:`fig_book_org`).
 
 
 * **1. rész: Alapok és előkészületek**.
-:numref:`chap_introduction` bevezetést ad a deep learning világába.
+:numref:`chap_introduction` bevezetést ad a mélytanulás világába.
 Ezután a :numref:`chap_preliminaries` gyorsan áttekinti azokat az
-előfeltételeket, amelyek a gyakorlati deep learninghez szükségesek:
+előfeltételeket, amelyek a gyakorlati mélytanuláshez szükségesek:
 hogyan tároljuk és kezeljük az adatokat, és hogyan alkalmazzunk különféle
 numerikus műveleteket a lineáris algebra, a kalkulus és a
 valószínűségszámítás elemi fogalmaira építve.
-:numref:`chap_regression` és :numref:`chap_perceptrons` a deep learning
+:numref:`chap_regression` és :numref:`chap_perceptrons` a mélytanulás
 legalapvetőbb fogalmait és technikáit tárgyalja, beleértve a regressziót
 és az osztályozást, a lineáris modelleket, a többrétegű perceptronokat,
 valamint a túlillesztést és a regularizációt.
 
-* **2. rész: Modern deep learning technikák**.
-:numref:`chap_computation` bemutatja a deep learning rendszerek alapvető
+* **2. rész: Modern mélytanulás technikák**.
+:numref:`chap_computation` bemutatja a mélytanulás rendszerek alapvető
 számítási komponenseit, és megteremti az alapot a későbbi, összetettebb
 modellek implementálásához. Ezután :numref:`chap_cnn` és
 :numref:`chap_modern_cnn` a konvolúciós neurális hálózatokat (CNN-eket)
@@ -221,16 +221,16 @@ természetesnyelv-feldolgozásban és idősor-előrejelzésben.
 mutat be, az úgynevezett *figyelemmechanizmusokra* épülő modelleket,
 amelyek a legtöbb természetesnyelv-feldolgozási feladatban kiszorították
 az RNN-eket, mint uralkodó architektúrát. Ezek a fejezetek felzárkóztatnak
-a deep learning szakemberek által széles körben használt legerősebb és
+a mélytanulás szakemberek által széles körben használt legerősebb és
 legáltalánosabb eszközökhöz.
 
 * **3. rész: Skálázhatóság, hatékonyság és alkalmazások** (elérhető
 [online](https://d2l.ai)).
 A 12. fejezetben több gyakori optimalizálási algoritmust tárgyalunk,
-amelyeket deep learning modellek tanítására használnak. Ezután a 13.
+amelyeket mélytanulás modellek tanítására használnak. Ezután a 13.
 fejezetben több kulcsfontosságú tényezőt vizsgálunk meg, amelyek
-befolyásolják a deep learning kód futási teljesítményét. A 14.
-fejezetben a deep learning legfontosabb számítógépes látási
+befolyásolják a mélytanulás kód futási teljesítményét. A 14.
+fejezetben a mélytanulás legfontosabb számítógépes látási
 alkalmazásait mutatjuk be. Végül a 15. és 16. fejezetben megmutatjuk,
 hogyan lehet nyelvi reprezentációs modelleket előtanítani, majd ezeket
 természetesnyelv-feldolgozási feladatokra alkalmazni.
@@ -244,14 +244,14 @@ hogy bizonyos intuíciókat a legjobban próbálgatással lehet kialakítani:
 kis mértékben módosítod a kódot, majd megfigyeled az eredményt.
 Ideális esetben egy elegáns matematikai elmélet pontosan megmondaná,
 hogyan kell a kódot módosítani egy kívánt eredmény eléréséhez. A mai
-deep learning szakembereknek azonban gyakran olyan területen kell
+mélytanulás szakembereknek azonban gyakran olyan területen kell
 haladniuk, ahol még nincs szilárd elméleti útmutatás. Legjobb
 erőfeszítéseink ellenére sok technika hatékonyságára még mindig nincs
 teljes formális magyarázat, több okból is: e modellek matematikai
 jellemzése rendkívül nehéz lehet; a magyarázat valószínűleg az adatok
 olyan tulajdonságaitól függ, amelyeknek jelenleg sincs egyértelmű
 definíciójuk; és az ilyen kérdések komoly vizsgálata csak az utóbbi
-években gyorsult fel igazán. Reméljük, hogy ahogy a deep learning
+években gyorsult fel igazán. Reméljük, hogy ahogy a mélytanulás
 elmélete fejlődik, a könyv jövőbeli kiadásai még a mostaninál is mélyebb
 felismeréseket tudnak majd nyújtani.
 
@@ -290,10 +290,10 @@ d2l = sys.modules[__name__]
 
 :begin_tab:`mxnet`
 A könyv kódjának nagy része Apache MXNetre épül, amely egy nyílt
-forráskódú deep learning keretrendszer, és amelyet az AWS (Amazon Web
+forráskódú mélytanulás keretrendszer, és amelyet az AWS (Amazon Web
 Services), valamint számos egyetem és vállalat is előnyben részesít. A
 könyv összes kódja átment a legfrissebb MXNet-verzión végzett
-teszteken. Ugyanakkor a deep learning gyors fejlődése miatt előfordulhat,
+teszteken. Ugyanakkor a mélytanulás gyors fejlődése miatt előfordulhat,
 hogy a *nyomtatott kiadásban* szereplő egyes kódok a jövőbeli
 MXNet-verziókban már nem működnek megfelelően. Az online változatot
 igyekszünk naprakészen tartani. Ha problémába ütközöl, nézd meg a :ref:`chap_installation` részt a kód és a futtatási környezet
@@ -303,7 +303,7 @@ soroljuk fel.
 
 :begin_tab:`pytorch`
 A könyv kódjának nagy része PyTorchra épül, amely egy népszerű nyílt
-forráskódú keretrendszer, és amelyet a deep learning kutatói közösség
+forráskódú keretrendszer, és amelyet a mélytanulás kutatói közösség
 nagy lelkesedéssel fogadott. A könyv összes kódja átment a PyTorch
 legfrissebb stabil verzióján végzett teszteken. Ugyanakkor a deep
 learning gyors fejlődése miatt előfordulhat, hogy a *nyomtatott
@@ -316,10 +316,10 @@ soroljuk fel.
 
 :begin_tab:`tensorflow`
 A könyv kódjának nagy része TensorFlow-ra épül, amely egy nyílt
-forráskódú deep learning keretrendszer, széles körben használják az
+forráskódú mélytanulás keretrendszer, széles körben használják az
 iparban, és népszerű a kutatók körében is. A könyv összes kódja átment a
 TensorFlow legfrissebb stabil verzióján végzett teszteken. Ugyanakkor a
-deep learning gyors fejlődése miatt előfordulhat, hogy a *nyomtatott
+mélytanulás gyors fejlődése miatt előfordulhat, hogy a *nyomtatott
 kiadásban* szereplő egyes kódok a jövőbeli TensorFlow-verziókban már nem
 működnek megfelelően. Az online változatot igyekszünk naprakészen
 tartani. Ha problémába ütközöl, nézd meg a :ref:`chap_installation` részt a kód és a futtatási környezet
@@ -335,7 +335,7 @@ JIT-fordítást, vektorizálást és még sok minden mást. Egyre népszerűbb a
 gépi tanulási kutatásban, és könnyen megtanulható, NumPy-szerű API-val
 rendelkezik. Sőt, a JAX célja gyakorlatilag az 1:1 megfelelés a
 NumPy-val, így a kódod átállítása akár annyiból is állhat, hogy egyetlen
-importutasítást módosítasz. Ugyanakkor a deep learning gyors fejlődése
+importutasítást módosítasz. Ugyanakkor a mélytanulás gyors fejlődése
 miatt előfordulhat, hogy a *nyomtatott kiadásban* szereplő egyes kódok a
 jövőbeli JAX-verziókban már nem működnek megfelelően. Az online
 változatot igyekszünk naprakészen tartani. Ha problémába ütközöl,
@@ -394,9 +394,9 @@ from typing import Any
 
 Ez a könyv azoknak a hallgatóknak (alap- és mesterszakosoknak),
 mérnököknek és kutatóknak szól, akik biztos gyakorlati tudást szeretnének
-szerezni a deep learning technikáiból. Mivel minden fogalmat az alapoktól
-magyarázunk el, nincs szükség korábbi deep learning vagy gépi tanulási
-háttérre. A deep learning módszereinek teljes megértéséhez szükség van
+szerezni a mélytanulás technikáiból. Mivel minden fogalmat az alapoktól
+magyarázunk el, nincs szükség korábbi mélytanulás vagy gépi tanulási
+háttérre. A mélytanulás módszereinek teljes megértéséhez szükség van
 némi matematikára és programozási tudásra, de csak alapvető előismereteket
 feltételezünk: némi lineáris algebra, kalkulus, valószínűségszámítás és
 Python-programozás elegendő. Ha valamit elfelejtettél volna, az
@@ -501,7 +501,7 @@ Tranahnak a segítségét és professzionalizmusát.
 
 ## Összefoglalás
 
-A deep learning forradalmasította a mintafelismerést, és olyan
+A mélytanulás forradalmasította a mintafelismerést, és olyan
 technológiát hozott létre, amely ma már számos megoldás alapját adja
 olyan különböző területeken, mint a számítógépes látás, a
 természetesnyelv-feldolgozás és az automatikus beszédfelismerés. A deep

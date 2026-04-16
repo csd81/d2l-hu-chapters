@@ -284,7 +284,7 @@ Az aktivációs függvények döntik el, hogy egy neuront aktiválni kell-e vagy
 súlyozott összeg kiszámításával és eltolás hozzáadásával.
 Differenciálható operátorok, amelyek bemeneti jeleket kimenetekké alakítanak,
 és legtöbbjük nemlinearitást ad hozzá.
-Mivel az aktivációs függvények alapvetők a mély tanulásban,
+Mivel az aktivációs függvények alapvetők a mélytanulásban,
 (**tekintsünk röviden néhány közismert egyet**).
 
 ### ReLU függvény
@@ -588,7 +588,7 @@ nagyjából az 1990-es évek körüli szakemberek eszközkészletének szintjén
 Bizonyos szempontokból előnyben vagy
 az akkori szakemberekkel szemben,
 mert kihasználhatod a hatékony
-nyílt forráskódú mély tanulási keretrendszereket
+nyílt forráskódú mélytanulási keretrendszereket
 a modellek gyors felépítéséhez, csupán néhány sornyi kóddal.
 Korábban ezeknek a hálózatoknak a tanításához
 a kutatóknak explicit módon kellett kódolniuk a rétegeket és deriváltakat
@@ -597,7 +597,7 @@ C-ben, Fortranban vagy akár Lispben (a LeNet esetében).
 Másodlagos előny, hogy a ReLU lényegesen könnyebben optimalizálható,
 mint a sigmoid vagy a tanh függvény. Mondhatjuk,
 hogy ez volt az egyik kulcsinnovációk egyike, amely hozzájárult
-a mély tanulás elmúlt évtizedes újjászületéséhez. Megjegyezzük azonban, hogy az
+a mélytanulás elmúlt évtizedes újjászületéséhez. Megjegyezzük azonban, hogy az
 aktivációs függvényekkel kapcsolatos kutatás nem állt le.
 Például a GELU (Gaussian error linear unit)
 aktivációs függvény $x \Phi(x)$ :citet:`Hendrycks.Gimpel.2016` ($\Phi(x)$

@@ -273,7 +273,7 @@ figyelni kell azokra az esetekre is,
 amikor a tanítási hibánk lényegesen alacsonyabb
 a validációs hibánknál, ami súlyos *túlillesztésre* utal.
 Megjegyezzük, hogy a túlillesztés nem mindig rossz dolog.
-Különösen a deep learningben
+Különösen a mélytanulásban
 a legjobb prediktív modellek sokszor
 sokkal jobban teljesítenek a tanítási adatokon, mint a visszatartott adatokon.
 Végső soron általában az általánosítási hiba csökkentésére törekszünk,
@@ -343,10 +343,10 @@ Több adat esetén esetleg megpróbálhatunk
 összetettebb modellt illeszteni.
 Elegendő adat hiányában az egyszerűbb modellek
 nehezebbek lehetnek legyőzni.
-Sok feladatnál a deep learning
+Sok feladatnál a mélytanulás
 csak akkor múlja felül a lineáris modelleket,
 ha sok ezernyi tanítási példány áll rendelkezésre.
-Részben a deep learning jelenlegi sikerét
+Részben a mélytanulás jelenlegi sikerét
 az Internet vállalatoktól, az olcsó tárhelyektől,
 a csatlakoztatott eszközöktől és a gazdaság széleskörű digitalizációjából
 eredő hatalmas adathalmazok bősége magyarázza.

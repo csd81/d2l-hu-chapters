@@ -20,7 +20,7 @@ amelyek nem is tűnhetnének működőképesnek:
   hogy hány paramétert kell tartalmazniuk a modelljeinknek.
 
 Talán meglepő, hogy a kódunk egyáltalán fut.
-Hiszen a deep learning keretrendszernek nem volt módja megtudni,
+Hiszen a mélytanulás keretrendszernek nem volt módja megtudni,
 hogy mi lenne egy hálózat bemeneti dimenzionalitása.
 A trükk itt az, hogy a keretrendszer *halasztja az inicializálást*,
 megvárja, amíg először átadunk adatot a modellen,

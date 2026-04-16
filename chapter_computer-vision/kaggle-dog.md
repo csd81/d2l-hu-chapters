@@ -231,7 +231,7 @@ test_iter = torch.utils.data.DataLoader(test_ds, batch_size, shuffle=False,
 Mivel ez a verseny adata az ImageNet adathalmaz egy részhalmaza,
 alkalmazhatjuk a :numref:`sec_fine_tuning` szakaszban tárgyalt megközelítést:
 választunk egy, a teljes ImageNet adathalmazon előtanított modellt, amellyel képjellemzőket nyerünk ki, majd ezeket egy egyedi, kisebb kimeneti hálózatba vezetjük.
-A deep learning keretrendszerek magas szintű API-jai
+A mélytanulás keretrendszerek magas szintű API-jai
 számos, az ImageNet adathalmazon előtanított modellt kínálnak.
 Ebben az esetben
 egy előtanított ResNet-34 modellt választunk,

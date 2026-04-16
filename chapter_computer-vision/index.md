@@ -2,8 +2,8 @@
 :label:`chap_cv`
 
 Legyen szó orvosi diagnózisról, önvezető járművekről, kamerafelügyeletről vagy intelligens szűrőkről – a számítógépes látás számos alkalmazása szorosan kapcsolódik jelenlegi és jövőbeli életünkhöz.
-Az elmúlt években a deep learning forradalmasította a számítógépes látórendszerek teljesítményét.
-Elmondható, hogy a legkorszerűbb számítógépes látási alkalmazások szinte elválaszthatatlanok a deep learningtől.
+Az elmúlt években a mélytanulás forradalmasította a számítógépes látórendszerek teljesítményét.
+Elmondható, hogy a legkorszerűbb számítógépes látási alkalmazások szinte elválaszthatatlanok a mélytanulástől.
 Erre való tekintettel ez a fejezet a számítógépes látás területére összpontosít, és megvizsgálja azokat a módszereket és alkalmazásokat, amelyek a közelmúltban meghatározó szerepet töltöttek be az akadémiai és az ipari kutatásban.
 
 :numref:`chap_cnn` és :numref:`chap_modern_cnn` fejezetekben különféle konvolúciós neurális hálózatokat tanulmányoztunk, amelyeket a számítógépes látásban széles körben alkalmaznak, és egyszerű képosztályozási feladatokon is kipróbáltuk őket.

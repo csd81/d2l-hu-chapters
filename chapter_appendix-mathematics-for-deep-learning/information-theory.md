@@ -521,7 +521,7 @@ kl_q2p, differ_percentage
 
 ## Keresztentrópia
 
-Ha kíváncsi vagy az információelmélet deep learning-beli alkalmazásaira, itt egy gyors példa. Definiáljuk a $p(x)$ valószínűségeloszlású igaz $P$ eloszlást és a $q(x)$ valószínűségeloszlású becsült $Q$ eloszlást, amelyeket a szakasz hátralévő részében használunk.
+Ha kíváncsi vagy az információelmélet mélytanulás-beli alkalmazásaira, itt egy gyors példa. Definiáljuk a $p(x)$ valószínűségeloszlású igaz $P$ eloszlást és a $q(x)$ valószínűségeloszlású becsült $Q$ eloszlást, amelyeket a szakasz hátralévő részében használunk.
 
 Tegyük fel, hogy $n$ adatpéldányból $\{x_1, \ldots, x_n\}$ bináris osztályozási problémát kell megoldanunk. Tegyük fel, hogy $1$-gyel és $0$-val kódoljuk a pozitív és negatív osztálycímkét $y_i$-vel rendre, és neurális hálózatunk $\theta$-val paraméterezhető. Ha olyan legjobb $\theta$-t keresünk, hogy $\hat{y}_i= p_{\theta}(y_i \mid x_i)$, természetes a maximális log-valószínűségi megközelítés alkalmazása, ahogy a :numref:`sec_maximum_likelihood` részben is láthattuk. Pontosabban, az igaz $y_i$ címkékre és a $\hat{y}_i= p_{\theta}(y_i \mid x_i)$ előrejelzésekre a pozitívként való osztályozás valószínűsége $\pi_i= p_{\theta}(y_i = 1 \mid x_i)$. Ezért a log-valószínűségi függvény a következő:
 

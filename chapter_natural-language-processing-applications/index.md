@@ -7,7 +7,7 @@ Az ilyen előtanított szöveges reprezentációkat különböző modellek bemen
 Valójában
 a korábbi fejezetek már tárgyaltak néhány természetes nyelvfeldolgozási alkalmazást
 *előtanítás nélkül*,
-csupán a deep learning architektúrák szemléltetése céljából.
+csupán a mélytanulás architektúrák szemléltetése céljából.
 Például a :numref:`chap_rnn` fejezetben
 RNN-eket alkalmaztunk nyelvi modellek tervezéséhez, amelyek novella-szerű szövegeket generálnak.
 A :numref:`chap_modern_rnn` és a :numref:`chap_attention-and-transformers` fejezetekben
@@ -23,11 +23,11 @@ downstream természetes nyelvfeldolgozási feladatot vizsgál:
 a szentimentelemzést és a természetes nyelvi következtetést,
 amelyek egyedi szövegeket, illetve szövegpárok kapcsolatait elemzik.
 
-![Az előtanított szöveges reprezentációk különböző deep learning architektúrák bemeneteként szolgálhatnak különféle downstream természetes nyelvfeldolgozási alkalmazásokhoz. Ez a fejezet arra összpontosít, hogyan tervezzünk modelleket különböző downstream természetes nyelvfeldolgozási alkalmazásokhoz.](../img/nlp-map-app.svg)
+![Az előtanított szöveges reprezentációk különböző mélytanulás architektúrák bemeneteként szolgálhatnak különféle downstream természetes nyelvfeldolgozási alkalmazásokhoz. Ez a fejezet arra összpontosít, hogyan tervezzünk modelleket különböző downstream természetes nyelvfeldolgozási alkalmazásokhoz.](../img/nlp-map-app.svg)
 :label:`fig_nlp-map-app`
 
 Ahogyan a :numref:`fig_nlp-map-app` ábrán látható,
-ez a fejezet a természetes nyelvfeldolgozási modellek tervezésének alapvető ötleteinek bemutatásával foglalkozik, különböző típusú deep learning architektúrák, például MLP-k, CNN-ek, RNN-ek és figyelem alkalmazásával.
+ez a fejezet a természetes nyelvfeldolgozási modellek tervezésének alapvető ötleteinek bemutatásával foglalkozik, különböző típusú mélytanulás architektúrák, például MLP-k, CNN-ek, RNN-ek és figyelem alkalmazásával.
 Bár az előtanított szöveges reprezentációk bármelyike kombinálható bármelyik architektúrával a :numref:`fig_nlp-map-app` ábra bármelyik alkalmazásához,
 mi néhány reprezentatív kombinációt választunk ki.
 Pontosabban, a szentimentelemzéshez az RNN-eken és CNN-eken alapuló népszerű architektúrákat vizsgáljuk.

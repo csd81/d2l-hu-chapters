@@ -8,7 +8,7 @@ tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 
 Eddig szintetikus adatokkal dolgoztunk,
 amelyek kész tenzorok formájában érkeztek.
-Azonban a deep learning valós alkalmazásához
+Azonban a mélytanulás valós alkalmazásához
 rendezetlen, tetszőleges formátumban tárolt adatokat
 kell kinyernünk és igényeinknek megfelelően
 előfeldolgoznunk.

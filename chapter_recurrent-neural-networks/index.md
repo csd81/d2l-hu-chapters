@@ -47,7 +47,7 @@ megkövetelik, hogy a modellek mind befogadjanak,
 mind kibocsássanak sorozatosan strukturált adatokat.
 
 
-A rekurrens neurális hálózatok (RNN-ek) olyan deep learning modellek,
+A rekurrens neurális hálózatok (RNN-ek) olyan mélytanulás modellek,
 amelyek sorozatok dinamikáját ragadják meg
 *rekurrens* kapcsolatokon keresztül, amelyek
 a csomópontok hálózatában ciklusoknak tekinthetők.
@@ -79,7 +79,7 @@ az agy modelljeiként indultak, amelyeket
 kognitív tudósok terjesztettek el, majd
 a gépi tanulás közössége is átvette őket
 praktikus modellezési eszközként.
-Ahogy a deep learning esetében általában,
+Ahogy a mélytanulás esetében általában,
 ebben a könyvben a gépi tanulás perspektíváját alkalmazzuk,
 az RNN-ekre mint praktikus eszközökre összpontosítva, amelyek
 a 2010-es évekbeli népszerűségüket
@@ -96,7 +96,7 @@ pl. változó felbontású képek esetén.
 Sőt, az RNN-ek az utóbbi időben jelentős
 piaci részesedést engedtek át a Transformer modelleknek,
 amelyekre a :numref:`chap_attention-and-transformers` fejezetben térünk ki.
-Az RNN-ek azonban a deep learningben a komplex szekvenciális struktúra
+Az RNN-ek azonban a mélytanulásban a komplex szekvenciális struktúra
 kezelésének alapértelmezett modelljeiként kerültek előtérbe,
 és a mai napig alap modelleknek számítanak a szekvenciális modellezésben.
 Az RNN-ek és a sorozatmodellezés történetei

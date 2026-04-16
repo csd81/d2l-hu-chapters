@@ -5,11 +5,11 @@ Eddig mini-batch sztochasztikus gradienscsökkenés segítségével tanítottuk 
 Amikor azonban az algoritmust implementáltuk,
 csak a modellen keresztüli *előreterjesztés* számításaival foglalkoztunk.
 Amikor a gradiensek kiszámítására került sor,
-egyszerűen meghívtuk a mély tanulási keretrendszer által biztosított visszaterjesztési függvényt.
+egyszerűen meghívtuk a mélytanulási keretrendszer által biztosított visszaterjesztési függvényt.
 
 A gradiensek automatikus kiszámítása
 alapvetően leegyszerűsíti
-a mély tanulási algoritmusok implementálását.
+a mélytanulási algoritmusok implementálását.
 Az automatikus differenciálás előtt
 még a bonyolult modellek kisebb változtatásai is megkövetelték
 a bonyolult deriváltak kézi újraszámítását.
@@ -19,7 +19,7 @@ Bár továbbra is az automatikus differenciálásra kell támaszkodnunk,
 hogy az érdekesebb részekre összpontosíthassunk,
 tudni kell, hogyan számítják ki ezeket a gradienseket
 a motorháztető alatt,
-ha a mély tanulás felületes megértésén túl szeretnénk lépni.
+ha a mélytanulás felületes megértésén túl szeretnénk lépni.
 
 Ebben a részben mélyebben belemerülünk
 a *visszaterjesztés* részleteibe
@@ -242,7 +242,7 @@ könnyebben *memória kifogyási* hibákhoz vezet.
 
 Az előreterjesztés sorban kiszámítja és tárolja a neurális hálózat által meghatározott számítási gráf köztes változóit. A bemeneti rétegtől a kimeneti réteg felé halad.
 A visszaterjesztés sorban kiszámítja és tárolja a neurális hálózat köztes változóinak és paramétereinek gradienseit fordított sorrendben.
-Mély tanulási modellek tanításakor az előreterjesztés és a visszaterjesztés egymástól függ,
+mélytanulási modellek tanításakor az előreterjesztés és a visszaterjesztés egymástól függ,
 és a tanítás lényegesen több memóriát igényel, mint az előrejelzés.
 
 

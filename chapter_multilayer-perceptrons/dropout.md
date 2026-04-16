@@ -67,7 +67,7 @@ a ko-adaptált géneket.
 Bár ez az elméleti indoklás biztosan vitatható,
 maga a dropout technika tartósnak bizonyult,
 és a dropout különböző formái implementálva vannak
-a legtöbb mély tanulási könyvtárban.
+a legtöbb mélytanulási könyvtárban.
 
 
 A legfontosabb kihívás az, hogyan injektáljuk a zajt.

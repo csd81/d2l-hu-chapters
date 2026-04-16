@@ -148,7 +148,7 @@ módszerekkel dolgozni.
 Ez azért van, mert ezek a módszerek általában
 feliratszerű objektumok manipulálásával járnak (amelyek sokszor alacsony dimenziósak),
 szemben a bemeneti objektumokkal,
-amelyek a mély tanulásban általában nagy dimenziósak.
+amelyek a mélytanulásban általában nagy dimenziósak.
 
 ### Fogalomeltolódás
 
@@ -454,7 +454,7 @@ A felirateltolódás szép tulajdonsága,
 hogy ha ésszerűen jó modellünk van a forrás eloszlásra,
 akkor e súlyok konzisztens becsléseit kaphatjuk
 anélkül, hogy valaha is a környezeti dimenzióval kellene foglalkoznunk.
-A mély tanulásban a bemenetek általában nagy dimenziós objektumok, mint képek,
+A mélytanulásban a bemenetek általában nagy dimenziós objektumok, mint képek,
 míg a feliratok sokszor egyszerűbb objektumok, mint kategóriák.
 
 A cél felirat eloszlás becsléséhez

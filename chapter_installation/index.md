@@ -63,9 +63,9 @@ conda activate d2l
 ```
 
 
-## A deep learning keretrendszer és a `d2l` csomag telepítése
+## A mélytanulás keretrendszer és a `d2l` csomag telepítése
 
-Mielőtt bármilyen deep learning keretrendszert telepítenél, először
+Mielőtt bármilyen mélytanulás keretrendszert telepítenél, először
 ellenőrizd, hogy van-e megfelelő GPU a gépedben
 (egy átlagos laptop kijelzőjét meghajtó GPU a mi céljainkra általában nem
 elég). Ha például a számítógépedben NVIDIA GPU van, és telepítetted a
@@ -230,7 +230,7 @@ Ezen a ponton megnyithatod a http://localhost:8888 címet a böngésződben
 (lehet, hogy már automatikusan meg is nyílt). Ezután futtathatod a könyv
 egyes részeinek kódját. Valahányszor új parancssori ablakot nyitsz, a
 D2L notebookok futtatása vagy a csomagok frissítése előtt
-(akár a deep learning keretrendszert, akár a `d2l` csomagot frissíted)
+(akár a mélytanulás keretrendszert, akár a `d2l` csomagot frissíted)
 futtasd a `conda activate d2l` parancsot a futtatási környezet
 aktiválásához.
 A környezetből a `conda deactivate` paranccsal léphetsz ki.

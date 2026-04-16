@@ -322,13 +322,13 @@ Másodszor, a különböző $n$-gramok száma nem olyan nagy.
 Ez reményt ad számunkra, hogy a nyelvben számos struktúra van.
 Harmadszor, sok $n$-gram nagyon ritkán fordul elő.
 Ez egyes módszereket alkalmatlanná tesz a nyelvmodellezésre,
-és motiválja a deep learning modellek használatát.
+és motiválja a mélytanulás modellek használatát.
 Erről a következő szakaszban tárgyalunk.
 
 
 ## Összefoglalás
 
-A szöveg a deep learningben leggyakrabban előforduló sorozatadatok egyike.
+A szöveg a mélytanulásban leggyakrabban előforduló sorozatadatok egyike.
 A tokent alkotó elemek közönséges választásai a karakterek, szavak és szórészletek.
 A szöveg előfeldolgozásához általában (i) szövegeket tokenekre bontunk; (ii) szókincset készítünk a token-karakterláncok numerikus indexekre való leképezéséhez; és (iii) szöveges adatokat token indexekké alakítunk, amelyeket a modellek manipulálni tudnak.
 A gyakorlatban a szavak gyakorisága hajlamos a Zipf-törvényt követni. Ez nemcsak az egyes szavakra (unigramok) igaz, hanem az $n$-gramokra is.

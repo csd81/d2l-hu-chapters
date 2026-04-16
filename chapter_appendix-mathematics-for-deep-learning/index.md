@@ -19,7 +19,7 @@ entrópia, és hogyan segíthet pontosan megérteni, mit jelent a bitek-per-kara
 a modelledben. Mindez mélyebb matematikai megértést igényel.
 
 Ez a függelék azt a matematikai hátteret kívánja nyújtani, amely szükséges a modern
-deep learning alapelméletének megértéséhez, de nem törekszik teljességre. A lineáris
+mélytanulás alapelméletének megértéséhez, de nem törekszik teljességre. A lineáris
 algebra mélyebb vizsgálatával kezdjük. Kialakítjuk az összes általános lineáris algebrai
 objektum és művelet geometriai értelmezését, amely lehetővé teszi számunkra, hogy
 vizualizáljuk a különböző transzformációk hatásait adatainkra. Kulcseleme a
@@ -49,7 +49,7 @@ mennyiségileg megvitathatjuk, hogy egy modell mennyi információt tartalmaz eg
 vizsgált tartományról.
 
 Együttesen ezek alkotják azokat az alapvető matematikai fogalmakat, amelyek szükségesek
-ahhoz, hogy elindulj a deep learning mélyebb megértése felé vezető úton.
+ahhoz, hogy elindulj a mélytanulás mélyebb megértése felé vezető úton.
 
 ```toc
 :maxdepth: 2

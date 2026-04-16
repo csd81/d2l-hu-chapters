@@ -1,8 +1,8 @@
-# Függelék: Eszközök a Deep Learninghez
+# Függelék: Eszközök a mélytanuláshez
 :label:`chap_appendix_tools`
 
 
-Hogy a legtöbbet hozhasd ki a *Dive into Deep Learning* könyvből,
+Hogy a legtöbbet hozhasd ki a *Dive into mélytanulás* könyvből,
 ebben a függelékben bemutatjuk azokat az eszközöket,
 amelyek segítségével futtathatod a könyv kódját,
 és hozzájárulhatsz ehhez az interaktív, nyílt forráskódú könyvhöz.

@@ -67,7 +67,7 @@ determinista e-kereskedelmi platformunkkal, amely ugyanazt az üzleti
 logikát követi, függetlenül attól, mennyi tapasztalat halmozódik fel,
 egészen addig, amíg maguk a fejlesztők nem tanulnak valamit, és úgy nem
 döntenek, hogy ideje frissíteni a szoftvert. Ebben a könyvben a gépi
-tanulás alapjait tanítjuk meg, különösen a *deep learningre*
+tanulás alapjait tanítjuk meg, különösen a *mélytanulásra*
 összpontosítva, amely olyan erőteljes technikák összessége, amelyek a
 számítógépes látástól a természetesnyelv-feldolgozáson és az
 egészségügyön át a genomikáig számos területen hajtanak előre
@@ -176,7 +176,7 @@ macskás és kutyás példát adunk a gépi tanulási rendszerünknek. Így a
 detektor végül megtanulhat nagyon nagy pozitív számot kiadni, ha macskát
 lát, nagyon nagy negatív számot, ha kutyát lát, és nullához közelebbi
 értéket, ha bizonytalan. Ez még csak a felszínt karcolja abból, mire képes
-a gépi tanulás. A deep learning, amelyet később részletesebben is
+a gépi tanulás. A mélytanulás, amelyet később részletesebben is
 megmagyarázunk, csupán egy a gépi tanulási problémák megoldására használt
 népszerű módszerek közül.
 
@@ -247,7 +247,7 @@ működik, hiszen elveszíthetjük a levágott részek információit. A
 szöveges adatok pedig még makacsabban állnak ellen a rögzített hosszúságú
 reprezentációknak. Gondolj az olyan e-kereskedelmi oldalak vásárlói
 véleményeire, mint az Amazon, az IMDb vagy a TripAdvisor. Némelyik rövid:
-"borzalmas!". Mások oldalakon át hömpölyögnek. A deep learning egyik
+"borzalmas!". Mások oldalakon át hömpölyögnek. A mélytanulás egyik
 nagy előnye a hagyományos módszerekkel szemben, hogy a modern modellek
 viszonylag elegánsan tudnak *változó hosszúságú* adatokat kezelni.
 
@@ -255,8 +255,8 @@ viszonylag elegánsan tudnak *változó hosszúságú* adatokat kezelni.
 adat mellett erősebb modelleket tudunk tanítani, és kevésbé kell
 előfeltevésekre támaszkodnunk. A
 (viszonylag) kis adatmennyiségről a nagy adatmennyiségre való átállás a
-modern deep learning sikerének egyik fő mozgatórugója. Ezt jól mutatja,
-hogy a deep learning legizgalmasabb modelljei közül sok egyszerűen nem
+modern mélytanulás sikerének egyik fő mozgatórugója. Ezt jól mutatja,
+hogy a mélytanulás legizgalmasabb modelljei közül sok egyszerűen nem
 működik nagy adathalmazok nélkül. Más modellek kis adatmennyiségnél is
 használhatók lehetnek, de ilyenkor gyakran nem jobbak a hagyományos
 megközelítéseknél.
@@ -298,7 +298,7 @@ tárgyalt feladatok már a klasszikus módszerek határait feszegetik. A deep
 learninget elsősorban az különbözteti meg a klasszikus megközelítésektől,
 hogy milyen erőteljes modellekre támaszkodik. Ezek a modellek az adatok
 sok egymás utáni transzformációjából állnak, amelyeket alulról felfelé
-láncolunk össze, innen ered a *deep learning* elnevezés is. A mély
+láncolunk össze, innen ered a *mélytanulás* elnevezés is. A mély
 modellek tárgyalása felé haladva néhány hagyományosabb módszert is meg
 fogunk beszélni.
 
@@ -356,7 +356,7 @@ azt mondjuk, hogy *túlilleszkedik* a tanítóadatra.
 Miután van adatforrásunk és reprezentációnk, modellünk és jól definiált
 célfüggvényünk, szükségünk van egy algoritmusra, amely képes megtalálni a
 veszteségfüggvény minimalizálásához szükséges lehető legjobb
-paramétereket. A deep learning népszerű optimalizálási algoritmusai a
+paramétereket. A mélytanulás népszerű optimalizálási algoritmusai a
 *gradienscsökkenés* nevű megközelítésre épülnek. Röviden: minden
 lépésben ez a módszer megvizsgálja, hogy az egyes paraméterekre nézve
 hogyan változna a tanítóhalmaz vesztesége, ha azt a paramétert egy kicsit
@@ -677,10 +677,10 @@ legnagyobb pontszámú objektumokat, és ezeket ajánlhatjuk neki. A
 valós üzemi rendszerek ennél jóval fejlettebbek, és az ilyen pontszámok
 kiszámításakor részletesen figyelembe veszik a felhasználói aktivitást és
 az elemek tulajdonságait is. :numref:`fig_deeplearning_amazon` azokat a
-deep learning könyveket mutatja, amelyeket az Amazon Aston preferenciáira
+mélytanulás könyveket mutatja, amelyeket az Amazon Aston preferenciáira
 hangolt személyre szabási algoritmusok alapján ajánlott.
 
-![Az Amazon által ajánlott deep learning könyvek.](../img/deeplearning-amazon.jpg)
+![Az Amazon által ajánlott mélytanulás könyvek.](../img/deeplearning-amazon.jpg)
 :label:`fig_deeplearning_amazon`
 
 Óriási gazdasági értékük ellenére a prediktív modellekre naivan épített
@@ -716,7 +716,7 @@ De hogyan kezeljük a videórészleteket? Itt minden részlet eltérő számú
 képkockából állhat. És az egyes képkockák értelmezésére vonatkozó
 becslésünk sokkal jobb lehet, ha figyelembe vesszük az előző vagy a
 következő képkockákat is. Ugyanez igaz a nyelvre is. Az egyik népszerű
-deep learning feladat például a gépi fordítás: olyan mondatok fogadása,
+mélytanulás feladat például a gépi fordítás: olyan mondatok fogadása,
 amelyek egy forrásnyelven íródtak, és ezek fordításának előrejelzése egy
 másik nyelven.
 
@@ -855,7 +855,7 @@ feltenni.
   Betanítás után egy generatív modellt használhatunk arra, hogy a példákat
   pontozzuk aszerint, mennyire valószínűek, vagy arra, hogy a megtanult
   eloszlásból szintetikus példákat mintavételezzünk. A generatív modellezés
-  korai deep learning áttörései a *variációs autokódolóek*
+  korai mélytanulás áttörései a *variációs autokódolóek*
   :cite:`Kingma.Welling.2014,rezende2014stochastic` feltalálásával
   kezdődtek, majd a *generatív versengő hálózatok*
   :cite:`Goodfellow.Pouget-Abadie.Mirza.ea.2014` kifejlesztésével
@@ -937,7 +937,7 @@ kölcsönhatásba lép a környezetével és cselekszik is benne, akkor nagy
 valószínűséggel a *megerősítéses tanulásra* fogsz összpontosítani. Ez
 magában foglalhat robotikai alkalmazásokat, párbeszédrendszereket, sőt
 akár videójátékokhoz készült mesterséges intelligenciát is. A
-*mély megerősítéses tanulás*, amely a deep learninget alkalmazza
+*mély megerősítéses tanulás*, amely a mélytanuláset alkalmazza
 megerősítéses tanulási problémákra, rendkívüli népszerűségre tett szert.
 A vizuális bemenetre támaszkodó, embereket legyőző Atari-játékos deep
 Q-network :cite:`mnih2015human`, valamint a Go világbajnokát letaszító
@@ -1020,8 +1020,8 @@ kapjuk.
 ## Gyökerek
 
 Most csupán a gépi tanulás által kezelhető problémák kis részét
-tekintettük át. A gépi tanulási feladatok sokféle körében a deep learning
-erőteljes eszközöket kínál a megoldásukhoz. Bár számos deep learning
+tekintettük át. A gépi tanulási feladatok sokféle körében a mélytanulás
+erőteljes eszközöket kínál a megoldásukhoz. Bár számos mélytanulás
 módszer viszonylag új találmány, az adatokból való tanulás alapötleteit
 évszázadok óta vizsgálják. Valójában az emberek régóta vágynak arra, hogy
 adatokat elemezzenek és a jövőbeli kimeneteket előre jelezzék, és ez a
@@ -1096,7 +1096,7 @@ neuronok pozitív megerősítéssel tanulnak. Ez vált ismertté Hebb-féle
 tanulási szabályként. Ezek az ötletek inspirálták a későbbi munkákat,
 például Rosenblatt perceptron tanulási algoritmusát, és megalapozták sok
 olyan sztochasztikus gradienscsökkenéses algoritmus működését, amely ma a
-deep learning alapját adja: erősítsük a kívánatos viselkedést, és
+mélytanulás alapját adja: erősítsük a kívánatos viselkedést, és
 gyengítsük a nem kívánatost, hogy jó paraméterbeállításokat találjunk egy
 neurális hálózat számára.
 
@@ -1130,14 +1130,14 @@ hálózatokkal ellentétben nem kellett őket hetekig tanítani, és erős
 elméleti garanciák mellett kiszámítható eredményeket adtak.
 
 
-## Az út a deep learningig
+## Az út a mélytanulásig
 
 Mindez nagyrészt akkor változott meg, amikor óriási mennyiségű adat vált
 elérhetővé a világhálónak, a több százmillió felhasználót kiszolgáló
 vállalatok megjelenésének, az olcsó, jó minőségű érzékelők elterjedésének,
 az olcsó adattárolásnak
 (Kryder-törvény) és a kedvező árú számítási teljesítménynek
-(Moore-törvény) köszönhetően. Különösen a deep learning számítási
+(Moore-törvény) köszönhetően. Különösen a mélytanulás számítási
 világát forradalmasították azok a GPU-fejlesztések, amelyeket eredetileg
 számítógépes játékokhoz terveztek. Hirtelen olyan algoritmusok és modellek,
 amelyek korábban számításilag megvalósíthatatlannak tűntek, elérhető közelségbe
@@ -1283,7 +1283,7 @@ ilyen óriási előrelépést érjenek el.
   akkor működik a legjobban, ha rengeteg
   (állapot, cselekvés, jutalom) hármas áll rendelkezésre. A szimuláció
   ezt lehetővé teszi.
-* A deep learning keretrendszerek kulcsszerepet játszottak az ötletek
+* A mélytanulás keretrendszerek kulcsszerepet játszottak az ötletek
   terjesztésében. A neurális hálózatok modellezésére szolgáló, nyílt
   forráskódú keretrendszerek első generációjához tartozott a
   [Caffe](https://github.com/BVLC/caffe),
@@ -1297,7 +1297,7 @@ ilyen óriási előrelépést érjenek el.
   [Caffe 2](https://github.com/caffe2/caffe2) és az
   [Apache MXNet](https://github.com/apache/incubator-mxnet). A
   keretrendszerek harmadik generációját az úgynevezett *imperatív*
-  deep learning eszközök alkotják; ezt a trendet sokak szerint a
+  mélytanulás eszközök alkotják; ezt a trendet sokak szerint a
   [Chainer](https://github.com/chainer/chainer) indította be, amely a
   modellek leírására a Python NumPy-hoz hasonló szintaxist használt. Ezt
   az ötletet átvette a [PyTorch](https://github.com/pytorch/pytorch), az
@@ -1333,7 +1333,7 @@ interneten. Más szóval a gépi tanulás mindenütt jelen van, még ha gyakran
 Csak a közelmúltban került az AI a reflektorfénybe, főként olyan
 problémák megoldásai miatt, amelyeket korábban kezelhetetlennek tartottak,
 és amelyek közvetlenül érintik a felhasználókat. Sok ilyen előrelépést a
-deep learningnek tulajdonítanak.
+mélytanulásnek tulajdonítanak.
 
 * Az intelligens asszisztensek, mint az Apple Siri-je, az Amazon Alexa-ja
   és a Google asszisztense, képesek elfogadható pontossággal reagálni a
@@ -1362,7 +1362,7 @@ deep learningnek tulajdonítanak.
   speciális hardverrel és a játékfa hatékony keresésével győzte le Garry
   Kaszparovot :cite:`Campbell.Hoane-Jr.Hsu.2002`. A Go még nehezebb a
   hatalmas állapottér miatt. Az AlphaGo 2015-ben érte el az emberi szintet
-  a deep learning és a Monte Carlo faalapú mintavételezés kombinációjával
+  a mélytanulás és a Monte Carlo faalapú mintavételezés kombinációjával
   :cite:`Silver.Huang.Maddison.ea.2016`. A pókerben az jelentette a
   kihívást, hogy az állapottér nagy és csak részben megfigyelhető
   (nem ismerjük az ellenfelek lapjait). A Libratus strukturált stratégiák
@@ -1374,7 +1374,7 @@ deep learningnek tulajdonítanak.
   vagy a Waymo már részleges autonómiát nyújtó termékeket szállítanak. A
   teljes autonómiát az teszi olyan nehézzé, hogy a helyes vezetéshez
   érzékelni, következtetni és szabályokat kell a rendszerbe építeni.
-  Jelenleg a deep learninget elsősorban ezeknek a problémáknak a vizuális
+  Jelenleg a mélytanuláset elsősorban ezeknek a problémáknak a vizuális
   aspektusában használják. A többit nagyrészt mérnökök hangolják finomra.
 
 Ez még mindig csak a felszínt karcolja a gépi tanulás jelentős
@@ -1420,26 +1420,26 @@ sürgetőbb aggodalomnak tűnik, mint annak a lehetősége, hogy egy
 rosszindulatú szuperintelligencia elpusztítja az emberiséget.
 
 
-## A deep learning lényege
+## A mélytanulás lényege
 
-Eddig tág értelemben beszéltünk a gépi tanulásról. A deep learning a
+Eddig tág értelemben beszéltünk a gépi tanulásról. A mélytanulás a
 gépi tanulásnak az a részhalmaza, amely sokrétegű neurális hálózatokon
 alapuló modellekkel foglalkozik. Annyiban *mély*, hogy modelljei sok
 *rétegnyi* transzformációt tanulnak meg. Bár ez elsőre szűknek hangozhat,
-a deep learning elképesztően sokféle modellt, technikát,
+a mélytanulás elképesztően sokféle modellt, technikát,
 problémaformalizálást és alkalmazást hívott életre. Sok intuíció
 született a mélység előnyeinek magyarázatára. Tulajdonképpen minden gépi
 tanulás sok rétegnyi számításból áll, amelyek közül az első a jellemzők
-feldolgozását végzi. A deep learninget az különbözteti meg, hogy a sok
+feldolgozását végzi. A mélytanuláset az különbözteti meg, hogy a sok
 reprezentációs rétegben megtanult műveleteket közösen, adatokból tanulja.
 
 Az eddig tárgyalt problémák, például a nyers hangjelből való tanulás, a
 képek nyers pixelértékeiből való tanulás, vagy a tetszőleges hosszúságú
 mondatok és idegen nyelvi megfelelőik közötti leképezés, tipikusan olyan
-területek, ahol a deep learning kiemelkedik, a hagyományos módszerek
+területek, ahol a mélytanulás kiemelkedik, a hagyományos módszerek
 pedig elbuknak. Kiderült, hogy ezek a sokrétegű modellek úgy tudják
 kezelni az alacsony szintű érzékelési adatokat, ahogyan a korábbi
-eszközök nem voltak erre képesek. A deep learning módszerek talán
+eszközök nem voltak erre képesek. A mélytanulás módszerek talán
 legfontosabb közös jellemzője az *end-to-end tanítás*. Vagyis ahelyett,
 hogy külön-külön hangolt komponensekből raknánk össze a rendszert, inkább
 felépítjük az egészet, majd együttesen hangoljuk a teljesítményét.
@@ -1456,10 +1456,10 @@ automatikusan végez el több millió választáson keresztül. Amikor a deep
 learning átvette a szerepet, ezeket a jellemzőkivonókat automatikusan
 hangolt szűrők váltották fel, amelyek jobb pontosságot értek el.
 
-Így a deep learning egyik kulcsfontosságú előnye, hogy nemcsak a
+Így a mélytanulás egyik kulcsfontosságú előnye, hogy nemcsak a
 hagyományos tanulási pipeline-ok végén álló sekély modelleket váltja le,
 hanem a jellemzőtervezés munkaigényes folyamatát is. Ráadásul azzal, hogy
-felváltja a területspecifikus előfeldolgozás nagy részét, a deep learning
+felváltja a területspecifikus előfeldolgozás nagy részét, a mélytanulás
 ledöntötte azokat a határokat, amelyek korábban elválasztották egymástól
 a számítógépes látást, a beszédfelismerést, a
 természetesnyelv-feldolgozást, az orvosi informatikát és más alkalmazási
@@ -1487,12 +1487,12 @@ gyors előrelépéshez vezetett a gyakorlati algoritmusok fejlesztésében,
 még ha sokszor azzal az árral is, hogy évtizedek óta létező eszközöket
 módosítunk vagy újrafeltalálunk.
 
-Végső soron a deep learning közösség büszke arra, hogy az akadémiai és
+Végső soron a mélytanulás közösség büszke arra, hogy az akadémiai és
 vállalati határokon átívelve osztja meg az eszközöket, és számos kiváló
 könyvtárat, statisztikai modellt és betanított hálózatot tesz közzé nyílt
 forráskódként. E szellemiség jegyében a könyvet alkotó notebookok is
 szabadon terjeszthetők és használhatók. Sok munkát fektettünk abba, hogy
-csökkentsük a deep learning megismerésének belépési korlátait, és
+csökkentsük a mélytanulás megismerésének belépési korlátait, és
 reméljük, hogy olvasóink profitálni fognak ebből.
 
 
@@ -1507,12 +1507,12 @@ használjuk. A gépi tanulás egyik osztályaként a reprezentációtanulás
 arra összpontosít, hogyan lehet automatikusan megtalálni az adatok
 megfelelő reprezentációját. Többszintű reprezentációtanulásként
 felfogva, amely sok egymásra épülő transzformációs réteget tanul meg, a
-deep learning nemcsak a hagyományos gépi tanulási pipeline-ok végén álló
+mélytanulás nemcsak a hagyományos gépi tanulási pipeline-ok végén álló
 sekély modelleket váltja le, hanem a jellemzőtervezés munkaigényes
-folyamatát is. A deep learning közelmúltbeli fejlődésének nagy részét az
+folyamatát is. A mélytanulás közelmúltbeli fejlődésének nagy részét az
 olcsó érzékelőkből és az internetes méretű alkalmazásokból származó
 adattömeg, valamint a számítási kapacitás jelentős fejlődése, főként a
-GPU-kon keresztül, indította el. Emellett a hatékony deep learning
+GPU-kon keresztül, indította el. Emellett a hatékony mélytanulás
 keretrendszerek elérhetősége jelentősen megkönnyítette a teljes rendszer
 optimalizálásának tervezését és megvalósítását, ami a magas teljesítmény
 egyik kulcstényezője.
@@ -1526,7 +1526,7 @@ egyik kulcstényezője.
    viselkedés megtanulásához?
 1. Azok közül a problémák közül, amelyekkel találkozol, melyekre létezik
    sok megoldási példa, mégsem ismert egyértelmű automatizálási módszer?
-   Ezek kiváló jelöltek lehetnek a deep learning alkalmazására.
+   Ezek kiváló jelöltek lehetnek a mélytanulás alkalmazására.
 1. Írd le az algoritmusok, az adatok és a számítás kapcsolatát. Hogyan
    befolyásolják az adatok jellemzői és az aktuálisan rendelkezésre álló
    számítási erőforrások azt, hogy mely algoritmusok tekinthetők

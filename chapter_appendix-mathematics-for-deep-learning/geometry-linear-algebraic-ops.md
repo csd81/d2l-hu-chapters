@@ -4,9 +4,9 @@
 A :numref:`sec_linear-algebra` fejezetben megismerkedtünk a lineáris algebra alapjaival,
 és láttuk, hogyan lehet ezeket felhasználni az adatok átalakítására szolgáló általános műveletek leírásához.
 A lineáris algebra az egyik legfontosabb matematikai alappillér,
-amelyre a deep learning és tágabb értelemben a gépi tanulás munkájának nagy része épül.
+amelyre a mélytanulás és tágabb értelemben a gépi tanulás munkájának nagy része épül.
 Míg a :numref:`sec_linear-algebra` fejezet elegendő eszközt tartalmazott
-a modern deep learning modellek mechanikájának bemutatásához,
+a modern mélytanulás modellek mechanikájának bemutatásához,
 a témának ennél jóval több oldala is van.
 Ebben a szakaszban mélyebbre ásunk:
 kiemeljük a lineáris algebrai műveletek néhány geometriai értelmezését,
@@ -288,7 +288,7 @@ Például a lineáris osztályozási modelleket –
 mint a :numref:`sec_softmax` fejezetben bemutatottakat –
 értelmezhetjük olyan módszerekként, amelyek megtalálják a különböző célcsoportokat elválasztó hipersíkokat.
 Ebben a kontextusban az ilyen hipersíkokat gyakran *döntési síkoknak* is nevezik.
-A deep learning alapú osztályozási modellek többsége egy softmax-szal táplált lineáris réteggel végződik,
+A mélytanulás alapú osztályozási modellek többsége egy softmax-szal táplált lineáris réteggel végződik,
 ezért a mély neurális hálózat szerepét úgy is értelmezhetjük,
 mint egy nemlineáris reprezentáció megtalálását, amelynek segítségével a célcsoportok
 hipersíkok által tisztán szétválaszthatók.

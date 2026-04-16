@@ -96,7 +96,7 @@ A $\hat{\boldsymbol{\mu}}_\mathcal{B}$ és ${\hat{\boldsymbol{\sigma}}_\mathcal{
 Azt gondolhatnád, hogy ez a zajosság problémát okozhat.
 Éppen ellenkezőleg, valójában előnyös.
 
-Ez a deep learning-ben visszatérő témának bizonyult.
+Ez a mélytanulásban visszatérő témának bizonyult.
 Elméletileg még nem jól jellemzett okokból az optimalizálásban különböző zajforrások gyakran gyorsabb tanításhoz és kisebb túlillesztéshez vezetnek: ez a változékonyság a regularizáció egyik formájaként tűnik hatni.
 :citet:`Teye.Azizpour.Smith.2018` és :citet:`Luo.Wang.Shao.ea.2018` a batchnormalizáció tulajdonságait a Bayes-féle priorokhoz és büntetőtagokhoz kapcsolta.
 Ez különösen rávilágít arra a talányra, hogy miért működik a batchnormalizáció a legjobban az 50–100-as tartományban lévő mérsékelt mini-batch-méreteknél.
@@ -278,7 +278,7 @@ Az algoritmus részleteit félretéve, vegyük észre a rétegünk implementáci
 Ezt a funkcionalitást ezután egy egyéni rétegbe integráljuk, amelynek kódja főként könyvvezetési kérdésekkel foglalkozik, mint például az adatok a megfelelő eszközkontextusba való áthelyezése, a szükséges változók kiosztása és inicializálása, a mozgó átlagok követése (itt az átlagra és a varianciára), stb.
 Ez a minta lehetővé teszi a matematika és a sablonkód tiszta szétválasztását.
 Megjegyezzük továbbá, hogy a kényelem kedvéért nem foglalkoztunk a bemeneti alak automatikus kikövetkeztetésével; ezért minden jellemző számát meg kell adnunk.
-Mostanra minden modern deep learning keretrendszer automatikusan képes felismerni a méretet és az alakot a magas szintű batchnormalizációs API-kban (a gyakorlatban ezt fogjuk használni).
+Mostanra minden modern mélytanulás keretrendszer automatikusan képes felismerni a méretet és az alakot a magas szintű batchnormalizációs API-kban (a gyakorlatban ezt fogjuk használni).
 
 ```{.python .input}
 %%tab mxnet
@@ -579,7 +579,7 @@ trainer.state.params['net']['layers_1']['beta'].reshape((-1,))
 
 ## [**Tömör Implementáció**]
 
-Az imént definiált `BatchNorm` osztályhoz képest közvetlenül a deep learning keretrendszer magas szintű API-jaiból származó `BatchNorm` osztályt is használhatjuk.
+Az imént definiált `BatchNorm` osztályhoz képest közvetlenül a mélytanulás keretrendszer magas szintű API-jaiból származó `BatchNorm` osztályt is használhatjuk.
 A kód lényegében azonos a fenti implementációnkkal, kivéve, hogy már nem kell megadnunk az extra argumentumokat a dimenziók helyes meghatározásához.
 
 ```{.python .input}
@@ -696,7 +696,7 @@ Azonban úgy gondoljuk, hogy fontos ezeket az iránymutatásul szolgáló intuí
 Végül, amikor elsajátítod ezt az anyagot és elkezded írni saját kutatási cikkeidet, szeretnéd majd egyértelműen elválasztani a technikai állításokat a sejtésektől.
 
 A batchnormalizáció sikere nyomán az *internal covariate shift* általi magyarázata ismételten felmerült a technikai irodalomban zajló vitákban és a gépi tanulás kutatásának bemutatásával kapcsolatos tágabb diskurzusban.
-Egy emlékezetes beszédben, amelyet a 2017-es NeurIPS konferencián a Test of Time Award átvételekor tartott, Ali Rahimi az *internal covariate shift*-et egy olyan érvelés fókuszpontjaként használta, amely a modern deep learning gyakorlatát az alkímiához hasonlította.
+Egy emlékezetes beszédben, amelyet a 2017-es NeurIPS konferencián a Test of Time Award átvételekor tartott, Ali Rahimi az *internal covariate shift*-et egy olyan érvelés fókuszpontjaként használta, amely a modern mélytanulás gyakorlatát az alkímiához hasonlította.
 Ezt követően a példát részletesen újra megvizsgálták egy pozíciós cikkben, amely a gépi tanulás aggasztó tendenciáit vázolta fel :cite:`Lipton.Steinhardt.2018`.
 Más szerzők alternatív magyarázatokat javasoltak a batchnormalizáció sikerére, néhányan :cite:`Santurkar.Tsipras.Ilyas.ea.2018` azt állítva, hogy a batchnormalizáció sikere ellenére bizonyos tekintetben az eredeti cikkben állított viselkedéssel ellentétes viselkedést mutat.
 

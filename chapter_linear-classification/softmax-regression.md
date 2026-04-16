@@ -3,7 +3,7 @@
 
 A :numref:`sec_linear_regression` szakaszban bemutattuk a lineáris regressziót,
 amelyet :numref:`sec_linear_scratch` szakaszban nulláról valósítottunk meg,
-majd :numref:`sec_linear_concise` szakaszban egy mély tanulási keretrendszer
+majd :numref:`sec_linear_concise` szakaszban egy mélytanulási keretrendszer
 magas szintű API-jait felhasználva is elkészítettük.
 
 A regresszió az az eszköz, amelyet akkor veszünk elő, amikor arra vagyunk kíváncsiak,
@@ -171,7 +171,7 @@ Amikor a statisztikusok egy statisztikai rendszer „hőmérsékletének" növel
 $T$ megváltoztatására utalnak, ami az alacsonyabb vagy magasabb energiaállapotok kedvezményezéséhez vezet.
 Gibbs ötletét követve az energia a hibának felel meg.
 Az energiaalapú modellek :cite:`Ranzato.Boureau.Chopra.ea.2007`
-ezt a nézőpontot alkalmazzák a mély tanulás problémáinak leírásában.
+ezt a nézőpontot alkalmazzák a mélytanulás problémáinak leírásában.
 
 ### Vektorizáció
 :label:`subsec_softmax_vectorization`
@@ -192,7 +192,7 @@ a softmax műveletet *soronként* végezhetjük el:
 $\mathbf{O}$ minden sorában hatványozzuk az összes elemet, majd normalizáljuk összegükkel.
 Fontos azonban ügyelni arra, hogy nagy számok hatványozását és logaritmálását elkerüljük,
 mivel ez numerikus túlcsordulást vagy alulcsordulást okozhat.
-A mély tanulási keretrendszerek ezt automatikusan kezelik.
+A mélytanulási keretrendszerek ezt automatikusan kezelik.
 
 ## Veszteségfüggvény
 :label:`subsec_softmax-regression-loss-func`
@@ -301,7 +301,7 @@ Az információelméletről részletesebben lásd :citet:`Cover.Thomas.1999` vag
 ## Az információelmélet alapjai
 :label:`subsec_info_theory_basics`
 
-Számos mély tanulással foglalkozó cikk az információelméletből vett fogalmakra és intuíciókra támaszkodik.
+Számos mélytanulással foglalkozó cikk az információelméletből vett fogalmakra és intuíciókra támaszkodik.
 Hogy ezeket megérthessük, szükségünk van néhány közös fogalomra.
 Ez egyfajta gyors útmutató.
 Az *információelmélet* az információ (más szóval adatok) kódolásának,

@@ -13,7 +13,7 @@ Az ezen a területen elért haladás tükrözi a VLSI (nagyon nagyméretű integ
 Hasonlóképpen a neurális hálózati architektúrák tervezése egyre elvontabbá vált: a kutatók az egyes neuronoktól az egész rétegekig, majd a blokkokig, a rétegek ismétlődő mintáiig jutottak. Egy évtizeddel később ez odáig fejlődött, hogy a kutatók egész betanított modelleket használnak fel különböző, bár rokon feladatokra. Az ilyen nagy előre betanított modelleket általában *alapmodelleknek* (*foundation models*) :cite:`bommasani2021opportunities` nevezzük.
 
 Vissza a hálózattervezéshez. A blokkok használatának ötlete először az Oxfordi Egyetem Visual Geometry Group (VGG) csoportjától származott, az általuk névadóan elnevezett *VGG* hálózatban :cite:`Simonyan.Zisserman.2014`.
-Ezeket az ismétlődő struktúrákat könnyű megvalósítani kódban bármely modern deep learning keretrendszerrel hurkok és szubrutinok segítségével.
+Ezeket az ismétlődő struktúrákat könnyű megvalósítani kódban bármely modern mélytanulás keretrendszerrel hurkok és szubrutinok segítségével.
 
 ```{.python .input}
 %%tab mxnet
@@ -52,7 +52,7 @@ A CNN-ek alapvető építőeleme a következő sorozat:
 (iii) pooling réteg, például max-pooling a felbontás csökkentéséhez. Az egyik probléma ezzel a megközelítéssel az, hogy a térbeli felbontás meglehetősen gyorsan csökken. Ez különösen kemény korlátot szab: legfeljebb $\log_2 d$ konvolúciós réteg használható, mielőtt az összes dimenzió ($d$) elfogy. Például ImageNet esetén így legfeljebb 8 konvolúciós réteget lehetne alkalmazni.
 
 :citet:`Simonyan.Zisserman.2014` kulcsgondolata az volt, hogy *több* konvolúciót alkalmazzanak a max-pooling általi leskálázások között, egy blokk formájában. Elsősorban azt vizsgálták, hogy a mély vagy a széles hálózatok teljesítenek-e jobban. Például két egymás utáni $3 \times 3$-as konvolúció ugyanazokat a pixeleket érinti, mint egyetlen $5 \times 5$-ös konvolúció. Ugyanakkor az utóbbi körülbelül annyi paramétert használ ($25 \cdot c^2$), mint három $3 \times 3$-as konvolúció ($3 \cdot 9 \cdot c^2$).
-Egy meglehetősen részletes elemzésben megmutatták, hogy a mély és keskeny hálózatok jelentősen felülmúlják sekély társaikat. Ez a deep learninget az egyre mélyebb hálózatok keresésére indította, tipikus alkalmazásoknál 100 réteg feletti mélységgel.
+Egy meglehetősen részletes elemzésben megmutatták, hogy a mély és keskeny hálózatok jelentősen felülmúlják sekély társaikat. Ez a mélytanuláset az egyre mélyebb hálózatok keresésére indította, tipikus alkalmazásoknál 100 réteg feletti mélységgel.
 A $3 \times 3$-as konvolúciók egymásra halmozása a későbbi mély hálózatok aranystandardjává vált (ezt a tervezési döntést :citet:`liu2022convnet` csak a közelmúltban vizsgálta felül). Ennek következtében a kis konvolúciók gyors implementációi GPU-kon is elterjedtek :cite:`lavin2016fast`.
 
 Visszatérve a VGG-hez: egy VGG blokk $3\times3$-as kernelű konvolúciók *sorozatából* áll, 1-es kitöltéssel (megőrizve a magasságot és a szélességet), amelyet egy $2 \times 2$-es max-pooling réteg követ 2-es lépésközzel (minden blokkban felezve a magasságot és a szélességet).
@@ -233,7 +233,7 @@ with d2l.try_gpu():
 
 ## Összefoglalás
 
-Talán a VGG tekinthető az első igazán modern konvolúciós neurális hálózatnak. Bár az AlexNet bevezette a deep learning hatékonyságához szükséges összetevők nagy részét, a VGG volt az, amely bevezette az olyan kulcstulajdonságokat, mint a több konvolúcióból álló blokkok és a mély, keskeny hálózatok előnyben részesítése. Ez egyben az első hálózat, amely valójában hasonló paraméterezésű modellek egész famíliája, és a szakember számára bőséges kompromisszumot kínál a komplexitás és a sebesség között. Ez az a hely is, ahol a modern deep learning keretrendszerek igazán ragyognak. Már nem szükséges XML konfigurációs fájlokat generálni a hálózat megadásához, hanem egyszerű Python kódon keresztül lehet összerakni a hálózatokat.
+Talán a VGG tekinthető az első igazán modern konvolúciós neurális hálózatnak. Bár az AlexNet bevezette a mélytanulás hatékonyságához szükséges összetevők nagy részét, a VGG volt az, amely bevezette az olyan kulcstulajdonságokat, mint a több konvolúcióból álló blokkok és a mély, keskeny hálózatok előnyben részesítése. Ez egyben az első hálózat, amely valójában hasonló paraméterezésű modellek egész famíliája, és a szakember számára bőséges kompromisszumot kínál a komplexitás és a sebesség között. Ez az a hely is, ahol a modern mélytanulás keretrendszerek igazán ragyognak. Már nem szükséges XML konfigurációs fájlokat generálni a hálózat megadásához, hanem egyszerű Python kódon keresztül lehet összerakni a hálózatokat.
 
 A közelmúltban a ParNet :cite:`Goyal.Bochkovskiy.Deng.ea.2021` megmutatta, hogy jóval sekélyebb architektúrával, nagyszámú párhuzamos számítás révén is versenyképes teljesítmény érhető el. Ez egy izgalmas fejlemény, és van remény arra, hogy a jövőben befolyásolni fogja az architektúra tervezését. A fejezet hátralévő részében azonban a tudományos haladás elmúlt évtizedes útját követjük.
 

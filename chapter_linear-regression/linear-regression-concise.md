@@ -6,11 +6,11 @@ tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 # A lineáris regresszió tömör implementációja
 :label:`sec_linear_concise`
 
-A deep learning az elmúlt évtizedben valamiféle kambriumi robbanást élt meg.
+A mélytanulás az elmúlt évtizedben valamiféle kambriumi robbanást élt meg.
 A technikák, alkalmazások és algoritmusok száma messze meghaladja
 az előző évtizedek fejlődését.
 Ez több tényező szerencsés kombinációjának köszönhető,
-amelyek egyike a számos nyílt forráskódú deep learning keretrendszer
+amelyek egyike a számos nyílt forráskódú mélytanulás keretrendszer
 által kínált hatékony, ingyenes eszközök.
 Theano :cite:`Bergstra.Breuleux.Bastien.ea.2010`,
 DistBelief :cite:`Dean.Corrado.Monga.ea.2012`,
@@ -35,7 +35,7 @@ A gyakorlatban, mivel az adatiterátorok, veszteségfüggvények, optimalizáló
 olyan közönségesek, a modern könyvtárak ezeket az összetevőket is implementálják nekünk.
 Ebben a részben (**bemutatjuk, hogyan implementálható
 a lineáris regresszió modell**) a :numref:`sec_linear_scratch` részből
-(**tömören a deep learning keretrendszerek magas szintű API-jaival**).
+(**tömören a mélytanulás keretrendszerek magas szintű API-jaival**).
 
 ```{.python .input}
 %%tab mxnet
@@ -285,7 +285,7 @@ def configure_optimizers(self):
 ## Tanítás
 
 Talán észrevetted, hogy a modellünk kifejezése
-egy deep learning keretrendszer magas szintű API-jai segítségével
+egy mélytanulás keretrendszer magas szintű API-jai segítségével
 kevesebb kódsort igényel.
 Nem kellett egyedileg lefoglalni a paramétereket,
 definiálni a veszteségfüggvényt, vagy implementálni a mini-batch SGD-t.
@@ -352,7 +352,7 @@ print(f'hiba a b becslésében: {data.b - b}')
 
 Ez a rész tartalmazza egy mély hálózat (ebben a könyvben)
 az első implementációját,
-amely kihasználja a modern deep learning keretrendszerek
+amely kihasználja a modern mélytanulás keretrendszerek
 által nyújtott kényelmet,
 mint például MXNet :cite:`Chen.Li.Li.ea.2015`,
 JAX :cite:`Frostig.Johnson.Leary.2018`,

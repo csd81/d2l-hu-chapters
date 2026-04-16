@@ -47,14 +47,14 @@ az empirikus hibánk $\epsilon$-on belül lesz a valódi hibától,
 *bármely adatgeneráló eloszlásra*.
 Sajnos az is kiderül,
 hogy bár e garantálások mély intellektuális alapköveket nyújtanak,
-a mély tanulás gyakorlói számára korlátozott a gyakorlati hasznosságuk.
+a mélytanulás gyakorlói számára korlátozott a gyakorlati hasznosságuk.
 Röviden: e garanciák arra utalnak, hogy a mély neurális hálózatok *a priori* általánosításának biztosítása
 abszurd számú példát igényel
 (esetleg billiókat vagy többet),
 még ha azt tapasztaljuk is, hogy a számunkra fontos feladatokon
 a mély neurális hálózatok jellemzően
 meglepően jól általánosítanak jóval kevesebb (ezres) példával.
-Ezért a mély tanulás gyakorlói sokszor lemondanak az *a priori* garanciákról,
+Ezért a mélytanulás gyakorlói sokszor lemondanak az *a priori* garanciákról,
 és inkább olyan módszereket alkalmaznak,
 amelyek hasonló problémákon korábban jól általánosítottak,
 és az általánosítást empirikus kiértékeléssel *post hoc* igazolják.
@@ -166,7 +166,7 @@ $\epsilon_\mathcal{D}(f) \in \epsilon(f) \pm 0.01$,
 akkor 10 000 mintára lesz szükségünk!
 
 Ez a mérete a gépi tanulás számos népszerű referenciahalmazának teszthalmazainak.
-Meglepődhetsz, hogy évente több ezer alkalmazott mély tanulási cikket publikálnak,
+Meglepődhetsz, hogy évente több ezer alkalmazott mélytanulási cikket publikálnak,
 amelyek $0.01$ vagy kisebb hibaarány-javítást ünnepelnek.
 Természetesen ha a hibaarányok sokkal közelebb vannak $0$-hoz,
 akkor a $0.01$ javulás valóban nagy ügy lehet.
@@ -503,7 +503,7 @@ Mégis jól általánosítanak a gyakorlati problémákon,
 ha nagyobbak és mélyebbek,
 annak ellenére, hogy magasabb VC dimenzióval járnak.
 A következő fejezetben visszatérünk az általánosítás kérdésére
-a mély tanulás kontextusában.
+a mélytanulás kontextusában.
 
 ## Feladatok
 

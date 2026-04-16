@@ -29,7 +29,7 @@ Az előbbi megmutathatja, hogyan növelhetjük
 vagy csökkenthetjük egy függvény értékét
 az argumentumainak manipulálásával.
 Ez hasznos az *optimalizálási problémáknál*,
-amelyekkel a deep learningben találkozunk,
+amelyekkel a mélytanulásban találkozunk,
 ahol a paramétereket ismételten frissítjük
 a veszteségfüggvény csökkentése érdekében.
 Az optimalizálás azt vizsgálja, hogyan illesztjük modelleinket a tanítási adatokhoz,
@@ -268,7 +268,7 @@ plot(x, [f(x), 2 * x - 3], 'x', 'f(x)', legend=['f(x)', 'Tangent line (x=1)'])
 :label:`subsec_calculus-grad`
 
 Eddig csupán egyváltozós függvényeket differenciáltunk.
-A deep learningben *sok* változós függvényekkel is kell dolgoznunk.
+A mélytanulásban *sok* változós függvényekkel is kell dolgoznunk.
 Röviden bemutatjuk a derivált fogalmát,
 amely ilyen *többváltozós* függvényekre is alkalmazható.
 
@@ -317,7 +317,7 @@ $\nabla_{\mathbf{X}} \|\mathbf{X} \|_\textrm{F}^2 = 2\mathbf{X}$.
 
 ## Láncszabály
 
-A deep learningben a fontos gradienseket gyakran nehéz kiszámítani,
+A mélytanulásban a fontos gradienseket gyakran nehéz kiszámítani,
 mert mélyen egymásba ágyazott függvényekkel dolgozunk
 (függvényeknek (függvényeknek...)).
 Szerencsére a *lánc-szabály* gondoskodik erről.
@@ -347,7 +347,7 @@ az $\mathbf{x}$ vektor szerint.
 Így a gradiens kiértékeléséhez vektor--mátrix szorzatot kell kiszámítani.
 Ez az egyik fő oka annak, hogy a lineáris algebra
 olyan alapvető építőkő
-a deep learning rendszerek felépítésében.
+a mélytanulás rendszerek felépítésében.
 
 
 

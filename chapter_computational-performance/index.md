@@ -1,7 +1,7 @@
 # Számítási teljesítmény
 :label:`chap_performance`
 
-A deep learning területén az adatkészletek és modellek általában nagyok,
+A mélytanulás területén az adatkészletek és modellek általában nagyok,
 ami számottevő számítási igénnyel jár.
 Ezért a számítási teljesítmény rendkívül fontos.
 Ez a fejezet a számítási teljesítményt befolyásoló főbb tényezőkre összpontosít:

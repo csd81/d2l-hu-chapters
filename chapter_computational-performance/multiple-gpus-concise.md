@@ -1,7 +1,7 @@
 # Több GPU tömör implementációja
 :label:`sec_multi_gpu_concise`
 
-A párhuzamosság minden új modellhez való nulláról való implementálása nem kellemes feladat. Ráadásul a szinkronizációs eszközök magas teljesítményre való optimalizálásából komoly előnyök származnak. A következőkben bemutatjuk, hogyan valósítsuk ezt meg a deep learning keretrendszerek magas szintű API-jainak segítségével.
+A párhuzamosság minden új modellhez való nulláról való implementálása nem kellemes feladat. Ráadásul a szinkronizációs eszközök magas teljesítményre való optimalizálásából komoly előnyök származnak. A következőkben bemutatjuk, hogyan valósítsuk ezt meg a mélytanulás keretrendszerek magas szintű API-jainak segítségével.
 A matematika és az algoritmusok ugyanazok, mint a :numref:`sec_multi_gpu`-ban.
 Nem meglepő módon ehhez a szakaszhoz legalább két GPU szükséges a kód futtatásához.
 

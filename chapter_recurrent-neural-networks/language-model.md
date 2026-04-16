@@ -109,7 +109,7 @@ ahol $n(x)$ és $n(x, x')$ rendre az egyes szavak
 és az egymás melletti szópárok előfordulásainak száma.
 Sajnos
 a szópár valószínűségének becslése valamivel nehezebb, mivel a
-"deep learning" előfordulásai sokkal ritkábbak.
+"mélytanulás" előfordulásai sokkal ritkábbak.
 Különösen szokatlan szókombinációknál nehéz lehet
 elegendő előfordulást találni pontos becslések eléréséhez.
 Ahogy a :numref:`subsec_natural-lang-stat` empirikus eredményei is mutatják,
@@ -151,7 +151,7 @@ Másodszor, minden számot tárolni kell.
 Harmadszor, ez teljesen figyelmen kívül hagyja a szavak jelentését. Például
 a "macska" és a "cica" hasonló kontextusokban kellene, hogy előforduljon.
 Meglehetősen nehéz ilyen modelleket kiegészítő kontextusokhoz igazítani,
-míg a deep learning alapú nyelvmodellek jól alkalmasak
+míg a mélytanulás alapú nyelvmodellek jól alkalmasak
 ennek figyelembevételére.
 Végül, a hosszú szósorozatok szinte biztosan újszerűek lesznek, ezért egy modell, amely egyszerűen
 megszámolja a korábban látott szósorozatok gyakoriságát, ott rosszul fog teljesíteni.

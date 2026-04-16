@@ -5,7 +5,7 @@ tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 
 # Egyéni rétegek
 
-A deep learning sikerének egyik tényezője
+A mélytanulás sikerének egyik tényezője
 a széles körű rétegkészlet elérhetősége,
 amelyek kreatív módokon kombinálhatók
 a különféle feladatokhoz megfelelő
@@ -15,7 +15,7 @@ szekvenciális adatokon való végigiterálásra
 és
 dinamikus programozáshoz találtak fel rétegeket.
 Előbb vagy utóbb szükséged lesz
-egy olyan rétegre, amely még nem létezik a deep learning keretrendszerben.
+egy olyan rétegre, amely még nem létezik a mélytanulás keretrendszerben.
 Ilyen esetekben egyéni réteget kell készíteni.
 Ebben a részben megmutatjuk, hogyan.
 

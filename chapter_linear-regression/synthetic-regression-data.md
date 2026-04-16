@@ -172,7 +172,7 @@ Bár a fent implementált iteráció didaktikai szempontból megfelelő,
 valós problémáknál nehézségeket okozó hatékonysági hiányosságai vannak.
 Például az összes adat memóriába töltését igényli,
 és sok véletlenszerű memória-hozzáférést végez.
-A deep learning keretrendszerek beépített iterátorai
+A mélytanulás keretrendszerek beépített iterátorai
 lényegesen hatékonyabbak, és kezelni tudják
 az olyan forrásokat is, mint a fájlokban tárolt adatok,
 adatok adatfolyamon keresztül fogadva,

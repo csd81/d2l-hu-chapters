@@ -466,7 +466,7 @@ sigma_hat = tf.math.reduce_std(samples)
 
 ## Összefoglalás
 
-* A statisztika a következtetési problémákra összpontosít, míg a deep learning a pontos előrejelzések elvégzésére helyezi a hangsúlyt, explicit programozás és megértés nélkül.
+* A statisztika a következtetési problémákra összpontosít, míg a mélytanulás a pontos előrejelzések elvégzésére helyezi a hangsúlyt, explicit programozás és megértés nélkül.
 * Három általánosan használt statisztikai következtetési módszer létezik: a becslők kiértékelése és összehasonlítása, a hipotézisvizsgálat elvégzése és a konfidenciaintervallumok szerkesztése.
 * A becslők értékelésére használt három legfontosabb mérőszám a statisztikai torzítás, a szórás és a négyzetesközép-hiba.
 * A konfidenciaintervallum egy igazi populációs paraméter becsült tartománya, amelyet a minták alapján szerkesztünk meg.

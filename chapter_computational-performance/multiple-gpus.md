@@ -1,8 +1,8 @@
 # Tanítás több GPU-n
 :label:`sec_multi_gpu`
 
-Eddig azt tárgyaltuk, hogyan lehet modelleket hatékonyan tanítani CPU-kon és GPU-kon. Megmutattuk azt is, hogy a deep learning keretrendszerek hogyan teszik lehetővé a számítás és a kommunikáció automatikus párhuzamosítását közöttük a :numref:`sec_auto_para` részben. Szintén bemutattuk a :numref:`sec_use_gpu` részben, hogyan lehet felsorolni egy számítógép összes elérhető GPU-ját az `nvidia-smi` paranccsal.
-Amit *nem* tárgyaltunk, az az, hogy a deep learning tanítást valójában hogyan lehet párhuzamosítani.
+Eddig azt tárgyaltuk, hogyan lehet modelleket hatékonyan tanítani CPU-kon és GPU-kon. Megmutattuk azt is, hogy a mélytanulás keretrendszerek hogyan teszik lehetővé a számítás és a kommunikáció automatikus párhuzamosítását közöttük a :numref:`sec_auto_para` részben. Szintén bemutattuk a :numref:`sec_use_gpu` részben, hogyan lehet felsorolni egy számítógép összes elérhető GPU-ját az `nvidia-smi` paranccsal.
+Amit *nem* tárgyaltunk, az az, hogy a mélytanulás tanítást valójában hogyan lehet párhuzamosítani.
 Ehelyett csak mellékesen jeleztük, hogy az adatokat valahogy el kell osztani több eszköz között, és működésre bírni a rendszert. A jelen rész kitölti ezeket a részleteket, és megmutatja, hogyan lehet egy hálózatot párhuzamosan tanítani a semmiből indulva. A magas szintű API-k funkcionalitásának kihasználásáról részletesebben a :numref:`sec_multi_gpu_concise` részben lesz szó.
 Feltételezzük, hogy ismered a mini-batch sztochasztikus gradienscsökkenés algoritmusokat, mint amilyenek a :numref:`sec_mini-batch_sgd` részben szerepelnek.
 
@@ -52,7 +52,7 @@ Azonban több GPU hozzáadása nem teszi lehetővé, hogy nagyobb modelleket tan
 
 
 A több GPU-n való párhuzamosítás különböző módjainak összehasonlítása a :numref:`fig_splitting` ábrán látható.
-Általánosságban az adatpárhuzamosság a legkényelmesebb megközelítés, feltéve, hogy elegendően nagy memóriával rendelkező GPU-khoz van hozzáférésünk. Lásd még :cite:`Li.Andersen.Park.ea.2014` az elosztott tanításhoz való partícionálás részletes leírásáért. A GPU-memória a deep learning korai napjaiban volt gondot okozó tényező. Mára ez a probléma megoldódott a legkülönlegesebb esetek kivételével. A továbbiakban az adatpárhuzamosságra összpontosítunk.
+Általánosságban az adatpárhuzamosság a legkényelmesebb megközelítés, feltéve, hogy elegendően nagy memóriával rendelkező GPU-khoz van hozzáférésünk. Lásd még :cite:`Li.Andersen.Park.ea.2014` az elosztott tanításhoz való partícionálás részletes leírásáért. A GPU-memória a mélytanulás korai napjaiban volt gondot okozó tényező. Mára ez a probléma megoldódott a legkülönlegesebb esetek kivételével. A továbbiakban az adatpárhuzamosságra összpontosítunk.
 
 ## Adatpárhuzamosság
 
@@ -245,7 +245,7 @@ print('after allreduce:\n', data[0], '\n', data[1])
 ## Adatok elosztása
 
 Szükségünk van egy egyszerű segédfüggvényre, amely [**egy mini-batch-et egyenletesen oszt el több GPU között**]. Például két GPU esetén az adatok felét szeretnénk az egyik, másik felét a másik GPU-ra másolni.
-Mivel kényelmesebb és tömörebb, a deep learning keretrendszer beépített függvényét használjuk, amelyet egy $4 \times 5$-ös mátrixon próbálunk ki.
+Mivel kényelmesebb és tömörebb, a mélytanulás keretrendszer beépített függvényét használjuk, amelyet egy $4 \times 5$-ös mátrixon próbálunk ki.
 
 ```{.python .input}
 #@tab mxnet

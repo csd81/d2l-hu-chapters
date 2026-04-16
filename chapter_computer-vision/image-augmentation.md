@@ -204,7 +204,7 @@ d2l.show_images([all_images[i][0] for i in range(32)], 4, 8, scale=0.8);
 ```
 
 A jóslás során határozott eredmények elérése érdekében általában csak a tanítópéldákra alkalmazzuk a képaugmentációt, és nem használunk véletlen műveleteket tartalmazó képaugmentációt a jósláskor.
-[**Itt csak a legegyszerűbb véletlen vízszintes tükrözési módszert használjuk**]. Emellett egy `ToTensor` példányt használunk a képek mini-batch-ének a deep learning keretrendszer által igényelt formátumba konvertálásához, azaz 0 és 1 közötti 32 bites lebegőpontos számokká, amelyek alakja (batch méret, csatornák száma, magasság, szélesség).
+[**Itt csak a legegyszerűbb véletlen vízszintes tükrözési módszert használjuk**]. Emellett egy `ToTensor` példányt használunk a képek mini-batch-ének a mélytanulás keretrendszer által igényelt formátumba konvertálásához, azaz 0 és 1 közötti 32 bites lebegőpontos számokká, amelyek alakja (batch méret, csatornák száma, magasság, szélesség).
 
 ```{.python .input}
 #@tab mxnet
@@ -412,14 +412,14 @@ train_with_data_aug(train_augs, test_augs, net)
 
 * A képaugmentáció a meglévő tanítóadatok alapján véletlenszerű képeket generál, javítva ezzel a modellek általánosítóképességét.
 * A jóslás során határozott eredmények elérése érdekében általában csak a tanítópéldákra alkalmazzuk a képaugmentációt, és nem használunk véletlen műveleteket tartalmazó képaugmentációt a jósláskor.
-* A deep learning keretrendszerek számos különböző képaugmentációs módszert biztosítanak, amelyek egyszerre alkalmazhatók.
+* A mélytanulás keretrendszerek számos különböző képaugmentációs módszert biztosítanak, amelyek egyszerre alkalmazhatók.
 
 
 ## Feladatok
 
 1. Tanítsd a modellt képaugmentáció nélkül: `train_with_data_aug(test_augs, test_augs)`. Hasonlítsd össze a tanítási és tesztelési pontosságot képaugmentáció alkalmazásával és anélkül. Alátámasztja-e ez az összehasonlító kísérlet azt az érvet, hogy a képaugmentáció csökkentheti a túlillesztést? Miért?
 1. Kombinálj több különböző képaugmentációs módszert a CIFAR-10 adathalmazon való modellezés során. Javítja-e a teszt pontosságát?
-1. Tekintsd meg a deep learning keretrendszer online dokumentációját. Milyen más képaugmentációs módszereket biztosít?
+1. Tekintsd meg a mélytanulás keretrendszer online dokumentációját. Milyen más képaugmentációs módszereket biztosít?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/367)

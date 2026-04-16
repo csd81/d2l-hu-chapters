@@ -97,19 +97,19 @@ a kódoló önfigyelemben,
 a lekérdezések, kulcsok és értékek mind az
 előző kódolóréteg kimenetéből származnak.
 A :numref:`sec_resnet`-beli ResNet tervezéstől ihletve,
-maradék összeköttetést alkalmaznak
+maradékkapcsolatot alkalmaznak
 mindkét alréteg körül.
 A Transformerben,
 a szekvencia bármely pozíciójában lévő bármely $\mathbf{x} \in \mathbb{R}^d$ bemenetre,
 megköveteljük, hogy $\textrm{sublayer}(\mathbf{x}) \in \mathbb{R}^d$ teljesüljön, hogy
-a $\mathbf{x} + \textrm{sublayer}(\mathbf{x}) \in \mathbb{R}^d$ maradék összeköttetés kivitelezhető legyen.
-Ezt az összeadást a maradék összeköttetésből
+a $\mathbf{x} + \textrm{sublayer}(\mathbf{x}) \in \mathbb{R}^d$ maradékkapcsolat kivitelezhető legyen.
+Ezt az összeadást a maradékkapcsolatből
 rétegnormalizáció követi azonnal :cite:`Ba.Kiros.Hinton.2016`.
 Ennek eredményeként a Transformer kódoló $d$-dimenziós vektoros reprezentációt ad ki
 a bemeneti szekvencia minden pozíciójára.
 
 A Transformer dekódoló szintén több azonos réteg egymásra rakása
-maradék összeköttetésekkel és rétegnormalizációval.
+maradékkapcsolatokkal és rétegnormalizációval.
 A kódolóban leírt két alrétegen túl a dekódoló
 egy harmadik alréteget szúr be, amelyet
 kódoló–dekódoló figyelemnek neveznek,
@@ -132,7 +132,7 @@ a már generált kimeneti tokeneektől függjön.
 
 
 Már leírtuk és implementáltuk
-a skálázott dot product-okon alapuló többfejű figyelmet
+a skálázott skaláris szorzatokon alapuló többfejű figyelmet
 a :numref:`sec_multihead-attention`-ban
 és a pozíciókódolást a :numref:`subsec_positional-encoding`-ban.
 A következőkben a Transformer modell
@@ -244,11 +244,11 @@ ffn = PositionWiseFFN(4, 8)
 ffn.init_with_output(d2l.get_key(), jnp.ones((2, 3, 4)))[0][0]
 ```
 
-## Maradék Összeköttetés és rétegnormalizáció
+## maradékkapcsolat és rétegnormalizáció
 
 Most koncentráljunk a :numref:`fig_transformer`-ben lévő „add & norm" komponensre.
 Ahogy az e szakasz elején leírtuk,
-ez egy maradék összeköttetés, amelyet
+ez egy maradékkapcsolat, amelyet
 azonnal rétegnormalizáció követ.
 Mindkettő kulcsfontosságú a hatékony mély architektúrákhoz.
 
@@ -314,7 +314,7 @@ print('layer norm:', ln.init_with_output(d2l.get_key(), X)[0],
 ```
 
 Most implementálhatjuk az `AddNorm` osztályt
-[**maradék összeköttetéssel, amelyet rétegnormalizáció követ**].
+[**maradékkapcsolattal, amelyet rétegnormalizáció követ**].
 Dropout-ot is alkalmazunk regularizációhoz.
 
 ```{.python .input}
@@ -368,7 +368,7 @@ class AddNorm(nn.Module):  #@save
             nn.Dropout(self.dropout)(Y, deterministic=not training) + X)
 ```
 
-A maradék összeköttetés megköveteli,
+A maradékkapcsolat megköveteli,
 hogy a két bemenet azonos alakú legyen,
 hogy [**a kimeneti tenzor is azonos alakú legyen az összeadás után**].
 
@@ -412,7 +412,7 @@ A Transformer kódoló összeállításához szükséges összes alapvető kompo
 kezdjük [**a kódolón belüli egyetlen réteg**] implementálásával.
 A következő `TransformerEncoderBlock` osztály
 két alréteget tartalmaz: többfejű önfigyelmi pooling-ot és pozíciószerinti előre irányított hálózatokat,
-ahol mindkét alréteg körül maradék összeköttetést alkalmaznak, amelyet rétegnormalizáció követ.
+ahol mindkét alréteg körül maradékkapcsolatot alkalmaznak, amelyet rétegnormalizáció követ.
 
 ```{.python .input}
 %%tab mxnet
@@ -709,7 +709,7 @@ dekódoló önfigyelem,
 kódoló–dekódoló figyelem,
 és pozíciószerinti előre irányított hálózatok.
 Ezek az alrétegek
-maradék összeköttetést alkalmaznak körülöttük,
+maradékkapcsolatot alkalmaznak körülöttük,
 amelyet rétegnormalizáció követ.
 
 
@@ -932,8 +932,8 @@ class TransformerDecoderBlock(nn.Module):
         return self.addnorm3(Z, self.ffn(Z), training=training), state, attention_w1, attention_w2
 ```
 
-A kódoló–dekódoló figyelemben végzett skálázott dot product műveletek
-és a maradék összeköttetések összeadási műveleteinek elősegítéséhez,
+A kódoló–dekódoló figyelemben végzett skálázott skaláris szorzat műveletek
+és a maradékkapcsolatok összeadási műveleteinek elősegítéséhez,
 [**a dekódoló jellemződimenziója (`num_hiddens`) azonos a kódolóéval.**]
 
 ```{.python .input}
@@ -1370,7 +1370,7 @@ bár a kódolót vagy a dekódolót a gyakorlatban egyenként is lehet alkalmazn
 A Transformer architektúrában a többfejű önfigyelmet
 a bemeneti szekvencia és a kimeneti szekvencia reprezentálásához használják,
 bár a dekódolónak meg kell őriznie az autoregresszív tulajdonságot egy maszkolású verzión keresztül.
-Mind a maradék összeköttetések, mind a rétegnormalizáció a Transformerben
+Mind a maradékkapcsolatok, mind a rétegnormalizáció a Transformerben
 fontosak egy nagyon mély modell tanításához.
 A pozíciószerinti előre irányított hálózat a Transformer modellben
 ugyanazt az MLP-t használva transzformálja a szekvencia összes pozíciójának reprezentációját.
@@ -1379,7 +1379,7 @@ ugyanazt az MLP-t használva transzformálja a szekvencia összes pozíciójána
 ## Feladatok
 
 1. Tanítj mélyebb Transformert a kísérletekben. Hogyan befolyásolja ez a tanítási sebességet és a fordítási teljesítményt?
-1. Jó ötlet-e a skálázott dot product figyelmet additív figyelemre cserélni a Transformerben? Miért?
+1. Jó ötlet-e a skálázott skaláris szorzat figyelmet additív figyelemre cserélni a Transformerben? Miért?
 1. A nyelvi modellezéshez a Transformer kódolót, a dekódolót vagy mindkettőt kellene-e használni? Hogyan terveznéd meg ezt a módszert?
 1. Milyen kihívásokkal szembesülhetnek a Transformerek, ha a bemeneti szekvenciák nagyon hosszúak? Miért?
 1. Hogyan javítanád a Transformerek számítási és memóriahatékonyságát? Tipp: hivatkozhatsz :citet:`Tay.Dehghani.Bahri.ea.2020` áttekintő cikkére.

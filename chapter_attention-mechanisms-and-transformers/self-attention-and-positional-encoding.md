@@ -181,7 +181,7 @@ amely nem párhuzamosítható,
 Az önfigyelemben
 a lekérdezések, kulcsok és értékek
 mind $n \times d$ mátrixok.
-Tekintsük a skálázott dot product figyelmet a
+Tekintsük a skálázott skaláris szorzat figyelmet a
 :eqref:`eq_softmax_QK_V`-ben,
 ahol egy $n \times d$ mátrixot megszorzunk
 egy $d \times n$ mátrixszal,

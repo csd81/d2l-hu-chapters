@@ -13,7 +13,7 @@ Például az önvezető autóknak az útvonalat kell megtervezniük az elfogott 
 Emellett a robotok e technikát alkalmazhatják az érdeklődési objektumok felismerésére és helymeghatározására, miközben a környezetükben navigálnak.
 Továbbá a biztonsági rendszereknek szükségük lehet rendellenes objektumok, például betolakodók vagy bombák felismerésére.
 
-A következő néhány fejezetben bemutatunk néhány deep learning alapú objektumdetektálási módszert.
+A következő néhány fejezetben bemutatunk néhány mélytanulás alapú objektumdetektálási módszert.
 Az objektumok *pozíciójának* (vagy *helyzetének*) bemutatásával kezdjük.
 
 ```{.python .input}

@@ -20,7 +20,7 @@ A természetes nyelvi inferencia szöveges következtetés felismerése (recogni
 
 A következő példa *ellentmondásra* mutat, mivel a „running the coding example" azt jelenti, hogy „not sleeping", nem pedig „sleeping".
 
-> Premissza: A man is running the coding example from Dive into Deep Learning.
+> Premissza: A man is running the coding example from Dive into mélytanulás.
 
 > Hipotézis: The man is sleeping.
 

@@ -170,7 +170,7 @@ Ez elvezet minket a gépi tanulás egyik legfontosabb matematikai fogalmához: a
 Ezt az alap algoritmust sok kutató sokféleképpen módosította és alkalmazta, de az alapgondolat mindegyikükben ugyanaz marad: a gradiens segítségével megtaláljuk azt az irányt, amelyik a lehető leggyorsabban csökkenti a veszteséget, majd a paramétereket egy lépésnyit ebbe az irányba frissítjük.
 
 ## Megjegyzés a matematikai optimalizálásról
-Ebben a könyvben végig numerikus optimalizálási módszerekre összpontosítunk, mivel minden deep learning-es függvényünk túl összetett ahhoz, hogy közvetlenül minimalizálható legyen.
+Ebben a könyvben végig numerikus optimalizálási módszerekre összpontosítunk, mivel minden mélytanulás-es függvényünk túl összetett ahhoz, hogy közvetlenül minimalizálható legyen.
 
 Hasznos gyakorlat azonban megvizsgálni, mit árul el a fentebb szerzett geometriai megértés a függvények közvetlen optimalizálásáról.
 
@@ -250,7 +250,7 @@ $$
 \end{aligned}
 $$
 
-Ha ezután $\frac{\partial f}{\partial x}$-et is ki akarnánk számítani, ismét hasonló egyenlethez jutnánk, sok ismétlődő taggal – és a két derivált között sok *közös* ismétlődő taggal. Ez hatalmas mennyiségű felesleges munkát jelent; ha így kellene deriválnunk, a deep learning forradalma még a kezdete előtt elakadt volna!
+Ha ezután $\frac{\partial f}{\partial x}$-et is ki akarnánk számítani, ismét hasonló egyenlethez jutnánk, sok ismétlődő taggal – és a két derivált között sok *közös* ismétlődő taggal. Ez hatalmas mennyiségű felesleges munkát jelent; ha így kellene deriválnunk, a mélytanulás forradalma még a kezdete előtt elakadt volna!
 
 
 Bontsuk fel a problémát! Először próbáljuk megérteni, hogyan változik $f$, ha $a$-t változtatjuk, lényegében feltéve, hogy $w, x, y$ és $z$ nem léteznek. Ugyanúgy gondolkodjunk, ahogy a gradienssel való első találkozásunkkor tettük. Vegyük $a$-t, és adjunk hozzá egy kis $\epsilon$ értéket!
@@ -339,7 +339,7 @@ df_dw = df_du*du_dw + df_dv*dv_dw
 print(f'df/dw at {w}, {x}, {y}, {z} is {df_dw}')
 ```
 
-Vegyük azonban észre, hogy ez még mindig nem teszi egyszerűvé például $\frac{\partial f}{\partial x}$ kiszámítását. Ennek oka az, *ahogyan* a láncszabályt alkalmaztuk. Ha megnézzük a fentieket, mindig $\partial w$ szerepel a nevező szerepében, amikor lehetett. Ezzel azt vizsgáltuk, hogyan változtat $w$ minden más változón. Ha ez lenne a célunk, ez helyes megközelítés lenne. Gondoljunk azonban vissza a deep learning motivációjára: azt szeretnénk látni, hogyan változtat minden egyes paraméter a *veszteségen*. Lényegében azt szeretnénk, ha a láncszabály alkalmazásakor $\partial f$ mindig a számlálóban szerepelne!
+Vegyük azonban észre, hogy ez még mindig nem teszi egyszerűvé például $\frac{\partial f}{\partial x}$ kiszámítását. Ennek oka az, *ahogyan* a láncszabályt alkalmaztuk. Ha megnézzük a fentieket, mindig $\partial w$ szerepel a nevező szerepében, amikor lehetett. Ezzel azt vizsgáltuk, hogyan változtat $w$ minden más változón. Ha ez lenne a célunk, ez helyes megközelítés lenne. Gondoljunk azonban vissza a mélytanulás motivációjára: azt szeretnénk látni, hogyan változtat minden egyes paraméter a *veszteségen*. Lényegében azt szeretnénk, ha a láncszabály alkalmazásakor $\partial f$ mindig a számlálóban szerepelne!
 
 Pontosabban fogalmazva, jegyezzük meg, hogy felírhatjuk:
 
@@ -396,7 +396,7 @@ Az a tény, hogy a deriváltakat $f$-től visszafelé, a bemenetek felé számí
 1. Kiszámítjuk a függvény értékét és az egylépéses parciális deriváltakat előlről hátra. Bár fent nem így tettük, ez egyetlen *előre menetbe* kombinálható.
 2. Kiszámítjuk $f$ gradiensét hátulról előre. Ezt *visszameneti lépésnek* nevezzük.
 
-Ez pontosan az, amit minden deep learning algoritmus megvalósít, hogy egy menetben lehetővé tegye a veszteség gradiensének kiszámítását a hálózat minden egyes súlyára vonatkozóan. Megdöbbentő tény, hogy ilyen felbontás egyáltalán lehetséges.
+Ez pontosan az, amit minden mélytanulás algoritmus megvalósít, hogy egy menetben lehetővé tegye a veszteség gradiensének kiszámítását a hálózat minden egyes súlyára vonatkozóan. Megdöbbentő tény, hogy ilyen felbontás egyáltalán lehetséges.
 
 Hogy lássuk, hogyan foglalható mindez egységbe, nézzük meg gyorsan ezt a példát!
 
@@ -625,7 +625,7 @@ ax.dist = 12
 Ez képezi a :numref:`sec_gd`-ben tárgyalt Newton-algoritmus alapját, amelynek során iteratívan megkeressük a legjobb közelítő másodfokú függvényt, majd azt pontosan minimalizáljuk.
 
 ## Egy kis mátrixos számítás
-Mátrixokat tartalmazó függvények deriváltjai különösen szép alakot öltenek. Ez a szakasz jelölésileg nehézkessé válhat, ezért az első olvasáskor akár ki is hagyható – ugyanakkor hasznos tudni, hogy a leggyakoribb mátrixos műveletek deriváltjai milyen sokszor sokkal letisztultabbak, mint várnánk, különösen, ha figyelembe vesszük, mennyire központi szerepet játszanak a mátrixos műveletek a deep learning alkalmazásokban.
+Mátrixokat tartalmazó függvények deriváltjai különösen szép alakot öltenek. Ez a szakasz jelölésileg nehézkessé válhat, ezért az első olvasáskor akár ki is hagyható – ugyanakkor hasznos tudni, hogy a leggyakoribb mátrixos műveletek deriváltjai milyen sokszor sokkal letisztultabbak, mint várnánk, különösen, ha figyelembe vesszük, mennyire központi szerepet játszanak a mátrixos műveletek a mélytanulás alkalmazásokban.
 
 Kezdjük egy példával! Tegyük fel, hogy adott egy rögzített $\boldsymbol{\beta}$ oszlopvektor, és vizsgálni szeretnénk az $f(\mathbf{x}) = \boldsymbol{\beta}^\top\mathbf{x}$ szorzatfüggvényt, és azt, hogyan változik a skaláris szorzat $\mathbf{x}$ megváltozásakor.
 

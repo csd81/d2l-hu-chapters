@@ -2,7 +2,7 @@
 :label:`sec_auto_para`
 
 
-A deep learning keretrendszerek (pl. MXNet és PyTorch) automatikusan építenek számítási gráfokat a backend-en. A számítási gráf segítségével a rendszer tisztában van az összes függőséggel,
+A mélytanulás keretrendszerek (pl. MXNet és PyTorch) automatikusan építenek számítási gráfokat a backend-en. A számítási gráf segítségével a rendszer tisztában van az összes függőséggel,
 és szelektíven hajthat végre párhuzamosan több egymástól független feladatot a
 sebesség javítása érdekében. Például a :numref:`sec_async` szakasz :numref:`fig_asyncgraph` ábrája két változót egymástól függetlenül inicializál. Következésképpen a rendszer dönthet úgy, hogy párhuzamosan hajtja végre ezeket.
 
@@ -111,7 +111,7 @@ with d2l.Benchmark('GPU1 & GPU2'):
     torch.cuda.synchronize()
 ```
 
-A fenti esetben a teljes végrehajtási idő kisebb, mint a részek összege, mivel a deep learning keretrendszer automatikusan ütemezi a számítást mindkét GPU eszközön, anélkül, hogy a felhasználó részéről kifinomult kódra lenne szükség.
+A fenti esetben a teljes végrehajtási idő kisebb, mint a részek összege, mivel a mélytanulás keretrendszer automatikusan ütemezi a számítást mindkét GPU eszközön, anélkül, hogy a felhasználó részéről kifinomult kódra lenne szükség.
 
 
 
@@ -190,7 +190,7 @@ Lezárásként bemutatjuk a számítási gráfot és annak függőségeit egy eg
 
 ## Feladatok
 
-1. Nyolc műveletet hajtottak végre az ebben a szakaszban definiált `run` függvényben. Nincs köztük függőség. Tervezz egy kísérletet annak ellenőrzésére, hogy a deep learning keretrendszer automatikusan párhuzamosan hajtja-e végre őket.
+1. Nyolc műveletet hajtottak végre az ebben a szakaszban definiált `run` függvényben. Nincs köztük függőség. Tervezz egy kísérletet annak ellenőrzésére, hogy a mélytanulás keretrendszer automatikusan párhuzamosan hajtja-e végre őket.
 1. Amikor egy adott operátor munkaterhelése elég kicsi, a párhuzamosítás még egyetlen CPU-n vagy GPU-n is segíthet. Tervezz egy kísérletet ennek ellenőrzésére.
 1. Tervezz egy kísérletet, amely párhuzamos számítást használ CPU-kon, GPU-kon, és kommunikációt mindkét eszköz között.
 1. Használj debuggert, mint például az NVIDIA [Nsight](https://developer.nvidia.com/nsight-compute-2019_5) eszközét, hogy ellenőrizd, a kódod hatékony-e.

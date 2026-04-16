@@ -1045,14 +1045,14 @@ jnp.linalg.norm(jnp.ones((4, 9)))
 
 Bár nem akarunk túl messzire előreszaladni,
 már most elültethetünk némi intuíciót arról, miért hasznosak ezek a fogalmak.
-A deep learningben gyakran optimalizálási problémákat próbálunk megoldani:
+A mélytanulásban gyakran optimalizálási problémákat próbálunk megoldani:
 *maximalizálni* a megfigyelt adatokhoz rendelt valószínűséget;
 *maximalizálni* egy ajánlómodellhez kapcsolódó bevételt;
 *minimalizálni* az előrejelzések és a valódi megfigyelések közötti távolságot;
 *minimalizálni* ugyanazon személy fényképeinek ábrázolásai közötti távolságot,
 miközben *maximalizáljuk* a különböző személyek fényképeinek
 ábrázolásai közötti távolságot.
-Ezek a távolságok, amelyek a deep learning algoritmusok
+Ezek a távolságok, amelyek a mélytanulás algoritmusok
 célfüggvényeit alkotják,
 gyakran normák formájában fejeződnek ki.
 
@@ -1060,7 +1060,7 @@ gyakran normák formájában fejeződnek ki.
 ## Összefoglalás
 
 Ebben a fejezetben áttekintettük mindazt a lineáris algebrát,
-amelyre szükség van a modern deep learning
+amelyre szükség van a modern mélytanulás
 egy jelentős részének megértéséhez.
 Természetesen a lineáris algebrának sokkal több ágát lehetne tárgyalni,
 amelyek nagy része a gépi tanulás számára is hasznos.
@@ -1072,7 +1072,7 @@ amelyek a mátrixfelbontásokra és
 azok magas rendű tenzorokra való általánosításaira összpontosítanak
 az adathalmazokban lévő struktúrák feltárásához
 és előrejelzési problémák megoldásához.
-Ám ez a könyv a deep learningre összpontosít.
+Ám ez a könyv a mélytanulásra összpontosít.
 Úgy véljük, hogy hajlamosabb leszel több matematikát tanulni,
 ha már rátettük a kezünket és valós adathalmazokon alkalmaztuk a gépi tanulást.
 Így bár fenntartjuk a jogot

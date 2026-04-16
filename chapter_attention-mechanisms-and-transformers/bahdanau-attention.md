@@ -468,7 +468,7 @@ Az RNN kódoló–dekódolóban a Bahdanau figyelemmechanizmus a dekódoló rejt
 ## Feladatok
 
 1. Cseréld le a GRU-t LSTM-re a kísérletben.
-1. Módosítsd a kísérletet az additív figyelempuntozási függvény skálázott dot product-ra való cseréléséhez. Hogyan befolyásolja ez a tanítási hatékonyságot?
+1. Módosítsd a kísérletet az additív figyelempuntozási függvény skálázott skaláris szorzat-ra való cseréléséhez. Hogyan befolyásolja ez a tanítási hatékonyságot?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/347)

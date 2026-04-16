@@ -20,7 +20,7 @@ Ezért,
 mielőtt belemennénk az implementáció részleteibe,
 érdemes megtervezni néhány
 API-t, amelyeket végig használunk.
-Ha a deep learning összetevőit
+Ha a mélytanulás összetevőit
 objektumként kezeljük,
 elkezdhetjük ezeknek az objektumoknak
 és kölcsönhatásaiknak az osztályait definiálni.
@@ -455,7 +455,7 @@ class Trainer(d2l.HyperParameters):  #@save
 
 ## Összefoglalás
 
-A jövőbeli deep learning implementációnk objektumorientált tervezésének kiemelése érdekében
+A jövőbeli mélytanulás implementációnk objektumorientált tervezésének kiemelése érdekében
 a fenti osztályok egyszerűen bemutatják, hogyan tárolják az objektumok az adatokat
 és hogyan hatnak kölcsön egymással.
 Ezeket az osztályok implementációit folyamatosan gazdagítjuk majd,
@@ -464,7 +464,7 @@ a könyv hátralévő részében.
 Ezenkívül
 ezek a teljesen implementált osztályok
 el vannak mentve a [D2L könyvtárban](https://github.com/d2l-ai/d2l-en/tree/master/d2l),
-egy *könnyűsúlyú eszközkészletben*, amely megkönnyíti a deep learning strukturált modellezését.
+egy *könnyűsúlyú eszközkészletben*, amely megkönnyíti a mélytanulás strukturált modellezését.
 Különösen megkönnyíti számos összetevő újrafelhasználását projektek között
 anélkül, hogy sokat kellene változtatni rajta. Például csak az optimalizálót, csak a modellt, csak az adathalmazt cserélhetjük ki, stb.;
 ez a modularitási fok az egész könyvben megtérül a tömörség és egyszerűség szempontjából (ezért adtuk hozzá), és ugyanezt teheti a saját projektjeidnél is.
@@ -472,7 +472,7 @@ ez a modularitási fok az egész könyvben megtérül a tömörség és egyszer�
 
 ## Feladatok
 
-1. Keresd meg a fenti osztályok teljes implementációit, amelyek a [D2L könyvtárban](https://github.com/d2l-ai/d2l-en/tree/master/d2l) vannak elmentve. Erősen ajánljuk, hogy az implementációt részletesen nézd meg, miután már jobban megismerted a deep learning modellezést.
+1. Keresd meg a fenti osztályok teljes implementációit, amelyek a [D2L könyvtárban](https://github.com/d2l-ai/d2l-en/tree/master/d2l) vannak elmentve. Erősen ajánljuk, hogy az implementációt részletesen nézd meg, miután már jobban megismerted a mélytanulás modellezést.
 1. Távolítsd el a `save_hyperparameters` utasítást a `B` osztályból. Tudod-e még mindig kiírni a `self.a` és `self.b` értékeket? Opcionális: ha belemélyedtél a `HyperParameters` osztály teljes implementációjába, meg tudod magyarázni, miért?
 
 :begin_tab:`mxnet`

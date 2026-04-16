@@ -121,7 +121,7 @@ pool2d(X, (2, 2), 'avg')
 
 ## [**Párnázás és lépésköz**]
 
-A konvolúciós rétegekhez hasonlóan a pooling rétegek is megváltoztatják a kimenet alakját. És csakúgy mint korábban, a bemeneti párnázással és a lépésköz módosításával beállíthatjuk a műveletet, hogy elérjük a kívánt kimeneti alakot. A párnázás és a lépésköz pooling rétegekben való alkalmazását a deep learning keretrendszer beépített kétdimenziós max-pooling rétege segítségével szemléltethetjük. Először létrehozzuk az `X` bemeneti tenzort, amelynek alakja négy dimenzióval rendelkezik, ahol a példák száma (batch méret) és a csatornák száma egyaránt 1.
+A konvolúciós rétegekhez hasonlóan a pooling rétegek is megváltoztatják a kimenet alakját. És csakúgy mint korábban, a bemeneti párnázással és a lépésköz módosításával beállíthatjuk a műveletet, hogy elérjük a kívánt kimeneti alakot. A párnázás és a lépésköz pooling rétegekben való alkalmazását a mélytanulás keretrendszer beépített kétdimenziós max-pooling rétege segítségével szemléltethetjük. Először létrehozzuk az `X` bemeneti tenzort, amelynek alakja négy dimenzióval rendelkezik, ahol a példák száma (batch méret) és a csatornák száma egyaránt 1.
 
 :begin_tab:`tensorflow`
 Vegyük figyelembe, hogy más keretrendszerektől eltérően a TensorFlow preferálja és optimalizálja a *channels-last* bemeneti formátumot.
@@ -139,7 +139,7 @@ X = d2l.reshape(d2l.arange(16, dtype=d2l.float32), (1, 4, 4, 1))
 X
 ```
 
-Mivel a pooling egy területen összesíti az információkat, (**a deep learning keretrendszerek alapértelmezés szerint a pooling ablak méretét és lépésközét egyeztetik.**) Például ha `(3, 3)` alakú pooling ablakot használunk, alapértelmezés szerint `(3, 3)` lépésközt kapunk.
+Mivel a pooling egy területen összesíti az információkat, (**a mélytanulás keretrendszerek alapértelmezés szerint a pooling ablak méretét és lépésközét egyeztetik.**) Például ha `(3, 3)` alakú pooling ablakot használunk, alapértelmezés szerint `(3, 3)` lépésközt kapunk.
 
 ```{.python .input}
 %%tab mxnet

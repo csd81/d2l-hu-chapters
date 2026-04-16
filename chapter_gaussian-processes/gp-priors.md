@@ -5,7 +5,7 @@ tab.interact_select(['pytorch'])
 
 # Gauss-folyamat priorok
 
-A Gauss-folyamatok (GP-k) megértése fontos a modellkonstrukcióról és az általánosításról való gondolkodáshoz, valamint a korszerű teljesítmény eléréséhez számos alkalmazásban, beleértve az aktív tanulást és a deep learningben a hiperparaméter-hangolást. A Gauss-folyamatok mindenütt jelen vannak, és érdekünk megérteni, mik azok és hogyan alkalmazhatók.
+A Gauss-folyamatok (GP-k) megértése fontos a modellkonstrukcióról és az általánosításról való gondolkodáshoz, valamint a korszerű teljesítmény eléréséhez számos alkalmazásban, beleértve az aktív tanulást és a mélytanulásban a hiperparaméter-hangolást. A Gauss-folyamatok mindenütt jelen vannak, és érdekünk megérteni, mik azok és hogyan alkalmazhatók.
 
 Ebben a szakaszban bevezetjük a Gauss-folyamat _priorokat_ a függvények felett. A következő notebookban megmutatjuk, hogyan használhatók ezek a priorok _poszterior inferenciára_ és előrejelzések készítésére. A következő szakasz „GP-k dióhéjban" megtekinthető, amely gyorsan megadja, ami szükséges a Gauss-folyamatok gyakorlatban való alkalmazásához.
 

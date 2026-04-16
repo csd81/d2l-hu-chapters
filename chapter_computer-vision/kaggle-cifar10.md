@@ -1,7 +1,7 @@
 # Képosztályozás (CIFAR-10) Kaggle-ön
 :label:`sec_kaggle_cifar10`
 
-Eddig a deep learning keretrendszerek magas szintű API-jait használtuk, hogy közvetlenül tensor formátumban kapjuk meg a képadathalmazokat.
+Eddig a mélytanulás keretrendszerek magas szintű API-jait használtuk, hogy közvetlenül tensor formátumban kapjuk meg a képadathalmazokat.
 Az egyedi képadathalmazok
 azonban általában képfájlok formájában állnak rendelkezésre.
 Ebben a szakaszban

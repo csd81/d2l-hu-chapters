@@ -104,11 +104,11 @@ A kapcsolódó verseny, az ImageNet Large Scale Visual Recognition Challenge :ci
 
 ### Hiányzó összetevő: Hardver
 
-A deep learning modellek mohó fogyasztói a számítási ciklusoknak.
+A mélytanulás modellek mohó fogyasztói a számítási ciklusoknak.
 A tanítás száz epoch-on is keresztül mehet, és minden iterációban az adatokat sok, számítási szempontból drága lineáris algebrai műveletet tartalmazó rétegen kell átvezetni.
 Ez az egyik fő oka annak, hogy az 1990-es és a 2000-es évek elején a hatékonyabban optimalizált, konvex célok alapján működő egyszerűbb algoritmusokat részesítették előnyben.
 
-A *grafikus feldolgozó egységek* (GPU-k) játékmegváltoztató tényezőnek bizonyultak a deep learning megvalósíthatóvá tételében.
+A *grafikus feldolgozó egységek* (GPU-k) játékmegváltoztató tényezőnek bizonyultak a mélytanulás megvalósíthatóvá tételében.
 Ezeket a chipeket eredetileg a számítógépes játékok grafikus feldolgozásának gyorsítására fejlesztették ki.
 Különösen a nagy áteresztőképességű $4 \times 4$-es mátrix–vektor szorzatokra optimalizálták őket, amelyekre számos számítógépes grafikai feladatban szükség van.
 Szerencsére a matematika meglepően hasonló a konvolúciós rétegek kiszámításához szükségeshez.
@@ -130,13 +130,13 @@ Számos oka van annak, hogy a GPU-k FLOPs szempontjából sokkal gyorsabbak a CP
 Először is, a fogyasztás az órajellel *négyzetes arányban* nő.
 Így egy négyszer gyorsabb CPU-maghoz szükséges teljesítményen 16 GPU-magot lehet működtetni $\frac{1}{4}$-es sebességen, ami $16 \times \frac{1}{4} = 4$-szeres teljesítményt eredményez.
 Másodszor, a GPU-magok sokkal egyszerűbbek (valójában hosszú ideig még *nem is voltak képesek* általános célú kód végrehajtására), ami energiahatékonyabbá teszi őket. Például (i) általában nem támogatják a spekulatív kiértékelést, (ii) jellemzően nem lehet minden egyes feldolgozó elemet egyénileg programozni, és (iii) az egyes magok gyorsítótárai jóval kisebbek szoktak lenni.
-Végül a deep learning számos művelete nagy memória-sávszélességet igényel.
+Végül a mélytanulás számos művelete nagy memória-sávszélességet igényel.
 A GPU-k itt is jeleskednek, busszal, amely legalább 10-szer szélesebb, mint sok CPU-é.
 
 Visszatérve 2012-höz: a nagy áttörés akkor következett be, amikor Alex Krizhevsky és Ilya Sutskever implementált egy mély CNN-t, amely GPU-kon futott.
 Rájöttek, hogy a CNN-ek számítási szűk keresztmetszetei — a konvolúciók és a mátrixszorzatok — mind hardveresen párhuzamosítható műveletek.
 Két NVIDIA GTX 580-as GPU-val, egyenként 3 GB memóriával (amelyek mindegyike 1,5 TFLOPs teljesítményre volt képes, ami még egy évtizeddel később is kihívást jelent a legtöbb CPU számára), gyors konvolúciókat implementáltak.
-A [cuda-convnet](https://code.google.com/archive/p/cuda-convnet/) kód olyan jó volt, hogy több éven át iparági szabványnak számított, és a deep learning boom első néhány évét hajtotta.
+A [cuda-convnet](https://code.google.com/archive/p/cuda-convnet/) kód olyan jó volt, hogy több éven át iparági szabványnak számított, és a mélytanulás boom első néhány évét hajtotta.
 
 ## AlexNet
 
@@ -315,7 +315,7 @@ with d2l.try_gpu():
 
 ## Vita
 
-Az AlexNet szerkezete feltűnően hasonlít a LeNet-re, számos kritikus fejlesztéssel mind a pontosság (dropout), mind a tanítás könnyűsége (ReLU) terén. Ugyanilyen meglepő a deep learning eszközkészlete terén elért fejlődés mértéke. Ami 2012-ben több hónap munkát igényelt, az ma bármely modern keretrendszerrel egy tucat kódsorral elvégezhető.
+Az AlexNet szerkezete feltűnően hasonlít a LeNet-re, számos kritikus fejlesztéssel mind a pontosság (dropout), mind a tanítás könnyűsége (ReLU) terén. Ugyanilyen meglepő a mélytanulás eszközkészlete terén elért fejlődés mértéke. Ami 2012-ben több hónap munkát igényelt, az ma bármely modern keretrendszerrel egy tucat kódsorral elvégezhető.
 
 Az architektúrát áttekintve látható, hogy az AlexNetnek van egy gyenge pontja a hatékonyság terén: az utolsó két rejtett réteg $6400 \times 4096$-os és $4096 \times 4096$-os méretű mátrixokat igényel. Ez 164 MB memóriának és 81 MFLOPs számítási költségnek felel meg, ami nem elhanyagolható kiadás, különösen kisebb eszközökön, mint például a mobiltelefonok. Ez az egyik oka annak, hogy az AlexNet-et sokkal hatékonyabb architektúrák váltották fel, amelyeket a következő szakaszokban tárgyalunk. Mindazonáltal kulcsfontosságú lépés a sekély hálózatoktól a ma használt mély hálózatokig. Megjegyezzük, hogy bár a paraméterek száma messze meghaladja a kísérleteinkben lévő tanítóadatok mennyiségét (az utolsó két rétegnek több mint 40 millió paramétere van, amelyeket 60 ezer képből álló adathalmazon tanítanak), alig tapasztalható túlillesztés: a tanítási és validációs veszteség a tanítás során szinte azonos. Ez a modern mély hálózati tervezésben rejlő jobb regularizációnak, például a dropoutnak köszönhető.
 

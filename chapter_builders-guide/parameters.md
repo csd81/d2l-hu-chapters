@@ -21,7 +21,7 @@ tudományos megértés megszerzését.
 
 Az esetek többségében figyelmen kívül hagyhatjuk
 a paraméterek deklarálásának és kezelésének
-aprólékos részleteit, a deep learning keretrendszerekre bízva
+aprólékos részleteit, a mélytanulás keretrendszerekre bízva
 a nehéz munkát.
 Azonban, amikor elhagyjuk
 a szabványos rétegekkel rendelkező halmozott architektúrákat,

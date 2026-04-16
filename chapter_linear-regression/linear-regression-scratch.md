@@ -18,7 +18,7 @@ Végül futtatjuk a szintetikus adatgenerátorunkat
 a :numref:`sec_synthetic-regression-data` részből,
 és alkalmazzuk a modellünket
 a kapott adathalmazra.
-Bár a modern deep learning keretrendszerek
+Bár a modern mélytanulás keretrendszerek
 szinte mindezt automatizálni tudják,
 az implementáció nulláról az egyetlen módja annak,
 hogy valóban megbizonyosodj arról, hogy tudod, mit csinálsz.
@@ -27,7 +27,7 @@ saját rétegek vagy veszteségfüggvények definiálásakor,
 a háttérben zajló folyamatok megértése nagyon hasznos lesz.
 Ebben a részben csak tenzorokat és automatikus differenciálást használunk.
 Később bemutatjuk a tömörebb implementációt,
-kihasználva a deep learning keretrendszerek lehetőségeit,
+kihasználva a mélytanulás keretrendszerek lehetőségeit,
 miközben megtartjuk az alábbi struktúrát.
 
 ```{.python .input  n=2}
@@ -297,7 +297,7 @@ Most, hogy minden összetevő a helyén van
 készen állunk arra, hogy [**implementáljuk a fő tanítási ciklust.**]
 Nagyon fontos, hogy teljesen megértsd ezt a kódot,
 mivel hasonló tanítási ciklusokat fogsz alkalmazni
-minden más deep learning modellnél,
+minden más mélytanulás modellnél,
 amelyet ez a könyv tárgyal.
 Minden *korszakban* végigmegyünk
 az egész tanítóhalmazon,
@@ -509,7 +509,7 @@ amelyek nagyon pontos előrejelzéshez vezet.
 ## Összefoglalás
 
 Ebben a részben jelentős lépést tettünk
-a deep learning rendszerek tervezése felé,
+a mélytanulás rendszerek tervezése felé,
 egy teljesen funkcionális
 neurális hálózati modell és tanítási ciklus implementálásával.
 Ebben a folyamatban adatbetöltőt,

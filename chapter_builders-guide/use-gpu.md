@@ -455,7 +455,7 @@ mert gyorsnak tartják őket.
 De a változók átvitele eszközök között lassú: sokkal lassabb, mint a számítás.
 Ezért azt szeretnénk, hogy 100%-ig biztos legyél
 abban, hogy valami lassút szeretnél csinálni, mielőtt megteheted.
-Ha a deep learning keretrendszer egyszerűen automatikusan másolna,
+Ha a mélytanulás keretrendszer egyszerűen automatikusan másolna,
 összeomlás nélkül, talán észre sem vennéd,
 hogy lassú kódot írtál.
 
@@ -621,7 +621,7 @@ Röviden, amíg minden adat és paraméter ugyanazon az eszközön van, hatékon
 Megadhatunk eszközöket a tároláshoz és számításhoz, például CPU-t vagy GPU-t.
   Alapértelmezés szerint az adatok a főmemóriában jönnek létre,
   majd a CPU-t használják a számításokhoz.
-A deep learning keretrendszer megköveteli, hogy a számításhoz szükséges összes bemeneti adat
+A mélytanulás keretrendszer megköveteli, hogy a számításhoz szükséges összes bemeneti adat
   ugyanazon az eszközön legyen,
   legyen az CPU vagy ugyanaz a GPU.
 Jelentős teljesítményt veszíthetünk, ha gondatlanul mozgatjuk az adatokat.

@@ -277,7 +277,7 @@ analitikus megoldást engednek meg,
 ne szokjunk hozzá az ilyen szerencséhez.
 Bár az analitikus megoldások szép matematikai elemzést tesznek lehetővé,
 az analitikus megoldás követelménye annyira korlátozó,
-hogy szinte a deep learning összes izgalmas aspektusát kizárná.
+hogy szinte a mélytanulás összes izgalmas aspektusát kizárná.
 
 ### mini-batch sztochasztikus gradienscsökkenés
 
@@ -288,7 +288,7 @@ Sőt, sok feladatnál azok a nehezen optimalizálható modellek
 annyival jobbaknak bizonyulnak,
 hogy érdemes rájönni, hogyan kell őket betanítani.
 
-Szinte minden deep learning modell optimalizálásának kulcstechnikája,
+Szinte minden mélytanulás modell optimalizálásának kulcstechnikája,
 amelyre a könyvben végig támaszkodunk,
 a hiba iteratív csökkentéséből áll
 a paraméterek frissítésével abba az irányba,
@@ -386,7 +386,7 @@ Szerencsére általában nem fontos, hogy
 a paraméterek pontos halmazát megtaláljuk,
 csupán olyan paraméterkészletet keresünk,
 amely pontos előrejelzésekhez (és így alacsony veszteséghez) vezet.
-A gyakorlatban a deep learning szakemberek
+A gyakorlatban a mélytanulás szakemberek
 ritkán küzdenek azért, hogy megtalálják
 a *tanítóhalmazokon* a veszteséget minimalizáló paramétereket
 :cite:`Izmailov.Podoprikhin.Garipov.ea.2018,Frankle.Carbin.2018`.
@@ -402,7 +402,7 @@ már *előrejelzéseket* készíthetünk új példákra,
 például egy korábban nem látott ház
 eladási árának becslésére
 az $x_1$ alapterület és $x_2$ kor alapján.
-A deep learning szakemberek az előrejelzési fázist *inferenciának* kezdték hívni,
+A mélytanulás szakemberek az előrejelzési fázist *inferenciának* kezdték hívni,
 de ez kissé félrevezető — az *inferencia* tágabb értelemben
 bármilyen bizonyítékon alapuló következtetésre vonatkozik,
 beleértve a paraméterértékeket
@@ -410,7 +410,7 @@ beleértve a paraméterértékeket
 Ha valami, a statisztikai irodalomban
 az *inferencia* inkább paraméterbecslést jelöl,
 és ez a terminológiai átfedés szükségtelen zavart okoz,
-amikor deep learning szakemberek statisztikusokkal beszélnek.
+amikor mélytanulás szakemberek statisztikusokkal beszélnek.
 A következőkben ahol lehetséges, az *előrejelzés* szót fogjuk használni.
 
 
@@ -684,14 +684,14 @@ feltéve, hogy helyes kapcsolattal és tanulási algoritmussal rendelkeznek —
 sokkal érdekesebb és összetettebb viselkedést produkálva,
 mint amit egyetlen neuron ki tudna fejezni,
 a valódi biológiai idegrendszerek tanulmányozásából ered.
-Ugyanakkor a mai deep learning kutatások nagy részét
+Ugyanakkor a mai mélytanulás kutatások nagy részét
 sokkal szélesebb forrás ihleti.
 :citet:`Russell.Norvig.2016`-ra hivatkozunk,
 akik rámutattak arra, hogy bár a repülőgépeket a madarak
 talán *ihlethették*,
 az ornitológia évszázadok óta nem az aeronautikai innováció
 elsődleges hajtóereje.
-Hasonlóképpen, a deep learning mai inspirációja
+Hasonlóképpen, a mélytanulás mai inspirációja
 legalább egyenlő mértékben, ha nem nagyobb mértékben
 érkezik a matematikából, a nyelvészetből, a pszichológiából,
 a statisztikából, a számítástudományból és sok más területről.

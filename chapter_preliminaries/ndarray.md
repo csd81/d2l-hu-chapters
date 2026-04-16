@@ -20,7 +20,7 @@ amelyeket *tenzoroknak* is nevezünk.
 Ha már ismered a NumPy
 tudományos számítási csomagot,
 ez gyerekjáték lesz.
-Minden modern deep learning keretrendszernél
+Minden modern mélytanulás keretrendszernél
 a *tenzor osztály* (`ndarray` az MXNet-ben,
 `Tensor` a PyTorch-ban és TensorFlow-ban)
 hasonlít a NumPy `ndarray`-jére,
@@ -43,7 +43,7 @@ Kezdésként importáljuk az MXNet `np` (`numpy`) és
 Az `np` modul a NumPy által támogatott
 függvényeket tartalmazza,
 míg az `npx` modul egy bővítménykészletet kínál,
-amelyet a deep learning támogatására
+amelyet a mélytanulás támogatására
 fejlesztettek NumPy-szerű környezetben.
 Tenzorok használatakor szinte mindig
 meghívjuk a `set_np` függvényt:
@@ -866,7 +866,7 @@ a, a.item(), float(a), int(a)
 
 ## Összefoglalás
 
-A tenzor osztály a fő felület az adatok tárolásához és kezeléséhez a deep learning könyvtárakban.
+A tenzor osztály a fő felület az adatok tárolásához és kezeléséhez a mélytanulás könyvtárakban.
 A tenzorok számos funkciót biztosítanak, többek között: létrehozási eljárásokat; indexelést és szeletelést; alapvető matematikai műveleteket; kiterjesztést; memóriahatékony értékadást; és konverziót más Python objektumokra, illetve azokból.
 
 

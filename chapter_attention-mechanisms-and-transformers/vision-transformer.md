@@ -210,7 +210,7 @@ A vision Transformer kódoló blokk implementációja
 a :numref:`fig_vit`-ben lévő elő-normalizálási tervezést követi,
 ahol a normalizálás közvetlenül *a* többfejű figyelem vagy az MLP *előtt* kerül alkalmazásra.
 Ellentétben az utó-normalizálással (az „add & norm" a :numref:`fig_transformer`-ben),
-ahol a normalizálás közvetlenül *a* maradék összeköttetések *után* kerül,
+ahol a normalizálás közvetlenül *a* maradékkapcsolatok *után* kerül,
 az elő-normalizálás hatékonyabb vagy jobb tanítást eredményez a Transformereknél :cite:`baevski2018adaptive,wang2019learning,xiong2020layer`.
 
 ```{.python .input}
@@ -271,7 +271,7 @@ d2l.check_shape(encoder_blk.init_with_output(d2l.get_key(), X)[0], X.shape)
 
 ## Mindent összehozva
 
-A vision Transformerek előre irányítása az alábbiakban egyszerű.
+A vision Transformerek előreterjesztése az alábbiakban egyszerű.
 Először a bemeneti képek betáplálódnak egy `PatchEmbedding` példányba,
 amelynek kimenete össze van fűzve a "&lt;cls&gt;" token beágyazásával.
 Tanítható pozícióbeágyazásokkal összeadva, mielőtt dropout-ot alkalmaznak.

@@ -5,7 +5,7 @@ Ebben a szakaszban bemutatjuk, hogyan telepíthetjük az összes könyvtárat eg
 
 1. GPU-val rendelkező Linux-példány indítása az AWS EC2-ben.
 1. A CUDA telepítése (vagy előre telepített CUDA-val rendelkező Amazon Machine Image használata).
-1. A deep learning keretrendszer és a könyv kódjának futtatásához szükséges egyéb könyvtárak telepítése.
+1. A mélytanulás keretrendszer és a könyv kódjának futtatásához szükséges egyéb könyvtárak telepítése.
 
 Ez a folyamat más példányokra (és más felhőkre) is alkalmazható, néhány kisebb módosítással. A továbblépés előtt AWS-fiókot kell létrehoznunk; további részletekért lásd a :numref:`sec_sagemaker` szakaszt.
 
@@ -77,7 +77,7 @@ Ezek a kiszolgálók több változatban kaphatók, amelyek a felhasznált GPU-k 
 :width:`700px`
 :label:`fig_p2x`
 
-Fontos megjegyezni, hogy GPU-képes példányt kell használni, megfelelő illesztőprogramokkal és GPU-képes deep learning keretrendszerrel. Ellenkező esetben nem élvezhetjük a GPU-k nyújtotta előnyöket.
+Fontos megjegyezni, hogy GPU-képes példányt kell használni, megfelelő illesztőprogramokkal és GPU-képes mélytanulás keretrendszerrel. Ellenkező esetben nem élvezhetjük a GPU-k nyújtotta előnyöket.
 
 Ezután ki kell választanunk a példány eléréséhez használt kulcspárt. Ha nincs kulcspárunk, kattintsunk a "Create new key pair" gombra a :numref:`fig_keypair` ábrán, hogy kulcspárt hozzunk létre. Ezt követően
 kiválaszthatjuk a korábban létrehozott kulcspárt.
@@ -244,7 +244,7 @@ a bal oldalon a "My AMIs" lehetőséget kell használni a mentett kép kiválasz
 ## Összefoglalás
 
 * Igény szerint indíthatunk és állíthatunk le példányokat anélkül, hogy saját számítógépet kellene vásárolnunk és összeállítanunk.
-* A GPU-képes deep learning keretrendszer használata előtt telepíteni kell a CUDA-t.
+* A GPU-képes mélytanulás keretrendszer használata előtt telepíteni kell a CUDA-t.
 * Portátirányítással futtathatjuk a Jupyter Notebookot egy távoli kiszolgálón.
 
 

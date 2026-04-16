@@ -8,7 +8,7 @@ tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 Most, hogy tudjuk, hogyan kell elérni a paramétereket,
 nézzük meg, hogyan kell azokat megfelelően inicializálni.
 A megfelelő inicializálás szükségességét :numref:`sec_numerical_stability` részben tárgyaltuk.
-A deep learning keretrendszer alapértelmezett véletlenszerű inicializálást biztosít a rétegeihez.
+A mélytanulás keretrendszer alapértelmezett véletlenszerű inicializálást biztosít a rétegeihez.
 Azonban sokszor szeretnénk a súlyainkat
 különféle más protokollok szerint inicializálni. A keretrendszer a leggyakrabban
 használt protokollokat biztosítja, és lehetővé teszi egyéni inicializáló létrehozását is.
@@ -270,7 +270,7 @@ params['params']['layers_0']['kernel'][:, 0], params['params']['layers_2']['kern
 ### [**Egyéni inicializálás**]
 
 Néha szükségünk van olyan inicializálási módszerekre,
-amelyeket a deep learning keretrendszer nem biztosít.
+amelyeket a mélytanulás keretrendszer nem biztosít.
 Az alábbi példában egy inicializálót definiálunk
 bármely $w$ súlyparaméterhez a következő furcsa eloszlás alkalmazásával:
 

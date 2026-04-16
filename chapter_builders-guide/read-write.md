@@ -6,7 +6,7 @@ tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 # Fájl I/O
 
 Eddig tárgyaltuk az adatok feldolgozásának módját, valamint azt, hogyan
-kell deep learning modelleket építeni, tanítani és tesztelni.
+kell mélytanulás modelleket építeni, tanítani és tesztelni.
 Azonban egy ponton remélhetőleg eléggé meg leszünk elégedve
 a tanult modellekkel ahhoz, hogy
 az eredményeket el akarjuk menteni a különféle kontextusokban
@@ -186,7 +186,7 @@ de nagyon fárasztóvá válik, ha el akarjuk menteni
 (és később betölteni) egy egész modellt.
 Végül is előfordulhat, hogy
 száz paramétercsoport van elszórva az egész modellben.
-Ezért a deep learning keretrendszer beépített funkcionalitást biztosít
+Ezért a mélytanulás keretrendszer beépített funkcionalitást biztosít
 teljes hálózatok betöltéséhez és mentéséhez.
 Egy fontos részlet, amelyre érdemes felfigyelni, az az, hogy ez
 a modell *paramétereit* menti, nem az egész modellt.

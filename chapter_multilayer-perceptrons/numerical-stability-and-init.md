@@ -24,7 +24,7 @@ Helytelen döntések esetén tanítás közben felrobbanó vagy elhaló gradiens
 Ebben a részben mélyebben megvizsgáljuk ezeket a témákat,
 és néhány hasznos heurisztikát tárgyalunk,
 amelyek hasznosnak bizonyulnak majd
-a mély tanulási karriered során.
+a mélytanulási karriered során.
 
 ```{.python .input}
 %%tab mxnet
@@ -361,9 +361,9 @@ a gyakorlatban jól működik.
 
 A fenti érvelés csupán felszínesen érinti
 a paraméter-inicializálás modern megközelítéseit.
-Egy mély tanulási keretrendszer többtucat különböző heurisztikát implementál.
+Egy mélytanulási keretrendszer többtucat különböző heurisztikát implementál.
 Ráadásul a paraméter-inicializálás továbbra is
-a mély tanulás alapkutatásának aktív területe.
+a mélytanulás alapkutatásának aktív területe.
 Ezek között vannak heurisztikák
 kapcsolt (megosztott) paraméterekre, szuperfelbontásra,
 sorozatmodellekre és egyéb helyzetekre.
@@ -377,7 +377,7 @@ egy elmélyülést a modul lehetőségeiben,
 az egyes heurisztikákat javasoló és elemző cikkek elolvasásában,
 majd a legújabb publikációk felfedezésében erről a témáról.
 Talán rábuksz vagy akár fel is találsz
-egy okos ötletet, és implementációt nyújtasz be mély tanulási keretrendszerekbe.
+egy okos ötletet, és implementációt nyújtasz be mélytanulási keretrendszerekbe.
 
 
 ## Összefoglalás

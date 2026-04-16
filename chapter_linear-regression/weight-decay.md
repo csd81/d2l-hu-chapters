@@ -82,7 +82,7 @@ import optax
 
 (**Ahelyett, hogy közvetlenül a paraméterek számát manipulálnánk,
 a *súlycsökkentés* (weight decay) a paraméterek által felvehető értékek korlátozásával működik.**)
-A deep learning körökön kívül általánosan $\ell_2$ regularizációnak nevezik,
+A mélytanulás körökön kívül általánosan $\ell_2$ regularizációnak nevezik,
 mini-batch sztochasztikus gradienscsökkenéssel optimalizálva,
 a súlycsökkentés talán a legelterjedtebb technika
 a paraméteres gépi tanulási modellek regularizálásához.
@@ -351,7 +351,7 @@ train_scratch(3)
 
 Mivel a súlycsökkentés mindenütt jelen van
 a neurális hálózat optimalizálásában,
-a deep learning keretrendszer különösen kényelmes módon integrálja,
+a mélytanulás keretrendszer különösen kényelmes módon integrálja,
 a súlycsökkentést beépítve magába az optimalizálási algoritmusba
 a könnyű használat érdekében, bármely veszteségfüggvénnyel kombinálva.
 Ezenkívül ez az integráció számítási előnyt is jelent,
@@ -485,7 +485,7 @@ egy mély hálózat összes rétegére.
 
 A regularizáció egy általános módszer a túlillesztés kezelésére. A klasszikus regularizációs technikák büntetési tagot adnak a veszteségfüggvényhez (tanítás közben), hogy csökkentsék a tanult modell komplexitását.
 Az $\ell_2$ büntetés alkalmazása az egyik különleges választás, amely egyszerűvé teszi a modellt. Ez súlycsökkentéshez vezet a mini-batch sztochasztikus gradienscsökkenés algoritmus frissítési lépéseiben.
-A gyakorlatban a súlycsökkentés funkcionalitást a deep learning keretrendszerek optimalizálói biztosítják.
+A gyakorlatban a súlycsökkentés funkcionalitást a mélytanulás keretrendszerek optimalizálói biztosítják.
 A különböző paraméterek különböző frissítési viselkedéssel rendelkezhetnek ugyanazon tanítási cikluson belül.
 
 

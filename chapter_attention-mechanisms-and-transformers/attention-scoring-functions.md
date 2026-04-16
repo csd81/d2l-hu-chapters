@@ -55,7 +55,7 @@ $$
 
 Először is vegyük észre, hogy az utolsó tag csak $\mathbf{q}$-tól függ. Mint ilyen, azonos az összes $(\mathbf{q}, \mathbf{k}_i)$ párra. A figyelemsúlyok $1$-re normalizálása, ahogyan az :eqref:`eq_softmax_attention`-ban történik, biztosítja, hogy ez a tag teljesen eltűnjön. Másodszor vegyük észre, hogy mind a batch, mind a rétegnormalizáció (amelyet később tárgyalunk) olyan aktivációkhoz vezet, amelyeknek jól korlátozott, és gyakran konstans normái vannak, $\|\mathbf{k}_i\|$. Ez a helyzet például akkor, ha a kulcsokat $\mathbf{k}_i$ rétegnormalizáló réteg generálta. Így ezt is elhagyhatjuk $a$ definíciójából az eredmény lényeges megváltoztatása nélkül.
 
-Végül az exponenciális függvény argumentumainak nagyságrendját kell kézben tartanunk. Tételezzük fel, hogy a $\mathbf{q} \in \mathbb{R}^d$ lekérdezés és a $\mathbf{k}_i \in \mathbb{R}^d$ kulcs összes eleme egymástól független, azonos eloszlású, nulla átlagú és egységnyi szórású véletlen változó. A két vektor skaláris szorzata nulla átlagú és $d$ szórású. Annak biztosítására, hogy a skaláris szorzat szórása $1$ maradjon a vektorhossztól függetlenül, a *skálázott dot product figyelempuntozási függvényt* használjuk. Azaz a skaláris szorzatot $1/\sqrt{d}$-vel skálázzuk. Így jutunk el az első általánosan használt figyelemfüggvényhez, amelyet például a Transformerekben is alkalmaznak :cite:`Vaswani.Shazeer.Parmar.ea.2017`:
+Végül az exponenciális függvény argumentumainak nagyságrendját kell kézben tartanunk. Tételezzük fel, hogy a $\mathbf{q} \in \mathbb{R}^d$ lekérdezés és a $\mathbf{k}_i \in \mathbb{R}^d$ kulcs összes eleme egymástól független, azonos eloszlású, nulla átlagú és egységnyi szórású véletlen változó. A két vektor skaláris szorzata nulla átlagú és $d$ szórású. Annak biztosítására, hogy a skaláris szorzat szórása $1$ maradjon a vektorhossztól függetlenül, a *skálázott skaláris szorzat alapú figyelempuntozási függvényt* használjuk. Azaz a skaláris szorzatot $1/\sqrt{d}$-vel skálázzuk. Így jutunk el az első általánosan használt figyelemfüggvényhez, amelyet például a Transformerekben is alkalmaznak :cite:`Vaswani.Shazeer.Parmar.ea.2017`:
 
 $$ a(\mathbf{q}, \mathbf{k}_i) = \mathbf{q}^\top \mathbf{k}_i / \sqrt{d}.$$
 :eqlabel:`eq_dot_product_attention`
@@ -283,9 +283,9 @@ K = d2l.ones((2, 4, 6))
 d2l.check_shape(jax.lax.batch_matmul(Q, K), (2, 3, 6))
 ```
 
-## **Skálázott Dot Product Figyelem**
+## **Skálázott Skaláris Szorzat Alapú Figyelem**
 
-Térjünk vissza a :eqref:`eq_dot_product_attention`-ban bevezetett dot product figyelemhez.
+Térjünk vissza a :eqref:`eq_dot_product_attention`-ban bevezetett skaláris szorzat alapú figyelemhez.
 Általánosságban megköveteli, hogy a lekérdezés és a kulcs azonos vektorhosszúsággal rendelkezzen, mondjuk $d$, bár ezt könnyen kezelhetjük azzal, hogy $\mathbf{q}^\top \mathbf{k}$-t helyettesítjük $\mathbf{q}^\top \mathbf{M} \mathbf{k}$-val, ahol $\mathbf{M}$ egy megfelelően választott mátrix a két tér közötti fordításhoz. Egyelőre tételezzük fel, hogy a dimenziók egyeznek.
 
 A gyakorlatban hatékonysági szempontból gyakran mini-batch-ekre gondolunk,
@@ -293,13 +293,13 @@ például az $n$ lekérdezés és $m$ kulcs-érték pár figyelmének kiszámít
 ahol a lekérdezések és kulcsok hossza $d$,
 és az értékek hossza $v$. A $\mathbf Q\in\mathbb R^{n\times d}$ lekérdezések,
 $\mathbf K\in\mathbb R^{m\times d}$ kulcsok
-és $\mathbf V\in\mathbb R^{m\times v}$ értékek skálázott dot product figyelme
+és $\mathbf V\in\mathbb R^{m\times v}$ értékek skálázott skaláris szorzat alapú figyelem
 így felírható:
 
 $$ \mathrm{softmax}\left(\frac{\mathbf Q \mathbf K^\top }{\sqrt{d}}\right) \mathbf V \in \mathbb{R}^{n\times v}.$$
 :eqlabel:`eq_softmax_QK_V`
 
-Vegyük észre, hogy amikor ezt mini-batch-re alkalmazzuk, szükségünk van a :eqref:`eq_batch-matrix-mul`-ban bevezetett batch mátrixszorzásra. A skálázott dot product figyelem következő implementációjában dropout-ot használunk a modell regularizációjához.
+Vegyük észre, hogy amikor ezt mini-batch-re alkalmazzuk, szükségünk van a :eqref:`eq_batch-matrix-mul`-ban bevezetett batch mátrixszorzásra. A skálázott skaláris szorzat alapú figyelem következő implementációjában dropout-ot használunk a modell regularizációjához.
 
 ```{.python .input}
 %%tab mxnet
@@ -642,12 +642,12 @@ d2l.show_heatmaps(d2l.reshape(attention_weights, (1, 1, 2, 10)),
 
 ## Összefoglalás
 
-Ebben a szakaszban bevezettük a két legfontosabb figyelempuntozási függvényt: a dot product és az additív figyelmet. Ezek hatékony eszközök a változó hosszúságú szekvenciákon való összesítéshez. Különösen a dot product figyelem a modern Transformer architektúrák alapköve. Amikor a lekérdezések és kulcsok különböző hosszúságú vektorok, az additív figyelempuntozási függvényt alkalmazhatjuk helyette. Ezeknek a rétegeknek az optimalizálása az elmúlt évek egyik kulcsterülete. Például az [NVIDIA's Transformer Library](https://docs.nvidia.com/deeplearning/transformer-engine/user-guide/index.html) és a Megatron :cite:`shoeybi2019megatron` döntően a figyelemmechanizmus hatékony változataira támaszkodik. Ezt a Transformerek áttekintésekor egy kicsit részletesebben fogjuk tárgyalni a következő szakaszokban.
+Ebben a szakaszban bevezettük a két legfontosabb figyelempuntozási függvényt: a skaláris szorzat alapú és az additív figyelmet. Ezek hatékony eszközök a változó hosszúságú szekvenciákon való összesítéshez. Különösen a skaláris szorzat alapú figyelem a modern Transformer architektúrák alapköve. Amikor a lekérdezések és kulcsok különböző hosszúságú vektorok, az additív figyelempuntozási függvényt alkalmazhatjuk helyette. Ezeknek a rétegeknek az optimalizálása az elmúlt évek egyik kulcsterülete. Például az [NVIDIA's Transformer Library](https://docs.nvidia.com/deeplearning/transformer-engine/user-guide/index.html) és a Megatron :cite:`shoeybi2019megatron` döntően a figyelemmechanizmus hatékony változataira támaszkodik. Ezt a Transformerek áttekintésekor egy kicsit részletesebben fogjuk tárgyalni a következő szakaszokban.
 
 ## Feladatok
 
 1. Implementálj távolságalapú figyelmet a `DotProductAttention` kód módosításával. Vegyük észre, hogy a hatékony implementációhoz csak a kulcsok négyzetes normáira $\|\mathbf{k}_i\|^2$ van szükség.
-1. Módosítsd a dot product figyelmet, hogy különböző dimenziójú lekérdezések és kulcsok esetén is működjön egy mátrix alkalmazásával a dimenziók igazításához.
+1. Módosítsd a skaláris szorzat alapú figyelmet, hogy különböző dimenziójú lekérdezések és kulcsok esetén is működjön egy mátrix alkalmazásával a dimenziók igazításához.
 1. Hogyan skálázódik a számítási költség a kulcsok, lekérdezések, értékek dimenziójával és számukkal? Mi a helyzet a memória-sávszélesség követelményeivel?
 
 :begin_tab:`mxnet`

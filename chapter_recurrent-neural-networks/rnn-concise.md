@@ -12,7 +12,7 @@ amelyek csökkentik mind az implementálási időt
 mind a számítási időt
 (ezen könyvtári implementációk maximális optimalizálásával).
 Ez a szakasz megmutatja, hogyan lehet ugyanazt a nyelvmodellt hatékonyabban implementálni
-a deep learning keretrendszered által biztosított
+a mélytanulás keretrendszered által biztosított
 magas szintű API segítségével.
 Mint korábban, az *Az időgép* adathalmaz betöltésével kezdjük.
 
@@ -230,7 +230,7 @@ model.predict('it has', 20, data.vocab)
 
 ## Összefoglalás
 
-A deep learning keretrendszerek magas szintű API-jai biztosítják a standard RNN-ek implementációit.
+A mélytanulás keretrendszerek magas szintű API-jai biztosítják a standard RNN-ek implementációit.
 Ezek a könyvtárak segítenek elkerülni, hogy időt pazaroljunk a standard modellek újraimplementálásával.
 Sőt,
 a keretrendszer implementációi általában nagymértékben optimalizáltak,

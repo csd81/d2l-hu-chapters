@@ -53,7 +53,7 @@ Minden konvolúciós blokkban az alapegységek egy konvolúciós réteg, egy szi
 
 A konvolúciós blokkból a sűrű blokkba való kimenet átadásához minden egyes példát ki kell lapítanunk a mini-batchből. Más szóval, ezt a négydimenziós bemenetet a teljesen összekötött rétegek által elvárt kétdimenziós bemenetre alakítjuk: emlékeztetőként az általunk kívánt kétdimenziós reprezentáció az első dimenziót a mini-batch példáinak indexelésére, a másodikat pedig minden példa lapos vektor-reprezentációjának megadására használja. A LeNet sűrű blokkjának három teljesen összekötött rétege van, rendre 120, 84 és 10 kimenettel. Mivel még mindig osztályozást végzünk, a 10-dimenziós kimeneti réteg megfelel a lehetséges kimeneti osztályok számának.
 
-Bár egy kis munkát igényelhetett eljutni arra a pontra, hogy valóban megértse, mi történik a LeNeten belül, reméljük, hogy a következő kódrészlet meggyőz téged arról, hogy az ilyen modellek modern deep learning keretrendszerekkel való implementálása rendkívül egyszerű. Csak egy `Sequential` blokkot kell példányosítanunk, és a megfelelő rétegeket kell összeláncolnunk, Xavier inicializálást alkalmazva, ahogyan azt a :numref:`subsec_xavier` bevezette.
+Bár egy kis munkát igényelhetett eljutni arra a pontra, hogy valóban megértse, mi történik a LeNeten belül, reméljük, hogy a következő kódrészlet meggyőz téged arról, hogy az ilyen modellek modern mélytanulás keretrendszerekkel való implementálása rendkívül egyszerű. Csak egy `Sequential` blokkot kell példányosítanunk, és a megfelelő rétegeket kell összeláncolnunk, Xavier inicializálást alkalmazva, ahogyan azt a :numref:`subsec_xavier` bevezette.
 
 ```{.python .input}
 %%tab pytorch
@@ -222,7 +222,7 @@ with d2l.try_gpu():
 
 Ebben a fejezetben jelentős előrelépést tettünk. Az 1980-as évek MLP-iről az 1990-es évek és a 2000-es évek eleji CNN-eire léptünk. A javasolt architektúrák, például a LeNet-5 formájában, még ma is értékesek. Érdemes összehasonlítani a Fashion-MNIST-en LeNet-5-tel elérhető hibaarányokat mind az MLP-kkel elérhető legjobb eredménnyel (:numref:`sec_mlp-implementation`), mind a jóval fejlettebb architektúrákéval, mint például a ResNet (:numref:`sec_resnet`). A LeNet sokkal inkább hasonlít az utóbbihoz, mint az előbbihez. Az egyik elsődleges különbség, ahogyan majd látni fogjuk, az, hogy a nagyobb számítási kapacitás lényegesen összetettebb architektúrákat tett lehetővé.
 
-A második különbség az a relatív egyszerűség, amellyel a LeNetet implementálni tudtuk. Ami korábban hónapnyi C++ és assembly kódot, az SN, egy korai Lisp-alapú deep learning eszköz :cite:`Bottou.Le-Cun.1988` fejlesztésének mérnöki kihívása volt, és végül a modellekkel való kísérletezés, az most percek alatt elvégezhető. Ez a hihetetlen produktivitás-növekedés az, ami a deep learning modell fejlesztést rendkívüli mértékben demokratizálta. A következő fejezetben belemegyünk ebbe a nyúlüregbe, hogy lássuk, hová vezet minket.
+A második különbség az a relatív egyszerűség, amellyel a LeNetet implementálni tudtuk. Ami korábban hónapnyi C++ és assembly kódot, az SN, egy korai Lisp-alapú mélytanulás eszköz :cite:`Bottou.Le-Cun.1988` fejlesztésének mérnöki kihívása volt, és végül a modellekkel való kísérletezés, az most percek alatt elvégezhető. Ez a hihetetlen produktivitás-növekedés az, ami a mélytanulás modell fejlesztést rendkívüli mértékben demokratizálta. A következő fejezetben belemegyünk ebbe a nyúlüregbe, hogy lássuk, hová vezet minket.
 
 ## Feladatok
 

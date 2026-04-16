@@ -1,7 +1,7 @@
 # Aszinkron számítás
 :label:`sec_async`
 
-A mai számítógépek erősen párhuzamos rendszerek, amelyek több CPU magból (magánként gyakran több szállal), GPU-nként több feldolgozóelemből, és sokszor eszközönként több GPU-ból állnak. Röviden: egyszerre sok különböző dolgot tudunk feldolgozni, gyakran különböző eszközökön. Sajnos a Python nem a legjobb módja a párhuzamos és aszinkron kód írásának, legalábbis némi extra segítség nélkül. Elvégre a Python egyszálú, és ez valószínűleg nem fog megváltozni a jövőben. Az MXNet és a TensorFlow olyan deep learning keretrendszerek, amelyek *aszinkron programozási* modellt alkalmaznak a teljesítmény javítása érdekében,
+A mai számítógépek erősen párhuzamos rendszerek, amelyek több CPU magból (magánként gyakran több szállal), GPU-nként több feldolgozóelemből, és sokszor eszközönként több GPU-ból állnak. Röviden: egyszerre sok különböző dolgot tudunk feldolgozni, gyakran különböző eszközökön. Sajnos a Python nem a legjobb módja a párhuzamos és aszinkron kód írásának, legalábbis némi extra segítség nélkül. Elvégre a Python egyszálú, és ez valószínűleg nem fog megváltozni a jövőben. Az MXNet és a TensorFlow olyan mélytanulás keretrendszerek, amelyek *aszinkron programozási* modellt alkalmaznak a teljesítmény javítása érdekében,
 míg a PyTorch Python saját ütemezőjét használja, ami eltérő teljesítménykompromisszumhoz vezet.
 A PyTorch esetében alapértelmezés szerint a GPU műveletek aszinkronok. Amikor egy GPU-t használó függvényt hív meg, a műveletek az adott eszközre kerülnek sorba, de nem feltétlenül hajtódnak végre azonnal. Ez lehetővé teszi számunkra, hogy több számítást hajtsunk végre párhuzamosan, beleértve a CPU-n vagy más GPU-kon végzett műveleteket is.
 
@@ -116,7 +116,7 @@ számítási gráf különböző lépései közötti függőségeket.
 Ezért nem lehetséges egymástól függő műveletek párhuzamosítása.
 :end_tab:
 
-![Programozási nyelv frontend-ek és deep learning keretrendszer backend-ek.](../img/frontends.png)
+![Programozási nyelv frontend-ek és mélytanulás keretrendszer backend-ek.](../img/frontends.png)
 :width:`300px`
 :label:`fig_frontends`
 
@@ -222,9 +222,9 @@ Tegyük fel, hogy ezek a három szakasz időtartama rendre $t_1, t_2$ és $t_3$.
 ## Összefoglalás
 
 
-* A deep learning keretrendszerek leválaszthatják a Python frontend-et egy végrehajtási backend-ről. Ez lehetővé teszi a parancsok gyors aszinkron beillesztését a backend-be és a kapcsolódó párhuzamosságot.
+* A mélytanulás keretrendszerek leválaszthatják a Python frontend-et egy végrehajtási backend-ről. Ez lehetővé teszi a parancsok gyors aszinkron beillesztését a backend-be és a kapcsolódó párhuzamosságot.
 * Az aszinkronitás meglehetősen reszponzív frontend-et eredményez. Azonban óvatosan kell eljárni, hogy ne töltsük túl a feladatsort, mivel ez túlzott memóriafogyasztáshoz vezethet. Ajánlott minden mini-batchnél szinkronizálni, hogy a frontend és a backend közelítőleg szinkronban maradjanak.
-* A chip gyártók kifinomult teljesítményelemző eszközöket kínálnak, amelyek sokkal részletesebb képet adnak a deep learning hatékonyságáról.
+* A chip gyártók kifinomult teljesítményelemző eszközöket kínálnak, amelyek sokkal részletesebb képet adnak a mélytanulás hatékonyságáról.
 
 :begin_tab:`mxnet`
 * Légy tudatában annak, hogy az MXNet memóriakezelésből Pythonba való konverziók arra kényszerítik a backend-et, hogy megvárja, amíg az adott változó készen áll. Az olyan függvények, mint a `print`, `asnumpy` és `item`, mind ezzel a hatással bírnak. Ez kívánatos lehet, de a szinkronizáció gondatlan használata tönkreteheti a teljesítményt.

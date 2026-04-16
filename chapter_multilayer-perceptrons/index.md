@@ -8,7 +8,7 @@ ahol minden réteg teljesen kapcsolódik az alatta lévő réteghez
 (amelyből bemenetet kap)
 és a felette lévő réteghez (amelyre hatással van).
 Bár az automatikus differenciálás
-jelentősen leegyszerűsíti a mély tanulási algoritmusok implementálását,
+jelentősen leegyszerűsíti a mélytanulási algoritmusok implementálását,
 mélyen bele fogunk merülni abba, hogyan
 számítják ki ezeket a gradienseket a mély hálózatokban.
 Ezt követően készen állunk arra,

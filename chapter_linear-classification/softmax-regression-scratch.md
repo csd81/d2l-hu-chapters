@@ -80,7 +80,7 @@ def softmax(X):
 
 Bármely `X` bemenetre [**minden elemet nemnegatív számmá alakítunk.
 Minden sor összege 1,**]
-ahogyan azt a valószínűségektől elvárjuk. Figyelmeztetés: a fenti kód *nem* robusztus nagyon nagy vagy nagyon kis argumentumok esetén. Bár elegendő illusztrációnak, komoly célra *ne* használd szó szerint. A mély tanulási keretrendszerek beépített védelemmel rendelkeznek, és a továbbiakban a beépített softmax-ot fogjuk alkalmazni.
+ahogyan azt a valószínűségektől elvárjuk. Figyelmeztetés: a fenti kód *nem* robusztus nagyon nagy vagy nagyon kis argumentumok esetén. Bár elegendő illusztrációnak, komoly célra *ne* használd szó szerint. A mélytanulási keretrendszerek beépített védelemmel rendelkeznek, és a továbbiakban a beépített softmax-ot fogjuk alkalmazni.
 
 ```{.python .input}
 %%tab mxnet
@@ -198,8 +198,8 @@ def forward(self, X):
 
 Ezután implementálni kell a keresztentrópia-veszteség függvényt
 (amelyet a :numref:`subsec_softmax-regression-loss-func` szakasz mutatott be).
-Ez talán a leggyakrabban használt veszteségfüggvény az egész mély tanulásban.
-Manapság a mély tanulás alkalmazásai közül sokkal több
+Ez talán a leggyakrabban használt veszteségfüggvény az egész mélytanulásban.
+Manapság a mélytanulás alkalmazásai közül sokkal több
 sorolható osztályozási feladatnak,
 mint regressziósnak.
 
@@ -339,7 +339,7 @@ data.visualize([X, y], labels=labels)
 Mostanra már van némi tapasztalatunk
 lineáris regressziós és osztályozási feladatok megoldásában.
 Ezzel elértünk az 1960–1970-es évek statisztikai modellezési csúcsteljesítményéig.
-A következő szakaszban megmutatjuk, hogyan lehet mély tanulási keretrendszerekkel
+A következő szakaszban megmutatjuk, hogyan lehet mélytanulási keretrendszerekkel
 sokkal hatékonyabban implementálni ezt a modellt.
 
 ## Feladatok

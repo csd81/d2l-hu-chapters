@@ -1,7 +1,7 @@
 #  Előismeretek
 :label:`chap_preliminaries`
 
-Ahhoz, hogy elmerülhess a deep learningben, néhány túlélőkészségre lesz
+Ahhoz, hogy elmerülhess a mélytanulásban, néhány túlélőkészségre lesz
 szükséged:
 (i) technikákra az adatok tárolásához és kezeléséhez;
 (ii) könyvtárakra, amelyek különféle forrásokból származó adatokat

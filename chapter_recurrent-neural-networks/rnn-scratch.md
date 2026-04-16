@@ -511,7 +511,7 @@ követjük az igazi gradienst, és nehéz
 analitikusan érvelni a lehetséges mellékhatásokról.
 Azonban nagyon hasznos trükk,
 és széles körben alkalmazzák az RNN implementációkban
-a legtöbb deep learning keretrendszerben.
+a legtöbb mélytanulás keretrendszerben.
 
 
 Az alábbiakban definiálunk egy metódust a gradiensek levágásához,
@@ -686,7 +686,7 @@ model.predict('it has', 20, data.vocab, trainer.state.params)
 ```
 
 Bár a fenti RNN modell alapoktól való implementálása tanulságos, nem kényelmes.
-A következő szakaszban meglátjuk, hogyan aknázhatjuk ki a deep learning keretrendszereket az RNN-ek gyors felépítéséhez
+A következő szakaszban meglátjuk, hogyan aknázhatjuk ki a mélytanulás keretrendszereket az RNN-ek gyors felépítéséhez
 standard architektúrák segítségével, és hogyan érhetünk el teljesítménynövekedést
 a nagymértékben optimalizált könyvtári függvényekre támaszkodva.
 

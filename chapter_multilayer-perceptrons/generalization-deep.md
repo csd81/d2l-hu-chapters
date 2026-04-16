@@ -1,4 +1,4 @@
-# Általánosítás a mély tanulásban
+# Általánosítás a mélytanulásban
 
 
 A :numref:`chap_regression` és a :numref:`chap_classification` fejezetekben
@@ -38,10 +38,10 @@ az jobb, ha tölt magának egy italt.
 Míg a lineáris modellek optimalizálásának eljárásai
 és a megoldások statisztikai tulajdonságai
 mindkettő jól leírható az elmélet átfogó testületével,
-addig a mély tanulás megértése
+addig a mélytanulás megértése
 mindkét fronton még mindig hasonlít a vad nyugathoz.
 
-A mély tanulás elmélete és gyakorlata is
+A mélytanulás elmélete és gyakorlata is
 gyorsan fejlődik,
 ahol az elméleti kutatók új stratégiákat dolgoznak ki
 a történések magyarázatára,
@@ -51,7 +51,7 @@ heurisztikák arzenálját fejlesztik ki a mély hálózatok tanításához
 amelyek iránymutatást adnak arról,
 hogy melyik technikákat alkalmazzák milyen helyzetekben.
 
-A jelen pillanat összefoglalása az, hogy a mély tanulás elmélete
+A jelen pillanat összefoglalása az, hogy a mélytanulás elmélete
 ígéretes támadási vonalakat produkált és elszórt lenyűgöző eredményeket,
 de még mindig messze tűnik egy átfogó magyarázattól
 mind (i) arról, hogy miért vagyunk képesek neurális hálózatokat optimalizálni,
@@ -64,7 +64,7 @@ Másrészt, még egy koherens tudományos elmélet vigasza nélkül is,
 a szakemberek nagy gyűjteményt fejlesztettek ki olyan technikákból,
 amelyek segíthetnek a gyakorlatban jól általánosító modellek készítésében.
 Bár semmilyen tömör összefoglalás nem tehet teljes igazságot
-a mély tanulásban való általánosítás hatalmas témájának,
+a mélytanulásban való általánosítás hatalmas témájának,
 és bár a kutatás összességének állapota messze van a megoldástól,
 reméljük, hogy ebben a részben széleskörű áttekintést nyújtunk
 a kutatás és a gyakorlat jelenlegi állapotáról.
@@ -106,7 +106,7 @@ Idézzük fel a modellek összetettségét és a veszteséget összehasonlító 
 a :numref:`sec_generalization_basics` részből.
 
 
-A mély tanulás azonban ellentmondásos módon bonyolítja ezt a képet.
+A mélytanulás azonban ellentmondásos módon bonyolítja ezt a képet.
 Először is, az osztályozási problémák esetén
 modelljeink általában elég kifejezők ahhoz,
 hogy minden tanítási példányt tökéletesen illesszünk,
@@ -121,7 +121,7 @@ akár büntetés alkalmazásával, amely erősen korlátozza
 a paraméterek által felvehető értékek körét.
 De itt kezdenek furcsává válni a dolgok.
 
-Furcsán, sok mély tanulási feladatnál
+Furcsán, sok mélytanulási feladatnál
 (pl. képfelismerés és szövegbesorolás)
 általában olyan modellarchitektúrák közül választunk,
 amelyek mindegyike tetszőlegesen alacsony tanítási veszteséget érhet el
@@ -138,7 +138,7 @@ nem-monoton lehet,
 ahol a nagyobb bonyolultság kezdetben árt,
 de utána segít egy úgynevezett „kettős ereszkedés" mintában
 :cite:`nakkiran2021deep`.
-Így a mély tanulás szakemberének van egy trükkökből álló eszköztára,
+Így a mélytanulás szakemberének van egy trükkökből álló eszköztára,
 amelyek közül néhány látszólag valamilyen módon korlátozza a modellt,
 mások látszólag még kifejezőbbé teszik,
 és mindet egyfajta értelemben a túlillesztés enyhítésére alkalmazzák.
@@ -157,7 +157,7 @@ nem tudják megmagyarázni, miért általánosítanak a neurális hálózatok.
 
 ## Ihletet merítve a nemparametrikus módszerekből
 
-Aki először találkozik a mély tanulással,
+Aki először találkozik a mélytanulással,
 hajlamos parametrikus modelleknek tekinteni azokat.
 Végül is a modellek *valóban* millió paramétert tartalmaznak.
 Amikor frissítjük a modelleket, frissítjük a paramétereiket.
@@ -290,7 +290,7 @@ Ezeknek a regularizálóknak a klasszikus elemzésében
 a súlyok által felvehető értékekre,
 hogy megakadályozzák a modellt tetszőleges címkék illesztésétől.
 
-A mély tanulási implementációkban
+A mélytanulási implementációkban
 a súlybomlás népszerű eszköz maradt.
 Azonban a kutatók megjegyezték,
 hogy az $\ell_2$ regularizáció tipikus erőssége
@@ -300,7 +300,7 @@ az adatok interpolálásától :cite:`zhang2021understanding`,
 csak a korai megállás kritériummal kombinálva nyernek értelmet.
 A korai megállás hiányában lehetséges,
 hogy akárcsak a rétegek száma
-vagy csomópontok száma (a mély tanulásban)
+vagy csomópontok száma (a mélytanulásban)
 vagy a távolságmérték (az 1-legközelebbi szomszédban),
 ezek a módszerek jobb általánosításhoz vezethetnek
 nem azért, mert érdemben korlátozzák
@@ -309,17 +309,17 @@ hanem mert valahogyan olyan induktív torzításokat kódolnak,
 amelyek jobban összeegyeztethetők az érdeklődési körbe eső
 adathalmazokban talált mintákkal.
 Így a klasszikus regularizálók népszerűek maradnak
-a mély tanulási implementációkban,
+a mélytanulási implementációkban,
 még ha a hatékonyságuk elméleti indoklása
 radikálisan eltérő is lehet.
 
-Érdemes megjegyezni, hogy a mély tanulás kutatói
+Érdemes megjegyezni, hogy a mélytanulás kutatói
 a klasszikus regularizálási kontextusokban először népszerűsített technikákra is építenek,
 mint például a modell bemeneteibe zajt adni.
 A következő részben bemutatjuk
 a híres dropout technikát
 (:citet:`Srivastava.Hinton.Krizhevsky.ea.2014` találmánya),
-amely a mély tanulás alappillérévé vált,
+amely a mélytanulás alappillérévé vált,
 még ha a hatékonyságának elméleti alapjai
 hasonlóan rejtélyesek is maradnak.
 
