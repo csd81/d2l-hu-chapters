@@ -73,7 +73,7 @@ Bahdanau-figyelemmel ellentétben
 a szekvencia-szekvencia tanuláshoz,
 a bemeneti (forrás) és kimeneti (cél)
 szekvencia-beágyazásokhoz
-pozícióenkódolás kerül hozzáadásra
+pozíciókódolás kerül hozzáadásra
 mielőtt betáplálják őket
 az önfigyelmen alapuló modulokat egymásra rakó
 kódolóba és dekódolóba.
@@ -134,7 +134,7 @@ a már generált kimeneti tokeneektől függjön.
 Már leírtuk és implementáltuk
 a skálázott dot product-okon alapuló többfejű figyelmet
 a :numref:`sec_multihead-attention`-ban
-és a pozícióenkódolást a :numref:`subsec_positional-encoding`-ban.
+és a pozíciókódolást a :numref:`subsec_positional-encoding`-ban.
 A következőkben a Transformer modell
 többi részét fogjuk implementálni.
 
@@ -536,11 +536,11 @@ d2l.check_shape(output, X.shape)
 
 A következő [**Transformer kódoló**] implementációban
 `num_blks` példányt egymásra rakunk a fenti `TransformerEncoderBlock` osztályokból.
-Mivel rögzített pozícióenkódolást használunk,
+Mivel rögzített pozíciókódolást használunk,
 amelynek értékei mindig $-1$ és $1$ között vannak,
 a tanítható bemeneti beágyazások értékeit
 megszorozzuk a beágyazási dimenzió négyzetgyökével,
-hogy újraskálázzuk, mielőtt összeadjuk a bemeneti beágyazást és a pozícióenkódolást.
+hogy újraskálázzuk, mielőtt összeadjuk a bemeneti beágyazást és a pozíciókódolást.
 
 ```{.python .input}
 %%tab mxnet
@@ -559,7 +559,7 @@ class TransformerEncoder(d2l.Encoder):  #@save
         self.initialize()
 
     def forward(self, X, valid_lens):
-        # Mivel a pozícióenkódolás értékei -1 és 1 közé esnek, a beágyazások
+        # Mivel a pozíciókódolás értékei -1 és 1 közé esnek, a beágyazások
         # értékeit a beágyazási dimenzió négyzetgyökével szorozzuk meg, hogy
         # újraskálázzuk őket az összegzés előtt
         X = self.pos_encoding(self.embedding(X) * math.sqrt(self.num_hiddens))
@@ -587,7 +587,7 @@ class TransformerEncoder(d2l.Encoder):  #@save
                 num_hiddens, ffn_num_hiddens, num_heads, dropout, use_bias))
 
     def forward(self, X, valid_lens):
-        # Mivel a pozícióenkódolás értékei -1 és 1 közé esnek, a beágyazások
+        # Mivel a pozíciókódolás értékei -1 és 1 közé esnek, a beágyazások
         # értékeit a beágyazási dimenzió négyzetgyökével szorozzuk meg, hogy
         # újraskálázzuk őket az összegzés előtt
         X = self.pos_encoding(self.embedding(X) * math.sqrt(self.num_hiddens))
@@ -616,7 +616,7 @@ class TransformerEncoder(d2l.Encoder):  #@save
             num_blks)]
 
     def call(self, X, valid_lens, **kwargs):
-        # Mivel a pozícióenkódolás értékei -1 és 1 közé esnek, a beágyazások
+        # Mivel a pozíciókódolás értékei -1 és 1 közé esnek, a beágyazások
         # értékeit a beágyazási dimenzió négyzetgyökével szorozzuk meg, hogy
         # újraskálázzuk őket az összegzés előtt
         X = self.pos_encoding(self.embedding(X) * tf.math.sqrt(
@@ -651,7 +651,7 @@ class TransformerEncoder(d2l.Encoder):  #@save
                      for _ in range(self.num_blks)]
 
     def __call__(self, X, valid_lens, training=False):
-        # Mivel a pozícióenkódolás értékei -1 és 1 közé esnek, a beágyazások
+        # Mivel a pozíciókódolás értékei -1 és 1 közé esnek, a beágyazások
         # értékeit a beágyazási dimenzió négyzetgyökével szorozzuk meg, hogy
         # újraskálázzuk őket az összegzés előtt
         X = self.embedding(X) * math.sqrt(self.num_hiddens)

@@ -3,7 +3,7 @@
 tab.interact_select('mxnet', 'pytorch', 'tensorflow', 'jax')
 ```
 
-# Önfigyelem és pozícióenkódolás
+# Önfigyelem és pozíciókódolás
 :label:`sec_self-attention-and-positional-encoding`
 
 A mélytanulásban gyakran CNN-eket vagy RNN-eket használunk szekvenciák kódolásához.
@@ -203,7 +203,7 @@ Azonban a szekvenciahosszhoz képest négyzetes számítási bonyolultság
 az önfigyelmet tiltóan lassúvá teszi nagyon hosszú szekvenciák esetén.
 
 
-## **Pozícióenkódolás**
+## **pozíciókódolás**
 :label:`subsec_positional-encoding`
 
 
@@ -223,15 +223,15 @@ információk megőrzésének domináns megközelítése
 az, hogy ezt a modell számára
 minden tokenhez társított
 kiegészítő bemenetként reprezentáljuk.
-Ezeket a bemeneteket *pozícióenkódolásoknak* nevezik,
+Ezeket a bemeneteket *pozíciókódolásoknak* nevezik,
 és megtanulhatók vagy *a priori* rögzíthetők.
-Most egy egyszerű sémát írunk le a rögzített pozícióenkódolásokhoz
+Most egy egyszerű sémát írunk le a rögzített pozíciókódolásokhoz
 szinusz és koszinusz függvényeken alapulva :cite:`Vaswani.Shazeer.Parmar.ea.2017`.
 
 Tételezzük fel, hogy a
 $\mathbf{X} \in \mathbb{R}^{n \times d}$ bemeneti reprezentáció
 egy szekvencia $n$ tokenjének $d$-dimenziós beágyazásait tartalmazza.
-A pozícióenkódolás kimenete
+A pozíciókódolás kimenete
 $\mathbf{X} + \mathbf{P}$
 egy azonos alakú pozícióbeágyazási mátrixot
 $\mathbf{P} \in \mathbb{R}^{n \times d}$ felhasználva,
@@ -333,7 +333,7 @@ class PositionalEncoding(nn.Module):  #@save
 
 A pozícióbeágyazási mátrixban $\mathbf{P}$,
 **a sorok a szekvencián belüli pozícióknak felelnek meg,
-az oszlopok különböző pozícióenkódolási dimenziókat reprezentálnak**.
+az oszlopok különböző pozíciókódolási dimenziókat reprezentálnak**.
 Az alábbi példában láthatjuk,
 hogy a pozícióbeágyazási mátrix
 $6.$ és $7.$ oszlopának
@@ -403,7 +403,7 @@ for i in range(8):
 A bináris reprezentációkban a magasabb bit
 alacsonyabb frekvenciájú, mint egy alacsonyabb bit.
 Hasonlóképpen, ahogyan az alábbi hőtérképen látható,
-**a pozícióenkódolás csökkenti
+**a pozíciókódolás csökkenti
 a frekvenciákat a kódolási dimenzió mentén**
 trigonometrikus függvények segítségével.
 Mivel a kimenetek lebegőpontos számok,
@@ -442,11 +442,11 @@ d2l.show_heatmaps(P, xlabel='Column (encoding dimension)',
 ### Relatív pozicionális információ
 
 Az abszolút pozicionális információ megragadásán túl,
-a fenti pozícióenkódolás lehetővé teszi
+a fenti pozíciókódolás lehetővé teszi
 a modell számára is, hogy könnyen megtanulja a relatív pozíciók szerint figyelni.
 Ennek oka az, hogy
 bármely rögzített $\delta$ pozícióeltolásra,
-az $i + \delta$ pozíción lévő pozícióenkódolás
+az $i + \delta$ pozíción lévő pozíciókódolás
 lineáris vetítéssel reprezentálható
 az $i$ pozíción lévőből.
 
@@ -478,12 +478,12 @@ az önfigyelmet tiltóan lassúvá teszi
 nagyon hosszú szekvenciák esetén.
 A szekvencia sorrendinformációjának felhasználásához
 abszolút vagy relatív pozicionális információt injektálhatunk
-pozícióenkódolás hozzáadásával a bemeneti reprezentációkhoz.
+pozíciókódolás hozzáadásával a bemeneti reprezentációkhoz.
 
 ## Feladatok
 
-1. Tételezzük fel, hogy mély architektúrát tervezünk szekvencia reprezentálásához önfigyelmi rétegek egymásra rakásával pozícióenkódolással. Melyek lennének a lehetséges problémák?
-1. Tudsz-e tanítható pozícióenkódolási módszert tervezni?
+1. Tételezzük fel, hogy mély architektúrát tervezünk szekvencia reprezentálásához önfigyelmi rétegek egymásra rakásával pozíciókódolással. Melyek lennének a lehetséges problémák?
+1. Tudsz-e tanítható pozíciókódolási módszert tervezni?
 1. Rendelhetünk-e különböző tanult beágyazásokat a lekérdezések és kulcsok között az önfigyelemben összehasonlított különböző eltolásokhoz? Tipp: hivatkozhatsz a relatív pozícióbeágyazásokra :cite:`shaw2018self,huang2018music`.
 
 :begin_tab:`mxnet`
