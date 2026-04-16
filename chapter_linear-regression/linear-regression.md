@@ -363,7 +363,7 @@ Az ilyen, a tanítási ciklus során nem frissített,
 hangolható paramétereket *hiperparamétereknek* nevezzük.
 Ezek számos technikával automatikusan hangolhatók, például Bayes-optimalizálással
 :cite:`Frazier.2018`. Végül a megoldás minőségét
-általában egy külön *validációs adathalmazon* (vagy *validációs készleten*) értékelik.
+általában egy külön *validációs halmazon* (vagy *validációs készleten*) értékelik.
 
 Miután egy előre meghatározott számú iterációig tanítottunk
 (vagy valamilyen más leállási feltétel teljesül),

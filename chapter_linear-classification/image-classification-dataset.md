@@ -8,7 +8,7 @@ tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 
 (~~Az MNIST adathalmaz az egyik legelterjedtebb adathalmaz képosztályozáshoz, azonban referenciaként túl egyszerűnek számít. Ehelyett a hasonló, de bonyolultabb Fashion-MNIST adathalmazt fogjuk használni. ~~)
 
-A képosztályozásban széles körben alkalmazott adathalmaz a kézzel írt számjegyeket tartalmazó [MNIST adathalmaz](https://en.wikipedia.org/wiki/MNIST_database) :cite:`LeCun.Bottou.Bengio.ea.1998`. Az 1990-es években való megjelenésekor komoly kihívást jelentett a legtöbb gépi tanulási algoritmus számára: 60 000 darab $28 \times 28$ pixeles képből áll (plusz egy 10 000 képes tesztadathalmaz). Az összefüggések érzékeltetéséhez: 1995-ben az AT&T Bell Laboratories-ban a gépi tanulásban csúcstechnológiának számított egy Sun SPARCStation 5, amelynek óriási 64 MB RAM-ja és lenyűgöző 5 MFLOPs teljesítménye volt. A számjegyfelismerésben elért magas pontosság kulcsfontosságú volt a levélosztályozás automatizálásában az USPS-nél az 1990-es években. A mély hálózatok, mint a LeNet-5 :cite:`LeCun.Jackel.Bottou.ea.1995`, invarianciákkal rendelkező szupportvektor-gépek :cite:`Scholkopf.Burges.Vapnik.1996` és az érintőtávolság-alapú osztályozók :cite:`Simard.LeCun.Denker.ea.1998` mind 1% alatti hibaarányt értek el.
+A képosztályozásban széles körben alkalmazott adathalmaz a kézzel írt számjegyeket tartalmazó [MNIST adathalmaz](https://en.wikipedia.org/wiki/MNIST_database) :cite:`LeCun.Bottou.Bengio.ea.1998`. Az 1990-es években való megjelenésekor komoly kihívást jelentett a legtöbb gépi tanulási algoritmus számára: 60 000 darab $28 \times 28$ pixeles képből áll (plusz egy 10 000 képes teszthalmaz). Az összefüggések érzékeltetéséhez: 1995-ben az AT&T Bell Laboratories-ban a gépi tanulásban csúcstechnológiának számított egy Sun SPARCStation 5, amelynek óriási 64 MB RAM-ja és lenyűgöző 5 MFLOPs teljesítménye volt. A számjegyfelismerésben elért magas pontosság kulcsfontosságú volt a levélosztályozás automatizálásában az USPS-nél az 1990-es években. A mély hálózatok, mint a LeNet-5 :cite:`LeCun.Jackel.Bottou.ea.1995`, invarianciákkal rendelkező szupportvektor-gépek :cite:`Scholkopf.Burges.Vapnik.1996` és az érintőtávolság-alapú osztályozók :cite:`Simard.LeCun.Denker.ea.1998` mind 1% alatti hibaarányt értek el.
 
 Több mint egy évtizeden át az MNIST volt *a* referenciaadathalmaz a gépi tanulási algoritmusok összehasonlításában.
 Bár jól betöltötte ezt a szerepet, a mai egyszerű modellek is 95%-os pontosságot érnek el,
@@ -108,8 +108,8 @@ class FashionMNIST(d2l.DataModule):  #@save
 ```
 
 A Fashion-MNIST 10 kategóriából álló képeket tartalmaz; minden kategóriát
-6000 kép képvisel a tanítási adathalmazban és 1000 a tesztadathalmazban.
-A *tesztadathalmazt* a modell teljesítményének kiértékelésére használjuk (tanításhoz nem szabad felhasználni).
+6000 kép képvisel a tanítóhalmazban és 1000 a teszthalmazban.
+A *teszthalmazt* a modell teljesítményének kiértékelésére használjuk (tanításhoz nem szabad felhasználni).
 Ebből következően a tanítóhalmaz és a teszthalmaz rendre 60 000 és 10 000 képet tartalmaz.
 
 ```{.python .input}
@@ -222,7 +222,7 @@ def show_images(imgs, num_rows, num_cols, titles=None, scale=1.5):  #@save
 ```
 
 Tegyük hasznossá. Általában jó ötlet megjeleníteni és ellenőrizni az adatokat, amelyeken tanítunk.
-Az emberek nagyon jók a furcsaságok észlelésében, és emiatt a vizualizáció kiegészítő védelmet nyújt a kísérletek tervezésekor elkövetett hibák ellen. Íme [**a tanítási adathalmaz első néhány példájának képei és a hozzájuk tartozó (szöveges) címkék**].
+Az emberek nagyon jók a furcsaságok észlelésében, és emiatt a vizualizáció kiegészítő védelmet nyújt a kísérletek tervezésekor elkövetett hibák ellen. Íme [**a tanítóhalmaz első néhány példájának képei és a hozzájuk tartozó (szöveges) címkék**].
 
 ```{.python .input}
 %%tab all

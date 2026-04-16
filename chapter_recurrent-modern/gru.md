@@ -220,7 +220,7 @@ class GRUScratch(d2l.Module):
 
 ### A Modell Definiálása
 
-Most készen állunk a **GRU előre irányú számítás definiálására**.
+Most készen állunk a **GRU előreterjesztés definiálására**.
 Szerkezete megegyezik az alap RNN-cella szerkezetével,
 kivéve, hogy a frissítési egyenletek összetettebbek.
 

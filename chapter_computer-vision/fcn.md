@@ -378,7 +378,7 @@ def label2image(pred):
     return colormap[X, :]
 ```
 
-A tesztadathalmazban lévő képek mérete és alakja eltérő.
+A teszthalmazban lévő képek mérete és alakja eltérő.
 Mivel a modell 32-es lépésközű transzponált konvolúciós réteget alkalmaz,
 ha egy bemeneti kép magassága vagy szélessége nem osztható 32-vel,
 a transzponált konvolúciós réteg kimeneti magassága vagy szélessége eltér a bemeneti kép alakjától.

@@ -123,7 +123,7 @@ ahol $P(\cdot) = Q(\cdot)$.
 Kezdetnek különbséget kell tennünk
 a *tanítási hiba* $R_\textrm{emp}$ között,
 amely egy *statisztika*,
-amelyet a tanítási adathalmazon számítunk,
+amelyet a tanítóhalmazon számítunk,
 és az *általánosítási hiba* $R$ között,
 amely egy *várható érték*,
 amelyet az alap eloszlásra vonatkozóan veszünk.
@@ -308,7 +308,7 @@ A magasabb rendű polinomfüggvény összetettebb
 az alacsonyabb rendűnél,
 mivel a magasabb rendű polinomnak több paramétere van,
 és a modell függvény kiválasztási tartománya szélesebb.
-A tanítási adathalmazt rögzítve,
+A tanítóhalmazt rögzítve,
 a magasabb rendű polinomfüggvényeknek mindig
 alacsonyabb (legrosszabb esetben azonos) tanítási hibát kellene elérniük
 az alacsonyabb fokú polinomokhoz képest.
@@ -330,7 +330,7 @@ Ahogy a fenti korlát is jelzi,
 egy másik fontos tényező,
 amelyet figyelembe kell venni, az adathalmaz mérete.
 A modellünket rögzítve, minél kevesebb mintánk van
-a tanítási adathalmazban,
+a tanítóhalmazban,
 annál valószínűbb (és annál súlyosabb),
 hogy túlillesztéssel találkozunk.
 Ahogy növeljük a tanítási adatok mennyiségét,

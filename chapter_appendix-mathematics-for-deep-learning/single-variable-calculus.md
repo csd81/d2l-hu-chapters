@@ -6,7 +6,7 @@ A :numref:`sec_calculus` fejezetben megismertük a differenciálszámítás alap
 ## Differenciálszámítás
 A differenciálszámítás alapvetően azt tanulmányozza, hogyan viselkednek a függvények kis változások hatására. Hogy megértsük, miért ennyire alapvető ez a mélytanulás szempontjából, nézzünk egy példát.
 
-Tegyük fel, hogy van egy mély neurális hálózatunk, amelynek súlyait az egyszerűség kedvéért egyetlen vektorba fűzzük össze: $\mathbf{w} = (w_1, \ldots, w_n)$. Adott egy tanítási adathalmaz, amelyen a neurális hálózatunk veszteségét $\mathcal{L}(\mathbf{w})$-vel jelöljük.
+Tegyük fel, hogy van egy mély neurális hálózatunk, amelynek súlyait az egyszerűség kedvéért egyetlen vektorba fűzzük össze: $\mathbf{w} = (w_1, \ldots, w_n)$. Adott egy tanítóhalmaz, amelyen a neurális hálózatunk veszteségét $\mathcal{L}(\mathbf{w})$-vel jelöljük.
 
 Ez a függvény rendkívül összetett – kódolja az adott architektúra összes lehetséges modelljének teljesítményét az adathalmazon –, ezért szinte lehetetlen megmondani, hogy a súlyok melyik $\mathbf{w}$ értéke minimalizálja a veszteséget. Ezért a gyakorlatban általában *véletlenszerűen* inicializáljuk a súlyokat, majd iteratívan kis lépéseket teszünk abba az irányba, amely a lehető leggyorsabban csökkenti a veszteséget.
 

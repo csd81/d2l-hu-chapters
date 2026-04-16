@@ -90,11 +90,11 @@ a nyelvmodell paraméterei.
 
 ### Szógyakoriság
 
-Feltételezzük, hogy a tanítási adathalmaz egy nagy szöveges korpusz, mint például az összes
+Feltételezzük, hogy a tanítóhalmaz egy nagy szöveges korpusz, mint például az összes
 Wikipedia bejegyzés, a [Project Gutenberg](https://en.wikipedia.org/wiki/Project_Gutenberg),
 és az interneten közzétett összes szöveg.
 A szavak valószínűsége kiszámítható egy adott szó relatív szógyakoriságából
-a tanítási adathalmazban.
+a tanítóhalmazban.
 Például a $\hat{P}(\textrm{deep})$ becslés kiszámítható
 annak valószínűségeként, hogy bármely mondat a "deep" szóval kezdődik.
 Egy kissé kevésbé pontos megközelítés az lenne,
@@ -298,7 +298,7 @@ a nagy nyelvmodellek képezik az élvonalbeli rendszerek alapját a változatos 
 
 ## Feladatok
 
-1. Tegyük fel, hogy a tanítási adathalmazban 100 000 szó van. Mennyi szógyakoriságot és többszavas szomszédos gyakoriságot kell egy négygramnak tárolnia?
+1. Tegyük fel, hogy a tanítóhalmazban 100 000 szó van. Mennyi szógyakoriságot és többszavas szomszédos gyakoriságot kell egy négygramnak tárolnia?
 1. Hogyan modelleznél egy párbeszédet?
 1. Milyen más módszereket tudsz elképzelni a hosszú sorozatadatok olvasásához?
 1. Gondolj arra a módszerünkre, amellyel minden epoch elején eldobunk néhány tokent véletlenszerűen.

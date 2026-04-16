@@ -104,12 +104,12 @@ a szekvencia bármely pozíciójában lévő bármely $\mathbf{x} \in \mathbb{R}
 megköveteljük, hogy $\textrm{sublayer}(\mathbf{x}) \in \mathbb{R}^d$ teljesüljön, hogy
 a $\mathbf{x} + \textrm{sublayer}(\mathbf{x}) \in \mathbb{R}^d$ maradék összeköttetés kivitelezhető legyen.
 Ezt az összeadást a maradék összeköttetésből
-rétegnormalizálás követi azonnal :cite:`Ba.Kiros.Hinton.2016`.
+rétegnormalizáció követi azonnal :cite:`Ba.Kiros.Hinton.2016`.
 Ennek eredményeként a Transformer kódoló $d$-dimenziós vektoros reprezentációt ad ki
 a bemeneti szekvencia minden pozíciójára.
 
 A Transformer dekódoló szintén több azonos réteg egymásra rakása
-maradék összeköttetésekkel és rétegnormalizálással.
+maradék összeköttetésekkel és rétegnormalizációval.
 A kódolóban leírt két alrétegen túl a dekódoló
 egy harmadik alréteget szúr be, amelyet
 kódoló–dekódoló figyelemnek neveznek,
@@ -244,19 +244,19 @@ ffn = PositionWiseFFN(4, 8)
 ffn.init_with_output(d2l.get_key(), jnp.ones((2, 3, 4)))[0][0]
 ```
 
-## Maradék Összeköttetés és Rétegnormalizálás
+## Maradék Összeköttetés és rétegnormalizáció
 
 Most koncentráljunk a :numref:`fig_transformer`-ben lévő „add & norm" komponensre.
 Ahogy az e szakasz elején leírtuk,
 ez egy maradék összeköttetés, amelyet
-azonnal rétegnormalizálás követ.
+azonnal rétegnormalizáció követ.
 Mindkettő kulcsfontosságú a hatékony mély architektúrákhoz.
 
 A :numref:`sec_batch_norm`-ban
 megmagyaráztuk, hogy a batchnormalizáció hogyan
 tölti fel és skálázza újra a mini-batch-en belüli példányokat.
 Ahogy a :numref:`subsec_layer-normalization-in-bn`-ban tárgyaltuk,
-a rétegnormalizálás ugyanolyan, mint a batchnormalizáció,
+a rétegnormalizáció ugyanolyan, mint a batchnormalizáció,
 kivéve, hogy az előbbi
 a jellemződimenziók mentén normalizál,
 így skálaindependens és batch-méret-független előnyöket élvez.
@@ -264,14 +264,14 @@ Kiterjedt alkalmazásai ellenére
 a számítógépes látásban,
 a batchnormalizáció
 általában empirikusan
-kevésbé hatékony, mint a rétegnormalizálás
+kevésbé hatékony, mint a rétegnormalizáció
 a természetes nyelvfeldolgozási feladatokban,
 ahol a bemenetek gyakran
 változó hosszúságú szekvenciák.
 
 A következő kódrészlet
 [**összehasonlítja a normalizálást különböző dimenziók mentén
-rétegnormalizálással és batchnormalizációsal**].
+rétegnormalizációval és batchnormalizációval**].
 
 ```{.python .input}
 %%tab mxnet
@@ -314,7 +314,7 @@ print('layer norm:', ln.init_with_output(d2l.get_key(), X)[0],
 ```
 
 Most implementálhatjuk az `AddNorm` osztályt
-[**maradék összeköttetéssel, amelyet rétegnormalizálás követ**].
+[**maradék összeköttetéssel, amelyet rétegnormalizáció követ**].
 Dropout-ot is alkalmazunk regularizációhoz.
 
 ```{.python .input}
@@ -412,7 +412,7 @@ A Transformer kódoló összeállításához szükséges összes alapvető kompo
 kezdjük [**a kódolón belüli egyetlen réteg**] implementálásával.
 A következő `TransformerEncoderBlock` osztály
 két alréteget tartalmaz: többfejű önfigyelmi pooling-ot és pozíciószerinti előre irányított hálózatokat,
-ahol mindkét alréteg körül maradék összeköttetést alkalmaznak, amelyet rétegnormalizálás követ.
+ahol mindkét alréteg körül maradék összeköttetést alkalmaznak, amelyet rétegnormalizáció követ.
 
 ```{.python .input}
 %%tab mxnet
@@ -710,7 +710,7 @@ kódoló–dekódoló figyelem,
 és pozíciószerinti előre irányított hálózatok.
 Ezek az alrétegek
 maradék összeköttetést alkalmaznak körülöttük,
-amelyet rétegnormalizálás követ.
+amelyet rétegnormalizáció követ.
 
 
 Ahogy korábban leírtuk ebben a szakaszban,
@@ -1370,7 +1370,7 @@ bár a kódolót vagy a dekódolót a gyakorlatban egyenként is lehet alkalmazn
 A Transformer architektúrában a többfejű önfigyelmet
 a bemeneti szekvencia és a kimeneti szekvencia reprezentálásához használják,
 bár a dekódolónak meg kell őriznie az autoregresszív tulajdonságot egy maszkolású verzión keresztül.
-Mind a maradék összeköttetések, mind a rétegnormalizálás a Transformerben
+Mind a maradék összeköttetések, mind a rétegnormalizáció a Transformerben
 fontosak egy nagyon mély modell tanításához.
 A pozíciószerinti előre irányított hálózat a Transformer modellben
 ugyanazt az MLP-t használva transzformálja a szekvencia összes pozíciójának reprezentációját.

@@ -67,7 +67,7 @@ def _read_wiki(data_dir):
 A következőkben először megvalósítjuk a két BERT előtanítási feladat segédfüggvényeit:
 a következő mondat előrejelzéséhez és a maszkolt nyelvi modellezéshez szükségeseket.
 Ezeket a segédfüggvényeket később, a nyers szövegkorpusz
-ideális formátumú BERT előtanítási adathalmazzá alakításakor hívjuk meg.
+ideális formátumú BERT előtanítóhalmazzá alakításakor hívjuk meg.
 
 ### [**A következő mondat előrejelzési feladat előállítása**]
 
@@ -187,7 +187,7 @@ def _get_mlm_data_from_tokens(tokens, vocab):
     return vocab[mlm_input_tokens], pred_positions, vocab[mlm_pred_labels]
 ```
 
-## A szöveg előtanítási adathalmazzá alakítása
+## A szöveg előtanítóhalmazzá alakítása
 
 Most már közel járunk ahhoz, hogy testreszabjunk egy `Dataset` osztályt a BERT előtanításához.
 Előtte azonban még szükségünk van egy `_pad_bert_inputs` segédfüggvényre,

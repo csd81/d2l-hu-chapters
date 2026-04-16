@@ -300,7 +300,7 @@ mivel hasonló tanítási ciklusokat fogsz alkalmazni
 minden más deep learning modellnél,
 amelyet ez a könyv tárgyal.
 Minden *korszakban* végigmegyünk
-az egész tanítási adathalmazon,
+az egész tanítóhalmazon,
 minden példányon egyszer áthaladva
 (feltéve, hogy a példányok száma
 osztható a kötegmérettel).
@@ -318,9 +318,9 @@ a modell paramétereinek frissítéséhez.
 
 Emlékeztetőül: a :numref:``sec_synthetic-regression-data`` részben
 generált szintetikus regressziós adathalmaz
-nem biztosít validációs adathalmazt.
+nem biztosít validációs halmazt.
 A legtöbb esetben azonban
-validációs adathalmazra lesz szükségünk
+validációs halmazra lesz szükségünk
 a modell minőségének mérésére.
 Itt minden korszakban egyszer végigmegyünk a validációs adatbetöltőn
 a modell teljesítményének mérésére.

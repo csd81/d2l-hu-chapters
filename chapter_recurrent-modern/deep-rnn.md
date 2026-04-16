@@ -158,8 +158,8 @@ class StackedRNNScratch(d2l.Module):
                      for i in range(self.num_layers)]
 ```
 
-A többrétegű előre irányú számítás
-egyszerűen rétegről rétegre végez előre irányú számítást.
+A többrétegű előreterjesztés
+egyszerűen rétegről rétegre végez előreterjesztést.
 
 ```{.python .input}
 %%tab all

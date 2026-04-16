@@ -14,7 +14,7 @@ egy $t \in \mathbb{Z}^+$ időlépéshez van rendelve,
 Egyes adathalmazok egyetlen hatalmas sorozatból állnak.
 Gondoljuk például az éghajlatkutatók rendelkezésére álló
 rendkívül hosszú szenzorleolvasási adatfolyamokra.
-Ilyen esetekben tanítási adathalmazokat hozhatunk létre
+Ilyen esetekben tanítóhalmazokat hozhatunk létre
 előre meghatározott hosszúságú részsorozatok véletlenszerű mintavételezésével.
 Gyakrabban az adatok sorozatok gyűjteményeként érkeznek.
 Tekintsük a következő példákat:

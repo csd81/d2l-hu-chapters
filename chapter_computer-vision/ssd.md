@@ -497,7 +497,7 @@ def bbox_eval(bbox_preds, bbox_labels, bbox_masks):
 A modell tanításakor az előreterjesztésben többléptékű horgonydobozokat (`anchors`) kell generálnunk, és jósolnunk kell osztályaikat (`cls_preds`) és eltolásaikat (`bbox_preds`).
 Ezután felcímkézzük a generált horgonydobozok osztályait (`cls_labels`) és eltolásait (`bbox_labels`) az `Y` címkeinformáció alapján.
 Végül a veszteségfüggvényt az osztályok és eltolások jósolt és felcímkézett értékei alapján számítjuk ki.
-A tömör implementáció érdekében a tesztadathalmaz kiértékelése itt kimaradt.
+A tömör implementáció érdekében a teszthalmaz kiértékelése itt kimaradt.
 
 ```{.python .input}
 #@tab mxnet

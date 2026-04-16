@@ -168,7 +168,7 @@ class KaggleHouse(d2l.DataModule):
                 sha1_hash='fa19780a7b011d9b009e8bff8e99922a8ee2eb90'))
 ```
 
-A tanítási adathalmaz 1460 példányt,
+A tanítóhalmaz 1460 példányt,
 80 jellemzőt és egy címkét tartalmaz, míg a validációs adat
 1459 példányt és 80 jellemzőt tartalmaz.
 

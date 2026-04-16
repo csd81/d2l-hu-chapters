@@ -338,7 +338,7 @@ veszteséget. Ugyanakkor az, hogy jól teljesítünk a tanítóadaton, nem
 garantálja, hogy jól fogunk teljesíteni ismeretlen adatokon is. Ezért az
 elérhető adatokat rendszerint két részre osztjuk:
 a *tanítóadathalmazra* (vagy *tanítóhalmazra*), amelyből a modell
-paramétereit tanuljuk; és a *tesztadathalmazra* (vagy *teszthalmazra*),
+paramétereit tanuljuk; és a *teszthalmazra* (vagy *teszthalmazra*),
 amelyet félreteszünk az értékelésre. Végül általában mindkét részen
 jelentjük a modellek teljesítményét. Úgy is gondolhatsz a tanítási
 teljesítményre, mint arra, ahogyan egy diák a valódi záróvizsgára való

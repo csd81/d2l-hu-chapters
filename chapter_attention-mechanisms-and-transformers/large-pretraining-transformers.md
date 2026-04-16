@@ -173,7 +173,7 @@ Szöveg-szöveg teljesítményhez a T5-t arra tanítják,
 hogy bizonyos cél szöveget generáljon bemeneti szövegtől feltételesen.
 
 
-![Bal: A T5 előtanítása egymást követő szakaszok előrejelzésével. Az eredeti mondat: "I", "love", "this", "red", "car", ahol a "love"-t egy speciális "&lt;X&gt;" token, az egymást követő "red", "car" szavakat pedig egy speciális "&lt;Y&gt;" token helyettesíti. A célszekvencia egy speciális "&lt;Z&gt;" tokennel végződik. Jobb: Figyelemi minta a Transformer kódoló–dekódolóben. A kódoló önfigyelemben (alsó négyzet) az összes bemeneti token egymásra figyel; a kódoló–dekódoló keresztfigyelemben (felső téglalap) minden cél token az összes bemeneti tokenre figyel; a dekódoló önfigyelemben (felső háromszög) minden cél token csak a jelenlegi és múltbeli cél tokenekre figyel (kauzális).](../img/t5-encoder-decoder.svg)
+![Bal: A T5 előtanítása egymást követő szakaszok előrejelzésével. Az eredeti mondat: "I", "love", "this", "red", "car", ahol a "love"-t egy speciális "&lt;X&gt;" token, az egymást követő "red", "car" szavakat pedig egy speciális "&lt;Y&gt;" token helyettesíti. A célszekvencia egy speciális "&lt;Z&gt;" tokennel végződik. Jobb: Figyelemi minta a Transformer kódoló–dekódolóban. A kódoló önfigyelemben (alsó négyzet) az összes bemeneti token egymásra figyel; a kódoló–dekódoló keresztfigyelemben (felső téglalap) minden cél token az összes bemeneti tokenre figyel; a dekódoló önfigyelemben (felső háromszög) minden cél token csak a jelenlegi és múltbeli cél tokenekre figyel (kauzális).](../img/t5-encoder-decoder.svg)
 :label:`fig_t5-encoder-decoder`
 
 Hogy bármely eredeti szövegből bemenetet és kimenetet kapjon,
@@ -261,7 +261,7 @@ a GPT (generatív előtanítás) modell
 Transformer dekódolót választ
 gerincként :cite:`Radford.Narasimhan.Salimans.ea.2018`.
 
-![Bal: A GPT előtanítása nyelvi modellezéssel. A célszekvencia egy tokennel eltolt bemeneti szekvencia. A "&lt;bos&gt;" és "&lt;eos&gt;" speciális tokenek jelölik a szekvenciák elejét és végét. Jobb: Figyelemi minta a Transformer dekódolóben. A függőleges tengely mentén lévő minden token csak a vízszintes tengely mentén lévő múltbeli tokenjeire figyel (kauzális).](../img/gpt-decoder-only.svg)
+![Bal: A GPT előtanítása nyelvi modellezéssel. A célszekvencia egy tokennel eltolt bemeneti szekvencia. A "&lt;bos&gt;" és "&lt;eos&gt;" speciális tokenek jelölik a szekvenciák elejét és végét. Jobb: Figyelemi minta a Transformer dekódolóban. A függőleges tengely mentén lévő minden token csak a vízszintes tengely mentén lévő múltbeli tokenjeire figyel (kauzális).](../img/gpt-decoder-only.svg)
 :label:`fig_gpt-decoder-only`
 
 A :numref:`subsec_partitioning-seqs`-ban leírt

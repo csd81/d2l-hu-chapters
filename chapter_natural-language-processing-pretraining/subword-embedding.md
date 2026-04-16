@@ -86,7 +86,7 @@ Ahhoz, hogy rögzített méretű szótárban változó hosszúságú részszavak
 alkalmazhatunk egy *bájt-pár kódolás* (byte pair encoding, BPE) nevű tömörítési algoritmust
 részszavak kinyerésére :cite:`Sennrich.Haddow.Birch.2015`.
 
-A bájt-pár kódolás statisztikai elemzést végez a tanítási adathalmazon,
+A bájt-pár kódolás statisztikai elemzést végez a tanítóhalmazon,
 hogy megtalálja a szón belüli leggyakoribb szimbólumokat,
 például tetszőleges hosszúságú egymást követő karaktereket.
 Az 1-es hosszúságú szimbólumoktól kiindulva
@@ -228,7 +228,7 @@ print(segment_BPE(tokens, symbols))
 ## Összefoglalás
 
 * A fastText modell egy részszó-beágyazási megközelítést javasol. A word2vec skip-gram modelljére építve a középső szót a részszó-vektorainak összegeként reprezentálja.
-* A bájt-pár kódolás statisztikai elemzést végez a tanítási adathalmazon a szón belüli leggyakoribb szimbólumok megtalálásához. Mohó megközelítésként iteratívan egyesíti az egymást követő szimbólumok leggyakoribb párját.
+* A bájt-pár kódolás statisztikai elemzést végez a tanítóhalmazon a szón belüli leggyakoribb szimbólumok megtalálásához. Mohó megközelítésként iteratívan egyesíti az egymást követő szimbólumok leggyakoribb párját.
 * A részszó-beágyazás javíthatja a ritka szavak és a szótáron kívüli szavak reprezentációjának minőségét.
 
 ## Feladatok
