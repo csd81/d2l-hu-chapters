@@ -407,7 +407,7 @@ $$\operatorname{sigmoid}(x) = \frac{1}{1 + \exp(-x)}.$$
 
 A korai neurális hálózatokban a kutatók
 biológiai neuronok modellezésével foglalkoztak,
-amelyek vagy *kisülnek*, vagy *nem*.
+amelyek vagy *kisülnek*, vagy *nem sülnek ki*.
 Ezért ennek a területnek az úttörői,
 egészen McCulloch és Pittsig,
 a mesterséges neuron feltalálóiig visszamenőleg,
