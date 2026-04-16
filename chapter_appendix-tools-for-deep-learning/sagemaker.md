@@ -1,7 +1,7 @@
 # Az Amazon SageMaker használata
 :label:`sec_sagemaker`
 
-A deep learning alkalmazások
+A mélytanulási alkalmazások
 olyan nagy számítási erőforrást igényelhetnek,
 amely könnyen meghaladhatja
 a helyi gépünk kapacitását.

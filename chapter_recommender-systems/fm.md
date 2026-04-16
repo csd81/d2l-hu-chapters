@@ -30,7 +30,7 @@ $$
 
 Ezzel az átalakítással a modell bonyolultsága jelentősen csökken. Ráadásul ritka jellemzők esetén csak a nemnulla elemeket kell kiszámítani, így az összesített bonyolultság lineáris marad a nemnulla jellemzők számával.
 
-Az FM modell tanításához regressziós feladathoz az MSE-veszteség, osztályozási feladatokhoz a keresztentrópia-veszteség, rangsorolási feladathoz pedig a BPR-veszteség használható. Az optimalizáláshoz olyan szabványos optimalizálók is megfelelnek, mint a sztochasztikus gradient descent vagy az Adam.
+Az FM modell tanításához regressziós feladathoz az MSE-veszteség, osztályozási feladatokhoz a keresztentrópia-veszteség, rangsorolási feladathoz pedig a BPR-veszteség használható. Az optimalizáláshoz olyan szabványos optimalizálók is megfelelnek, mint a sztochasztikus gradienscsökkenés vagy az Adam.
 
 ```{.python .input  n=2}
 #@tab mxnet

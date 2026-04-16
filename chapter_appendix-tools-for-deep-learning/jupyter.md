@@ -2,7 +2,7 @@
 :label:`sec_jupyter`
 
 
-Ez a szakasz leírja, hogyan szerkeszthetjük és futtathatjuk a könyv egyes fejezeteiben lévő kódot a Jupyter Notebook segítségével. Győződjünk meg arról, hogy telepítettük a Jupytert és letöltöttük a kódot a :ref:`chap_installation` fejezetben leírtak szerint.
+Ez a szakasz leírja, hogyan szerkeszthetjük és futtathatjuk a könyv fejezeteiben szereplő kódot a Jupyter Notebook segítségével. Győződjünk meg arról, hogy telepítettük a Jupytert és letöltöttük a kódot a :ref:`chap_installation` fejezetben leírtak szerint.
 Ha többet szeretnénk megtudni a Jupyterről, tekintsük meg a kiváló oktatóanyagot a [dokumentációjukban](https://jupyter.readthedocs.io/en/latest/).
 
 
@@ -15,7 +15,7 @@ Tegyük fel, hogy a könyv kódjának helyi elérési útja `xx/yy/d2l-en/`. Has
 :label:`fig_jupyter00`
 
 
-A notebookfájlokat a weboldalon megjelenő mappákra kattintva érhetjük el.
+A notebookfájlokat a felületen megjelenő mappákra kattintva érhetjük el.
 Ezek általában „.ipynb" kiterjesztésűek.
 Az egyszerűség kedvéért hozzunk létre egy ideiglenes „test.ipynb" fájlt.
 A rá kattintás után megjelenő tartalom látható a :numref:`fig_jupyter01` ábrán.
@@ -79,7 +79,7 @@ Ha hozzá szeretnénk járulni a könyv tartalmához, a forrásfájlt kell módo
 A `notedown` bővítmény segítségével közvetlenül a Jupyterben is szerkeszthetjük a notebookokat markdown formátumban.
 
 
-Először telepítsük a notedown bővítményt, futtassuk a Jupyter Notebookot, és töltjük be a bővítményt:
+Először telepítsük a notedown bővítményt, futtassuk a Jupyter Notebookot, és töltsük be a bővítményt:
 
 ```
 pip install d2l-notedown  # Lehet, hogy előbb el kell távolítanod az eredeti notedown csomagot.

@@ -1,7 +1,7 @@
 # Statisztika
 :label:`sec_statistics`
 
-Kétségtelen, hogy a deep learning legjobb művelőivé váláshoz elengedhetetlen a csúcstechnológiás, nagy pontosságú modellek tanításának képessége. Ugyanakkor gyakran nem egyértelmű, mikor számít egy javulás valóban szignifikánsnak, és mikor csupán a tanítási folyamat véletlen ingadozásának eredménye. Ahhoz, hogy a becsült értékek bizonytalanságáról érdemben tudjunk beszélni, meg kell ismernünk néhány statisztikai alapfogalmat.
+Kétségtelen, hogy a mélytanulás legjobb gyakorlóivá váláshoz elengedhetetlen a csúcstechnológiás, nagy pontosságú modellek tanításának képessége. Ugyanakkor gyakran nem egyértelmű, mikor számít egy javulás valóban szignifikánsnak, és mikor csupán a tanítási folyamat véletlen ingadozásának eredménye. Ahhoz, hogy a becsült értékek bizonytalanságáról érdemben tudjunk beszélni, meg kell ismernünk néhány statisztikai alapfogalmat.
 
 A *statisztika* legkorábbi előzményei Al-Kindi arab tudóshoz nyúlnak vissza a $9.$ században, aki részletes leírást adott arról, hogyan lehet statisztikát és frekvenciaelemzést alkalmazni titkosított üzenetek megfejtéséhez. Nyolcszáz évvel később a modern statisztika Németországban jelent meg az 1700-as években, amikor a kutatók a demográfiai és gazdasági adatok gyűjtésére és elemzésére összpontosítottak. Ma a statisztika az a tudományterület, amely az adatok gyűjtésével, feldolgozásával, elemzésével, értelmezésével és vizualizációjával foglalkozik. Sőt, a statisztika alapelméletét széles körben alkalmazzák az akadémiai, ipari és kormányzati kutatásokban.
 
@@ -9,7 +9,7 @@ Pontosabban fogalmazva, a statisztika *leíró statisztikára* és *statisztikai
 
 Felmerülhet a kérdés: „Mi az alapvető különbség a gépi tanulás és a statisztika között?" Alapvetően a statisztika a következtetési problémákra összpontosít. Ilyen jellegű problémák közé tartozik a változók közötti kapcsolat modellezése – például az ok-okozati következtetés –, valamint a modellparaméterek statisztikai szignifikanciájának tesztelése, mint például az A/B-tesztelés. Ezzel szemben a gépi tanulás a pontos előrejelzések elvégzésére helyezi a hangsúlyt, anélkül hogy minden egyes paraméter funkcióját explicit módon programoznánk vagy megértenénk.
 
-Ebben a fejezetben a statisztikai következtetés három típusát mutatjuk be: a becslők kiértékelését és összehasonlítását, a hipotézisvizsgálatot, valamint a konfidenciaintervallumok szerkesztését. Ezek a módszerek segítenek egy adott populáció jellemzőinek, vagyis az igazi $\theta$ paraméternek a következtetéses meghatározásában. Az egyszerűség kedvéért feltételezzük, hogy egy adott populáció igazi paramétere, $\theta$, skaláris érték. A $\theta$ vektorra vagy tenzorra való kiterjesztés egyértelmű, ezért azt a tárgyalásban elhagyjuk.
+Ebben a fejezetben a statisztikai következtetés három típusát mutatjuk be: a becslők kiértékelését és összehasonlítását, a hipotézisvizsgálatot, valamint a konfidenciaintervallumok meghatározását. Ezek a módszerek segítenek egy adott populáció jellemzőinek, vagyis az igazi $\theta$ paraméternek a következtetéses meghatározásában. Az egyszerűség kedvéért feltételezzük, hogy egy adott populáció igazi paramétere, $\theta$, skaláris érték. A $\theta$ vektorra vagy tenzorra való kiterjesztés egyértelmű, ezért azt a tárgyalásban elhagyjuk.
 
 
 

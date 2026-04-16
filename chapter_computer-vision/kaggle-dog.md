@@ -37,7 +37,7 @@ import os
 
 ## Az adathalmaz beszerzése és rendszerezése
 
-A verseny adathalmazát egy tanítókészletre és egy tesztkészletre osztják fel, amelyek rendre 10222 és 10357 JPEG képet tartalmaznak három RGB (színes) csatornával.
+A verseny adathalmazát egy tanítóhalmazra és egy teszthalmazra osztják fel, amelyek rendre 10222 és 10357 JPEG képet tartalmaznak három RGB (színes) csatornával.
 A tanítóadatok között
 120 kutyafajta szerepel,
 például labrador retriever, uszkár, tacskó, szamojéd, husky, csivava és yorkshire terrier.
@@ -77,10 +77,10 @@ else:
 
 ### [**Az adathalmaz rendszerezése**]
 
-Az adathalmazt a :numref:`sec_kaggle_cifar10` szakaszhoz hasonló módon rendszerezhetjük: az eredeti tanítókészletből kiválasztunk egy érvényesítési halmazt, és a képeket a címkék szerint csoportosított almappákba helyezzük.
+Az adathalmazt a :numref:`sec_kaggle_cifar10` szakaszhoz hasonló módon rendszerezhetjük: az eredeti tanítóhalmazból kiválasztunk egy validációs halmazt, és a képeket a címkék szerint csoportosított almappákba helyezzük.
 
 Az alábbi `reorg_dog_data` függvény beolvassa
-a tanítóadatok címkéit, kialakítja az érvényesítési halmazt, és rendszerezi a tanítókészletet.
+a tanítóadatok címkéit, kialakítja a validációs halmazt, és rendszerezi a tanítóhalmazt.
 
 ```{.python .input}
 #@tab all
@@ -318,7 +318,7 @@ def evaluate_loss(data_iter, net, devices):
 
 ## [**A tanítási függvény**] meghatározása
 
-A modellt és a hiperparamétereket az érvényesítési halmazon elért teljesítmény alapján választjuk ki és hangoljuk. A `train` tanítási függvény csak
+A modellt és a hiperparamétereket a validációs halmazon elért teljesítmény alapján választjuk ki és hangoljuk. A `train` tanítási függvény csak
 az egyedi kisméretű kimeneti hálózat paramétereit iterálja.
 
 ```{.python .input}
@@ -430,11 +430,11 @@ train(net, train_iter, valid_iter, num_epochs, lr, wd, devices, lr_period,
       lr_decay)
 ```
 
-## [**A tesztkészlet osztályozása**] és az eredmények beküldése Kaggle-re
+## [**A teszthalmaz osztályozása**] és az eredmények beküldése Kaggle-re
 
 
 A :numref:`sec_kaggle_cifar10` szakasz utolsó lépéséhez hasonlóan
-végül az összes felcímkézett adatot (beleértve az érvényesítési halmazt is) a modell tanítására és a tesztkészlet osztályozására használjuk.
+végül az összes felcímkézett adatot (beleértve a validációs halmazt is) a modell tanítására és a teszthalmaz osztályozására használjuk.
 Az osztályozáshoz a tanított egyedi kimeneti hálózatot alkalmazzuk.
 
 ```{.python .input}

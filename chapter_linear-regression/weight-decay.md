@@ -24,7 +24,7 @@ korlátozni tudtuk a modell kapacitását
 az illesztett polinom fokának módosításával.
 Valóban, a jellemzők számának korlátozása
 egy népszerű technika a túlillesztés enyhítésére.
-Azonban egyszerűen félre dobni a jellemzőket
+A jellemzők egyszerű eldobása azonban
 túl durva eszköz lehet.
 Maradjunk a polinomiális regresszió
 példájánál, és gondoljuk meg, mi történhet
@@ -83,7 +83,7 @@ import optax
 (**Ahelyett, hogy közvetlenül a paraméterek számát manipulálnánk,
 a *súlycsökkentés* (weight decay) a paraméterek által felvehető értékek korlátozásával működik.**)
 A deep learning körökön kívül általánosan $\ell_2$ regularizációnak nevezik,
-minibatch sztochasztikus gradient descent-tel optimalizálva,
+minibatch sztochasztikus gradienscsökkenéssel optimalizálva,
 a súlycsökkentés talán a legelterjedtebb technika
 a paraméteres gépi tanulási modellek regularizálásához.
 A technika motivációja az az alapvető intuíció,
@@ -92,7 +92,7 @@ az $f = 0$ függvény
 (amely minden bemenethez a $0$ értéket rendeli)
 valamilyen értelemben a *legegyszerűbb*,
 és a függvény komplexitása mérhető
-a paramétereineknek a nullától való távolságával.
+a paramétereinek a nullától való távolságával.
 De pontosan hogyan mérjük
 a függvény és a nulla közötti távolságot?
 Nincs egyetlen helyes válasz.
@@ -128,7 +128,7 @@ $$L(\mathbf{w}, b) = \frac{1}{n}\sum_{i=1}^n \frac{1}{2}\left(\mathbf{w}^\top \m
 
 Emlékeztető: $\mathbf{x}^{(i)}$ a jellemzők,
 $y^{(i)}$ a címke bármely $i$ adatpéldányhoz, és $(\mathbf{w}, b)$
-a súly és torzítás paraméterek.
+a súly- és eltolásparaméterek.
 A súlyvektor méretének büntetéséhez
 valahogyan hozzá kell adnunk a $\| \mathbf{w} \|^2$ értéket a veszteségfüggvényhez,
 de hogyan egyenlítse ki a modell a
@@ -166,7 +166,7 @@ a klasszikus *gerinc-regresszió* (ridge regression) algoritmust alkotják,
 az $\ell_1$-regularizált lineáris regresszió
 hasonlóan alapvető módszer a statisztikában,
 amelyet közismerten *lasso regressziónak* neveznek.
-Az $\ell_2$ normával való munkálkodás egyik oka,
+Az $\ell_2$ norma használatának egyik oka,
 hogy az túlméretezett büntetést ró
 a súlyvektor nagy összetevőire.
 Ez a tanulási algoritmusunkat olyan modellek felé torzítja,
@@ -184,7 +184,7 @@ esetleg nem kell adatokat gyűjtenünk, tárolnunk vagy továbbítanunk
 a többi (elhagyott) jellemzőhöz.
 
 A :eqref:`eq_linreg_batch_update` egyenlettel megegyező jelölést használva,
-a minibatch sztochasztikus gradient descent frissítései
+a minibatch sztochasztikus gradienscsökkenés frissítései
 az $\ell_2$-regularizált regresszióhoz:
 
 $$\begin{aligned}
@@ -259,7 +259,7 @@ class Data(d2l.DataModule):
 ## Implementáció nulláról
 
 Most próbáljuk meg implementálni a súlycsökkentést nulláról.
-Mivel a minibatch sztochasztikus gradient descent
+Mivel a minibatch sztochasztikus gradienscsökkenés
 az optimalizálónk,
 csupán hozzá kell adnunk a négyzetes $\ell_2$ büntetést
 az eredeti veszteségfüggvényhez.
@@ -484,7 +484,7 @@ egy mély hálózat összes rétegére.
 ## Összefoglalás
 
 A regularizáció egy általános módszer a túlillesztés kezelésére. A klasszikus regularizációs technikák büntetési tagot adnak a veszteségfüggvényhez (tanítás közben), hogy csökkentsék a tanult modell komplexitását.
-Az $\ell_2$ büntetés alkalmazása az egyik különleges választás, amely egyszerűvé teszi a modellt. Ez súlycsökkentéshez vezet a minibatch sztochasztikus gradient descent algoritmus frissítési lépéseiben.
+Az $\ell_2$ büntetés alkalmazása az egyik különleges választás, amely egyszerűvé teszi a modellt. Ez súlycsökkentéshez vezet a minibatch sztochasztikus gradienscsökkenés algoritmus frissítési lépéseiben.
 A gyakorlatban a súlycsökkentés funkcionalitást a deep learning keretrendszerek optimalizálói biztosítják.
 A különböző paraméterek különböző frissítési viselkedéssel rendelkezhetnek ugyanazon tanítási cikluson belül.
 

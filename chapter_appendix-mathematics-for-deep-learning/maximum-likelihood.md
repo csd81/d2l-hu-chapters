@@ -1,4 +1,4 @@
-# Maximális valószínűség
+# Maximum likelihood becslés
 :label:`sec_maximum_likelihood`
 
 A gépi tanulásban az egyik legelterjedtebb gondolkodásmód a maximum likelihood elve. Ez azt jelenti, hogy ha ismeretlen paraméterekkel rendelkező valószínűségi modellel dolgozunk, akkor azok a paraméterek a legvalószínűbbek, amelyek mellett az adatok a legnagyobb valószínűséggel fordulnak elő.
@@ -18,7 +18,7 @@ $$
 \mathop{\mathrm{argmax}} \frac{P(X \mid \boldsymbol{\theta})P(\boldsymbol{\theta})}{P(X)}.
 $$
 
-A $P(X)$ kifejezés — az adatok paraméterektől független generálási valószínűsége — egyáltalán nem függ $\boldsymbol{\theta}$-tól, így kihagyható anélkül, hogy $\boldsymbol{\theta}$ legjobb megválasztása megváltozna. Hasonlóan, most azt is feltételezhetjük, hogy nincsen előzetes feltevésünk arról, hogy melyik paraméteregyüttes jobb bármely másiknál, ezért kijelenthetjük, hogy $P(\boldsymbol{\theta})$ sem függ théta-tól! Ez például a pénzfeldobásos példánkban is logikus: a fej valószínűsége bármely $[0,1]$ értéket felvehet, anélkül hogy előzetesen azt hinnénk, hogy az érme szabályos-e vagy sem (ezt szokás *nem informatív prior*nak nevezni). Így a Bayes-tétel alkalmazása megmutatja, hogy $\boldsymbol{\theta}$ legjobb megválasztása a $\boldsymbol{\theta}$ maximum likelihood becslése:
+A $P(X)$ kifejezés — az adatok paraméterektől független generálási valószínűsége — egyáltalán nem függ $\boldsymbol{\theta}$-tól, így kihagyható anélkül, hogy $\boldsymbol{\theta}$ legjobb megválasztása megváltozna. Hasonlóan, most azt is feltételezhetjük, hogy nincsen előzetes feltevésünk arról, hogy melyik paraméteregyüttes jobb bármely másiknál, ezért kijelenthetjük, hogy $P(\boldsymbol{\theta})$ sem függ $\boldsymbol{\theta}$-tól! Ez például a pénzfeldobásos példánkban is logikus: a fej valószínűsége bármely $[0,1]$ értéket felvehet, anélkül hogy előzetesen azt hinnénk, hogy az érme szabályos-e vagy sem (ezt szokás *nem informatív prior*nak nevezni). Így a Bayes-tétel alkalmazása megmutatja, hogy $\boldsymbol{\theta}$ legjobb megválasztása a $\boldsymbol{\theta}$ maximum likelihood becslése:
 
 $$
 \hat{\boldsymbol{\theta}} = \mathop{\mathrm{argmax}} _ {\boldsymbol{\theta}} P(X \mid \boldsymbol{\theta}).

@@ -22,7 +22,7 @@ a gépi fordítás feladatára
 Ebben a kódoló RNN változó hosszúságú sorozatot vesz bemenetként,
 és rögzített alakú rejtett állapottá alakítja.
 Később, a :numref:`chap_attention-and-transformers` fejezetben
-bevezető figyelmi mechanizmusokat,
+bevezető figyelemmechanizmusokat,
 amelyek lehetővé teszik a kódolt bemenetek elérését
 anélkül, hogy a teljes bemenetet
 egyetlen rögzített hosszúságú reprezentációba kellene tömöríteni.

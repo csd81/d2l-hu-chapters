@@ -38,7 +38,7 @@ import random
 
 Az itt használt adathalmaz a [Penn Tree Bank (PTB)]( https://catalog.ldc.upenn.edu/LDC99T42).
 Ez a korpusz Wall Street Journal cikkekből van mintavételezve,
-tanítási, validációs és tesztkészletre bontva.
+tanítási, validációs és teszthalmazra bontva.
 Az eredeti formátumban
 a szövegfájl minden sora
 egy szóközökkel elválasztott szavakból álló mondatot képvisel.
@@ -63,7 +63,7 @@ sentences = read_ptb()
 f'# sentences: {len(sentences)}'
 ```
 
-A tanítókészlet beolvasása után felépítünk egy szókincset a korpuszhoz,
+A tanítóhalmaz beolvasása után felépítünk egy szókincset a korpuszhoz,
 ahol minden szó, amely kevesebb mint 10-szer szerepel, a „&lt;unk&gt;" tokennel helyettesítjük.
 Megjegyezzük, hogy az eredeti adathalmaz
 szintén tartalmaz „&lt;unk&gt;" tokeneket, amelyek ritka (ismeretlen) szavakat jelölnek.

@@ -437,10 +437,10 @@ hogy kisebb értékeket vegyenek fel.
 
 
 Általánosan szólva, amikor valamely célfüggvényt
-gradient descent módszerrel optimalizálunk, iteratívan frissítjük
+gradienscsökkenés módszerrel optimalizálunk, iteratívan frissítjük
 az érdeklődési paraméterünket, mondjuk egy $\mathbf{x}$ vektort,
 de a negatív $\mathbf{g}$ gradiens irányában toljuk
-(stochastic gradient descent esetén
+(sztochasztikus gradienscsökkenés esetén
 ezt a gradienst
 egy véletlenszerűen mintavételezett minibatch-en számítjuk ki).
 Például $\eta > 0$ tanulási rátával

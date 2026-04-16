@@ -15,9 +15,9 @@ Kezdetben egyetlen tizedes jegynyi pontossággal mérjük az eredményt, azaz $0
 
 Ám ha jobban megnézzük, ez nem egyezik meg az eredeti kérdésünkkel! Pontos egyenlőséget akartunk, míg ezek a rekeszek mindent tartalmaznak, ami $1.5\textrm{cm}$ és $2.5\textrm{cm}$ közé esik.
 
-Nem tántorítva magunkat, folytatjuk tovább. Még pontosabban mérünk: $1.9\textrm{cm}$, $2.0\textrm{cm}$, $2.1\textrm{cm}$, és most azt látjuk, hogy talán $3$ a $100$ nyílból a $2.0\textrm{cm}$-es rekeszbe ér. Így az valószínűséget $3\%$-ra becsüljük.
+Nem tántorítva magunkat, folytatjuk tovább. Még pontosabban mérünk: $1.9\textrm{cm}$, $2.0\textrm{cm}$, $2.1\textrm{cm}$, és most azt látjuk, hogy talán $3$ a $100$ nyílból a $2.0\textrm{cm}$-es rekeszbe ér. Így a valószínűséget $3\%$-ra becsüljük.
 
-Ez azonban nem oldja meg a problémát! Csupán egy tizedes jeggyel mélyebbre toltuk a kérdést. Vonjuk el egy kicsit. Képzeljük el, hogy ismerjük annak valószínűségét, hogy az első $k$ jegy megegyezik a $2.00000\ldots$ értékkel, és tudni szeretnénk az első $k+1$ jegyre vonatkozó egyezés valószínűségét. Elég ésszerű feltételezni, hogy a ${k+1}^{\textrm{th}}$ jegy lényegében véletlenszerű választás a $\{0, 1, 2, \ldots, 9\}$ halmazból. Legalábbis nem tudunk elképzelni olyan fizikailag értelmes folyamatot, amely arra kényszerítené a középponttól mért mikrométerszámot, hogy inkább $7$-re, mint $3$-ra végződjön.
+Ez azonban nem oldja meg a problémát! Csupán egy tizedes jeggyel mélyebbre toltuk a kérdést. Vonatkoztassunk el egy pillanatra. Képzeljük el, hogy ismerjük annak valószínűségét, hogy az első $k$ jegy megegyezik a $2.00000\ldots$ értékkel, és tudni szeretnénk az első $k+1$ jegyre vonatkozó egyezés valószínűségét. Elég ésszerű feltételezni, hogy a ${k+1}^{\textrm{th}}$ jegy lényegében véletlenszerű választás a $\{0, 1, 2, \ldots, 9\}$ halmazból. Legalábbis nem tudunk elképzelni olyan fizikailag értelmes folyamatot, amely arra kényszerítené a középponttól mért mikrométerszámot, hogy inkább $7$-re, mint $3$-ra végződjön.
 
 Mindez azt jelenti, hogy minden további pontossági jegy lényegében $10$-szeres faktorral csökkenti az egyezés valószínűségét. Másképpen fogalmazva, azt várjuk, hogy
 

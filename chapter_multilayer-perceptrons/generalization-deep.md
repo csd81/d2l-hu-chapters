@@ -22,7 +22,7 @@ amennyiben valamely statisztikai elv (ismert vagy ismeretlen)
 arra vezeti az eredményes modelleket, hogy általánosítsanak a tanítási halmazon túlra.
 
 
-A pozitív oldal az, hogy a sztochasztikus gradient descent-tel tanított
+A pozitív oldal az, hogy a sztochasztikus gradienscsökkenéssel tanított
 mély neurális hálózatok meglepően jól általánosítanak
 számos előrejelzési problémában, beleértve a számítógépes látást,
 a természetes nyelvfeldolgozást, az idősor-adatokat, az ajánlórendszereket,
@@ -55,7 +55,7 @@ A jelen pillanat összefoglalása az, hogy a mély tanulás elmélete
 ígéretes támadási vonalakat produkált és elszórt lenyűgöző eredményeket,
 de még mindig messze tűnik egy átfogó magyarázattól
 mind (i) arról, hogy miért vagyunk képesek neurális hálózatokat optimalizálni,
-mind (ii) arról, hogy a gradient descent által megtanult modellek
+mind (ii) arról, hogy a gradienscsökkenés által megtanult modellek
 hogyan általánosítanak annyira jól, még nagy dimenziós feladatokon is.
 A gyakorlatban azonban az (i) ritkán jelent problémát
 (mindig találhatunk paramétereket, amelyek illeszkednek az összes tanítási adatunkra),

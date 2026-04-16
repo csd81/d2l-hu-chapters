@@ -63,7 +63,7 @@ def save_hyperparameters(self, ignore=[]):
         setattr(self, k, v)
 ```
 
-Folyamatjelző.
+Haladás megjelenítése.
 
 ```{.python .input  n=22}
 %%tab all
@@ -294,7 +294,7 @@ def show_Q_function_progress(env_desc, V_all, pi_all): #@save
 
 Trainer
 
-A bunch of functions that will be deprecated:
+Az alábbi függvények elavulóban vannak:
 
 ```{.python .input}
 %%tab mxnet

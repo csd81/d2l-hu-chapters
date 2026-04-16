@@ -1,7 +1,7 @@
 # Előre irányú terjesztés, visszaterjesztés és számítási gráfok
 :label:`sec_backprop`
 
-Eddig minibatch sztochasztikus gradient descent segítségével tanítottuk modelleinket.
+Eddig minibatch sztochasztikus gradienscsökkenés segítségével tanítottuk modelleinket.
 Amikor azonban az algoritmust implementáltuk,
 csak a modellen keresztüli *előre irányú terjesztés* számításaival foglalkoztunk.
 Amikor a gradiensek kiszámítására került sor,

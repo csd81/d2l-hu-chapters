@@ -4,7 +4,7 @@
 Eddig azt tárgyaltuk, hogyan lehet modelleket hatékonyan tanítani CPU-kon és GPU-kon. Megmutattuk azt is, hogy a deep learning keretrendszerek hogyan teszik lehetővé a számítás és a kommunikáció automatikus párhuzamosítását közöttük a :numref:`sec_auto_para` részben. Szintén bemutattuk a :numref:`sec_use_gpu` részben, hogyan lehet felsorolni egy számítógép összes elérhető GPU-ját az `nvidia-smi` paranccsal.
 Amit *nem* tárgyaltunk, az az, hogy a deep learning tanítást valójában hogyan lehet párhuzamosítani.
 Ehelyett csak mellékesen jeleztük, hogy az adatokat valahogy el kell osztani több eszköz között, és működésre bírni a rendszert. A jelen rész kitölti ezeket a részleteket, és megmutatja, hogyan lehet egy hálózatot párhuzamosan tanítani a semmiből indulva. A magas szintű API-k funkcionalitásának kihasználásáról részletesebben a :numref:`sec_multi_gpu_concise` részben lesz szó.
-Feltételezzük, hogy ismered a minibatch sztochasztikus gradient descent algoritmusokat, mint amilyenek a :numref:`sec_minibatch_sgd` részben szerepelnek.
+Feltételezzük, hogy ismered a minibatch sztochasztikus gradienscsökkenés algoritmusokat, mint amilyenek a :numref:`sec_minibatch_sgd` részben szerepelnek.
 
 
 ## A feladat felosztása
@@ -63,7 +63,7 @@ az adatpárhuzamossággal végzett tanítást,
 amikor $k=2$.
 
 
-![Minibatch sztochasztikus gradient descent kiszámítása adatpárhuzamossággal két GPU-n.](../img/data-parallel.svg)
+![Minibatch sztochasztikus gradienscsökkenés kiszámítása adatpárhuzamossággal két GPU-n.](../img/data-parallel.svg)
 :label:`fig_data_parallel`
 
 Általánosságban a tanítás a következőképpen zajlik:

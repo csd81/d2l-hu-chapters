@@ -11,7 +11,7 @@ a lineáris regresszió egy teljesen működő implementációján.
 Ebben a részben
 (**az egész módszert nulláról implementáljuk,
 beleértve (i) a modellt; (ii) a veszteségfüggvényt;
-(iii) egy minibatch sztochasztikus gradient descent optimalizálót;
+(iii) egy minibatch sztochasztikus gradienscsökkenés optimalizálót;
 és (iv) a tanítási függvényt,
 amely összefűzi ezeket az összetevőket.**)
 Végül futtatjuk a szintetikus adatgenerátorunkat
@@ -500,7 +500,7 @@ Azonban a gépi tanulásban
 inkább azokkal a paraméterekkel foglalkozunk,
 amelyek nagyon pontos előrejelzéshez vezetnek :cite:`Vapnik.1992`.
 Szerencsére, még nehéz optimalizálási problémákon is,
-a sztochasztikus gradient descent gyakran találhat kiváló megoldásokat,
+a sztochasztikus gradienscsökkenés gyakran találhat kiváló megoldásokat,
 részben annak köszönhetően, hogy mély hálózatoknál
 a paraméterek sok olyan konfigurációja létezik,
 amelyek nagyon pontos előrejelzéshez vezet.

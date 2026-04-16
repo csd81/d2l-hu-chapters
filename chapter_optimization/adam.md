@@ -3,7 +3,7 @@
 
 Az ebbe a szakaszba vezető tárgyalások során számos technikával találkoztunk a hatékony optimalizálás érdekében. Összefoglaljuk ezeket részletesen:
 
-* Láttuk, hogy a :numref:`sec_sgd` szakasz hatékonyabb, mint a Gradient Descent optimalizálási problémák megoldásánál, pl. a redundáns adatokkal szembeni belső rugalmassága miatt.
+* Láttuk, hogy a :numref:`sec_sgd` szakasz hatékonyabb, mint a gradienscsökkenés optimalizálási problémák megoldásánál, pl. a redundáns adatokkal szembeni belső rugalmassága miatt.
 * Láttuk, hogy a :numref:`sec_minibatch_sgd` szakasz a vektorizálásból eredő jelentős további hatékonyságot kínál, az egyik minibatchben nagyobb megfigyeléssorozatokat alkalmazva. Ez a kulcsa a hatékony multi-gépes, multi-GPU és összességében párhuzamos feldolgozásnak.
 * A :numref:`sec_momentum` szakasz hozzáadott egy mechanizmust a korábbi gradiensek előzményeinek összesítésére a konvergencia gyorsítása érdekében.
 * A :numref:`sec_adagrad` szakasz koordinátánkénti skálázást alkalmazott, hogy lehetővé tegye a számításilag hatékony előkondicionálást.

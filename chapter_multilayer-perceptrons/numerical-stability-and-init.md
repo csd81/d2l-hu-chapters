@@ -181,7 +181,7 @@ Az általunk választott skálán
 (a $\sigma^2=1$ variancia megválasztása esetén)
 a mátrixszorzat felrobban.
 Ha ez a mély hálózat inicializálása miatt történik,
-nincs esélyünk arra, hogy egy gradient descent optimalizáló konvergáljon.
+nincs esélyünk arra, hogy egy gradienscsökkenés optimalizáló konvergáljon.
 
 ```{.python .input}
 %%tab mxnet
@@ -248,14 +248,14 @@ ugyanolyan aktivációt produkálva,
 amelyet a kimeneti egységbe táplálnak.
 A visszaterjesztés során a kimeneti egység $\mathbf{W}^{(1)}$ paraméterekre vonatkozó differenciálása
 olyan gradienseket ad, amelyek összes eleme azonos értéket vesz fel.
-Így a gradiens alapú iteráció (pl. minibatch sztochasztikus gradient descent) után
+Így a gradiens alapú iteráció (pl. minibatch sztochasztikus gradienscsökkenés) után
 a $\mathbf{W}^{(1)}$ összes eleme még mindig azonos értéket vesz fel.
 Az ilyen iterációk sohasem *törnék meg a szimmetriát* önállóan,
 és lehet, hogy soha nem tudnánk realizálni
 a hálózat kifejezőerejét.
 A rejtett réteg úgy viselkedne,
 mintha csak egyetlen egységből állna.
-Vegyük észre, hogy bár a minibatch sztochasztikus gradient descent nem törné meg ezt a szimmetriát,
+Vegyük észre, hogy bár a minibatch sztochasztikus gradienscsökkenés nem törné meg ezt a szimmetriát,
 a dropout regularizáció (amelyet később mutatunk be) megtörné!
 
 

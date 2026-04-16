@@ -197,7 +197,7 @@ Ezzel szemben a második konvolúciós réteg nem alkalmaz párnázást, ezért 
 
 Most, hogy implementáltuk a modellt, [**futtassunk egy kísérletet, hogy lássuk, hogyan teljesít a LeNet-5 modell a Fashion-MNIST-en**].
 
-Bár a CNN-eknek kevesebb paramétere van, számítási szempontból mégis drágábbak lehetnek, mint a hasonlóan mély MLP-k, mivel minden paraméter sokkal több szorzásban vesz részt. Ha van hozzáférésünk GPU-hoz, lehet, hogy most jó alkalom azt akcióba hozni a tanítás felgyorsítására. Vegyük figyelembe, hogy a `d2l.Trainer` osztály minden részletről gondoskodik. Alapértelmezés szerint inicializálja a modell paramétereit az elérhető eszközökön. Ahogyan az MLP-knél, veszteségfüggvényünk keresztentrópia, és minibatch sztochasztikus gradient descent segítségével minimalizáljuk.
+Bár a CNN-eknek kevesebb paramétere van, számítási szempontból mégis drágábbak lehetnek, mint a hasonlóan mély MLP-k, mivel minden paraméter sokkal több szorzásban vesz részt. Ha van hozzáférésünk GPU-hoz, lehet, hogy most jó alkalom azt akcióba hozni a tanítás felgyorsítására. Vegyük figyelembe, hogy a `d2l.Trainer` osztály minden részletről gondoskodik. Alapértelmezés szerint inicializálja a modell paramétereit az elérhető eszközökön. Ahogyan az MLP-knél, veszteségfüggvényünk keresztentrópia, és minibatch sztochasztikus gradienscsökkenés segítségével minimalizáljuk.
 
 ```{.python .input}
 %%tab pytorch, mxnet, jax

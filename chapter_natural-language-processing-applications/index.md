@@ -11,7 +11,7 @@ csupán a deep learning architektúrák szemléltetése céljából.
 Például a :numref:`chap_rnn` fejezetben
 RNN-eket alkalmaztunk nyelvi modellek tervezéséhez, amelyek novella-szerű szövegeket generálnak.
 A :numref:`chap_modern_rnn` és a :numref:`chap_attention-and-transformers` fejezetekben
-szintén terveztünk RNN-eken és figyelmi mechanizmusokon alapuló modelleket gépi fordításhoz.
+szintén terveztünk RNN-eken és figyelemmechanizmusokon alapuló modelleket gépi fordításhoz.
 
 Azonban ez a könyv nem kívánja átfogó módon tárgyalni az összes ilyen alkalmazást.
 Ehelyett
@@ -31,7 +31,7 @@ ez a fejezet a természetes nyelvfeldolgozási modellek tervezésének alapvető
 Bár az előtanított szöveges reprezentációk bármelyike kombinálható bármelyik architektúrával a :numref:`fig_nlp-map-app` ábra bármelyik alkalmazásához,
 mi néhány reprezentatív kombinációt választunk ki.
 Pontosabban, a szentimentelemzéshez az RNN-eken és CNN-eken alapuló népszerű architektúrákat vizsgáljuk.
-A természetes nyelvi következtetéshez figyelmi mechanizmusokat és MLP-ket választunk annak bemutatására, hogyan lehet szövegpárokat elemezni.
+A természetes nyelvi következtetéshez figyelemmechanizmusokat és MLP-ket választunk annak bemutatására, hogyan lehet szövegpárokat elemezni.
 Végül bemutatjuk, hogyan lehet egy előtanított BERT modellt finomhangolni
 természetes nyelvfeldolgozási alkalmazások széles köréhez,
 például szekvenciaszinten (egyedi szöveg osztályozása és szövegpár osztályozása)

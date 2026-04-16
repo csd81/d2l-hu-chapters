@@ -26,7 +26,7 @@ $$
 $$
 
 ahol $\lambda$ a regularizációs együttható. A $\lambda (\| \mathbf{P} \|^2_F + \| \mathbf{Q}
-\|^2_F + b_u^2 + b_i^2 )$ regularizációs tag a paraméterek nagyságát büntetve kerüli el a túltanulást. Azok az $(u, i)$ párok, amelyekre $\mathbf{R}_{ui}$ ismert, a $\mathcal{K}=\{(u, i) \mid \mathbf{R}_{ui} \textrm{ ismert}\}$ halmazban vannak tárolva. A modell paraméterei egy optimalizáló algoritmussal, például Stochastic Gradient Descent-tel vagy Adam-mal taníthatók.
+\|^2_F + b_u^2 + b_i^2 )$ regularizációs tag a paraméterek nagyságát büntetve kerüli el a túltanulást. Azok az $(u, i)$ párok, amelyekre $\mathbf{R}_{ui}$ ismert, a $\mathcal{K}=\{(u, i) \mid \mathbf{R}_{ui} \textrm{ ismert}\}$ halmazban vannak tárolva. A modell paraméterei egy optimalizáló algoritmussal, például sztochasztikus gradienscsökkenéssel vagy Adam-mal taníthatók.
 
 A mátrixfaktorizációs modell szemléletes ábrázolása az alábbiakban látható:
 

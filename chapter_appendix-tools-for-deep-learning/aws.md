@@ -1,9 +1,9 @@
 # AWS EC2-példányok használata
 :label:`sec_aws`
 
-Ebben a szakaszban bemutatjuk, hogyan telepíthetjük az összes könyvtárat egy csupasz Linux rendszerre. Felidézve: a :numref:`sec_sagemaker` szakaszban tárgyaltuk az Amazon SageMaker használatát, míg egy saját példány felépítése kevesebbe kerül az AWS-en. Az útmutató három lépésből áll:
+Ebben a szakaszban bemutatjuk, hogyan telepíthetjük az összes könyvtárat egy csupasz Linux rendszerre. Korábban, a :numref:`sec_sagemaker` szakaszban tárgyaltuk az Amazon SageMaker használatát, míg egy saját példány felépítése kevesebbe kerül az AWS-en. Az útmutató három lépésből áll:
 
-1. GPU-s Linux példány igénylése az AWS EC2-től.
+1. GPU-val rendelkező Linux-példány indítása az AWS EC2-ben.
 1. A CUDA telepítése (vagy előre telepített CUDA-val rendelkező Amazon Machine Image használata).
 1. A deep learning keretrendszer és a könyv kódjának futtatásához szükséges egyéb könyvtárak telepítése.
 
@@ -110,7 +110,7 @@ Ahogy a :numref:`fig_connect` ábra mutatja, miután a példány állapota zöld
 :width:`700px`
 :label:`fig_connect`
 
-Ha ez egy új kulcs, akkor az SSH használatához nem lehet nyilvánosan elérhető. Menjünk a `D2L_key.pem` fájlt tároló mappába, és
+Ha új kulcspárt használunk, az SSH csak akkor működik, ha a kulcsfájl nem nyilvánosan hozzáférhető. Menjünk a `D2L_key.pem` fájlt tároló mappába, és
 hajtsuk végre a következő parancsot,
 hogy a kulcs ne legyen nyilvánosan olvasható:
 
@@ -133,7 +133,7 @@ ssh -i "D2L_key.pem" ubuntu@ec2-xx-xxx-xxx-xxx.y.compute.amazonaws.com
 
 Amikor a parancssor megkérdezi: "Are you sure you want to continue connecting (yes/no)", írjuk be, hogy "yes", majd nyomjuk meg az Entert a példányba való bejelentkezéshez.
 
-A kiszolgálónk most már kész.
+A kiszolgáló most már használatra kész.
 
 
 ## A CUDA telepítése

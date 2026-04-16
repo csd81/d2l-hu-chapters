@@ -125,16 +125,16 @@ print('# training examples:', len(labels))
 print('# classes:', len(set(labels.values())))
 ```
 
-Következő lépésként definiáljuk a `reorg_train_valid` függvényt, amely [**kiválasztja az érvényesítési halmazt az eredeti tanítóhalmazból.**]
-A függvény `valid_ratio` argumentuma az érvényesítési halmazban lévő példányok számának és az eredeti tanítóhalmazban lévő példányok számának aránya.
+Következő lépésként definiáljuk a `reorg_train_valid` függvényt, amely [**kiválasztja a validációs halmazt az eredeti tanítóhalmazból.**]
+A függvény `valid_ratio` argumentuma a validációs halmazban lévő példányok számának és az eredeti tanítóhalmazban lévő példányok számának aránya.
 Pontosabban:
 legyen $n$ a legkevesebb példánnyal rendelkező osztály képeinek száma, $r$ pedig az arány.
-Az érvényesítési halmazba minden osztályból
+Az validációs halmazba minden osztályból
 $\max(\lfloor nr\rfloor,1)$ kép kerül ki.
 Vegyük például a `valid_ratio=0.1` értéket. Mivel az eredeti tanítóhalmaz 50 000 képet tartalmaz,
 45 000 képet fognak tanításra használni a `train_valid_test/train` útvonal alatt,
 míg a fennmaradó 5000 kép
-az érvényesítési halmazba kerül a `train_valid_test/valid` útvonalon. Az adathalmaz rendszerezése után az azonos osztályba tartozó képek azonos mappába kerülnek.
+a validációs halmazba kerül a `train_valid_test/valid` útvonalon. Az adathalmaz rendszerezése után az azonos osztályba tartozó képek azonos mappába kerülnek.
 
 ```{.python .input}
 #@tab all
@@ -195,7 +195,7 @@ def reorg_cifar10_data(data_dir, valid_ratio):
 Az adathalmaz kis méretű mintájához itt a batch méretet 32-re állítjuk.
 A Kaggle-verseny teljes adathalmazának tanításakor és tesztelésekor
 a `batch_size` értékét nagyobb egész számra, például 128-ra kell állítani.
-A tanítási példák 10%-át érvényesítési halmazként választjuk ki a hiperparaméterek hangolásához.
+A tanítási példák 10%-át validációs halmazként választjuk ki a hiperparaméterek hangolásához.
 
 ```{.python .input}
 #@tab all
@@ -290,10 +290,10 @@ valid_ds, test_ds = [torchvision.datasets.ImageFolder(
 
 Tanítás során
 [**meg kell adnunk a fent definiált összes képaugmentációs műveletet**].
-Ha az érvényesítési halmazt a hiperparaméter-hangolás során a modell kiértékelésére használjuk,
+Ha a validációs halmazt a hiperparaméter-hangolás során a modell kiértékelésére használjuk,
 nem szabad véletlenszerűséget bevezetni a képaugmentáció révén.
 A végső előrejelzés előtt
-a modellt a tanítóhalmaz és az érvényesítési halmaz kombinációján tanítjuk be, hogy minden rendelkezésre álló felcímkézett adatot hasznosítsunk.
+a modellt a tanítóhalmaz és a validációs halmaz kombinációján tanítjuk be, hogy minden rendelkezésre álló felcímkézett adatot hasznosítsunk.
 
 ```{.python .input}
 #@tab mxnet
@@ -414,7 +414,7 @@ loss = nn.CrossEntropyLoss(reduction="none")
 
 ## A [**tanítási függvény**] definiálása
 
-A modelleket az érvényesítési halmazon mutatott teljesítményük alapján választjuk ki és hangoljuk a hiperparamétereket.
+A modelleket a validációs halmazon mutatott teljesítményük alapján választjuk ki és hangoljuk a hiperparamétereket.
 Az alábbiakban definiáljuk a `train` modell-tanítási függvényt.
 
 ```{.python .input}
@@ -524,7 +524,7 @@ train(net, train_iter, valid_iter, num_epochs, lr, wd, devices, lr_period,
 ## [**A teszthalmaz osztályozása**] és az eredmények beküldése Kaggle-re
 
 Miután egy megfelelő modellt kaptunk a hiperparaméterekkel,
-az összes felcímkézett adatot (beleértve az érvényesítési halmazt is) felhasználva újra tanítjuk a modellt, és osztályozzuk a teszthalmazt.
+az összes felcímkézett adatot (beleértve a validációs halmazt is) felhasználva újra tanítjuk a modellt, és osztályozzuk a teszthalmazt.
 
 ```{.python .input}
 #@tab mxnet

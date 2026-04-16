@@ -4,13 +4,13 @@
 A :numref:`sec_calculus` fejezetben megismertük a differenciálszámítás alapvető elemeit. Ez a szakasz mélyebbre merül az analízis alapjaiba, és megvizsgálja, hogyan érthetjük meg és alkalmazhatjuk azokat a gépi tanulás kontextusában.
 
 ## Differenciálszámítás
-A differenciálszámítás alapvetően azt tanulmányozza, hogyan viselkednek a függvények kis változások hatására. Hogy megértsük, miért ennyire alapvető ez a deep learning szempontjából, nézzünk egy példát.
+A differenciálszámítás alapvetően azt tanulmányozza, hogyan viselkednek a függvények kis változások hatására. Hogy megértsük, miért ennyire alapvető ez a mélytanulás szempontjából, nézzünk egy példát.
 
 Tegyük fel, hogy van egy mély neurális hálózatunk, amelynek súlyait az egyszerűség kedvéért egyetlen vektorba fűzzük össze: $\mathbf{w} = (w_1, \ldots, w_n)$. Adott egy tanítási adathalmaz, amelyen a neurális hálózatunk veszteségét $\mathcal{L}(\mathbf{w})$-vel jelöljük.
 
 Ez a függvény rendkívül összetett – kódolja az adott architektúra összes lehetséges modelljének teljesítményét az adathalmazon –, ezért szinte lehetetlen megmondani, hogy a súlyok melyik $\mathbf{w}$ értéke minimalizálja a veszteséget. Ezért a gyakorlatban általában *véletlenszerűen* inicializáljuk a súlyokat, majd iteratívan kis lépéseket teszünk abba az irányba, amely a lehető leggyorsabban csökkenti a veszteséget.
 
-A kérdés ekkor olyasmivé válik, ami felszínesen nem tűnik egyszerűbbnek: hogyan találjuk meg azt az irányt, amely a lehető leggyorsabban csökkenti a súlyokat? Ennek megvizsgálásához először tekintsük az egyetlen súlyból álló esetet: $L(\mathbf{w}) = L(x)$ egy egyetlen valós értékre, $x$-re.
+A kérdés ekkor olyasmivé válik, ami felszínesen nem tűnik egyszerűbbnek: hogyan találjuk meg azt az irányt, amely a lehető leggyorsabban csökkenti a veszteséget? Ennek megvizsgálásához először tekintsük az egyetlen súlyból álló esetet: $L(\mathbf{w}) = L(x)$ egy egyetlen valós értékre, $x$-re.
 
 Vegyük $x$-et, és próbáljuk megérteni, mi történik, ha egy kis $\epsilon$ értékkel megváltoztatjuk $x + \epsilon$-ra. Ha konkrétabb szemléltetést szeretnénk, gondoljunk például $\epsilon = 0{,}0000001$-re. A vizualizáció segítésére rajzoljuk fel az $f(x) = \sin(x^x)$ példafüggvényt a $[0, 3]$ intervallumon.
 

@@ -238,10 +238,10 @@ A figyelemsúly a lekérdezés és a kulcs közötti hasonlóság (vagy távols�
 ## Feladatok
 
 1. A Parzen-ablak sűrűségbecslések $\hat{p}(\mathbf{x}) = \frac{1}{n} \sum_i k(\mathbf{x}, \mathbf{x}_i)$-vel adhatók meg. Bizonyítsd be, hogy bináris osztályozás esetén a $\hat{p}(\mathbf{x}, y=1) - \hat{p}(\mathbf{x}, y=-1)$ függvény, amelyet Parzen-ablakok adnak, ekvivalens a Nadaraya–Watson-osztályozással.
-1. Implementálj stochastic gradient descent-et a kernel-szélességek jó értékének megtanulásához Nadaraya–Watson regresszióban.
+1. Implementálj sztochasztikus gradienscsökkenést a kernel-szélességek jó értékének megtanulásához Nadaraya–Watson regresszióban.
     1. Mi történik, ha egyszerűen a fenti becsléseket használod a $(f(\mathbf{x_i}) - y_i)^2$ közvetlen minimalizálásához? Tipp: $y_i$ része a $f$ kiszámításához használt tagoknak.
     1. Távolítsd el az $(\mathbf{x}_i, y_i)$-t az $f(\mathbf{x}_i)$ becsléséből, és optimalizálj a kernel-szélességeken. Még mindig megfigyelsz túltanulást?
-1. Tételezd fel, hogy az összes $\mathbf{x}$ az egységgömbön van, azaz mindegyikre teljesül, hogy $\|\mathbf{x}\| = 1$. Egyszerűsítheted-e az $\|\mathbf{x} - \mathbf{x}_i\|^2$ tagot az exponensben? Tipp: later fogjuk látni, hogy ez szorosan összefügg a dot product figyelemmel.
+1. Tételezd fel, hogy az összes $\mathbf{x}$ az egységgömbön van, azaz mindegyikre teljesül, hogy $\|\mathbf{x}\| = 1$. Egyszerűsítheted-e az $\|\mathbf{x} - \mathbf{x}_i\|^2$ tagot az exponensben? Tipp: később látni fogjuk, hogy ez szorosan összefügg a skalárisszorzat-alapú figyelemmel.
 1. Emlékezz arra, hogy :citet:`mack1982weak` bizonyította, hogy a Nadaraya–Watson-becslés konzisztens. Milyen gyorsan kell csökkentened a figyelemmechanizmus skáláját, ahogy több adatot kapsz? Adj némi intuíciót a válaszodhoz. Függ az adatok dimenziójától? Hogyan?
 
 :begin_tab:`mxnet`

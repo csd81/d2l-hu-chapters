@@ -1,7 +1,7 @@
 # Momentum
 :label:`sec_momentum`
 
-A :numref:`sec_sgd` szakaszban áttekintettük, mi történik a sztochasztikus gradient descent végrehajtásakor, vagyis amikor az optimalizálás során csak a gradiens zajos változata áll rendelkezésre. Különösen azt vettük észre, hogy zajos gradiensek esetén rendkívül körültekintőnek kell lennünk a tanulási sebesség megválasztásakor a zaj figyelembevételével. Ha túl gyorsan csökkentjük, a konvergencia megáll. Ha túl engedékenyek vagyunk, nem konvergálunk elég jó megoldáshoz, mivel a zaj folyamatosan az optimalitástól visz el bennünket.
+A :numref:`sec_sgd` szakaszban áttekintettük, mi történik a sztochasztikus gradienscsökkenés végrehajtásakor, vagyis amikor az optimalizálás során csak a gradiens zajos változata áll rendelkezésre. Különösen azt vettük észre, hogy zajos gradiensek esetén rendkívül körültekintőnek kell lennünk a tanulási sebesség megválasztásakor a zaj figyelembevételével. Ha túl gyorsan csökkentjük, a konvergencia megáll. Ha túl engedékenyek vagyunk, nem konvergálunk elég jó megoldáshoz, mivel a zaj folyamatosan az optimalitástól visz el bennünket.
 
 ## Alapok
 
@@ -10,12 +10,12 @@ Ebben a szakaszban hatékonyabb optimalizálási algoritmusokat vizsgálunk, kü
 
 ### Kiszivárgó átlagok
 
-Az előző szakaszban a minibatch SGD-t tárgyaltuk a számítás gyorsításának eszközeként. Ennek kellemesebb mellékhatása is volt: a gradiensek átlagolása csökkentette a variancia mértékét. A minibatch sztochasztikus gradient descent a következőképpen számítható:
+Az előző szakaszban a minibatch SGD-t tárgyaltuk a számítás gyorsításának eszközeként. Ennek kellemesebb mellékhatása is volt: a gradiensek átlagolása csökkentette a variancia mértékét. A minibatch sztochasztikus gradienscsökkenés a következőképpen számítható:
 
 $$\mathbf{g}_{t, t-1} = \partial_{\mathbf{w}} \frac{1}{|\mathcal{B}_t|} \sum_{i \in \mathcal{B}_t} f(\mathbf{x}_{i}, \mathbf{w}_{t-1}) = \frac{1}{|\mathcal{B}_t|} \sum_{i \in \mathcal{B}_t} \mathbf{h}_{i, t-1}.
 $$
 
-A jelölés egyszerűsítése érdekében $\mathbf{h}_{i, t-1} = \partial_{\mathbf{w}} f(\mathbf{x}_i, \mathbf{w}_{t-1})$-t az $i$ mintához tartozó sztochasztikus gradient descent-ként használtuk a $t-1$ időpontban frissített súlyokkal.
+A jelölés egyszerűsítése érdekében $\mathbf{h}_{i, t-1} = \partial_{\mathbf{w}} f(\mathbf{x}_i, \mathbf{w}_{t-1})$-t az $i$ mintához tartozó sztochasztikus gradienscsökkenésként használtuk a $t-1$ időpontban frissített súlyokkal.
 Jó lenne, ha a varianciaredukció hatásából a minibatch-en belüli gradienátlagoláson túl is profitálhatnánk. Ennek egyik módja a gradiens számítás helyettesítése egy „kiszivárgó átlaggal":
 
 $$\mathbf{v}_t = \beta \mathbf{v}_{t-1} + \mathbf{g}_{t, t-1}$$
@@ -35,11 +35,11 @@ Ahogy várható, hatékonysága miatt a momentum jól kutatott téma a mélytanu
 
 ### Rosszul kondicionált probléma
 
-A momentum módszer geometriai tulajdonságainak jobb megértéséhez visszatérünk a gradient descenthez, bár egy lényegesen kellemetlen célfüggvénnyel. Felidézve, a :numref:`sec_gd` szakaszban $f(\mathbf{x}) = x_1^2 + 2 x_2^2$-t, vagyis egy mérsékelten torzított ellipszoid célfüggvényt alkalmaztunk. Ezt a függvényt tovább torzítjuk az $x_1$ irányban való megnyújtással:
+A momentum módszer geometriai tulajdonságainak jobb megértéséhez visszatérünk a gradienscsökkenéshez, bár egy lényegesen kellemetlen célfüggvénnyel. Felidézve, a :numref:`sec_gd` szakaszban $f(\mathbf{x}) = x_1^2 + 2 x_2^2$-t, vagyis egy mérsékelten torzított ellipszoid célfüggvényt alkalmaztunk. Ezt a függvényt tovább torzítjuk az $x_1$ irányban való megnyújtással:
 
 $$f(\mathbf{x}) = 0.1 x_1^2 + 2 x_2^2.$$
 
-Mint korábban, $f$ minimuma $(0, 0)$-ban van. Ez a függvény az $x_1$ irányában *nagyon* lapos. Nézzük meg, mi történik, ha a gradient descentet alkalmazzuk az új függvényen ugyanúgy, mint korábban. $0.4$-es tanulási sebességet választunk.
+Mint korábban, $f$ minimuma $(0, 0)$-ban van. Ez a függvény az $x_1$ irányában *nagyon* lapos. Nézzük meg, mi történik, ha a gradienscsökkenést alkalmazzuk az új függvényen ugyanúgy, mint korábban. $0.4$-es tanulási sebességet választunk.
 
 ```{.python .input}
 #@tab mxnet
@@ -97,7 +97,7 @@ d2l.show_trace_2d(f_2d, d2l.train_2d(gd_2d))
 
 ### A momentum módszer
 
-A momentum módszer lehetővé teszi a fent leírt gradient descent probléma megoldását. Az optimalizálási nyomot nézve sejthetnénk, hogy a korábbi gradiensek átlagolása jól működne. Elvégre az $x_1$ irányban ez összegyűjti az egymáshoz igazított gradieneket, növelve az egyes lépéseknél megtett távolságot. Ezzel szemben az $x_2$ irányban, ahol a gradiensek oszcillálnak, az összesített gradiens csökkenti a lépésméretet az egymást kioltó oszcillációk miatt.
+A momentum módszer lehetővé teszi a fent leírt gradienscsökkenés probléma megoldását. Az optimalizálási nyomot nézve sejthetnénk, hogy a korábbi gradiensek átlagolása jól működne. Elvégre az $x_1$ irányban ez összegyűjti az egymáshoz igazított gradieneket, növelve az egyes lépéseknél megtett távolságot. Ezzel szemben az $x_2$ irányban, ahol a gradiensek oszcillálnak, az összesített gradiens csökkenti a lépésméretet az egymást kioltó oszcillációk miatt.
 A $\mathbf{g}_t$ gradiens helyett $\mathbf{v}_t$ alkalmazása a következő frissítési egyenletekhez vezet:
 
 $$
@@ -107,7 +107,7 @@ $$
 \end{aligned}
 $$
 
-Megjegyezzük, hogy $\beta = 0$ esetén visszakapjuk a hagyományos gradient descentet. Mielőtt mélyebben belemerülnénk a matematikai tulajdonságokba, nézzük meg gyorsan, hogyan viselkedik az algoritmus a gyakorlatban.
+Megjegyezzük, hogy $\beta = 0$ esetén visszakapjuk a hagyományos gradienscsökkenést. Mielőtt mélyebben belemerülnénk a matematikai tulajdonságokba, nézzük meg gyorsan, hogyan viselkedik az algoritmus a gyakorlatban.
 
 ```{.python .input}
 #@tab all
@@ -128,11 +128,11 @@ eta, beta = 0.6, 0.25
 d2l.show_trace_2d(f_2d, d2l.train_2d(momentum_2d))
 ```
 
-Megjegyezzük, hogy a momentum kombinálható a sztochasztikus gradient descenttel, különösen a minibatch sztochasztikus gradient descenttel. Az egyetlen különbség az, hogy ekkor a $\mathbf{g}_{t, t-1}$ gradienst $\mathbf{g}_t$-vel helyettesítjük. Végül kényelmi okokból $\mathbf{v}_0 = 0$-val inicializálunk $t=0$ időpontban. Nézzük meg, mit tesz valójában a kiszivárgó átlagolás a frissítésekkel.
+Megjegyezzük, hogy a momentum kombinálható a sztochasztikus gradienscsökkenéssel, különösen a minibatch sztochasztikus gradienscsökkenéssel. Az egyetlen különbség az, hogy ekkor a $\mathbf{g}_{t, t-1}$ gradienst $\mathbf{g}_t$-vel helyettesítjük. Végül kényelmi okokból $\mathbf{v}_0 = 0$-val inicializálunk $t=0$ időpontban. Nézzük meg, mit tesz valójában a kiszivárgó átlagolás a frissítésekkel.
 
 ### Effektív mintasúly
 
-Felidézve: $\mathbf{v}_t = \sum_{\tau = 0}^{t-1} \beta^{\tau} \mathbf{g}_{t-\tau, t-\tau-1}$. A határesetben a tagok összege $\sum_{\tau=0}^\infty \beta^\tau = \frac{1}{1-\beta}$. Más szóval: ahelyett, hogy $\eta$ méretű lépést tennénk a gradient descentben vagy a sztochasztikus gradient descentben, $\frac{\eta}{1-\beta}$ méretű lépést teszünk, miközben potenciálisan sokkal jobb viselkedésű ereszkedési iránnyal dolgozunk. Ez két előny egyszerre. A $\beta$ különböző értékeire vonatkozó súlyozás viselkedésének szemléltetéséhez tekintsük az alábbi ábrát.
+Felidézve: $\mathbf{v}_t = \sum_{\tau = 0}^{t-1} \beta^{\tau} \mathbf{g}_{t-\tau, t-\tau-1}$. A határesetben a tagok összege $\sum_{\tau=0}^\infty \beta^\tau = \frac{1}{1-\beta}$. Más szóval: ahelyett, hogy $\eta$ méretű lépést tennénk a gradienscsökkenésben vagy a sztochasztikus gradienscsökkenésben, $\frac{\eta}{1-\beta}$ méretű lépést teszünk, miközben potenciálisan sokkal jobb viselkedésű ereszkedési iránnyal dolgozunk. Ez két előny egyszerre. A $\beta$ különböző értékeire vonatkozó súlyozás viselkedésének szemléltetéséhez tekintsük az alábbi ábrát.
 
 ```{.python .input}
 #@tab all
@@ -151,7 +151,7 @@ Nézzük meg, hogyan működik a momentum a gyakorlatban, vagyis amikor egy megf
 
 ### Implementálás alapoktól
 
-A (minibatch) sztochasztikus gradient descenthez képest a momentum módszernek egy kiegészítő változókészletet kell fenntartania, vagyis a sebességet. Ugyanolyan alakú, mint a gradiensek (és az optimalizálási probléma változói). Az alábbi implementációban ezeket a változókat `states`-nek nevezzük.
+A (minibatch) sztochasztikus gradienscsökkenéshez képest a momentum módszernek egy kiegészítő változókészletet kell fenntartania, vagyis a sebességet. Ugyanolyan alakú, mint a gradiensek (és az optimalizálási probléma változói). Az alábbi implementációban ezeket a változókat `states`-nek nevezzük.
 
 ```{.python .input}
 #@tab mxnet,pytorch
@@ -265,11 +265,11 @@ Mivel $\mathbf{Q}$ pozitív definit, felbontható sajátrendszerére $\mathbf{Q}
 
 $$h(\mathbf{z}) = \frac{1}{2} \mathbf{z}^\top \boldsymbol{\Lambda} \mathbf{z} + b'.$$
 
-ahol $b' = b - \frac{1}{2} \mathbf{c}^\top \mathbf{Q}^{-1} \mathbf{c}$. Mivel $\mathbf{O}$ csak ortogonális mátrix, a gradieneket nem zavarja érdemlegesen. $\mathbf{z}$ szerint kifejezve a gradient descent:
+ahol $b' = b - \frac{1}{2} \mathbf{c}^\top \mathbf{Q}^{-1} \mathbf{c}$. Mivel $\mathbf{O}$ csak ortogonális mátrix, a gradieneket nem zavarja érdemlegesen. $\mathbf{z}$ szerint kifejezve a gradienscsökkenés:
 
 $$\mathbf{z}_t = \mathbf{z}_{t-1} - \boldsymbol{\Lambda} \mathbf{z}_{t-1} = (\mathbf{I} - \boldsymbol{\Lambda}) \mathbf{z}_{t-1}.$$
 
-Ennek a kifejezésnek az a fontos tulajdonsága, hogy a gradient descent *nem kever* különböző sajáttér-koordináták között. Vagyis $\mathbf{Q}$ sajátrendszerével kifejezve az optimalizálási probléma koordinátánként halad. Ez érvényes a következőre is:
+Ennek a kifejezésnek az a fontos tulajdonsága, hogy a gradienscsökkenés *nem kever* különböző sajáttér-koordináták között. Vagyis $\mathbf{Q}$ sajátrendszerével kifejezve az optimalizálási probléma koordinátánként halad. Ez érvényes a következőre is:
 
 $$\begin{aligned}
 \mathbf{v}_t & = \beta \mathbf{v}_{t-1} + \boldsymbol{\Lambda} \mathbf{z}_{t-1} \\
@@ -277,11 +277,11 @@ $$\begin{aligned}
     & = (\mathbf{I} - \eta \boldsymbol{\Lambda}) \mathbf{z}_{t-1} - \eta \beta \mathbf{v}_{t-1}.
 \end{aligned}$$
 
-Ezzel éppen bebizonyítottuk a következő tételt: a gradient descent momentummal és anélkül konvex másodfokú függvényre a másodfokú mátrix sajátvektorainak irányában koordinátánkénti optimalizálásra bontható.
+Ezzel éppen bebizonyítottuk a következő tételt: a gradienscsökkenés momentummal és anélkül konvex másodfokú függvényre a másodfokú mátrix sajátvektorainak irányában koordinátánkénti optimalizálásra bontható.
 
 ### Skaláris függvények
 
-A fenti eredmény alapján nézzük meg, mi történik, ha az $f(x) = \frac{\lambda}{2} x^2$ függvényt minimalizáljuk. Gradient descent esetén:
+A fenti eredmény alapján nézzük meg, mi történik, ha az $f(x) = \frac{\lambda}{2} x^2$ függvényt minimalizáljuk. Gradienscsökkenés esetén:
 
 $$x_{t+1} = x_t - \eta \lambda x_t = (1 - \eta \lambda) x_t.$$
 
@@ -307,13 +307,13 @@ $$
 \begin{bmatrix} v_{t} \\ x_{t} \end{bmatrix} = \mathbf{R}(\beta, \eta, \lambda) \begin{bmatrix} v_{t} \\ x_{t} \end{bmatrix}.
 $$
 
-A konvergencia viselkedését irányító $2 \times 2$-es mátrix jelölésére $\mathbf{R}$-t használtuk. $t$ lépés után a $[v_0, x_0]$ kezdőválasztás $\mathbf{R}(\beta, \eta, \lambda)^t [v_0, x_0]$-vá válik. Ezért a konvergencia sebessége $\mathbf{R}$ sajátértékeitől függ. Lásd :citet:`Goh.2017` [Distill-bejegyzését](https://distill.pub/2017/momentum/) a nagyszerű animációért, és :citet:`Flammarion.Bach.2015`-t a részletes elemzésért. Megmutatható, hogy $0 < \eta \lambda < 2 + 2 \beta$ esetén a sebesség konvergál. Ez nagyobb megvalósítható paramétertartomány a gradient descent $0 < \eta \lambda < 2$-jéhez képest. Azt is sugallja, hogy általában a $\beta$ nagy értékei kívánatosak. A részletes tárgyalás jelentős technikai részleteket igényel, és javasoljuk, hogy az érdeklődők az eredeti publikációkat olvassák el.
+A konvergencia viselkedését irányító $2 \times 2$-es mátrix jelölésére $\mathbf{R}$-t használtuk. $t$ lépés után a $[v_0, x_0]$ kezdőválasztás $\mathbf{R}(\beta, \eta, \lambda)^t [v_0, x_0]$-vá válik. Ezért a konvergencia sebessége $\mathbf{R}$ sajátértékeitől függ. Lásd :citet:`Goh.2017` [Distill-bejegyzését](https://distill.pub/2017/momentum/) a nagyszerű animációért, és :citet:`Flammarion.Bach.2015`-t a részletes elemzésért. Megmutatható, hogy $0 < \eta \lambda < 2 + 2 \beta$ esetén a sebesség konvergál. Ez nagyobb megvalósítható paramétertartomány a gradienscsökkenés $0 < \eta \lambda < 2$-jéhez képest. Azt is sugallja, hogy általában a $\beta$ nagy értékei kívánatosak. A részletes tárgyalás jelentős technikai részleteket igényel, és javasoljuk, hogy az érdeklődők az eredeti publikációkat olvassák el.
 
 ## Összefoglalás
 
 * A momentum a gradieneket helyettesíti a korábbi gradiensek kiszivárgó átlagával. Ez jelentősen gyorsítja a konvergenciát.
-* Mind a zajtalan gradient descent, mind a (zajos) sztochasztikus gradient descent számára kívánatos.
-* A momentum megakadályozza az optimalizálási folyamat megakadását, ami a sztochasztikus gradient descentnél sokkal valószínűbb.
+* Mind a zajtalan gradienscsökkenés, mind a (zajos) sztochasztikus gradienscsökkenés számára kívánatos.
+* A momentum megakadályozza az optimalizálási folyamat megakadását, ami a sztochasztikus gradienscsökkenésnél sokkal valószínűbb.
 * A gradiensek effektív száma $\frac{1}{1-\beta}$, a múltbeli adatok exponenciálisan csökkenő súlyozása miatt.
 * Konvex másodfokú problémák esetén ez részletesen, explicite elemezhető.
 * Az implementáció meglehetősen egyszerű, de egy kiegészítő állapotvektort ($\mathbf{v}$ sebességet) kell tárolni.
@@ -321,9 +321,9 @@ A konvergencia viselkedését irányító $2 \times 2$-es mátrix jelölésére 
 ## Gyakorló feladatok
 
 1. Próbálj ki más momentum hiperparaméter és tanulási sebesség kombinációkat, és figyeld meg és elemezd a különböző kísérleti eredményeket.
-1. Próbáld ki a gradient descentet és a momentumot másodfokú problémán, ahol több sajátértéke van: $f(x) = \frac{1}{2} \sum_i \lambda_i x_i^2$, pl. $\lambda_i = 2^{-i}$. Ábrázold, hogyan csökken $x$ értéke az $x_i = 1$ inicializálás esetén.
+1. Próbáld ki a gradienscsökkenést és a momentumot másodfokú problémán, ahol több sajátértéke van: $f(x) = \frac{1}{2} \sum_i \lambda_i x_i^2$, pl. $\lambda_i = 2^{-i}$. Ábrázold, hogyan csökken $x$ értéke az $x_i = 1$ inicializálás esetén.
 1. Határozd meg a $h(\mathbf{x}) = \frac{1}{2} \mathbf{x}^\top \mathbf{Q} \mathbf{x} + \mathbf{x}^\top \mathbf{c} + b$ minimumértékét és minimalizálóját.
-1. Mi változik, ha sztochasztikus gradient descentet végzünk momentummal? Mi történik, ha minibatch sztochasztikus gradient descentet alkalmazunk momentummal? Kísérletezz a paraméterekkel?
+1. Mi változik, ha sztochasztikus gradienscsökkenést végzünk momentummal? Mi történik, ha minibatch sztochasztikus gradienscsökkenést alkalmazunk momentummal? Kísérletezz a paraméterekkel?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/354)

@@ -85,7 +85,7 @@ class Classifier(d2l.Module):  #@save
                   train=False)
 ```
 
-Alapértelmezésként sztochasztikus gradiens descent optimalizálót használunk, amelyet minibatch-eken alkalmazunk, ahogy a lineáris regresszió kontextusában is tettük.
+Alapértelmezésként sztochasztikus gradienscsökkenés optimalizálót használunk, amelyet minibatch-eken alkalmazunk, ahogy a lineáris regresszió kontextusában is tettük.
 
 ```{.python .input}
 %%tab mxnet

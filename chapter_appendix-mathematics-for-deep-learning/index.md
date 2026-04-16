@@ -1,14 +1,14 @@
-# Függelék: Matematika a Deep Learninghez
+# Függelék: Matematika a mélytanuláshoz
 :label:`chap_appendix_math`
 
 **Brent Werness** (*Amazon*), **Rachel Hu** (*Amazon*), és a könyv szerzői
 
 
-A modern deep learning egyik csodálatos tulajdonsága, hogy nagy részét megértheted és
+A modern mélytanulás egyik csodálatos tulajdonsága, hogy nagy részét megértheted és
 alkalmazhatod anélkül, hogy teljes mértékben ismernéd az alatta rejlő matematikát.
 Ez a terület érettségének jele. Ahogyan a legtöbb szoftverfejlesztőnek ma már nem kell
-foglalkoznia a kiszámítható függvények elméletével, a deep learning gyakorlóinak sem
-kellene aggódniuk a maximális valószínűségű tanulás elméleti alapjai miatt.
+foglalkoznia a kiszámítható függvények elméletével, a mélytanulás gyakorlati felhasználóinak sem
+kellene aggódniuk a maximum likelihood becslés elméleti alapjai miatt.
 
 De még nem tartunk ott.
 
@@ -22,11 +22,11 @@ Ez a függelék azt a matematikai hátteret kívánja nyújtani, amely szükség
 deep learning alapelméletének megértéséhez, de nem törekszik teljességre. A lineáris
 algebra mélyebb vizsgálatával kezdjük. Kialakítjuk az összes általános lineáris algebrai
 objektum és művelet geometriai értelmezését, amely lehetővé teszi számunkra, hogy
-vizualizáljuk a különböző transzformációk hatásait adatainkra. Kulcseleme az
+vizualizáljuk a különböző transzformációk hatásait adatainkra. Kulcseleme a
 sajátérték-felbontás alapjainak kidolgozása.
 
 Ezután a differenciálszámítás elméletét fejlesztjük addig a pontig, ahol teljes
-mértékben megérthetjük, miért a gradiens a legmeredekebb ereszkedés iránya, és miért
+mértékben megérthetjük, miért a negatív gradiens adja a legmeredekebb csökkenés irányát, és miért
 olyan a visszaterjesztés formája, amilyen. Az integrálszámítást ezután olyan
 mértékben tárgyaljuk, amennyire szükséges a következő témánk, a valószínűségszámítás
 alátámasztásához.

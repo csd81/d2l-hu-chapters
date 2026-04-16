@@ -21,7 +21,7 @@ A házárak előrejelzéséhez szükségünk van adatokra,
 beleértve az eladási árat, az alapterületet és a kort
 minden egyes háznál.
 A gépi tanulás terminológiájában
-az adathalmazt *tanítóadatnak* vagy *tanítókészletnek* nevezzük,
+az adathalmazt *tanítóadatnak* vagy *tanítóhalmaznak* nevezzük,
 minden sort (amely egyetlen eladás adatait tartalmazza)
 *példának* (vagy *adatpontnak*, *példánynak*, *mintának*) hívunk.
 Azt, amit előre akarunk jelezni (az árat),
@@ -209,7 +209,7 @@ $$l^{(i)}(\mathbf{w}, b) = \frac{1}{2} \left(\hat{y}^{(i)} - y^{(i)}\right)^2.$$
 A $\frac{1}{2}$ konstans valójában nem változtat semmin,
 de jelölési szempontból hasznos,
 mivel kiesik, ha a veszteség deriváltját vesszük.
-Mivel a tanítókészletet adottnak tekintjük
+Mivel a tanítóhalmazt adottnak tekintjük
 (így nem áll módunkban megváltoztatni),
 az empirikus hiba kizárólag a modellparaméterek függvénye.
 :numref:`fig_fit_linreg`-ben egy egydimenziós bemenetre
@@ -226,7 +226,7 @@ a négyzetes alak miatt
 túlzott érzékenységet is okozhat atipikus adatokra).
 Az $n$ példából álló teljes adathalmaz modellminőségének méréséhez
 egyszerűen átlagoljuk (vagy ekvivalensen összegezzük)
-a tanítókészlet veszteségeit:
+a tanítóhalmaz veszteségeit:
 
 $$L(\mathbf{w}, b) =\frac{1}{n}\sum_{i=1}^n l^{(i)}(\mathbf{w}, b) =\frac{1}{n} \sum_{i=1}^n \frac{1}{2}\left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right)^2.$$
 
@@ -293,7 +293,7 @@ amelyre a könyvben végig támaszkodunk,
 a hiba iteratív csökkentéséből áll
 a paraméterek frissítésével abba az irányba,
 amely fokozatosan csökkenti a veszteségfüggvényt.
-Ezt az algoritmust *gradiens módszernek* (gradient descent) nevezzük.
+Ezt az algoritmust *gradiens módszernek* (gradienscsökkenés) nevezzük.
 
 A gradiens módszer legalapvetőbb alkalmazása
 a veszteségfüggvény deriváltjának kiszámítása,
@@ -388,7 +388,7 @@ csupán olyan paraméterkészletet keresünk,
 amely pontos előrejelzésekhez (és így alacsony veszteséghez) vezet.
 A gyakorlatban a deep learning szakemberek
 ritkán küzdenek azért, hogy megtalálják
-a *tanítókészleteken* a veszteséget minimalizáló paramétereket
+a *tanítóhalmazokon* a veszteséget minimalizáló paramétereket
 :cite:`Izmailov.Podoprikhin.Garipov.ea.2018,Frankle.Carbin.2018`.
 A nehezebb feladat az, hogy olyan paramétereket találjunk,
 amelyek korábban nem látott adatokra is pontos előrejelzést adnak,
@@ -701,7 +701,7 @@ a statisztikából, a számítástudományból és sok más területről.
 Ebben a részben bevezettük
 a hagyományos lineáris regressziót,
 ahol egy lineáris függvény paramétereit
-a tanítókészleten mért négyzetes veszteség minimalizálásával választjuk meg.
+a tanítóhalmazon mért négyzetes veszteség minimalizálásával választjuk meg.
 Ezt a célfüggvényt is motiváltuk
 mind gyakorlati szempontok,
 mind pedig a lineáris regresszió

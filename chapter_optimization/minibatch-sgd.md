@@ -1,10 +1,10 @@
-# Minibatch sztochasztikus gradient descent
+# Minibatch sztochasztikus gradienscsökkenés
 :label:`sec_minibatch_sgd`
 
 Eddig két szélsőséget tapasztaltunk a gradiens alapú tanulás megközelítésében: a :numref:`sec_gd` szakasz a teljes adathalmazt használja a gradiensek kiszámításához és a paraméterek frissítéséhez, egyszerre egy átmenetben. Ezzel szemben a :numref:`sec_sgd` szakasz egyszerre egy tanítási példát dolgoz fel a haladás érdekében.
 Mindkettőnek megvannak a maga hátrányai.
-A gradient descent nem különösebben *adathatékony*, ha az adatok nagyon hasonlóak.
-A sztochasztikus gradient descent nem különösebben *számítási szempontból hatékony*, mivel a CPU-k és GPU-k nem tudják teljes mértékben kihasználni a vektorizálás erejét.
+A gradienscsökkenés nem különösebben *adathatékony*, ha az adatok nagyon hasonlóak.
+A sztochasztikus gradienscsökkenés nem különösebben *számítási szempontból hatékony*, mivel a CPU-k és GPU-k nem tudják teljes mértékben kihasználni a vektorizálás erejét.
 Ez arra utal, hogy valahol a kettő között kellene lennie egy megoldásnak –
 és valójában ezt alkalmaztuk az eddig tárgyalt példákban.
 
@@ -312,7 +312,7 @@ def get_data_ch11(batch_size=10, n=1500):
 
 ## Implementálás alapoktól
 
-Idézzük fel a minibatch sztochasztikus gradient descent implementációját a :numref:`sec_linear_scratch` szakaszból. Az alábbiakban egy kissé általánosabb implementációt nyújtunk. Kényelmi szempontból ugyanolyan hívási aláírása van, mint a fejezet későbbi részében bemutatott többi optimalizálási algoritmusnak. Konkrétan hozzáadjuk az `states` állapot bemenetet, és a hiperparamétert egy `hyperparams` szótárba helyezzük. Emellett a tanítási függvényben minden minibatch példa veszteségének átlagát vesszük, így az optimalizálási algoritmusban lévő gradienst nem kell elosztani a batch méretével.
+Idézzük fel a minibatch sztochasztikus gradienscsökkenés implementációját a :numref:`sec_linear_scratch` szakaszból. Az alábbiakban egy kissé általánosabb implementációt nyújtunk. Kényelmi szempontból ugyanolyan hívási aláírása van, mint a fejezet későbbi részében bemutatott többi optimalizálási algoritmusnak. Konkrétan hozzáadjuk az `states` állapot bemenetet, és a hiperparamétert egy `hyperparams` szótárba helyezzük. Emellett a tanítási függvényben minden minibatch példa veszteségének átlagát vesszük, így az optimalizálási algoritmusban lévő gradienst nem kell elosztani a batch méretével.
 
 ```{.python .input}
 #@tab mxnet
@@ -336,7 +336,7 @@ def sgd(params, grads, states, hyperparams):
         param.assign_sub(hyperparams['lr']*grad)
 ```
 
-Ezután implementálunk egy általános tanítási függvényt a fejezet későbbi részében bemutatott többi optimalizálási algoritmus egyszerűsített alkalmazásához. Egy lineáris regressziós modellt inicializál, amelyet minibatch sztochasztikus gradient descenttel és a később bemutatott algoritmusokkal lehet betanítani.
+Ezután implementálunk egy általános tanítási függvényt a fejezet későbbi részében bemutatott többi optimalizálási algoritmus egyszerűsített alkalmazásához. Egy lineáris regressziós modellt inicializál, amelyet minibatch sztochasztikus gradienscsökkenéssel és a később bemutatott algoritmusokkal lehet betanítani.
 
 ```{.python .input}
 #@tab mxnet
@@ -433,7 +433,7 @@ def train_ch11(trainer_fn, states, hyperparams, data_iter,
     return timer.cumsum(), animator.Y[0]
 ```
 
-Nézzük meg, hogyan halad az optimalizálás a batch gradient descent esetén. Ez úgy érhető el, hogy a minibatch-méretet 1500-ra állítjuk (azaz a példák teljes számára). Ennek eredményeként a modell paraméterei epocsonként csak egyszer frissülnek. Alig tapasztalható haladás. Valójában 6 lépés után a haladás megáll.
+Nézzük meg, hogyan halad az optimalizálás a batch gradienscsökkenés esetén. Ez úgy érhető el, hogy a minibatch-méretet 1500-ra állítjuk (azaz a példák teljes számára). Ennek eredményeként a modell paraméterei epocsonként csak egyszer frissülnek. Alig tapasztalható haladás. Valójában 6 lépés után a haladás megáll.
 
 ```{.python .input}
 #@tab all
@@ -445,14 +445,14 @@ def train_sgd(lr, batch_size, num_epochs=2):
 gd_res = train_sgd(1, 1500, 10)
 ```
 
-Ha a batch-méret egyenlő 1-gyel, sztochasztikus gradient descentet alkalmazunk az optimalizáláshoz. Az implementáció egyszerűsége érdekében állandó (bár kis) tanulási sebességet választottunk. A sztochasztikus gradient descentben a modell paraméterei minden egyes feldolgozott példa után frissülnek. Esetünkben ez epocsonként 1500 frissítést jelent. Ahogy látható, a célfüggvény értékének csökkenése lassul az első epoc után. Bár mindkét eljárás 1500 példát dolgozott fel egy epoc alatt, a sztochasztikus gradient descent kísérletünkben több időt vesz igénybe, mint a gradient descent. Ennek oka, hogy a sztochasztikus gradient descent gyakrabban frissítette a paramétereket, és az egyes megfigyelések egyenkénti feldolgozása kevésbé hatékony.
+Ha a batch-méret egyenlő 1-gyel, sztochasztikus gradienscsökkenést alkalmazunk az optimalizáláshoz. Az implementáció egyszerűsége érdekében állandó (bár kis) tanulási sebességet választottunk. A sztochasztikus gradienscsökkenésben a modell paraméterei minden egyes feldolgozott példa után frissülnek. Esetünkben ez epocsonként 1500 frissítést jelent. Ahogy látható, a célfüggvény értékének csökkenése lassul az első epoc után. Bár mindkét eljárás 1500 példát dolgozott fel egy epoc alatt, a sztochasztikus gradienscsökkenés kísérletünkben több időt vesz igénybe, mint a gradienscsökkenés. Ennek oka, hogy a sztochasztikus gradienscsökkenés gyakrabban frissítette a paramétereket, és az egyes megfigyelések egyenkénti feldolgozása kevésbé hatékony.
 
 ```{.python .input}
 #@tab all
 sgd_res = train_sgd(0.005, 1)
 ```
 
-Végül, ha a batch-méret egyenlő 100-zal, minibatch sztochasztikus gradient descentet alkalmazunk az optimalizáláshoz. Az epocsonkénti szükséges idő rövidebb, mint a sztochasztikus gradient descent esetén, és rövidebb, mint a batch gradient descent esetén is.
+Végül, ha a batch-méret egyenlő 100-zal, minibatch sztochasztikus gradienscsökkenést alkalmazunk az optimalizáláshoz. Az epocsonkénti szükséges idő rövidebb, mint a sztochasztikus gradienscsökkenés esetén, és rövidebb, mint a batch gradienscsökkenés esetén is.
 
 ```{.python .input}
 #@tab all
@@ -466,7 +466,7 @@ A batch-méret 10-re csökkentése esetén minden epoc ideje növekszik, mivel a
 mini2_res = train_sgd(.05, 10)
 ```
 
-Most összehasonlíthatjuk az idő és a veszteség viszonyát az előző négy kísérletben. Ahogy látható, bár a sztochasztikus gradient descent gyorsabban konvergál, mint a GD a feldolgozott példák számát tekintve, több időt vesz igénybe ugyanolyan veszteség eléréséhez, mint a GD, mivel a gradiens példánkénti kiszámítása nem olyan hatékony. A minibatch sztochasztikus gradient descent egyensúlyt teremt a konvergenciasebesség és a számítási hatékonyság között. A 10-es minibatch-méret hatékonyabb, mint a sztochasztikus gradient descent; a 100-as minibatch-méret még a GD-t is felülmúlja futási idő tekintetében.
+Most összehasonlíthatjuk az idő és a veszteség viszonyát az előző négy kísérletben. Ahogy látható, bár a sztochasztikus gradienscsökkenés gyorsabban konvergál, mint a GD a feldolgozott példák számát tekintve, több időt vesz igénybe ugyanolyan veszteség eléréséhez, mint a GD, mivel a gradiens példánkénti kiszámítása nem olyan hatékony. A minibatch sztochasztikus gradienscsökkenés egyensúlyt teremt a konvergenciasebesség és a számítási hatékonyság között. A 10-es minibatch-méret hatékonyabb, mint a sztochasztikus gradienscsökkenés; a 100-as minibatch-méret még a GD-t is felülmúlja futási idő tekintetében.
 
 ```{.python .input}
 #@tab all
@@ -602,18 +602,18 @@ train_concise_ch11(trainer, {'learning_rate': 0.05}, data_iter)
 ## Összefoglalás
 
 * A vektorizálás hatékonyabbá teszi a kódot a mélytanulási keretrendszerből eredő overhead csökkentésével, valamint a CPU-kon és GPU-kon jobb memória-lokalitás és gyorsítótárazás révén.
-* Kompromisszum áll fenn a sztochasztikus gradient descentből eredő statisztikai hatékonyság és a nagy adatbatchek egyszeri feldolgozásából eredő számítási hatékonyság között.
-* A minibatch sztochasztikus gradient descent mindkét világ előnyeit kínálja: számítási és statisztikai hatékonyságot.
-* A minibatch sztochasztikus gradient descentben a tanítóadatok véletlenszerű permutációjával előállított adatbatcheket dolgozunk fel (azaz minden megfigyelést epocsonként csak egyszer dolgozunk fel, bár véletlenszerű sorrendben).
+* Kompromisszum áll fenn a sztochasztikus gradienscsökkenésből eredő statisztikai hatékonyság és a nagy adatbatchek egyszeri feldolgozásából eredő számítási hatékonyság között.
+* A minibatch sztochasztikus gradienscsökkenés mindkét világ előnyeit kínálja: számítási és statisztikai hatékonyságot.
+* A minibatch sztochasztikus gradienscsökkenésben a tanítóadatok véletlenszerű permutációjával előállított adatbatcheket dolgozunk fel (azaz minden megfigyelést epocsonként csak egyszer dolgozunk fel, bár véletlenszerű sorrendben).
 * Tanítás során célszerű csökkenteni a tanulási sebességet.
-* Általánosságban a minibatch sztochasztikus gradient descent gyorsabb, mint a sztochasztikus gradient descent és a gradient descent a kisebb kockázathoz való konvergenciában, ha falióra-időben mérjük.
+* Általánosságban a minibatch sztochasztikus gradienscsökkenés gyorsabb, mint a sztochasztikus gradienscsökkenés és a gradienscsökkenés a kisebb kockázathoz való konvergenciában, ha falióra-időben mérjük.
 
 ## Gyakorló feladatok
 
 1. Módosítsd a batch-méretet és a tanulási sebességet, és figyeld meg a célfüggvény értékének csökkenési ütemét és az egyes epochokban eltelt időt.
-1. Olvasd el az MXNet dokumentációját, és a `Trainer` osztály `set_learning_rate` függvényét alkalmazva csökkentsd a minibatch sztochasztikus gradient descent tanulási sebességét az előző értékének 1/10-ére minden epoc után.
-1. Hasonlítsd össze a minibatch sztochasztikus gradient descentet egy olyan változattal, amely *visszatevéssel mintavételez* a tanítóhalmazból. Mi történik?
-1. Egy gonosz szellem megkettőzi az adathalmazát anélkül, hogy szólna (azaz minden megfigyelés kétszer szerepel, és az adathalmaz kétszer akkora lesz, de senki sem mondta el). Hogyan változik a sztochasztikus gradient descent, a minibatch sztochasztikus gradient descent és a gradient descent viselkedése?
+1. Olvasd el az MXNet dokumentációját, és a `Trainer` osztály `set_learning_rate` függvényét alkalmazva csökkentsd a minibatch sztochasztikus gradienscsökkenés tanulási sebességét az előző értékének 1/10-ére minden epoc után.
+1. Hasonlítsd össze a minibatch sztochasztikus gradienscsökkenést egy olyan változattal, amely *visszatevéssel mintavételez* a tanítóhalmazból. Mi történik?
+1. Egy gonosz szellem megkettőzi az adathalmazát anélkül, hogy szólna (azaz minden megfigyelés kétszer szerepel, és az adathalmaz kétszer akkora lesz, de senki sem mondta el). Hogyan változik a sztochasztikus gradienscsökkenés, a minibatch sztochasztikus gradienscsökkenés és a gradienscsökkenés viselkedése?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/353)

@@ -1,4 +1,4 @@
-# Többváltozós számítás
+# Többváltozós differenciálszámítás
 :label:`sec_multivariable_calculus`
 
 Most, hogy elég alapos ismereteink vannak az egyváltozós függvények deriváltjairól, térjünk vissza az eredeti kérdésünkhöz, ahol egy potenciálisan milliárd súlyt tartalmazó veszteségfüggvényt vizsgálunk.
@@ -36,7 +36,7 @@ Ez első ránézésre bonyolultnak tűnhet, de ismerősebbé tehetjük, ha észr
 
 $$
 \boldsymbol{\epsilon} = [\epsilon_1, \ldots, \epsilon_N]^\top \; \textrm{és} \;
-\nabla_{\mathbf{x}} L = \left[\frac{\partial L}{\partial x_1}, \ldots, \frac{\partial L}{\partial x_N}\right]^\top,
+\nabla_{\mathbf{w}} L = \left[\frac{\partial L}{\partial w_1}, \ldots, \frac{\partial L}{\partial w_N}\right]^\top,
 $$
 
 akkor

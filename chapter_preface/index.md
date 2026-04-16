@@ -218,7 +218,7 @@ modelleket, amelyek kihasználják az adatok szekvenciális
 (például időbeli) szerkezetét, és amelyeket gyakran használnak
 természetesnyelv-feldolgozásban és idősor-előrejelzésben.
 :numref:`chap_attention-and-transformers` egy viszonylag új modellosztályt
-mutat be, az úgynevezett *figyelmi mechanizmusokra* épülő modelleket,
+mutat be, az úgynevezett *figyelemmechanizmusokra* épülő modelleket,
 amelyek a legtöbb természetesnyelv-feldolgozási feladatban kiszorították
 az RNN-eket, mint uralkodó architektúrát. Ezek a fejezetek felzárkóztatnak
 a deep learning szakemberek által széles körben használt legerősebb és

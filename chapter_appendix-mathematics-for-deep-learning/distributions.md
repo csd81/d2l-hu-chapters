@@ -1,7 +1,7 @@
 # Eloszlások
 :label:`sec_distributions`
 
-Most, hogy megtanultuk, hogyan kell valószínűséggel dolgozni mind diszkrét, mind folytonos esetben, ismerkedjünk meg néhány gyakran előforduló eloszlással. A gépi tanulás különböző területeitől függően szükségünk lehet jóval több ilyen eloszlás ismeretére, egyes deep learning területeken pedig esetleg egyikre sem. Ez azonban egy hasznos alaplista, amellyel érdemes megismerkedni. Először importáljuk a szükséges könyvtárakat.
+Most, hogy megtanultuk, hogyan kell valószínűséggel dolgozni mind diszkrét, mind folytonos esetben, ismerkedjünk meg néhány gyakran előforduló eloszlással. A gépi tanulás különböző területeitől függően szükségünk lehet jóval több ilyen eloszlás ismeretére, a mélytanulás egyes területein pedig esetleg egyikre sem. Ez azonban egy hasznos alaplista, amellyel érdemes megismerkedni. Először importáljuk a szükséges könyvtárakat.
 
 ```{.python .input}
 #@tab mxnet

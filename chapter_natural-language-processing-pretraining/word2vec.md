@@ -111,7 +111,7 @@ A tanítás során a likelihood-függvény maximalizálásával (azaz maximális
 
 $$ - \sum_{t=1}^{T} \sum_{-m \leq j \leq m,\ j \neq 0} \textrm{log}\, P(w^{(t+j)} \mid w^{(t)}).$$
 
-Amikor stochastic gradient descent-et alkalmazunk a veszteség minimalizálásához,
+Amikor sztochasztikus gradienscsökkenést alkalmazunk a veszteség minimalizálásához,
 minden iterációban
 véletlenszerűen mintavételezhetünk egy rövidebb részsorozatot,
 hogy kiszámítsuk a (sztochasztikus) gradienst ehhez a részsorozathoz, és frissítsük a modell paramétereit.

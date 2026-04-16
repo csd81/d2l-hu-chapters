@@ -36,7 +36,7 @@ d2l.use_svg_display()
 
 ## Optikai Karakterfelismerés
 
-Az MNIST :cite:`LeCun.Bottou.Bengio.ea.1998` az egyik legszélesebb körben használt adathalmaz. $60\,000$ tanítási képet és $10\,000$ validációs képet tartalmaz. Minden kép egy kézzel írt számjegyet ábrázol $0$-tól $9$-ig. A feladat minden képet a megfelelő számjegybe sorolni.
+Az MNIST :cite:`LeCun.Bottou.Bengio.ea.1998` az egyik legszélesebb körben használt adathalmaz. $60\,000$ tanítási képet és $10\,000$ tesztképet tartalmaz. Minden kép egy kézzel írt számjegyet ábrázol $0$-tól $9$-ig. A feladat minden képet a megfelelő számjegybe sorolni.
 
 A Gluon a `data.vision` modulban egy `MNIST` osztályt biztosít, amely automatikusan letölti az adathalmazt az internetről. Ezt követően a Gluon a már letöltött helyi másolatot használja. A `train` paraméter `True` vagy `False` értékre állításával adhatjuk meg, hogy a tanítási vagy a teszt adathalmazt kérjük. Minden kép $28 \times 28 \times 1$ alakú szürkeárnyalatos kép. Egyedi átalakítással eltávolítjuk az utolsó csatorna-dimenziót. Az adathalmaz minden pixelt előjel nélküli $8$-bites egész számként tárol; ezeket bináris jellemzőkké kvantáljuk a feladat egyszerűsítése érdekében.
 

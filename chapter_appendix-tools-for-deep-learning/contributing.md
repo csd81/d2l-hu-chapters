@@ -1,13 +1,13 @@
 # Hozzájárulás a könyvhöz
 :label:`sec_how_to_contribute`
 
-Az [olvasók](https://github.com/d2l-ai/d2l-en/graphs/contributors) hozzájárulásai segítenek fejleszteni ezt a könyvet. Ha elírást, elavult hivatkozást találsz, vagy úgy véled, hogy kimaradt egy hivatkozás, a kód nem elég elegáns, vagy egy magyarázat nem egyértelmű, járulj hozzá, és segíts nekünk jobban segíteni az olvasóinknak. Míg a hagyományos könyveknél a kiadások közötti késés, és így a hibajavítások közötti idő, akár években is mérhető, ennél a könyvnél egy fejlesztés általában órák vagy napok alatt beépül. Mindez a verziókezelésnek és a folyamatos integrációs (CI) tesztelésnek köszönhető. Ehhez egy [pull requestet](https://github.com/d2l-ai/d2l-en/pulls) kell benyújtani a GitHub-tárolóba. Amikor a szerzők egyesítik a pull requestedet a kódtárral, közreműködővé válsz.
+Az [olvasók](https://github.com/d2l-ai/d2l-en/graphs/contributors) hozzájárulásai segítenek fejleszteni ezt a könyvet. Ha elírást, elavult hivatkozást találsz, vagy úgy véled, hogy kimaradt egy hivatkozás, a kód nem elég elegáns, vagy egy magyarázat nem egyértelmű, járulj hozzá, és segíts nekünk jobban segíteni az olvasóinknak. Míg a hagyományos könyveknél a kiadások közötti késés, és így a hibajavítások közötti idő, akár években is mérhető, ennél a könyvnél egy fejlesztés általában órák vagy napok alatt beépül. Mindez a verziókezelésnek és a folyamatos integrációs (CI) tesztelésnek köszönhető. Ehhez egy [pull requestet](https://github.com/d2l-ai/d2l-en/pulls) kell benyújtani a GitHub-tárolóba. Amikor a szerzők egyesítik a pull requestedet a tárolóval, közreműködővé válsz.
 
 ## Kisebb módosítások benyújtása
 
 A leggyakoribb hozzájárulások egyetlen mondat szerkesztése vagy elírások javítása. Javasoljuk, hogy keressük meg a forrásfájlt a [GitHub-tárolóban](https://github.com/d2l-ai/d2l-en), és szerkesszük a fájlt közvetlenül. Például a [Find file](https://github.com/d2l-ai/d2l-en/find/master) gombbal (:numref:`fig_edit_file`) megkereshetjük a forrásfájlt (egy markdown fájlt). Ezután kattintsunk a jobb felső sarokban lévő "Edit this file" gombra, hogy elvégezhessük a módosításokat a markdown fájlban.
 
-![Fájl szerkesztése a Githubon.](../img/edit-file.png)
+![Fájl szerkesztése a GitHubon.](../img/edit-file.png)
 :width:`300px`
 :label:`fig_edit_file`
 
@@ -38,16 +38,16 @@ A Git nyílt forráskódú könyv leírja, [hogyan kell telepíteni a Gitet](htt
 
 ### Bejelentkezés a GitHubra
 
-Írjuk be a böngészőbe a könyv kódtárának [címét](https://github.com/d2l-ai/d2l-en/). Kattintsunk a `Fork` gombra a :numref:`fig_git_fork` ábra jobb felső sarkában lévő piros keretben, hogy készítsünk egy másolatot a könyv tárolójából. Ez most már *a mi másolatunk*, és tetszés szerint módosíthatjuk.
+Írjuk be a böngészőbe a könyv tárolójának [címét](https://github.com/d2l-ai/d2l-en/). Kattintsunk a `Fork` gombra a :numref:`fig_git_fork` ábra jobb felső sarkában lévő piros keretben, hogy készítsünk egy másolatot a könyv tárolójából. Ez most már *a mi másolatunk*, és tetszés szerint módosíthatjuk.
 
-![A kódtár oldala.](../img/git-fork.png)
+![A tároló oldala.](../img/git-fork.png)
 :width:`700px`
 :label:`fig_git_fork`
 
 
-A könyv kódtára most már el lesz ágaztatva (azaz másolva) a mi felhasználónevünkre, például `astonzhang/d2l-en` formában, ahogyan az a :numref:`fig_git_forked` ábra bal felső sarkában látható.
+A könyv tárolója most már el lesz ágaztatva (azaz másolva) a mi felhasználónevünkre, például `astonzhang/d2l-en` formában, ahogyan az a :numref:`fig_git_forked` ábra bal felső sarkában látható.
 
-![Az elágaztatott kódtár.](../img/git-forked.png)
+![Az elágaztatott tároló.](../img/git-forked.png)
 :width:`700px`
 :label:`fig_git_forked`
 

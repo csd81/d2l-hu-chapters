@@ -27,7 +27,7 @@ $$\hat{Q} = \min_Q \underbrace{\frac{1}{nT} \sum_{i=1}^n \sum_{t=0}^{T-1} (Q(s_t
 
 Először figyeljük meg a hasonlóságokat és különbségeket e kifejezés és a fenti értékiteráció között. Ha a robot $\pi_e$ stratégiája egyenlő lenne az optimális $\pi^*$ stratégiával, és végtelen mennyiségű adatot gyűjtene, akkor ez az optimalizálási feladat azonos lenne az értékiteráció alapjának optimalizálási feladatával. De míg az értékiteráció megköveteli $P(s' \mid s, a)$ ismeretét, az optimalizálási célfüggvénynek nincs ilyen tagja. Nem csaltunk: mivel a robot a $\pi_e$ stratégiát alkalmazza az $a_t^i$ cselekvés végrehajtásához az $s_t^i$ állapotban, a következő $s_{t+1}^i$ állapot az átmeneti függvényből vett minta. Az optimalizálási célnak tehát szintén van hozzáférése az átmeneti függvényhez, de implicit módon, a robot által gyűjtött adatok formájában.
 
-Az optimalizálási feladatunk változói $Q(s, a)$ minden $s \in \mathcal{S}$ és $a \in \mathcal{A}$ esetén. A célértéket gradient descent segítségével minimalizálhatjuk. Az adathalmazban minden $(s_t^i, a_t^i)$ párra felírhatjuk:
+Az optimalizálási feladatunk változói $Q(s, a)$ minden $s \in \mathcal{S}$ és $a \in \mathcal{A}$ esetén. A célértéket gradienscsökkenés segítségével minimalizálhatjuk. Az adathalmazban minden $(s_t^i, a_t^i)$ párra felírhatjuk:
 
 $$\begin{aligned}Q(s_t^i, a_t^i) &\leftarrow Q(s_t^i, a_t^i) - \alpha \nabla_{Q(s_t^i,a_t^i)} \ell(Q) \\&=(1 - \alpha) Q(s_t^i,a_t^i) - \alpha \Big( r(s_t^i, a_t^i) + \gamma \max_{a'} Q(s_{t+1}^i, a') \Big),\end{aligned}$$
 :eqlabel:`q_learning`

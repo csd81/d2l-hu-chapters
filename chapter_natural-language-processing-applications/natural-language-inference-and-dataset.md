@@ -108,7 +108,7 @@ for x0, x1, y in zip(train_data[0][:3], train_data[1][:3], train_data[2][:3]):
     print('label:', y)
 ```
 
-A tanítókészlet körülbelül 550 000 párt tartalmaz, a tesztkészlet pedig körülbelül 10 000 párt. Az alábbi eredmény azt mutatja, hogy [**az „entailment", „contradiction" és „neutral" három címke kiegyensúlyozott**] mind a tanítókészletben, mind a tesztkészletben.
+A tanítóhalmaz körülbelül 550 000 párt tartalmaz, a teszthalmaz pedig körülbelül 10 000 párt. Az alábbi eredmény azt mutatja, hogy [**az „entailment", „contradiction" és „neutral" három címke kiegyensúlyozott**] mind a tanítóhalmazban, mind a teszthalmazban.
 
 ```{.python .input}
 #@tab all
@@ -185,7 +185,7 @@ class SNLIDataset(torch.utils.data.Dataset):
 
 ### [**Összerakva az egészet**]
 
-Most meghívhatjuk a `read_snli` függvényt és az `SNLIDataset` osztályt az SNLI adathalmaz letöltéséhez, és `DataLoader` példányokat adunk vissza mind a tanítási, mind a tesztelési készlethez, a tanítókészlet szókincsével együtt. Fontos megjegyezni, hogy a tesztkészlethez is a tanítókészletből felépített szókincset kell használni. Ennek következtében a tesztkészletben szereplő bármely új token ismeretlen lesz a tanítókészleten tanított modell számára.
+Most meghívhatjuk a `read_snli` függvényt és az `SNLIDataset` osztályt az SNLI adathalmaz letöltéséhez, és `DataLoader` példányokat adunk vissza mind a tanítási, mind a tesztelési készlethez, a tanítóhalmaz szókincsével együtt. Fontos megjegyezni, hogy a teszthalmazhoz is a tanítóhalmazból felépített szókincset kell használni. Ennek következtében a teszthalmazban szereplő bármely új token ismeretlen lesz a tanítóhalmazon tanított modell számára.
 
 ```{.python .input}
 #@tab mxnet

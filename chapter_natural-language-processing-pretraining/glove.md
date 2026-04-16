@@ -143,7 +143,7 @@ mivel $h(0)=0$,
 minden $x_{ij}=0$-ra vonatkozó négyzetes veszteségtag elhagyható
 a számítási hatékonyság érdekében.
 Például
-minibatch sztochasztikus gradient descent alkalmazásakor
+minibatch sztochasztikus gradienscsökkenés alkalmazásakor
 minden iterációban
 véletlenszerűen mintavételezünk egy minibatch *nullától különböző* $x_{ij}$-t,
 hogy kiszámítsuk a gradienseket

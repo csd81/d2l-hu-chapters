@@ -19,7 +19,7 @@ A legtöbb fejlődés egyrészt az okosabb jellemzőkinyerési ötletekből, má
 
 Bár az 1990-es években már léteztek neurális hálózat-gyorsítók, ezek még nem voltak elég erősek ahhoz, hogy sok paramétert tartalmazó, mély, többcsatornás, többrétegű CNN-eket futtassanak. Például az NVIDIA 1999-es GeForce 256-os chipje másodpercenként legfeljebb 480 millió lebegőpontos műveletet (MFLOPS) tudott elvégezni, és nem állt rendelkezésre értelmes programozási keretrendszer a játékokon túli műveletekhez. A mai gyorsítók eszközönként meghaladják az 1000 TFLOPs teljesítményt.
 Ráadásul az adathalmazok viszonylag kicsik voltak: az OCR 60 000 alacsony felbontású, $28 \times 28$ pixeles képen rendkívül nehéz feladatnak számított.
-Mindezekhez hozzájárult, hogy a neurális hálózatok tanításának kulcstechnikái — köztük a paraméter-inicializálási heurisztikák :cite:`Glorot.Bengio.2010`, a sztochasztikus gradient descent okos változatai :cite:`Kingma.Ba.2014`, a nem összenyomó aktivációs függvények :cite:`Nair.Hinton.2010` és a hatékony regularizációs technikák :cite:`Srivastava.Hinton.Krizhevsky.ea.2014` — még hiányoztak.
+Mindezekhez hozzájárult, hogy a neurális hálózatok tanításának kulcstechnikái — köztük a paraméter-inicializálási heurisztikák :cite:`Glorot.Bengio.2010`, a sztochasztikus gradienscsökkenés okos változatai :cite:`Kingma.Ba.2014`, a nem összenyomó aktivációs függvények :cite:`Nair.Hinton.2010` és a hatékony regularizációs technikák :cite:`Srivastava.Hinton.Krizhevsky.ea.2014` — még hiányoztak.
 
 Így az *end-to-end* (pixeltől a besorolásig) rendszerek tanítása helyett a klasszikus feldolgozóláncok inkább így néztek ki:
 

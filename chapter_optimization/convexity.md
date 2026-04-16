@@ -315,7 +315,7 @@ ami a :numref:`fig_projections` ábrán látható rombusz eset általánosítás
 
 ## Összefoglalás
 
-A mélytanulás kontextusában a konvex függvények fő célja az optimalizálási algoritmusok motiválása és részletes megértésük elősegítése. A következőkben látni fogjuk, hogyan vezethető le ennek megfelelően a gradient descent és a sztochasztikus gradient descent.
+A mélytanulás kontextusában a konvex függvények fő célja az optimalizálási algoritmusok motiválása és részletes megértésük elősegítése. A következőkben látni fogjuk, hogyan vezethető le ennek megfelelően a gradienscsökkenés és a sztochasztikus gradienscsökkenés.
 
 
 * Konvex halmazok metszetei konvexek. Unióik nem feltétlenül azok.

@@ -86,7 +86,7 @@ $$
 
 A megoldások rendre a $[1, -1]^\top$ és a $[1, 2]^\top$ vektorok.
 
-Ezt kódban ellenőrizhetjük a beépített `numpy.linalg.eig` rutinnal.
+Ezt kódban ellenőrizhetjük a beépített `numpy.linalg.eig` függvénnyel.
 
 ```{.python .input}
 #@tab mxnet

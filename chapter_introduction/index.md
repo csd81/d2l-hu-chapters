@@ -357,7 +357,7 @@ Miután van adatforrásunk és reprezentációnk, modellünk és jól definiált
 célfüggvényünk, szükségünk van egy algoritmusra, amely képes megtalálni a
 veszteségfüggvény minimalizálásához szükséges lehető legjobb
 paramétereket. A deep learning népszerű optimalizálási algoritmusai a
-*gradiens ereszkedés* nevű megközelítésre épülnek. Röviden: minden
+*gradienscsökkenés* nevű megközelítésre épülnek. Röviden: minden
 lépésben ez a módszer megvizsgálja, hogy az egyes paraméterekre nézve
 hogyan változna a tanítóhalmaz vesztesége, ha azt a paramétert egy kicsit
 megváltoztatnánk. Ezután a paramétert abba az irányba frissíti, amely
@@ -1095,7 +1095,7 @@ fogalmazta meg. Úttörő jelentőségű könyvében,
 neuronok pozitív megerősítéssel tanulnak. Ez vált ismertté Hebb-féle
 tanulási szabályként. Ezek az ötletek inspirálták a későbbi munkákat,
 például Rosenblatt perceptron tanulási algoritmusát, és megalapozták sok
-olyan sztochasztikus gradiens ereszkedéses algoritmus működését, amely ma a
+olyan sztochasztikus gradienscsökkenéses algoritmus működését, amely ma a
 deep learning alapját adja: erősítsük a kívánatos viselkedést, és
 gyengítsük a nem kívánatost, hogy jó paraméterbeállításokat találjunk egy
 neurális hálózat számára.
@@ -1185,7 +1185,7 @@ ilyen óriási előrelépést érjenek el.
   :cite:`Srivastava.Hinton.Krizhevsky.ea.2014`,
   segítettek csökkenteni a túlillesztést. Ilyenkor a tanítás során zajt
   injektálunk :cite:`Bishop.1995` a neurális hálózat különböző pontjaira.
-* A *figyelem mechanizmusok* megoldottak egy másik problémát is, amely több
+* A *figyelemmechanizmusok* megoldottak egy másik problémát is, amely több
   mint egy évszázada gyötörte a statisztikát: hogyan lehet növelni egy
   rendszer memóriáját és összetettségét anélkül, hogy növelnénk a tanulható
   paraméterek számát. A kutatók elegáns megoldást találtak egy
@@ -1196,7 +1196,7 @@ ilyen óriási előrelépést érjenek el.
   köztes állapotára. Ez jelentősen növelte a hosszú sorozatok pontosságát,
   mivel a modellnek többé nem kellett a teljes sorozatot megjegyeznie,
   mielőtt új sorozatot generálhatott volna.
-* A kizárólag figyelem mechanizmusokra épülő *Transformer* architektúra
+* A kizárólag figyelemmechanizmusokra épülő *Transformer* architektúra
   :cite:`Vaswani.Shazeer.Parmar.ea.2017` kiváló *skálázódási* viselkedést
   mutatott: jobban teljesít az adathalmaz méretének, a modell méretének és
   a tanítási számítási kapacitás növelésével
@@ -1264,7 +1264,7 @@ ilyen óriási előrelépést érjenek el.
   javult a párhuzamos és elosztott tanítóalgoritmusok felépítésének
   képessége. A skálázható algoritmusok egyik kulcsproblémája, hogy a deep
   learning optimalizálásának igáslova, a sztochasztikus
-  gradiens ereszkedés, viszonylag kis minibatch-ek feldolgozására támaszkodik.
+  gradienscsökkenés, viszonylag kis minibatch-ek feldolgozására támaszkodik.
   Ugyanakkor a kis batch-ek korlátozzák a GPU-k hatékonyságát. Ezért az
   1,024 GPU-n történő tanítás, mondjuk 32 képes minibatch-ekkel, nagyjából
   32,000 képből álló aggregált minibatch-nek felel meg. Az előbb

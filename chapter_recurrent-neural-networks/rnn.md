@@ -78,7 +78,7 @@ $$\mathbf{O} = \mathbf{H} \mathbf{W}_{\textrm{hq}} + \mathbf{b}_\textrm{q},$$
 ahol $\mathbf{O} \in \mathbb{R}^{n \times q}$ a kimeneti változó, $\mathbf{W}_{\textrm{hq}} \in \mathbb{R}^{h \times q}$ a súlyparaméter, és $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ a kimeneti réteg torzítás paramétere. Ha osztályozási problémáról van szó, a $\mathrm{softmax}(\mathbf{O})$ segítségével kiszámíthatjuk a kimeneti kategóriák valószínűségeloszlását.
 
 Ez teljesen analóg a :numref:`sec_sequence` fejezetben korábban megoldott regressziós problémával, ezért kihagyjuk a részleteket.
-Elég annyit megjegyezni, hogy véletlenszerűen vehetünk jellemző-címke párokat, és az automatikus differenciálás és stochastic gradient descent segítségével megtaníthatjuk a hálózat paramétereit.
+Elég annyit megjegyezni, hogy véletlenszerűen vehetünk jellemző-címke párokat, és az automatikus differenciálás és sztochasztikus gradienscsökkenés segítségével megtaníthatjuk a hálózat paramétereit.
 
 ## Rekurrens Neurális Hálózatok rejtett állapotokkal
 :label:`subsec_rnn_w_hidden_states`
