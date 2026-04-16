@@ -235,7 +235,7 @@ amely jelzi, hogy a történeti adatokban szereplő beteg túlélte-e a
 
 Ilyen esetekben, amikor minden példát ugyanannyi numerikus jellemző
 jellemez, azt mondjuk, hogy a bemenetek rögzített hosszúságú vektorok, és
-a vektorok (állandó) hosszát az adatok *dimenzionalitásának* nevezzük.
+a vektorok (állandó) hosszát az adatok *dimenziószámának* nevezzük.
 Ahogy sejtheted, a rögzített hosszúságú bemenetek kényelmesek lehetnek,
 mert eggyel kevesebb bonyodalommal kell foglalkoznunk. Ugyanakkor nem
 minden adat reprezentálható könnyen *rögzített hosszúságú* vektorként.
@@ -357,7 +357,7 @@ Miután van adatforrásunk és reprezentációnk, modellünk és jól definiált
 célfüggvényünk, szükségünk van egy algoritmusra, amely képes megtalálni a
 veszteségfüggvény minimalizálásához szükséges lehető legjobb
 paramétereket. A deep learning népszerű optimalizálási algoritmusai a
-*gradienscsökkenés* nevű megközelítésre épülnek. Röviden: minden
+*gradiens ereszkedés* nevű megközelítésre épülnek. Röviden: minden
 lépésben ez a módszer megvizsgálja, hogy az egyes paraméterekre nézve
 hogyan változna a tanítóhalmaz vesztesége, ha azt a paramétert egy kicsit
 megváltoztatnánk. Ezután a paramétert abba az irányba frissíti, amely
@@ -378,7 +378,7 @@ adathalmazt kapunk, amely jellemzőket és címkéket egyaránt tartalmaz, és
 arra kérnek bennünket, hogy készítsünk egy modellt, amely a címkéket
 jósolja meg a bemeneti jellemzők alapján. Minden jellemző--címke párt
 egy példának nevezünk. Néha, ha a szövegkörnyezet egyértelmű, a
-*példák* kifejezést használjuk bemenetek gyűjteményére akkor is, ha a
+*példák* kifejezést a bemenetek gyűjteményére is használjuk, még akkor is, ha a
 hozzájuk tartozó címkék ismeretlenek. A felügyelet ott jelenik meg, hogy
 a paraméterek kiválasztásához mi
 (a felügyelők) címkézett példákból álló adathalmazt adunk a modellnek.
@@ -857,7 +857,7 @@ feltenni.
   eloszlásból szintetikus példákat mintavételezzünk. A generatív modellezés
   korai deep learning áttörései a *variációs autoenkóderek*
   :cite:`Kingma.Welling.2014,rezende2014stochastic` feltalálásával
-  kezdődtek, majd a *generatív ellenséges hálózatok*
+  kezdődtek, majd a *generatív versengő hálózatok*
   :cite:`Goodfellow.Pouget-Abadie.Mirza.ea.2014` kifejlesztésével
   folytatódtak. Az újabb fejlesztések közé tartoznak a normalizing flow-k
   :cite:`dinh2014nice,dinh2017density` és a diffúziós modellek
@@ -1095,7 +1095,7 @@ fogalmazta meg. Úttörő jelentőségű könyvében,
 neuronok pozitív megerősítéssel tanulnak. Ez vált ismertté Hebb-féle
 tanulási szabályként. Ezek az ötletek inspirálták a későbbi munkákat,
 például Rosenblatt perceptron tanulási algoritmusát, és megalapozták sok
-olyan sztochasztikus gradienscsökkenéses algoritmus működését, amely ma a
+olyan sztochasztikus gradiens ereszkedéses algoritmus működését, amely ma a
 deep learning alapját adja: erősítsük a kívánatos viselkedést, és
 gyengítsük a nem kívánatost, hogy jó paraméterbeállításokat találjunk egy
 neurális hálózat számára.
@@ -1185,7 +1185,7 @@ ilyen óriási előrelépést érjenek el.
   :cite:`Srivastava.Hinton.Krizhevsky.ea.2014`,
   segítettek csökkenteni a túlillesztést. Ilyenkor a tanítás során zajt
   injektálunk :cite:`Bishop.1995` a neurális hálózat különböző pontjaira.
-* A *figyelmi mechanizmusok* megoldottak egy másik problémát is, amely több
+* A *figyelem mechanizmusok* megoldottak egy másik problémát is, amely több
   mint egy évszázada gyötörte a statisztikát: hogyan lehet növelni egy
   rendszer memóriáját és összetettségét anélkül, hogy növelnénk a tanulható
   paraméterek számát. A kutatók elegáns megoldást találtak egy
@@ -1196,7 +1196,7 @@ ilyen óriási előrelépést érjenek el.
   köztes állapotára. Ez jelentősen növelte a hosszú sorozatok pontosságát,
   mivel a modellnek többé nem kellett a teljes sorozatot megjegyeznie,
   mielőtt új sorozatot generálhatott volna.
-* A kizárólag figyelmi mechanizmusokra épülő *Transformer* architektúra
+* A kizárólag figyelem mechanizmusokra épülő *Transformer* architektúra
   :cite:`Vaswani.Shazeer.Parmar.ea.2017` kiváló *skálázódási* viselkedést
   mutatott: jobban teljesít az adathalmaz méretének, a modell méretének és
   a tanítási számítási kapacitás növelésével
@@ -1231,7 +1231,7 @@ ilyen óriási előrelépést érjenek el.
   végre egy gondolatmenet láncában, ahogyan egy processzor is módosítja a
   memóriát egy számítás során.
 * A *mély generatív modellezés* egyik kulcsfontosságú fejleménye a
-  *generatív ellenséges hálózatok*
+  *generatív versengő hálózatok*
   :cite:`Goodfellow.Pouget-Abadie.Mirza.ea.2014`.
   Hagyományosan a sűrűségbecslésre és a generatív modellekre szolgáló
   statisztikai módszerek a megfelelő valószínűségi eloszlások és az azokból
@@ -1255,7 +1255,7 @@ ilyen óriási előrelépést érjenek el.
   :cite:`sohl2015deep,ho2020denoising` megtanulják a zajtalanítás
   folyamatát, és így fokozatosan véletlen zajból állítanak elő
   adatmintákat, megfordítva a diffúziós folyamatot. Az újabb mély
-  generatív modellekben elkezdték leváltani a generatív ellenséges
+  generatív modellekben elkezdték leváltani a generatív versengő
   hálózatokat, például a DALL-E 2-ben :cite:`ramesh2022hierarchical` és az
   Imagenben :cite:`saharia2022photorealistic`, amelyek kreatív művészetre
   és szöveges leírások alapján történő képgenerálásra használhatók.
@@ -1264,7 +1264,7 @@ ilyen óriási előrelépést érjenek el.
   javult a párhuzamos és elosztott tanítóalgoritmusok felépítésének
   képessége. A skálázható algoritmusok egyik kulcsproblémája, hogy a deep
   learning optimalizálásának igáslova, a sztochasztikus
-  gradienscsökkenés, viszonylag kis minibatch-ek feldolgozására támaszkodik.
+  gradiens ereszkedés, viszonylag kis minibatch-ek feldolgozására támaszkodik.
   Ugyanakkor a kis batch-ek korlátozzák a GPU-k hatékonyságát. Ezért az
   1,024 GPU-n történő tanítás, mondjuk 32 képes minibatch-ekkel, nagyjából
   32,000 képből álló aggregált minibatch-nek felel meg. Az előbb
