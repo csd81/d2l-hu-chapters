@@ -235,7 +235,7 @@ amely jelzi, hogy a történeti adatokban szereplő beteg túlélte-e a
 
 Ilyen esetekben, amikor minden példát ugyanannyi numerikus jellemző
 jellemez, azt mondjuk, hogy a bemenetek rögzített hosszúságú vektorok, és
-a vektorok (állandó) hosszát az adatok *dimenzionalitásának* nevezzük.
+a vektorok (állandó) hosszát az adatok *dimenziószámának* nevezzük.
 Ahogy sejtheted, a rögzített hosszúságú bemenetek kényelmesek lehetnek,
 mert eggyel kevesebb bonyodalommal kell foglalkoznunk. Ugyanakkor nem
 minden adat reprezentálható könnyen *rögzített hosszúságú* vektorként.
