@@ -24,14 +24,14 @@ $n \cdot r \cdot \frac{1}{2} (2 \pi r/n) = \pi r^2$-hez közelít.
 :label:`fig_circle_area`
 
 Ez a határértékes eljárás mind a *differenciálszámítás*,
-mind az *integrálszámítás* alapjánál áll.
+mind az *integrálszámítás* alapját képezi.
 Az előbbi megmutathatja, hogyan növelhetjük
 vagy csökkenthetjük egy függvény értékét
 az argumentumainak manipulálásával.
 Ez hasznos az *optimalizálási problémáknál*,
 amelyekkel a deep learningben találkozunk,
 ahol a paramétereket ismételten frissítjük
-a veszteség függvény csökkentése érdekében.
+a veszteségfüggvény csökkentése érdekében.
 Az optimalizálás azt vizsgálja, hogyan illesztjük modelleinket a tanítási adatokhoz,
 és a számítás ennek kulcsfontosságú előfeltétele.
 Ne feledjük azonban, hogy végső célunk
@@ -76,7 +76,7 @@ import numpy as np
 
 Egyszerűen fogalmazva, a *derivált* egy függvény változási sebessége
 az argumentumainak változásához képest.
-A deriváltak megmondják, milyen gyorsan növekedne vagy csökkenne a veszteség függvény,
+A deriváltak megmondják, milyen gyorsan növekedne vagy csökkenne a veszteségfüggvény,
 ha minden paramétert egy infinitezimálisan kis mennyiséggel
 *növelnénk* vagy *csökkentenénk*.
 Formálisan, az $f: \mathbb{R} \rightarrow \mathbb{R}$ függvényekre,
@@ -315,7 +315,7 @@ $\nabla_{\mathbf{X}} \|\mathbf{X} \|_\textrm{F}^2 = 2\mathbf{X}$.
 
 
 
-## Lánc-szabály
+## Láncszabály
 
 A deep learningben a fontos gradienseket gyakran nehéz kiszámítani,
 mert mélyen egymásba ágyazott függvényekkel dolgozunk
@@ -351,7 +351,7 @@ a deep learning rendszerek felépítésében.
 
 
 
-## Megbeszélés
+## Diszkusszió
 
 Bár csupán a felszínét karcoltuk meg egy mély témának,
 számos fogalom már élesedik:

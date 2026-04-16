@@ -108,7 +108,7 @@ ilyen programot nulláról megírni. Ezért használunk gépi tanulást.
 
 Íme a trükk. Gyakran még akkor is képesek vagyunk mi magunk végrehajtani
 egy kognitív feladatot, amikor nem tudjuk pontosan megmondani a
-számítógépnek, hogyan térképezze le az inputokat outputokra. Más szóval,
+számítógépnek, hogyan térképezze le a bemeneteket kimenetekre. Más szóval,
 még ha nem is tudod, hogyan kellene egy számítógépet úgy programozni,
 hogy felismerje az "Alexa" szót, te magad mégis képes vagy rá. Ezt a
 képességet kihasználva hatalmas *adathalmazt* gyűjthetünk össze
@@ -124,13 +124,13 @@ egy választott teljesítménymérték szerint.
 A paraméterekre úgy gondolhatsz, mint tekerőgombokra, amelyeket
 elforgatva befolyásolhatjuk a program viselkedését. Miután a paraméterek
 rögzítve vannak, a programot *modellnek* nevezzük. Az összes olyan különböző
-program (input--output leképezés) halmazát, amelyet pusztán a paraméterek
+program (bemenet--kimenet leképezés) halmazát, amelyet pusztán a paraméterek
 változtatásával elő tudunk állítani, *modellcsaládnak* hívjuk. Azt a
 "meta-programot" pedig, amely az adathalmazunk segítségével kiválasztja a
 paramétereket, *tanulási algoritmusnak* nevezzük.
 
 Mielőtt ténylegesen bevethetnénk a tanulási algoritmust, pontosan meg kell
-fogalmaznunk a problémát: rögzítenünk kell az inputok és outputok pontos
+fogalmaznunk a problémát: rögzítenünk kell a bemenetek és kimenetek pontos
 természetét, valamint ki kell választanunk egy megfelelő modellcsaládot.
 Ebben az esetben a modellünk egy hangrészletet kap *bemenetként*, és
 $\{\textrm{igen}, \textrm{nem}\}$ közül választ *kimenetként*. Ha minden
@@ -145,8 +145,8 @@ szükségünk, amely elég gazdag ahhoz, hogy egy másik beállítással csak az
 "Apricot" szó hallatán adjon "igen" választ. Arra számítunk, hogy ugyanaz
 a modellcsalád alkalmas legyen az "Alexa" és az "Apricot" felismerésére,
 mert intuitíve hasonló feladatoknak tűnnek. Ugyanakkor lehet, hogy teljesen
-más modellcsaládra lenne szükségünk, ha alapvetően eltérő inputokkal vagy
-outputokkal akarunk dolgozni, például képeket akarunk képaláírásokra,
+más modellcsaládra lenne szükségünk, ha alapvetően eltérő bemenetekkel vagy
+kimenetekkel akarunk dolgozni, például képeket akarunk képaláírásokra,
 vagy angol mondatokat kínai mondatokra leképezni.
 
 Ahogy sejtheted, ha minden tekerőgombot véletlenszerűen állítunk be, nem

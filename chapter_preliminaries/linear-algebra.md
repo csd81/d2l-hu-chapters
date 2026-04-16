@@ -42,33 +42,33 @@ from jax import numpy as jnp
 
 A mindennapos matematika nagy részét
 egyenként végzett számmanipuláció alkotja.
-Ezeket az értékeket formálisan *skalárisoknak* nevezzük.
+Ezeket az értékeket formálisan *skalároknak* nevezzük.
 Például Palo Alto hőmérséklete
 kellemes $72$ Fahrenheit-fok.
 Ha a hőmérsékletet Celsiusra szeretnénk átváltani,
 kiértékeljük a $c = \frac{5}{9}(f - 32)$ kifejezést,
 ahol $f$ értéke $72$.
 Ebben az egyenletben az
-$5$, $9$ és $32$ értékek állandó skalárisok.
+$5$, $9$ és $32$ értékek állandó skalárok.
 A $c$ és $f$ változók
-általában ismeretlen skalárisokat jelölnek.
+általában ismeretlen skalárokat jelölnek.
 
-A skalárisokat
+A skalárokat
 közönséges kisbetűkkel jelöljük
 (pl. $x$, $y$ és $z$),
 az összes (folytonos)
-*valós értékű* skaláris terét pedig $\mathbb{R}$-rel.
+*valós értékű* skalárok terét pedig $\mathbb{R}$-rel.
 A tömörség kedvéért kihagyjuk
 a *terek* szigorú definícióját:
 csupán jegyezzük meg, hogy az $x \in \mathbb{R}$ kifejezés
-annak formális módja, hogy $x$ valós értékű skaláris.
+annak formális módja, hogy $x$ valós értékű skalár.
 A $\in$ szimbólum (ejtsd: „eleme")
 halmazhoz való tartozást jelöl.
 Például $x, y \in \{0, 1\}$
 azt jelzi, hogy $x$ és $y$ olyan változók,
 amelyek csak $0$ vagy $1$ értéket vehetnek fel.
 
-(**A skalárisokat egyetlen elemet tartalmazó tenzorokként implementálják.**)
+(**A skalárokat egyetlen elemet tartalmazó tenzorokként implementálják.**)
 Az alábbiakban két skalárist rendelünk értékhez,
 majd elvégezzük a megszokott összeadás, szorzás,
 osztás és hatványozás műveleteket.
@@ -107,9 +107,9 @@ x + y, x * y, x / y, x**y
 
 ## Vektorok
 
-Jelenlegi céljainkra [**egy vektort skalárisok rögzített hosszúságú tömbjeként képzelhetünk el.**]
+Jelenlegi céljainkra [**egy vektort skalárok rögzített hosszúságú tömbjeként képzelhetünk el.**]
 A kódbeli megfelelőjükhöz hasonlóan
-a vektor *elemeit* nevezzük skalárisoknak
+a vektor *elemeit* nevezzük skalároknak
 (szinonimák: *bejegyzések* és *komponensek*).
 Amikor a vektorok valós adathalmazokból származó példákat képviselnek,
 értékeiknek valóságos jelentésük van.
@@ -127,7 +127,7 @@ napi edzési perceknek stb.
 A vektorokat félkövér kisbetűkkel jelöljük
 (pl. $\mathbf{x}$, $\mathbf{y}$ és $\mathbf{z}$).
 
-A vektorokat $1^{\textrm{st}}$-rendű tenzorokként implementálják.
+A vektorokat 1. rendű tenzorokként implementálják.
 Általánosan, az ilyen tenzorok tetszőleges hosszúságúak lehetnek,
 a memória korlátaitól függően. Figyelem: Pythonban, csakúgy mint a legtöbb programozási nyelvben, a vektorindexek $0$-tól kezdődnek, ezt *nulla alapú indexelésnek* is nevezzük, míg a lineáris algebrában az alindexek $1$-től kezdődnek (egy alapú indexelés).
 
@@ -205,29 +205,29 @@ komponensek számát jelenti.
 
 ## Mátrixok
 
-Ahogy a skalárisok $0^{\textrm{th}}$-rendű tenzorok
-és a vektorok $1^{\textrm{st}}$-rendű tenzorok,
-a mátrixok $2^{\textrm{nd}}$-rendű tenzorok.
+Ahogy a skalárok 0. rendű tenzorok
+és a vektorok 1. rendű tenzorok,
+a mátrixok 2. rendű tenzorok.
 A mátrixokat félkövér nagybetűkkel jelöljük
 (pl. $\mathbf{X}$, $\mathbf{Y}$ és $\mathbf{Z}$),
 és kódban két tengellyel rendelkező tenzorokként ábrázoljuk őket.
 Az $\mathbf{A} \in \mathbb{R}^{m \times n}$ kifejezés
-azt jelzi, hogy a $\mathbf{A}$ mátrix
+azt jelzi, hogy az $\mathbf{A}$ mátrix
 $m \times n$ valós értékű skalárist tartalmaz,
 amelyek $m$ sorba és $n$ oszlopba vannak rendezve.
 Amikor $m = n$, azt mondjuk, hogy a mátrix *négyzetes*.
 Vizuálisan bármely mátrixot táblázatként ábrázolhatunk.
 Egy adott elemre való hivatkozáshoz
 mind a sor-, mind az oszlopindexet alsó indexként írjuk, pl.
-$a_{ij}$ az az érték, amely a $\mathbf{A}$
-$i^{\textrm{th}}$ sorának és $j^{\textrm{th}}$ oszlopának metszéspontjában van:
+$a_{ij}$ az az érték, amely az $\mathbf{A}$
+$i$. sorának és $j$. oszlopának metszéspontjában van:
 
 $$\mathbf{A}=\begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \\ \end{bmatrix}.$$
 :eqlabel:`eq_matrix_def`
 
 
-Kódban a $\mathbf{A} \in \mathbb{R}^{m \times n}$ mátrixot
-egy ($m$, $n$) alakú $2^{\textrm{nd}}$-rendű tenzorral ábrázoljuk.
+Kódban az $\mathbf{A} \in \mathbb{R}^{m \times n}$ mátrixot
+egy ($m$, $n$) alakú 2. rendű tenzorral ábrázoljuk.
 [**Bármely megfelelő méretű $m \times n$ tenzort
 $m \times n$ mátrixszá alakíthatunk**]
 a kívánt alak `reshape` függvénynek való átadásával:
@@ -259,7 +259,7 @@ A
 Néha a tengelyeket fel akarjuk cserélni.
 Amikor egy mátrix sorait és oszlopait felcseréljük,
 az eredményt *transzponáltnak* nevezzük.
-Formálisan a $\mathbf{A}$ mátrix transzponáltját
+Formálisan az $\mathbf{A}$ mátrix transzponáltját
 $\mathbf{A}^\top$-vel jelöljük, és ha $\mathbf{B} = \mathbf{A}^\top$,
 akkor minden $i$-re és $j$-re $b_{ij} = a_{ji}$.
 Így egy $m \times n$ mátrix transzponáltja
@@ -324,10 +324,10 @@ az oszlopok pedig különböző attribútumoknak.
 
 ## Tenzorok
 
-Bár a gépi tanulás útján skalárisokkal, vektorokkal és mátrixokkal
+Bár a gépi tanulás útján skalárokkal, vektorokkal és mátrixokkal
 messze eljuthatunk,
 végül szükségünk lehet magasabb rendű [**tenzorokkal**] dolgozni.
-A tenzorok (**általános módot nyújtanak az $n^{\textrm{th}}$-rendű tömbök
+A tenzorok (**általános módot nyújtanak az $n$. rendű tömbök
 kiterjesztéseinek leírásához.**)
 A *tenzor osztály* szoftver objektumait „tenzoroknak" nevezzük,
 pontosan azért, mert azok is tetszőleges számú tengellyel rendelkezhetnek.
@@ -344,12 +344,12 @@ természetes módon következik a mátrixokéból.
 
 A tenzorok akkor válnak fontosabbá,
 amikor képekkel kezdünk dolgozni.
-Minden kép $3^{\textrm{rd}}$-rendű tenzorként érkezik,
+Minden kép 3. rendű tenzorként érkezik,
 amelynek tengelyei a magasságnak, szélességnek és a *csatornának* felelnek meg.
 Minden térbeli helyen az egyes színek (piros, zöld és kék)
 intenzitásai a csatorna mentén vannak egymásra halmozva.
 Továbbá képek gyűjteményét
-kódban $4^{\textrm{th}}$-rendű tenzorral ábrázolják,
+kódban 4. rendű tenzorral ábrázolják,
 ahol az egyes képeket
 az első tengely mentén indexelik.
 A magasabb rendű tenzorokat, csakúgy mint a vektorokat és mátrixokat,
@@ -377,7 +377,7 @@ jnp.arange(24).reshape(2, 3, 4)
 
 ## A tenzor aritmetika alapvető tulajdonságai
 
-A skalárisok, vektorok, mátrixok
+A skalárok, vektorok, mátrixok
 és a magasabb rendű tenzorok
 mind rendelkeznek néhány hasznos tulajdonsággal.
 Például az elemenként végrehajtott műveletek
@@ -727,11 +727,11 @@ $$\mathbf{A}=
 \end{bmatrix},$$
 
 ahol minden $\mathbf{a}^\top_{i} \in \mathbb{R}^n$
-egy sorvektor, amely a $\mathbf{A}$ mátrix $i^\textrm{th}$ sorát képviseli.
+egy sorvektor, amely az $\mathbf{A}$ mátrix $i$. sorát képviseli.
 
-[**A $\mathbf{A}\mathbf{x}$ mátrix–vektor szorzat
+[**Az $\mathbf{A}\mathbf{x}$ mátrix–vektor szorzat
 egyszerűen egy $m$ hosszúságú oszlopvektor,
-amelynek $i^\textrm{th}$ eleme a
+amelynek $i$. eleme a
 $\mathbf{a}^\top_i \mathbf{x}$ skaláris szorzat:**]
 
 $$
@@ -750,7 +750,7 @@ $$
 \end{bmatrix}.
 $$
 
-A $\mathbf{A}\in \mathbb{R}^{m \times n}$ mátrixszal való szorzást
+Az $\mathbf{A}\in \mathbb{R}^{m \times n}$ mátrixszal való szorzást
 úgy is felfoghatjuk, mint egy transzformáció, amely vetíti a vektorokat
 $\mathbb{R}^{n}$-ből $\mathbb{R}^{m}$-be.
 Ezek a transzformációk rendkívül hasznosak.
@@ -834,9 +834,9 @@ $$\mathbf{A}=\begin{bmatrix}
 
 
 Legyen $\mathbf{a}^\top_{i} \in \mathbb{R}^k$ az a sorvektor, amely az
-$\mathbf{A}$ mátrix $i^\textrm{th}$ sorát képviseli,
+az $\mathbf{A}$ mátrix $i$. sorát képviseli,
 és legyen $\mathbf{b}_{j} \in \mathbb{R}^k$ az a oszlopvektor, amely a
-$\mathbf{B}$ mátrix $j^\textrm{th}$ oszlopából származik:
+a $\mathbf{B}$ mátrix $j$. oszlopából származik:
 
 $$\mathbf{A}=
 \begin{bmatrix}
@@ -853,8 +853,8 @@ $$
 
 A $\mathbf{C} \in \mathbb{R}^{n \times m}$ mátrixszorzat előállításához
 egyszerűen kiszámítjuk minden $c_{ij}$ elemet
-a $\mathbf{A}$ $i^{\textrm{th}}$ sora és
-a $\mathbf{B}$ $j^{\textrm{th}}$ oszlopa közötti skaláris szorzatként,
+az $\mathbf{A}$ $i$. sora és
+a $\mathbf{B}$ $j$. oszlopa közötti skaláris szorzatként,
 azaz $\mathbf{a}^\top_i \mathbf{b}_j$:
 
 $$\mathbf{C} = \mathbf{AB} = \begin{bmatrix}
@@ -874,7 +874,7 @@ $$\mathbf{C} = \mathbf{AB} = \begin{bmatrix}
 \end{bmatrix}.
 $$
 
-[**A $\mathbf{AB}$ mátrix–mátrix szorzásra gondolhatunk úgy, mint
+[**Az $\mathbf{AB}$ mátrix–mátrix szorzásra gondolhatunk úgy, mint
 $m$ mátrix–vektor szorzás
 vagy $m \times n$ skaláris szorzat elvégzésére,
 majd az eredmények összeillesztésére
@@ -1086,7 +1086,7 @@ Egy haladóbb összefoglalóért érdemes megnézni
 
 Összefoglalás:
 
-* A skalárisok, vektorok, mátrixok és tenzorok
+* A skalárok, vektorok, mátrixok és tenzorok
   a lineáris algebrában használt alapvető matematikai objektumok,
   amelyek rendre nulla, egy, kettő, illetve tetszőleges számú tengellyel rendelkeznek.
 * A tenzorok szeletelhetők vagy redukálhatók adott tengelyek mentén
