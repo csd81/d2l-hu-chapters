@@ -123,7 +123,7 @@ corr2d(X, K)
 
 Egy konvolúciós réteg keresztkorrelációt számít a bemenet és a kernel között, és skaláris torzítást ad hozzá a kimenet előállításához. A konvolúciós réteg két paramétere a kernel és a skaláris torzítás. Konvolúciós rétegeken alapuló modellek tanításakor általában véletlenszerűen inicializáljuk a kerneleket, ahogyan egy teljesen összekötött réteggel is tennénk.
 
-Most készen állunk egy [**kétdimenziós konvolúciós réteg implementálására**] a fent definiált `corr2d` függvény alapján. A `__init__` konstruktor metódusban a `weight`-et és a `bias`-t két modell paraméterként deklaráljuk. Az előre-terjedési metódus meghívja a `corr2d` függvényt és hozzáadja a torzítást.
+Most készen állunk egy [**kétdimenziós konvolúciós réteg implementálására**] a fent definiált `corr2d` függvény alapján. A `__init__` konstruktor metódusban a `weight`-et és a `bias`-t két modell paraméterként deklaráljuk. Az előreterjesztési metódus meghívja a `corr2d` függvényt és hozzáadja a torzítást.
 
 ```{.python .input}
 %%tab mxnet
@@ -367,16 +367,16 @@ Valóban, a tanult kernel tenzor figyelemreméltóan közel van a korábban defi
 
 Emlékeztessük magunkat a :numref:`sec_why-conv`-ban tett megfigyelésünkre a keresztkorreláció és konvolúció műveletek közötti megfelelésről. Folytassuk a kétdimenziós konvolúciós rétegek vizsgálatát. Mi lenne, ha ezek a rétegek az :eqref:`eq_2d-conv-discrete`-ban definiált szigorú konvolúciós műveleteket végeznék a keresztkorrelációk helyett? A szigorú *konvolúció* művelet kimenetének megszerzéséhez csak vízszintesen és függőlegesen is meg kell tükröznünk a kétdimenziós kernel tenzort, majd a bemeneti tenzorral elvégeznünk a *keresztkorreláció* műveletet.
 
-Figyelemre méltó, hogy mivel a kerneleket adatokból tanítják deep learningben, a konvolúciós rétegek kimenetei változatlanok maradnak, függetlenül attól, hogy ezek a rétegek szigorú konvolúciós műveleteket vagy keresztkorreláció műveleteket végeznek.
+Figyelemre méltó, hogy mivel a kerneleket adatokból tanítják mélytanulásban, a konvolúciós rétegek kimenetei változatlanok maradnak, függetlenül attól, hogy ezek a rétegek szigorú konvolúciós műveleteket vagy keresztkorreláció műveleteket végeznek.
 
 Ennek szemléltetéséhez tegyük fel, hogy egy konvolúciós réteg *keresztkorrelációt* végez, és megtanulja a :numref:`fig_correlation`-ban szereplő kernelt, amelyet itt $\mathbf{K}$ mátrixként jelölünk. Feltételezve, hogy más feltételek változatlanok maradnak, ha ez a réteg ehelyett szigorú *konvolúciót* végez, a tanult $\mathbf{K}'$ kernel ugyanolyan lesz, mint a $\mathbf{K}$, miután $\mathbf{K}'$-t vízszintesen és függőlegesen is megfordítottuk. Vagyis, amikor a konvolúciós réteg szigorú *konvolúciót* végez a :numref:`fig_correlation`-beli bemenetre és $\mathbf{K}'$-re, ugyanolyan kimenetet kapunk, mint a :numref:`fig_correlation`-ban (a bemenet és $\mathbf{K}$ keresztkorrelációja).
 
-A deep learning irodalom bevett terminológiájával összhangban a keresztkorreláció műveletet tovább konvolúciónak nevezzük, bár szigorúan véve kissé különbözik. Ezenkívül az *elem* kifejezést egy réteget megjelenítő tenzor vagy konvolúciós kernel bármely bejegyzésének (vagy összetevőjének) jelölésére használjuk.
+A mélytanulási irodalom bevett terminológiájával összhangban a keresztkorreláció műveletet tovább konvolúciónak nevezzük, bár szigorúan véve kissé különbözik. Ezenkívül az *elem* kifejezést egy réteget megjelenítő tenzor vagy konvolúciós kernel bármely bejegyzésének (vagy összetevőjének) jelölésére használjuk.
 
 
 ## Jellemzőtérkép és receptív mező
 
-Ahogy a :numref:`subsec_why-conv-channels`-ban leírták, a :numref:`fig_correlation`-beli konvolúciós réteg kimenetét néha *jellemzőtérképnek* is nevezik, mivel a következő réteg térbeli dimenzióiban (pl. szélesség és magasság) tanult reprezentációknak (jellemzőknek) tekinthető. A CNN-ekben bármely réteg bármely $x$ elemére vonatkozóan a *receptív mező* az összes (az összes előző rétegből vett) olyan elemet jelöli, amely befolyásolhatja $x$ kiszámítását az előre-terjedés során. Vegyük figyelembe, hogy a receptív mező nagyobb lehet a tényleges bemeneti méretnél.
+Ahogy a :numref:`subsec_why-conv-channels`-ban leírták, a :numref:`fig_correlation`-beli konvolúciós réteg kimenetét néha *jellemzőtérképnek* is nevezik, mivel a következő réteg térbeli dimenzióiban (pl. szélesség és magasság) tanult reprezentációknak (jellemzőknek) tekinthető. A CNN-ekben bármely réteg bármely $x$ elemére vonatkozóan a *receptív mező* az összes (az összes előző rétegből vett) olyan elemet jelöli, amely befolyásolhatja $x$ kiszámítását az előreterjesztés során. Vegyük figyelembe, hogy a receptív mező nagyobb lehet a tényleges bemeneti méretnél.
 
 Folytassuk a :numref:`fig_correlation` használatát a receptív mező magyarázatához. Az adott $2 \times 2$-es konvolúciós kernel esetén az árnyékolt kimeneti elem receptív mezeje (értéke $19$) a bemenet árnyékolt részének négy eleme. Most jelöljük a $2 \times 2$-es kimenetet $\mathbf{Y}$-ként, és vizsgáljunk egy mélyebb CNN-t egy további $2 \times 2$-es konvolúciós réteggel, amely $\mathbf{Y}$-t veszi bemenetként, és egyetlen $z$ elemet ad ki. Ebben az esetben $z$ receptív mezeje $\mathbf{Y}$-n $\mathbf{Y}$ összes négy elemét tartalmazza, míg a bemeneten a receptív mező az összes kilenc bemeneti elemet tartalmazza. Így, amikor egy jellemzőtérkép bármely eleméhez nagyobb receptív mező szükséges a bemeneti jellemzők szélesebb területen való detektálásához, mélyebb hálózatot építhetünk.
 
@@ -385,7 +385,7 @@ A receptív mezők nevüket a neurofiziológiából kapták. Különböző inger
 ![Ábra és felirat :citet:`Field.1987`-ből: Kódolás példája hat különböző csatornával. (Bal) Példák az egyes csatornákhoz tartozó hat érzékelőtípusra. (Jobb) A (Középső) képnek a (Bal oldalon) látható hat érzékelővel való konvolúciója. Az egyes érzékelők válaszát ezeknek a szűrt képeknek az érzékelő méretével arányos távolságon (pontokkal jelölve) való mintavételével határozzuk meg. Ez az ábra csak a páros szimmetrikus érzékelők válaszát mutatja.](../img/field-visual.png)
 :label:`field_visual`
 
-Mint kiderül, ez az összefüggés még a képosztályozási feladatokon tanított hálózatok mélyebb rétegei által kiszámított jellemzőkre is érvényes, ahogyan azt például :citet:`Kuzovkin.Vicente.Petton.ea.2018` bemutatta. Elég annyit mondani, hogy a konvolúciók hihetetlenül hatékony eszköznek bizonyultak a számítógépes látásban, mind a biológiában, mind a kódban. Mint ilyen, nem meglepő (visszatekintve), hogy előhírnökei voltak a deep learning közelmúltbeli sikerének.
+Mint kiderül, ez az összefüggés még a képosztályozási feladatokon tanított hálózatok mélyebb rétegei által kiszámított jellemzőkre is érvényes, ahogyan azt például :citet:`Kuzovkin.Vicente.Petton.ea.2018` bemutatta. Elég annyit mondani, hogy a konvolúciók hihetetlenül hatékony eszköznek bizonyultak a számítógépes látásban, mind a biológiában, mind a kódban. Mint ilyen, nem meglepő (visszatekintve), hogy előhírnökei voltak a mélytanulás közelmúltbeli sikerének.
 
 ## Összefoglalás
 

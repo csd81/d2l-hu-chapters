@@ -27,7 +27,7 @@ Ezt a tervezést
 *többfejű figyelemnek* nevezik,
 ahol a $h$ figyelempooling kimenet mindegyike
 egy *fej* :cite:`Vaswani.Shazeer.Parmar.ea.2017`.
-Teljes összeköttetésű rétegeket használva
+Teljesen összekötött rétegeket használva
 tanítható lineáris transzformációk végrehajtásához,
 a :numref:`fig_multi-head-attention`
 írja le a többfejű figyelmet.
@@ -85,7 +85,7 @@ $\mathbf W_i^{(k)}\in\mathbb R^{p_k\times d_k}$,
 tanítható paraméterek,
 és $f$ figyelempooling,
 mint például
-az additív figyelem és a skálázott dot product figyelem
+az additív figyelem és a skálázott skalárisszorzat-alapú figyelem
 a :numref:`sec_attention-scoring-functions`-ben.
 A többfejű figyelem kimenete
 egy másik lineáris transzformáció a
@@ -101,7 +101,7 @@ Az egyszerű súlyozott átlagnál bonyolultabb függvények is kifejezhetők.
 ## Implementáció
 
 Az implementációban
-[**a skálázott dot product figyelmet választjuk
+[**a skálázott skalárisszorzat-alapú figyelmet választjuk
 minden fejhez**] a többfejű figyelemben.
 A számítási és parametrizációs költség jelentős növekedésének elkerülése érdekében,
 beállítjuk, hogy $p_q = p_k = p_v = p_o / h$.

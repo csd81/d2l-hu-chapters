@@ -32,6 +32,7 @@
 | computational graph | számítási gráf | |
 | confidence interval | konfidenciaintervallum | |
 | cross-attention | keresztfigyelem | |
+| cross-correlation | keresztkorreláció | |
 | cross-entropy | keresztentrópia | |
 | cumulative distribution function | eloszlásfüggvény | |
 | dataset | adathalmaz | |
@@ -55,9 +56,11 @@
 | feature map | jellemzőtérkép | |
 | fine-tuning | finomhangolás | |
 | fork | fork | megtartjuk angolul; első előfordulás: *fork (elágaztatás)* |
-| forward propagation | előreterjesztés | nem: *előre terjedés* |
+| forward pass | előremenet | egyetlen előre irányú számítási lépés |
+| forward propagation | előreterjesztés | nem: *előre terjedés*, nem: *előre-terjedés* |
 | forward-mode differentiation | előre irányú differenciálás | |
 | framework | keretrendszer | |
+| fully connected layer | teljesen összekötött réteg | nem: *teljes összeköttetésű réteg* |
 | generative adversarial network (GAN) | generatív versengő hálózat | |
 | gradient | gradiens | |
 | gradient buffer | gradienspuffer | |
@@ -91,6 +94,7 @@
 | object detection | objektumdetektálás | nem: *objektumfelismerés* |
 | output | kimenet | |
 | partial derivative | parciális derivált | |
+| padding | párnázás | konvolúciós hálózatok kontextusában |
 | patch | patch | megtartjuk angolul (ViT-kontextusban) |
 | pooling | pooling | megtartjuk angolul mélytanulási kontextusban |
 | population | populáció | következetesen; alternatíva: *alapsokaság* |
@@ -103,6 +107,7 @@
 | pull request | pull request | megtartjuk angolul |
 | query | lekérdezés | figyelemmechanizmus kontextusában |
 | random variable | valószínűségi változó | |
+| receptive field | receptív mező | |
 | regularization | regularizáció | |
 | repository | tároló | nem: *kódtár* Git/GitHub kontextusban |
 | reverse-mode differentiation | visszafelé irányú differenciálás | |
@@ -113,6 +118,7 @@
 | squashing function | értékkészletet szűkítő függvény | |
 | steepest descent direction | a legmeredekebb csökkenés iránya | negatív gradiens irányával azonos |
 | stochastic gradient descent (SGD) | sztochasztikus gradienscsökkenés | nem: *sztochasztikus gradiens descent* |
+| stride | lépésköz | konvolúciós hálózatok kontextusában |
 | tensor | tenzor | |
 | tensor shape | tenzor alakja | |
 | test set | teszthalmaz | nem: *tesztkészlet* |

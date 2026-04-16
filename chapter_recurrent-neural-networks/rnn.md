@@ -1,4 +1,4 @@
-# Rekurrens Neurális Hálózatok
+# Rekurrens neurális hálózatok
 :label:`sec_rnn`
 
 
@@ -70,7 +70,7 @@ $$\mathbf{H} = \phi(\mathbf{X} \mathbf{W}_{\textrm{xh}} + \mathbf{b}_\textrm{h})
 :eqlabel:`rnn_h_without_state`
 
 A :eqref:`rnn_h_without_state`-ban megvan a $\mathbf{W}_{\textrm{xh}} \in \mathbb{R}^{d \times h}$ súlyparaméter, a $\mathbf{b}_\textrm{h} \in \mathbb{R}^{1 \times h}$ torzítás paraméter, és a rejtett egységek $h$ száma a rejtett réteghez.
-Ezzel felvértezve az összeadásnál broadcasting-et alkalmazunk (ld. :numref:`subsec_broadcasting`).
+Ezzel felvértezve az összeadásnál kiterjesztést (Broadcasting) alkalmazunk (ld. :numref:`subsec_broadcasting`).
 Ezután a rejtett réteg kimenete $\mathbf{H}$ a kimeneti réteg bemeneteként kerül felhasználásra, amelyet a következő adja meg:
 
 $$\mathbf{O} = \mathbf{H} \mathbf{W}_{\textrm{hq}} + \mathbf{b}_\textrm{q},$$

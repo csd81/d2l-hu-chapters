@@ -69,7 +69,7 @@ A következő példában egy 3-as magasságú és szélességű kétdimenziós k
 # és -csökkentéseket a bemeneten és a kimeneten
 def comp_conv2d(conv2d, X):
     conv2d.initialize()
-    # (1, 1) jelzi, hogy a kötegméret és a csatornák száma egyaránt 1
+    # (1, 1) jelzi, hogy a batchméret és a csatornák száma egyaránt 1
     X = X.reshape((1, 1) + X.shape)
     Y = conv2d(X)
     # Az első két dimenzió eltávolítása: minták és csatornák
@@ -87,7 +87,7 @@ comp_conv2d(conv2d, X).shape
 # a konvolúciós réteg súlyait, és elvégzi a megfelelő dimenzióbővítéseket
 # és -csökkentéseket a bemeneten és a kimeneten
 def comp_conv2d(conv2d, X):
-    # (1, 1) jelzi, hogy a kötegméret és a csatornák száma egyaránt 1
+    # (1, 1) jelzi, hogy a batchméret és a csatornák száma egyaránt 1
     X = X.reshape((1, 1) + X.shape)
     Y = conv2d(X)
     # Az első két dimenzió eltávolítása: minták és csatornák
@@ -106,7 +106,7 @@ comp_conv2d(conv2d, X).shape
 # a konvolúciós réteg súlyait, és elvégzi a megfelelő dimenzióbővítéseket
 # és -csökkentéseket a bemeneten és a kimeneten
 def comp_conv2d(conv2d, X):
-    # (1, 1) jelzi, hogy a kötegméret és a csatornák száma egyaránt 1
+    # (1, 1) jelzi, hogy a batchméret és a csatornák száma egyaránt 1
     X = tf.reshape(X, (1, ) + X.shape + (1, ))
     Y = conv2d(X)
     # Az első két dimenzió eltávolítása: minták és csatornák
@@ -124,7 +124,7 @@ comp_conv2d(conv2d, X).shape
 # a konvolúciós réteg súlyait, és elvégzi a megfelelő dimenzióbővítéseket
 # és -csökkentéseket a bemeneten és a kimeneten
 def comp_conv2d(conv2d, X):
-    # (1, X.shape, 1) jelzi, hogy a kötegméret és a csatornák száma egyaránt 1
+    # (1, X.shape, 1) jelzi, hogy a batchméret és a csatornák száma egyaránt 1
     key = jax.random.PRNGKey(d2l.get_seed())
     X = X.reshape((1,) + X.shape + (1,))
     Y, _ = conv2d.init_with_output(key, X)
