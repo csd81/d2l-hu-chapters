@@ -4,249 +4,193 @@
 > Ez a dokumentum az elfogadott terminológiai döntéseket rögzíti.
 > Minden fejezet, függelék és megjegyzés szövegében kizárólag az alábbi magyar megfelelőket szabad használni.
 > Kódblokkokban és API-nevekben az eredeti angol alak megtartandó.
+> Lásd még: [WORKFLOW.md](WORKFLOW.md)
 
 ---
-
-## 1. Lineáris algebra
-
-| Angol | Magyar | Megjegyzés |
-|-------|--------|------------|
-| determinant | determináns | |
-| dimension | dimenzió | egy tengely mérete |
-| dimensionality | dimenziószám | nem: *dimenzió* ebben a kontextusban |
-| eigendecomposition | sajátérték-felbontás | |
-| eigenvalue | sajátérték | |
-| eigenvector | sajátvektor | |
-| gradient field | gradienstér | |
-| gradient vector | gradiensvektor | |
-| Hessian / Hessian matrix | Hesse-mátrix | |
-| inner product | belső szorzat | |
-| Jacobian / Jacobian matrix | Jacobi-mátrix | |
-| L2 norm | L2 norma | |
-| matrix | mátrix | |
-| norm | norma | |
-| outer product | külső szorzat | |
-| rank (matrix) | rang | |
-| scalar | skalár (fn.) / skaláris (mn.) | főnévként *skalár*, melléknévként *skaláris* |
-| tensor | tenzor | |
-| tensor shape | tenzor alakja | |
-| trace (matrix) | nyom | nem: *trace* prózában |
-| vector | vektor | |
-
----
-
-## 2. Valószínűségszámítás és statisztika
-
-| Angol | Magyar | Megjegyzés |
-|-------|--------|------------|
-| bias (statistical) | torzítás | nem: *eltolás* ebben a kontextusban |
-| confidence interval | konfidenciaintervallum | |
-| covariance | kovariancia | |
-| cumulative distribution function | eloszlásfüggvény | |
-| empirical error | empirikus hiba | |
-| entropy | entrópia | |
-| estimator | becslő | |
-| expectation | várható érték | |
-| likelihood | likelihood | megtartjuk angolul |
-| log-likelihood | log-likelihood | megtartjuk angolul |
-| maximum likelihood estimate | maximum likelihood becslés | nem: *maximális valószínűség*; rövidítés: MLE |
-| negative log-likelihood | negatív log-likelihood | |
-| non-informative prior | nem informatív prior | |
-| partial derivative | parciális derivált | |
-| population | populáció | következetesen; alternatíva: *alapsokaság* |
-| population error | populációs hiba | |
-| prior | prior | megtartjuk angolul |
-| probability density function | valószínűségi sűrűségfüggvény | |
-| probability distribution | valószínűségi eloszlás | |
-| probability mass function | valószínűségi tömegfüggvény | |
-| random variable | valószínűségi változó | |
-| sample | minta | |
-| standard deviation | szórás | |
-| variance | variancia | |
-
----
-
-## 3. Gépi tanulás — általános
-
-| Angol | Magyar | Megjegyzés |
-|-------|--------|------------|
-| affine transformation | affin transzformáció | |
-| batch | batch | megtartjuk angolul |
-| batch size | batch méret | |
-| bias (linear models) | eltolás | nem: *torzítás* ebben a kontextusban |
-| broadcasting | kiterjesztés | zárójelben: *(Broadcasting)* az első előfordulásnál |
-| classifier | osztályozó | |
-| concatenation | összefűzés | |
-| dataset | adathalmaz | |
-| deep learning | mélytanulás / mélytanulási | |
-| design matrix | tervmátrix | |
-| dropout | dropout | megtartjuk angolul |
-| embedding | beágyazás | |
-| epoch | epoch | megtartjuk angolul |
-| extension | bővítés | nem: *kiterjesztés* (azt a *broadcasting* foglalja) |
-| feature | jellemző | |
-| fine-tuning | finomhangolás | |
-| flatten | kiterít | |
-| generalization | általánosítás | |
-| holdout set | holdout halmaz | |
-| inference | inferencia | |
-| machine learning | gépi tanulás | |
-| mini-batch | mini-batch | megtartjuk angolul; nem: *minibatch* (egybe) |
-| model | modell | |
-| normalization | normalizáció | |
-| overfitting | túlillesztés | |
-| pretraining | előtanítás | |
-| regularization | regularizáció | |
-| test set | teszthalmaz | nem: *tesztkészlet* |
-| training | tanítás | |
-| training set | tanítóhalmaz | nem: *tanítókészlet* |
-| underfitting | alulillesztés | |
-| validation set | validációs halmaz | nem: *érvényesítési halmaz* |
-| weight decay | súlycsökkentés | |
-
----
-
-## 4. Neurális hálózatok
 
 | Angol | Magyar | Megjegyzés |
 |-------|--------|------------|
 | activation | aktiváció | |
 | activation function | aktivációs függvény | |
 | activation layer | aktivációs réteg | |
-| backpropagation | visszaterjesztés | nem: *backpropagation* prózában |
-| batch normalization | batchnormalizáció | nem: *batch normalizáció* (különírva) |
-| channel | csatorna | CNN-ek kontextusában |
-| convolutional layer | konvolúciós réteg | |
-| convolutional neural network (CNN) | konvolúciós neurális hálózat | |
-| cross-correlation | keresztkorreláció | |
-| decoder | dekódoló | |
-| encoder | kódoló | |
-| feature map | jellemzőtérkép | |
-| forward pass | előremenet | egyetlen előre irányú számítási lépés |
-| forward propagation | előreterjesztés | nem: *előre terjedés*, nem: *előre-terjedés* |
-| forward-mode differentiation | előre irányú differenciálás | |
-| fully connected layer | teljesen összekötött réteg | nem: *teljes összeköttetésű réteg* |
-| hidden layer | rejtett réteg | |
-| hidden state | rejtett állapot | |
-| hidden unit | rejtett egység | |
-| hyperbolic tangent (tanh) | tanh (hiperbolikus tangens) függvény | |
-| input | bemenet | |
-| kernel | kernel | megtartjuk angolul |
-| layer normalization | rétegnormalizáció | |
-| logits | logitérték | |
-| multilayer perceptron (MLP) | többrétegű perceptron | rövidítés: MLP |
-| neurons firing | kisül | nem: *tüzel* |
-| output | kimenet | |
-| padding | párnázás | konvolúciós hálózatok kontextusában |
-| pooling | pooling | megtartjuk angolul mélytanulási kontextusban |
-| receptive field | receptív mező | |
-| recurrent neural network (RNN) | rekurrens neurális hálózat | |
-| rectified linear unit (ReLU) | ReLU | megtartjuk angolul |
-| residual connection | maradékkapcsolat | |
-| sigmoid function | sigmoid függvény | |
-| skip connection | áthidaló kapcsolat | |
-| squashing function | értékkészletet szűkítő függvény | |
-| stride | lépésköz | konvolúciós hálózatok kontextusában |
-| time step | időlépés | szekvenciális modellek kontextusában |
-
----
-
-## 5. Optimalizálás és automatikus differenciálás
-
-| Angol | Magyar | Megjegyzés |
-|-------|--------|------------|
-| automatic differentiation | automatikus differenciálás | |
-| autograd | autograd | megtartjuk angolul |
-| computational graph | számítási gráf | |
-| detach | leválaszt / leválasztás | |
-| gradient | gradiens | |
-| gradient buffer | gradienspuffer | |
-| gradient clipping | gradienslevágás | |
-| gradient descent | gradienscsökkenés | nem: *gradiens ereszkedés*, nem: *gradiens descent* |
-| learning rate | tanulási ráta | nem: *tanulási sebesség* |
-| learning rate decay | tanulási ráta csökkentése | |
-| learning rate scheduler | tanulásiráta-ütemező | |
-| line search | vonalkeresés | |
-| loss | veszteség | |
-| loss function | veszteségfüggvény | |
-| loss landscape | veszteségfelület | |
-| optimizer | optimalizáló | |
-| preconditioning | előkondicionálás | |
-| reverse-mode differentiation | visszafelé irányú differenciálás | |
-| steepest descent direction | a legmeredekebb csökkenés iránya | negatív gradiens irányával azonos |
-| stochastic gradient descent (SGD) | sztochasztikus gradienscsökkenés | nem: *sztochasztikus gradiens descent* |
-
----
-
-## 6. Figyelemmechanizmus és Transformer
-
-| Angol | Magyar | Megjegyzés |
-|-------|--------|------------|
 | additive attention | additív figyelem | |
+| affine transformation | affin transzformáció | |
+| anchor box | horgonytéglalap | |
+| API | API | megtartjuk angolul |
 | attention head | figyelemfej | |
 | attention mechanism | figyelemmechanizmus | nem: *figyelem mechanizmus*, nem: *figyelmi mechanizmus* |
 | attention pooling | figyelempooling | prózában: *figyelemalapú pooling* |
 | attention score | figyelempontszám | |
 | attention weight | figyelemsúly | |
+| autograd | autograd | megtartjuk angolul |
+| automatic differentiation | automatikus differenciálás | |
 | average pooling | átlagpooling | |
+| backpropagation | visszaterjesztés | nem: *backpropagation* prózában |
+| batch | batch | megtartjuk angolul |
+| batch normalization | batchnormalizáció | nem: *batch normalizáció* (különírva) |
+| batch size | batch méret | |
+| bias (linear models) | eltolás | nem: *torzítás* ebben a kontextusban |
+| bias (statistical) | torzítás | nem: *eltolás* ebben a kontextusban |
+| bounding box | befoglaló téglalap | elfogadott rövidítés: *bbox* |
+| broadcasting | kiterjesztés | zárójelben: *(Broadcasting)* az első előfordulásnál |
 | causal mask | oksági maszk | |
+| channel | csatorna | CNN-ek kontextusában |
+| checkpoint | checkpoint | megtartjuk angolul |
+| checkpointing | checkpointelés | |
+| classifier | osztályozó | |
 | compatibility function | illeszkedési függvény | nem: *kompatibilitási függvény* |
+| computational graph | számítási gráf | |
+| concatenation | összefűzés | |
+| confidence interval | konfidenciaintervallum | |
+| convolutional layer | konvolúciós réteg | |
+| convolutional neural network (CNN) | konvolúciós neurális hálózat | |
+| covariance | kovariancia | |
 | cross-attention | keresztfigyelem | |
+| cross-correlation | keresztkorreláció | |
+| cross-entropy | keresztentrópia | |
+| cumulative distribution function | eloszlásfüggvény | |
+| dataset | adathalmaz | |
+| decoder | dekódoló | |
+| deep learning | mélytanulás / mélytanulási | |
+| design matrix | tervmátrix | |
+| deserialization | deszerializálás | |
+| detach | leválaszt / leválasztás | |
+| determinant | determináns | |
+| dimension | dimenzió | egy tengely mérete |
+| dimensionality | dimenziószám | nem: *dimenzió* ebben a kontextusban |
 | dot product | skaláris szorzat | prózában; kódban: *dot product* megtartható |
 | dot-product attention | skalárisszorzat-alapú figyelem | |
+| downstream task | célfeladat | |
+| dropout | dropout | megtartjuk angolul |
+| eigendecomposition | sajátérték-felbontás | |
+| eigenvalue | sajátérték | |
+| eigenvector | sajátvektor | |
+| embedding | beágyazás | |
+| embedding dimension | beágyazási dimenzió | |
+| empirical error | empirikus hiba | |
+| encoder | kódoló | |
+| entropy | entrópia | |
+| epoch | epoch | megtartjuk angolul |
+| estimator | becslő | |
+| expectation | várható érték | |
+| extension | bővítés | nem: *kiterjesztés* (azt a *broadcasting* foglalja) |
+| feature | jellemző | |
+| feature map | jellemzőtérkép | |
+| fine-tuning | finomhangolás | |
+| flatten | kiterít | |
+| fork | fork | megtartjuk angolul; első előfordulás: *fork (elágaztatás)* |
+| forward pass | előremenet | egyetlen előre irányú számítási lépés |
+| forward propagation | előreterjesztés | nem: *előre terjedés*, nem: *előre-terjedés* |
+| forward-mode differentiation | előre irányú differenciálás | |
+| framework | keretrendszer | |
+| fully connected layer | teljesen összekötött réteg | nem: *teljes összeköttetésű réteg* |
+| generalization | általánosítás | |
+| generative adversarial network (GAN) | generatív versengő hálózat | |
+| gradient | gradiens | |
+| gradient buffer | gradienspuffer | |
+| gradient clipping | gradienslevágás | |
+| gradient descent | gradienscsökkenés | nem: *gradiens ereszkedés*, nem: *gradiens descent* |
+| gradient field | gradienstér | |
+| gradient vector | gradiensvektor | |
+| Hessian / Hessian matrix | Hesse-mátrix | |
+| hidden layer | rejtett réteg | |
+| hidden state | rejtett állapot | |
+| hidden unit | rejtett egység | |
+| holdout set | holdout halmaz | |
+| hyperbolic tangent (tanh) | tanh (hiperbolikus tangens) függvény | |
+| inference | inferencia | |
+| inner product | belső szorzat | |
+| input | bemenet | |
+| intersection over union (IoU) | metszet per unió | elfogadott rövidítés: *IoU* |
+| Jacobian / Jacobian matrix | Jacobi-mátrix | |
+| kernel | kernel | megtartjuk angolul |
 | key | kulcs | figyelemmechanizmus kontextusában |
+| L2 norm | L2 norma | |
+| language modeling | nyelvmodellezés | |
+| layer normalization | rétegnormalizáció | |
+| learning rate | tanulási ráta | nem: *tanulási sebesség* |
+| learning rate decay | tanulási ráta csökkentése | |
+| learning rate scheduler | tanulásiráta-ütemező | |
+| likelihood | likelihood | megtartjuk angolul |
+| line search | vonalkeresés | |
+| log-likelihood | log-likelihood | megtartjuk angolul |
+| logits | logitérték | |
+| loss | veszteség | |
+| loss function | veszteségfüggvény | |
+| loss landscape | veszteségfelület | |
+| machine learning | gépi tanulás | |
 | masked self-attention | maszkolt önfigyelem | |
+| matrix | mátrix | |
+| maximum likelihood estimate | maximum likelihood becslés | nem: *maximális valószínűség*; rövidítés: MLE |
+| mini-batch | mini-batch | megtartjuk angolul; nem: *minibatch* (egybe) |
+| model | modell | |
 | multi-head attention | többfejű figyelem | |
+| multilayer perceptron (MLP) | többrétegű perceptron | rövidítés: MLP |
+| negative log-likelihood | negatív log-likelihood | |
+| neurons firing | kisül | nem: *tüzel* |
+| non-informative prior | nem informatív prior | |
+| non-maximum suppression (NMS) | nemmaximális elnyomás | elfogadott rövidítés: *NMS* |
+| norm | norma | |
+| normalization | normalizáció | |
+| notebook | notebook | megtartjuk angolul |
+| object detection | objektumdetektálás | nem: *objektumfelismerés* |
+| optimizer | optimalizáló | |
+| outer product | külső szorzat | |
+| output | kimenet | |
+| overfitting | túlillesztés | |
+| padding | párnázás | konvolúciós hálózatok kontextusában |
+| partial derivative | parciális derivált | |
+| patch | patch | megtartjuk angolul (ViT-kontextusban) |
+| pooling | pooling | megtartjuk angolul mélytanulási kontextusban |
+| population | populáció | következetesen; alternatíva: *alapsokaság* |
+| population error | populációs hiba | |
 | positional encoding | pozicionális kódolás | |
+| preconditioning | előkondicionálás | |
+| pretraining | előtanítás | |
+| prior | prior | megtartjuk angolul |
+| probability density function | valószínűségi sűrűségfüggvény | |
+| probability distribution | valószínűségi eloszlás | |
+| probability mass function | valószínűségi tömegfüggvény | |
+| pull request | pull request | megtartjuk angolul |
 | query | lekérdezés | figyelemmechanizmus kontextusában |
+| random variable | valószínűségi változó | |
+| rank (matrix) | rang | |
+| receptive field | receptív mező | |
+| recurrent neural network (RNN) | rekurrens neurális hálózat | |
+| rectified linear unit (ReLU) | ReLU | megtartjuk angolul |
+| regularization | regularizáció | |
+| repository | tároló | nem: *kódtár* Git/GitHub kontextusban |
+| residual connection | maradékkapcsolat | |
+| reverse-mode differentiation | visszafelé irányú differenciálás | |
+| sample | minta | |
+| scalar | skalár (fn.) / skaláris (mn.) | főnévként *skalár*, melléknévként *skaláris* |
 | scaled dot-product attention | skálázott skalárisszorzat-alapú figyelem | |
 | self-attention | önfigyelem | |
 | sequence length | sorozathossz | |
-| Transformer | Transformer | megtartjuk angolul; nem: *Transzformer* |
-| value | érték | figyelemmechanizmus kontextusában |
-| vision Transformer | vision Transformer | |
-
----
-
-## 7. Természetes nyelvfeldolgozás (NLP)
-
-| Angol | Magyar | Megjegyzés |
-|-------|--------|------------|
-| downstream task | célfeladat | |
-| embedding dimension | beágyazási dimenzió | |
-| language modeling | nyelvmodellezés | |
+| serialization | szerializálás | |
+| sigmoid function | sigmoid függvény | |
+| skip connection | áthidaló kapcsolat | |
+| squashing function | értékkészletet szűkítő függvény | |
+| standard deviation | szórás | |
+| steepest descent direction | a legmeredekebb csökkenés iránya | negatív gradiens irányával azonos |
+| stochastic gradient descent (SGD) | sztochasztikus gradienscsökkenés | nem: *sztochasztikus gradiens descent* |
+| stride | lépésköz | konvolúciós hálózatok kontextusában |
 | subword | részszó | |
+| tensor | tenzor | |
+| tensor shape | tenzor alakja | |
+| test set | teszthalmaz | nem: *tesztkészlet* |
+| time step | időlépés | szekvenciális modellek kontextusában |
 | token | token | megtartjuk angolul |
 | tokenization | tokenizálás | |
+| trace (matrix) | nyom | nem: *trace* prózában |
+| training | tanítás | |
+| training set | tanítóhalmaz | nem: *tanítókészlet* |
+| Transformer | Transformer | megtartjuk angolul; nem: *Transzformer* |
+| underfitting | alulillesztés | |
+| validation set | validációs halmaz | nem: *érvényesítési halmaz* |
+| value | érték | figyelemmechanizmus kontextusában |
+| variance | variancia | |
+| vector | vektor | |
+| vision Transformer | vision Transformer | |
 | vocabulary | szókészlet | nem: *szókincskészlet* |
-
----
-
-## 8. Számítógépes látás
-
-| Angol | Magyar | Megjegyzés |
-|-------|--------|------------|
-| anchor box | horgonytéglalap | |
-| bounding box | befoglaló téglalap | elfogadott rövidítés: *bbox* |
-| intersection over union (IoU) | metszet per unió | elfogadott rövidítés: *IoU* |
-| non-maximum suppression (NMS) | nemmaximális elnyomás | elfogadott rövidítés: *NMS* |
-| object detection | objektumdetektálás | nem: *objektumfelismerés* |
-
----
-
-## 9. Szoftver és mérnöki szöveg
-
-| Angol | Magyar | Megjegyzés |
-|-------|--------|------------|
-| API | API | megtartjuk angolul |
-| checkpoint | checkpoint | megtartjuk angolul |
-| checkpointing | checkpointelés | |
-| deserialization | deszerializálás | |
-| fork | fork | megtartjuk angolul; első előfordulás: *fork (elágaztatás)* |
-| framework | keretrendszer | |
-| generative adversarial network (GAN) | generatív versengő hálózat | |
-| notebook | notebook | megtartjuk angolul |
-| patch | patch | megtartjuk angolul (ViT-kontextusban) |
-| pull request | pull request | megtartjuk angolul |
-| repository | tároló | nem: *kódtár* Git/GitHub kontextusban |
-| serialization | szerializálás | |
+| weight decay | súlycsökkentés | |
