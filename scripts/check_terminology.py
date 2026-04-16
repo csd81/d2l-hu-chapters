@@ -34,12 +34,21 @@ DENYLIST: list[tuple[str, str, int]] = [
     (r"tanulási sebesség",               "tanulási ráta",                       re.I),
     (r"learning rate",                   "tanulási ráta",                       re.I),
     (r"batch size",                      "batch méret",                         re.I),
+    (r"mély tanulási",                   "mélytanulási",                        re.I),
+    (r"deep learning-ben",               "mélytanulásban",                      re.I),
+    (r"deep learningben",                "mélytanulásban",                      re.I),
+    (r"deep learningre",                 "mélytanulásra",                       re.I),
+    (r"deep learninggel",                "mélytanulással",                      re.I),
     # Attention / Transformer
     (r"figyelem mechanizmus",            "figyelemmechanizmus",                 re.I),
     (r"figyelmi mechanizmus",            "figyelemmechanizmus",                 re.I),
     (r"Transzformer",                    "Transformer",                         0),
     (r"enkóder",                         "kódoló",                              re.I),
     (r"dekóder",                         "dekódoló",                            re.I),
+    # Dot product (prose)
+    (r"dot product",                     "skaláris szorzat",                    re.I),
+    # Forward pass wording slips
+    (r"előre irányítása",                "előreterjesztése",                    re.I),
     # Datasets
     (r"tanítási halmaz",                 "tanítóhalmaz",                        re.I),
     (r"tanítási adathalmaz",             "tanítóhalmaz",                        re.I),
@@ -56,6 +65,7 @@ DENYLIST: list[tuple[str, str, int]] = [
     (r"rétegnormalizálás",               "rétegnormalizáció",                   re.I),
     (r"batch normalizálás",              "batchnormalizáció",                   re.I),
     (r"batch normalizáció",              "batchnormalizáció",                   re.I),
+    (r"batchnormalizációsal",            "batchnormalizációval",                re.I),
     (r"batch norm\b",                    "batchnormalizáció",                   re.I),
     (r"\bbackpropagation\b",             "visszaterjesztés",                    re.I),
     (r"visszafelé irányú terjesztés",    "visszaterjesztés",                    re.I),
@@ -65,12 +75,23 @@ DENYLIST: list[tuple[str, str, int]] = [
     (r"előre irányú folyamat",           "előreterjesztés",                     re.I),
     (r"forward propagáció",              "előreterjesztés",                     re.I),
     (r"előrepasszolás",                  "előreterjesztés",                     re.I),
+    (r"előreterjesztésa",                "előreterjesztése",                    re.I),
     (r"előre irányú menet",              "előremenet",                          re.I),
     (r"forward propagation",             "előreterjesztés",                     re.I),
+    (r"visszaterjesztés-höz",            "visszaterjesztéshez",                 re.I),
+    (r"kódoló–dekódolóben",              "kódoló–dekódolóban",                  re.I),
+    (r"dekódolóben",                     "dekódolóban",                         re.I),
     (r"objektumfelismerés",              "objektumdetektálás",                  re.I),
     # Positional encoding
     (r"pozicionális kódolás",            "pozíciókódolás",                      re.I),
     (r"pozícióenkódolás",                "pozíciókódolás",                      re.I),
+    # Deep learning (split / English forms)
+    (r"mély tanulási",                   "mélytanulási",                        re.I),
+    (r"mély tanulás",                    "mélytanulás",                         re.I),
+    (r"deep learning",                   "mélytanulás",                         re.I),
+    # Residual connection
+    (r"maradék összeköttetés",           "maradékkapcsolat",                    re.I),
+    (r"maradékösszeköttetés",            "maradékkapcsolat",                    re.I),
 ]
 
 # Patterns that are always OK regardless of context (suppress false positives)
