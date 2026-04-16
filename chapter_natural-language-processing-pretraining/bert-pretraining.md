@@ -21,7 +21,7 @@ from torch import nn
 ```
 
 Először betöltjük a WikiText-2 adathalmazt a maszkolt nyelvi modellezés és a következő mondat előrejelzése
-előtanítási példáinak minibatch-jeként.
+előtanítási példáinak mini-batch-jeként.
 A batch mérete 512, a BERT bemeneti szekvencia maximális hossza 64.
 Megjegyezzük, hogy az eredeti BERT modellben a maximális hossz 512.
 

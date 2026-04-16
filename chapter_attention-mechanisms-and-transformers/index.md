@@ -11,7 +11,7 @@ szinte alig változtak elődjeikhez képest
 annak ellenére, hogy közel 30 év telt el.
 Bár számos módszertani újítás
 bekerült a legtöbb szakember eszköztárába – mint a ReLU
-aktiváció, a maradék rétegek, a batch normalizáció, a dropout
+aktiváció, a maradék rétegek, a batchnormalizáció, a dropout
 és az adaptív tanulási ráta ütemezések –, az alapul szolgáló
 architektúrák egyértelműen felismerhetőek voltak
 mint klasszikus ötletek felskálázott megvalósításai.

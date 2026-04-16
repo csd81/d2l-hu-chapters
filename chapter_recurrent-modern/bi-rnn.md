@@ -46,7 +46,7 @@ egyszerűen összefűzzük a két alapul szolgáló egyirányú RNN-réteg megfe
 
 
 Formálisan bármely $t$ időlépésnél
-egy $\mathbf{X}_t \in \mathbb{R}^{n \times d}$ minibatch bemenetet vizsgálunk
+egy $\mathbf{X}_t \in \mathbb{R}^{n \times d}$ mini-batch bemenetet vizsgálunk
 (példák száma $=n$; az egyes példákban lévő bemenetek száma $=d$),
 és legyen a rejtett réteg aktivációs függvénye $\phi$.
 A kétirányú architektúrában
@@ -63,7 +63,7 @@ $$
 \end{aligned}
 $$
 
-ahol a $\mathbf{W}_{\textrm{xh}}^{(f)} \in \mathbb{R}^{d \times h}, \mathbf{W}_{\textrm{hh}}^{(f)} \in \mathbb{R}^{h \times h}, \mathbf{W}_{\textrm{xh}}^{(b)} \in \mathbb{R}^{d \times h}, \textrm{ és } \mathbf{W}_{\textrm{hh}}^{(b)} \in \mathbb{R}^{h \times h}$ súlyok, és a $\mathbf{b}_\textrm{h}^{(f)} \in \mathbb{R}^{1 \times h}$ és $\mathbf{b}_\textrm{h}^{(b)} \in \mathbb{R}^{1 \times h}$ torzítások mind a modell paraméterei.
+ahol a $\mathbf{W}_{\textrm{xh}}^{(f)} \in \mathbb{R}^{d \times h}, \mathbf{W}_{\textrm{hh}}^{(f)} \in \mathbb{R}^{h \times h}, \mathbf{W}_{\textrm{xh}}^{(b)} \in \mathbb{R}^{d \times h}, \textrm{ és } \mathbf{W}_{\textrm{hh}}^{(b)} \in \mathbb{R}^{h \times h}$ súlyok, és a $\mathbf{b}_\textrm{h}^{(f)} \in \mathbb{R}^{1 \times h}$ és $\mathbf{b}_\textrm{h}^{(b)} \in \mathbb{R}^{1 \times h}$ eltolások mind a modell paraméterei.
 
 Ezután összefűzzük az előre és hátra irányú rejtett állapotokat:
 $\overrightarrow{\mathbf{H}}_t$ és $\overleftarrow{\mathbf{H}}_t$
@@ -76,7 +76,7 @@ $\mathbf{O}_t \in \mathbb{R}^{n \times q}$ (kimenetek száma $=q$):
 $$\mathbf{O}_t = \mathbf{H}_t \mathbf{W}_{\textrm{hq}} + \mathbf{b}_\textrm{q}.$$
 
 Itt a $\mathbf{W}_{\textrm{hq}} \in \mathbb{R}^{2h \times q}$ súlymátrix
-és a $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ torzítás
+és a $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ eltolás
 a kimeneti réteg modell paraméterei.
 Bár technikailag a két iránynak különböző számú rejtett egysége lehet,
 ezt a tervezési döntést ritkán hozzák meg a gyakorlatban.

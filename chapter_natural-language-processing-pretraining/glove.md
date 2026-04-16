@@ -128,7 +128,7 @@ a *GloVe* modell három változtatást vezet be
 a négyzetesen veszteségű skip-gram modellhez képest :cite:`Pennington.Socher.Manning.2014`:
 
 1. A nem valószínűségi eloszlásként kezelt $p'_{ij}=x_{ij}$ és $q'_{ij}=\exp(\mathbf{u}_j^\top \mathbf{v}_i)$ változókat mindkét oldalon logaritmálják, így a négyzetes veszteségtag $\left(\log\,p'_{ij} - \log\,q'_{ij}\right)^2 = \left(\mathbf{u}_j^\top \mathbf{v}_i - \log\,x_{ij}\right)^2$ lesz.
-2. Minden $w_i$ szóhoz két skaláris modellparamétert adnak: a középső szó $b_i$ és a kontextusszó $c_i$ torzítását.
+2. Minden $w_i$ szóhoz két skaláris modellparamétert adnak: a középső szó $b_i$ és a kontextusszó $c_i$ eltolását.
 3. Az egyes veszteségtagok súlyát a $h(x_{ij})$ súlyfüggvénnyel helyettesítik, ahol $h(x)$ a $[0, 1]$ intervallumon monoton növekvő.
 
 Mindezeket egybefoglalva, a GloVe tanítása az alábbi veszteségfüggvény minimalizálásából áll:
@@ -143,9 +143,9 @@ mivel $h(0)=0$,
 minden $x_{ij}=0$-ra vonatkozó négyzetes veszteségtag elhagyható
 a számítási hatékonyság érdekében.
 Például
-minibatch sztochasztikus gradienscsökkenés alkalmazásakor
+mini-batch sztochasztikus gradienscsökkenés alkalmazásakor
 minden iterációban
-véletlenszerűen mintavételezünk egy minibatch *nullától különböző* $x_{ij}$-t,
+véletlenszerűen mintavételezünk egy mini-batch *nullától különböző* $x_{ij}$-t,
 hogy kiszámítsuk a gradienseket
 és frissítsük a modell paramétereit.
 Fontos megjegyezni, hogy ezek a nemnulla $x_{ij}$ értékek
@@ -235,7 +235,7 @@ $\exp\left(\mathbf{u}_j^\top {\mathbf{v}}_i\right) \approx \alpha p_{ij}$
 közelítést,
 ahol $\alpha$ egy konstans.
 Mivel $p_{ij}=x_{ij}/x_i$, mindkét oldalt logaritmálva kapjuk: $\mathbf{u}_j^\top {\mathbf{v}}_i \approx \log\,\alpha + \log\,x_{ij} - \log\,x_i$.
-A $- \log\, \alpha + \log\, x_i$ tagok illesztésére további torzítási tagokat használhatunk, mint a középső szó $b_i$ és a kontextusszó $c_j$ torzítása:
+A $- \log\, \alpha + \log\, x_i$ tagok illesztésére további eltolási tagokat használhatunk, mint a középső szó $b_i$ és a kontextusszó $c_j$ eltolása:
 
 $$\mathbf{u}_j^\top \mathbf{v}_i + b_i + c_j \approx \log\, x_{ij}.$$
 :eqlabel:`eq_glove-square`
@@ -257,7 +257,7 @@ megkapjuk a :eqref:`eq_glove-loss`-beli GloVe veszteségfüggvényt.
 ## Feladatok
 
 1. Ha $w_i$ és $w_j$ szavak ugyanabban a kontextusablakban fordulnak elő, hogyan lehetne felhasználni a szövegsorozatban elfoglalt távolságukat a $p_{ij}$ feltételes valószínűség kiszámításának módosítására? Útmutatás: lásd a GloVe-cikk 4.2. szakaszát :cite:`Pennington.Socher.Manning.2014`.
-1. Bármely szóra: matematikailag ekvivalens-e a GloVe modellben a középső szó torzítása és a kontextusszó torzítása? Miért?
+1. Bármely szóra: matematikailag ekvivalens-e a GloVe modellben a középső szó eltolása és a kontextusszó eltolása? Miért?
 
 
 [Discussions](https://discuss.d2l.ai/t/385)

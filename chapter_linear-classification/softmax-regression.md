@@ -88,7 +88,7 @@ de a szimmetria kedvéért egy kissé redundáns paraméterezetést alkalmazunk.
 Minden kimenet saját affin függvénynek felel meg.
 A mi esetünkben, ahol 4 jellemző és 3 kimeneti kategória van,
 12 skalárra van szükségünk a súlyok ábrázolásához ($w$ alsó indexekkel)
-és 3 skalárra a torzítások megadásához ($b$ alsó indexekkel):
+és 3 skalárra az eltolások megadásához ($b$ alsó indexekkel):
 
 $$
 \begin{aligned}
@@ -110,7 +110,7 @@ Tömörebb jelöléssel vektorokat és mátrixokat használunk:
 $\mathbf{o} = \mathbf{W} \mathbf{x} + \mathbf{b}$
 sokkal praktikusabb matematikailag és kódban is.
 Megjegyezzük, hogy az összes súlyt egy $3 \times 4$-es mátrixba gyűjtöttük,
-a torzítások pedig $\mathbf{b} \in \mathbb{R}^3$ vektorban szerepelnek.
+az eltolások pedig $\mathbf{b} \in \mathbb{R}^3$ vektorban szerepelnek.
 
 ### A Softmax
 :label:`subsec_softmax_operation`
@@ -176,15 +176,15 @@ ezt a nézőpontot alkalmazzák a mély tanulás problémáinak leírásában.
 ### Vektorizáció
 :label:`subsec_softmax_vectorization`
 
-A számítási hatékonyság javítása érdekében adatok minibatch-eket használva vektorizálunk.
-Tegyük fel, hogy adott egy $\mathbf{X} \in \mathbb{R}^{n \times d}$ minibatch,
+A számítási hatékonyság javítása érdekében adatok mini-batch-eket használva vektorizálunk.
+Tegyük fel, hogy adott egy $\mathbf{X} \in \mathbb{R}^{n \times d}$ mini-batch,
 amely $n$ példát tartalmaz, mindegyik $d$ dimenziós (azaz $d$ bemeneti jellemzőjű).
 Továbbá tegyük fel, hogy $q$ kimeneti kategóriánk van.
 Ekkor a súlyokra $\mathbf{W} \in \mathbb{R}^{d \times q}$
-és a torzításokra $\mathbf{b} \in \mathbb{R}^{1\times q}$ teljesül.
+és az eltolásokra $\mathbf{b} \in \mathbb{R}^{1\times q}$ teljesül.
 
 $$ \begin{aligned} \mathbf{O} &= \mathbf{X} \mathbf{W} + \mathbf{b}, \\ \hat{\mathbf{Y}} & = \mathrm{softmax}(\mathbf{O}). \end{aligned} $$
-:eqlabel:`eq_minibatch_softmax_reg`
+:eqlabel:`eq_mini-batch_softmax_reg`
 
 Ez az $\mathbf{X} \mathbf{W}$ mátrix-mátrix szorzatba tömöríti a domináns műveletet.
 Mivel $\mathbf{X}$ minden sora egy adatpéldányt képvisel,

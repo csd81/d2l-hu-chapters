@@ -11,7 +11,7 @@ a lineáris regresszió egy teljesen működő implementációján.
 Ebben a részben
 (**az egész módszert nulláról implementáljuk,
 beleértve (i) a modellt; (ii) a veszteségfüggvényt;
-(iii) egy minibatch sztochasztikus gradienscsökkenés optimalizálót;
+(iii) egy mini-batch sztochasztikus gradienscsökkenés optimalizálót;
 és (iv) a tanítási függvényt,
 amely összefűzi ezeket az összetevőket.**)
 Végül futtatjuk a szintetikus adatgenerátorunkat
@@ -64,13 +64,13 @@ import optax
 
 ## A modell definiálása
 
-[**Mielőtt minibatch SGD segítségével elkezdhetnénk optimalizálni a modell paramétereit**],
+[**Mielőtt mini-batch SGD segítségével elkezdhetnénk optimalizálni a modell paramétereit**],
 (**először szükségünk van néhány paraméterre.**)
 Az alábbiakban a súlyokat 0 várható értékű és 0.01 szórású normális eloszlásból
 vett véletlen számokkal inicializáljuk.
 A 0.01 mágikus szám a gyakorlatban általában jól működik,
 de a `sigma` argumentumon keresztül megadható más érték is.
-Ezenkívül a torzítást 0-ra állítjuk.
+Ezenkívül az eltolást 0-ra állítjuk.
 Vegyük észre, hogy az objektumorientált tervezés érdekében
 a kódot a `d2l.Module` alosztályának `__init__` metódusába adjuk hozzá (amelyet a :numref:`subsec_oo-design-models` részben mutattunk be).
 
@@ -141,7 +141,7 @@ Itt a :eqref:`eq_mse` négyzetesen összegzett veszteségfüggvényt használjuk
 Az implementációban az igazi értéket (`y`) a becsült érték alakjára (`y_hat`) kell transzformálni.
 A következő metódus által visszaadott eredmény
 szintén ugyanolyan alakú lesz, mint a `y_hat`.
-A minibatch összes példányára átlagolt veszteségértéket is visszaadjuk.
+A mini-batch összes példányára átlagolt veszteségértéket is visszaadjuk.
 
 ```{.python .input  n=9}
 %%tab pytorch, mxnet, tensorflow
@@ -166,11 +166,11 @@ Ahogyan a :numref:`sec_linear_regression` részben tárgyaltuk,
 a lineáris regressziónak zárt formájú megoldása van.
 Azonban itt az a célunk, hogy bemutassuk,
 hogyan tanítsunk általánosabb neurális hálózatokat,
-és ehhez szükséges, hogy megismerd a minibatch SGD-t.
+és ehhez szükséges, hogy megismerd a mini-batch SGD-t.
 Ezért ezt az alkalmat kihasználjuk
 az SGD első működő példájának bemutatására.
 Minden lépésben, az adathalmazunkból
-véletlenszerűen vett minibatch segítségével
+véletlenszerűen vett mini-batch segítségével
 becsüljük a veszteség gradiensét
 a paraméterekre vonatkozóan.
 Ezután frissítjük a paramétereket
@@ -178,11 +178,11 @@ abba az irányba, amely csökkentheti a veszteséget.
 
 A következő kód alkalmazza a frissítést,
 adott paraméterek és egy `lr` tanulási ráta esetén.
-Mivel a veszteségünket a minibatch átlagaként számítjuk,
+Mivel a veszteségünket a mini-batch átlagaként számítjuk,
 nem kell a tanulási rátát a kötegmérethez igazítani.
 A következő fejezetekben megvizsgáljuk,
 hogyan kell a tanulási rátát beállítani
-nagyon nagy minibatch-ek esetén,
+nagyon nagy mini-batch-ek esetén,
 ahogyan azok az elosztott, nagy léptékű tanítás során felmerülnek.
 Egyelőre figyelmen kívül hagyhatjuk ezt a függőséget.
 
@@ -304,7 +304,7 @@ az egész tanítási adathalmazon,
 minden példányon egyszer áthaladva
 (feltéve, hogy a példányok száma
 osztható a kötegmérettel).
-Minden *iterációban* megragadunk egy minibatch tanítási példányt,
+Minden *iterációban* megragadunk egy mini-batch tanítási példányt,
 és kiszámítjuk a veszteségét a modell `training_step` metódusán keresztül.
 Ezután kiszámítjuk a gradienseket minden paraméterrel szemben.
 Végül meghívjuk az optimalizálási algoritmust
@@ -405,7 +405,7 @@ def fit_epoch(self):
 def fit_epoch(self):
     self.model.training = True
     if self.state.batch_stats:
-        # A módosítható állapotokat később fogjuk használni (pl. batch normalizációhoz)
+        # A módosítható állapotokat később fogjuk használni (pl. batchnormalizációhoz)
         for batch in self.train_dataloader:
             (_, mutated_vars), grads = self.model.training_step(self.state.params,
                                                            self.prepare_batch(batch),

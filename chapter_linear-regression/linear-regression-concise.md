@@ -193,7 +193,7 @@ A sebesség és kényelem érdekében nem implementáljuk a sajátunkat,
 hanem a beépített `loss.L2Loss`-t választjuk.
 Mivel az általa visszaadott `loss`
 minden példány négyzetes hibája,
-a `mean`-t használjuk a veszteség átlagolásához a minibatch felett.
+a `mean`-t használjuk a veszteség átlagolásához a mini-batch felett.
 :end_tab:
 
 :begin_tab:`pytorch`
@@ -233,7 +233,7 @@ def loss(self, params, X, y, state):
 ## Az optimalizálási algoritmus definiálása
 
 :begin_tab:`mxnet`
-A minibatch SGD egy standard eszköz
+A mini-batch SGD egy standard eszköz
 a neurális hálózatok optimalizálásához,
 így a Gluon az algoritmus számos variációja mellett
 a `Trainer` osztályán keresztül támogatja.
@@ -251,7 +251,7 @@ az általunk kívánt optimalizálási algoritmust (`sgd`),
 :end_tab:
 
 :begin_tab:`pytorch`
-A minibatch SGD egy standard eszköz
+A mini-batch SGD egy standard eszköz
 a neurális hálózatok optimalizálásához,
 így a PyTorch az `optim` modulban az algoritmus számos variációja mellett támogatja azt.
 Amikor (**példányosítunk egy `SGD` példányt,**)
@@ -262,7 +262,7 @@ amelyet az optimalizálási algoritmusunk igényel.
 :end_tab:
 
 :begin_tab:`tensorflow`
-A minibatch SGD egy standard eszköz
+A mini-batch SGD egy standard eszköz
 a neurális hálózatok optimalizálásához,
 így a Keras az `optimizers` modulban az algoritmus számos variációja mellett támogatja azt.
 :end_tab:
@@ -288,7 +288,7 @@ Talán észrevetted, hogy a modellünk kifejezése
 egy deep learning keretrendszer magas szintű API-jai segítségével
 kevesebb kódsort igényel.
 Nem kellett egyedileg lefoglalni a paramétereket,
-definiálni a veszteségfüggvényt, vagy implementálni a minibatch SGD-t.
+definiálni a veszteségfüggvényt, vagy implementálni a mini-batch SGD-t.
 Amint sokkal összetettebb modellekkel kezdünk dolgozni,
 a magas szintű API előnyei jelentősen növekednek.
 
@@ -314,7 +314,7 @@ modell paramétereket
 és a tényleges paramétereket,**]
 amelyek az adathalmazunkat generálták.
 A paraméterek eléréséhez
-hozzáférünk a szükséges réteg súlyaihoz és torzításához.
+hozzáférünk a szükséges réteg súlyaihoz és eltolásához.
 Ahogy a nulláról való implementációban is láttuk,
 vegyük észre, hogy a becsült paramétereink
 közel vannak a valódi megfelelőikhez.
@@ -407,8 +407,8 @@ A hálózatok dimenzionalitása és tárhelye automatikusan következtethető ki
 
 ## Feladatok
 
-1. Hogyan kellene megváltoztatnod a tanulási rátát, ha a minibatch feletti összesített veszteséget
-   a minibatch veszteségének átlagával helyettesítenéd?
+1. Hogyan kellene megváltoztatnod a tanulási rátát, ha a mini-batch feletti összesített veszteséget
+   a mini-batch veszteségének átlagával helyettesítenéd?
 1. Tekintsd át a keretrendszer dokumentációját, hogy melyik veszteségfüggvények állnak rendelkezésre. Különösen
    cseréld le a négyzethibát Huber robusztus veszteségfüggvényére. Azaz, használd a veszteségfüggvényt:
    $$l(y,y') = \begin{cases}|y-y'| -\frac{\sigma}{2} & \textrm{ ha } |y-y'| > \sigma \\ \frac{1}{2 \sigma} (y-y')^2 & \textrm{ egyébként}\end{cases}$$

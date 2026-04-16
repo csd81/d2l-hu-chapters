@@ -11,7 +11,7 @@ Ebben a szakaszban
 az adathalmazzal kezdjük,
 amelyet a szóbeágyazási modell előtanításához használunk:
 az adatok eredeti formátumát
-minibatch-ekké alakítjuk,
+mini-batch-ekké alakítjuk,
 amelyeken tanítás közben iterálni lehet.
 
 ```{.python .input}
@@ -306,17 +306,17 @@ all_negatives = get_negatives(all_contexts, vocab, counter, 5)
 ```
 
 ## Tanítási Példák Betöltése Minibatch-ekben
-:label:`subsec_word2vec-minibatch-loading`
+:label:`subsec_word2vec-mini-batch-loading`
 
 Miután
 az összes középső szót
 a kontextusszavaikkal és a mintavételezett zajszavaikkal együtt kinyertük,
-ezeket minibatch példákká alakítjuk,
+ezeket mini-batch példákká alakítjuk,
 amelyek tanítás közben iteratívan tölthetők be.
 
 
 
-Egy minibatch-ben
+Egy mini-batch-ben
 az $i$-ik példa egy középső szót,
 annak $n_i$ kontextusszavát és $m_i$ zajszavát tartalmazza.
 A változó kontextusablak-méretek miatt
@@ -348,7 +348,7 @@ egyenlő a batch mérettel,
 ahol minden elem egy példa,
 amely a `center` középső szóból, annak `context` kontextusszavaiból és `negative` zajszavaiból áll.
 Ez a függvény visszaad
-egy minibatch-et, amely betölthető tanítás közbeni számításokhoz,
+egy mini-batch-et, amely betölthető tanítás közbeni számításokhoz,
 beleértve a maszk változót.
 
 ```{.python .input}
@@ -368,7 +368,7 @@ def batchify(data):
         contexts_negatives), d2l.tensor(masks), d2l.tensor(labels))
 ```
 
-Teszteljük ezt a függvényt két példából álló minibatch-csel.
+Teszteljük ezt a függvényt két példából álló mini-batch-csel.
 
 ```{.python .input}
 #@tab all
@@ -443,7 +443,7 @@ def load_data_ptb(batch_size, max_window_size, num_noise_words):
     return data_iter, vocab
 ```
 
-Nyomtassuk ki az adatiterator első minibatch-jét.
+Nyomtassuk ki az adatiterator első mini-batch-jét.
 
 ```{.python .input}
 #@tab all
@@ -457,7 +457,7 @@ for batch in data_iter:
 ## Összefoglalás
 
 * A magas frekvenciájú szavak nem feltétlenül hasznosak a tanításban. Alulmintavételezhetjük őket a tanítás gyorsítása érdekében.
-* A számítási hatékonyság érdekében a példákat minibatch-ekben töltjük be. Más változókat definiálhatunk a tömítések és nem tömítések, valamint a pozitív és negatív példák megkülönböztetéséhez.
+* A számítási hatékonyság érdekében a példákat mini-batch-ekben töltjük be. Más változókat definiálhatunk a tömítések és nem tömítések, valamint a pozitív és negatív példák megkülönböztetéséhez.
 
 
 

@@ -299,7 +299,7 @@ a $y$ címke becslésére.
 Ez csupán egy lineáris regressziós probléma,
 ahol a jellemzőinket az $x$ hatványai adják,
 a modell súlyait $w_i$ adja,
-és a torzítást $w_0$ adja, mivel $x^0 = 1$ minden $x$-re.
+és az eltolást $w_0$ adja, mivel $x^0 = 1$ minden $x$-re.
 Mivel ez csak egy lineáris regressziós probléma,
 a négyzethibát használhatjuk veszteségfüggvényként.
 

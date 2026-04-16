@@ -69,12 +69,12 @@ Kiderül, hogy az összes népszerű figyelemmechanizmus a softmax-ot használja
 
 ## Segédfüggvények
 
-Néhány függvényre van szükségünk ahhoz, hogy a figyelemmechanizmust hatékonyan tudjuk alkalmazni. Ez magában foglalja a változó hosszúságú karakterláncok kezelésére szolgáló eszközöket (amelyek természetes nyelvfeldolgozásban gyakoriak) és a minibatch-eken való hatékony kiértékelés eszközeit (batch mátrixszorzás).
+Néhány függvényre van szükségünk ahhoz, hogy a figyelemmechanizmust hatékonyan tudjuk alkalmazni. Ez magában foglalja a változó hosszúságú karakterláncok kezelésére szolgáló eszközöket (amelyek természetes nyelvfeldolgozásban gyakoriak) és a mini-batch-eken való hatékony kiértékelés eszközeit (batch mátrixszorzás).
 
 
 ### **Maszkolású Softmax-Művelet**
 
-A figyelemmechanizmus egyik legelterjedtebb alkalmazása a szekvenciamodellek. Ezért képesnek kell lennünk különböző hosszúságú szekvenciák kezelésére. Egyes esetekben ilyen szekvenciák ugyanabba a minibatch-be kerülhetnek, ami szükségessé teszi a rövidebb szekvenciák kitöltését üres tokenekkel (lásd például :numref:`sec_machine_translation`). Ezek a speciális tokenek nem hordoznak jelentést. Tételezzük fel például, hogy a következő három mondatunk van:
+A figyelemmechanizmus egyik legelterjedtebb alkalmazása a szekvenciamodellek. Ezért képesnek kell lennünk különböző hosszúságú szekvenciák kezelésére. Egyes esetekben ilyen szekvenciák ugyanabba a mini-batch-be kerülhetnek, ami szükségessé teszi a rövidebb szekvenciák kitöltését üres tokenekkel (lásd például :numref:`sec_machine_translation`). Ezek a speciális tokenek nem hordoznak jelentést. Tételezzük fel például, hogy a következő három mondatunk van:
 
 ```
 Dive  into  Deep    Learning 
@@ -190,7 +190,7 @@ def masked_softmax(X, valid_lens):  #@save
 ```
 
 A **függvény működésének szemléltetéséhez**
-tekintsünk egy $2 \times 4$ méretű két példányból álló minibatch-et,
+tekintsünk egy $2 \times 4$ méretű két példányból álló mini-batch-et,
 ahol az érvényes hosszaik rendre $2$ és $3$.
 A maszkolású softmax-művelet eredményeként
 az egyes vektorpárokra vonatkozó érvényes hosszakon túli értékek mind nulla maszkot kapnak.
@@ -242,7 +242,7 @@ masked_softmax(jax.random.uniform(d2l.get_key(), (2, 2, 4)),
 ### Batch mátrixszorzás
 :label:`subsec_batch_dot`
 
-Egy másik általánosan használt művelet a mátrixok batch-einek egymással való szorzása. Ez akkor hasznos, ha lekérdezések, kulcsok és értékek minibatch-jei vannak. Pontosabban, tételezzük fel, hogy
+Egy másik általánosan használt művelet a mátrixok batch-einek egymással való szorzása. Ez akkor hasznos, ha lekérdezések, kulcsok és értékek mini-batch-jei vannak. Pontosabban, tételezzük fel, hogy
 
 $$\mathbf{Q} = [\mathbf{Q}_1, \mathbf{Q}_2, \ldots, \mathbf{Q}_n]  \in \mathbb{R}^{n \times a \times b}, \\
     \mathbf{K} = [\mathbf{K}_1, \mathbf{K}_2, \ldots, \mathbf{K}_n]  \in \mathbb{R}^{n \times b \times c}.
@@ -288,7 +288,7 @@ d2l.check_shape(jax.lax.batch_matmul(Q, K), (2, 3, 6))
 Térjünk vissza a :eqref:`eq_dot_product_attention`-ban bevezetett dot product figyelemhez.
 Általánosságban megköveteli, hogy a lekérdezés és a kulcs azonos vektorhosszúsággal rendelkezzen, mondjuk $d$, bár ezt könnyen kezelhetjük azzal, hogy $\mathbf{q}^\top \mathbf{k}$-t helyettesítjük $\mathbf{q}^\top \mathbf{M} \mathbf{k}$-val, ahol $\mathbf{M}$ egy megfelelően választott mátrix a két tér közötti fordításhoz. Egyelőre tételezzük fel, hogy a dimenziók egyeznek.
 
-A gyakorlatban hatékonysági szempontból gyakran minibatch-ekre gondolunk,
+A gyakorlatban hatékonysági szempontból gyakran mini-batch-ekre gondolunk,
 például az $n$ lekérdezés és $m$ kulcs-érték pár figyelmének kiszámítása,
 ahol a lekérdezések és kulcsok hossza $d$,
 és az értékek hossza $v$. A $\mathbf Q\in\mathbb R^{n\times d}$ lekérdezések,
@@ -299,7 +299,7 @@ $\mathbf K\in\mathbb R^{m\times d}$ kulcsok
 $$ \mathrm{softmax}\left(\frac{\mathbf Q \mathbf K^\top }{\sqrt{d}}\right) \mathbf V \in \mathbb{R}^{n\times v}.$$
 :eqlabel:`eq_softmax_QK_V`
 
-Vegyük észre, hogy amikor ezt minibatch-re alkalmazzuk, szükségünk van a :eqref:`eq_batch-matrix-mul`-ban bevezetett batch mátrixszorzásra. A skálázott dot product figyelem következő implementációjában dropout-ot használunk a modell regularizációjához.
+Vegyük észre, hogy amikor ezt mini-batch-re alkalmazzuk, szükségünk van a :eqref:`eq_batch-matrix-mul`-ban bevezetett batch mátrixszorzásra. A skálázott dot product figyelem következő implementációjában dropout-ot használunk a modell regularizációjához.
 
 ```{.python .input}
 %%tab mxnet
@@ -383,7 +383,7 @@ class DotProductAttention(nn.Module):  #@save
 ```
 
 A `DotProductAttention` osztály működésének **szemléltetéséhez**
-ugyanazokat a kulcsokat, értékeket és érvényes hosszakat használjuk az additív figyelemre vonatkozó korábbi játék-példából. Példánk céljaira feltételezzük, hogy a minibatch-méretünk $2$, összesen $10$ kulcsunk és értékünk van, és az értékek dimenziója $4$. Végül feltételezzük, hogy az érvényes hossz megfigyelésenként rendre $2$ és $6$. Ennek alapján a kimenet várhatóan egy $2 \times 1 \times 4$ alakú tenzor, azaz a minibatch minden példányára egy sor.
+ugyanazokat a kulcsokat, értékeket és érvényes hosszakat használjuk az additív figyelemre vonatkozó korábbi játék-példából. Példánk céljaira feltételezzük, hogy a mini-batch-méretünk $2$, összesen $10$ kulcsunk és értékünk van, és az értékek dimenziója $4$. Végül feltételezzük, hogy az érvényes hossz megfigyelésenként rendre $2$ és $6$. Ennek alapján a kimenet várhatóan egy $2 \times 1 \times 4$ alakú tenzor, azaz a mini-batch minden példányára egy sor.
 
 ```{.python .input}
 %%tab mxnet
@@ -464,7 +464,7 @@ ahol $\mathbf W_q\in\mathbb R^{h\times q}$, $\mathbf W_k\in\mathbb R^{h\times k}
 és $\mathbf w_v\in\mathbb R^{h}$ a tanítható paraméterek. Ezt a tagot aztán softmax-ba táplálják a nemnegatívás és a normalizáció biztosítása érdekében.
 A :eqref:`eq_additive-attn` egyenértelmű értelmezése az, hogy a lekérdezést és a kulcsot összefűzik,
 majd egy egyetlen rejtett réteget tartalmazó MLP-be táplálják.
-Az aktiválási függvényként $\tanh$-t használva és a torzítási tagokat kikapcsolva
+Az aktiválási függvényként $\tanh$-t használva és az eltolási tagokat kikapcsolva
 az additív figyelmet a következőképpen implementáljuk:
 
 ```{.python .input}
@@ -587,7 +587,7 @@ class AdditiveAttention(nn.Module):  #@save
         return dropout_layer(attention_weights)@values, attention_weights
 ```
 
-Nézzük meg, **hogyan működik az `AdditiveAttention`**. Játék-példánkban $(2, 1, 20)$, $(2, 10, 2)$ és $(2, 10, 4)$ méretű lekérdezéseket, kulcsokat és értékeket választunk. Ez megegyezik a `DotProductAttention`-höz választottakkal, kivéve, hogy a lekérdezések most $20$-dimenziósak. Hasonlóképpen, $(2, 6)$-ot választunk a minibatch szekvenciáinak érvényes hosszaként.
+Nézzük meg, **hogyan működik az `AdditiveAttention`**. Játék-példánkban $(2, 1, 20)$, $(2, 10, 2)$ és $(2, 10, 4)$ méretű lekérdezéseket, kulcsokat és értékeket választunk. Ez megegyezik a `DotProductAttention`-höz választottakkal, kivéve, hogy a lekérdezések most $20$-dimenziósak. Hasonlóképpen, $(2, 6)$-ot választunk a mini-batch szekvenciáinak érvényes hosszaként.
 
 ```{.python .input}
 %%tab mxnet

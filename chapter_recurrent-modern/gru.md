@@ -67,7 +67,7 @@ sigmoid aktivációs függvénnyel.
 :label:`fig_gru_1`
 
 Matematikailag, egy adott $t$ időlépésnél,
-tegyük fel, hogy a bemenet egy minibatch
+tegyük fel, hogy a bemenet egy mini-batch
 $\mathbf{X}_t \in \mathbb{R}^{n \times d}$
 (példák száma $=n$; bemenetek száma $=d$),
 az előző időlépés rejtett állapota pedig
@@ -86,7 +86,7 @@ $$
 ahol $\mathbf{W}_{\textrm{xr}}, \mathbf{W}_{\textrm{xz}} \in \mathbb{R}^{d \times h}$
 és $\mathbf{W}_{\textrm{hr}}, \mathbf{W}_{\textrm{hz}} \in \mathbb{R}^{h \times h}$
 súlyparaméterek, és $\mathbf{b}_\textrm{r}, \mathbf{b}_\textrm{z} \in \mathbb{R}^{1 \times h}$
-torzítási paraméterek.
+eltolási paraméterek.
 
 
 ## Jelölt Rejtett Állapot
@@ -104,7 +104,7 @@ $$\tilde{\mathbf{H}}_t = \tanh(\mathbf{X}_t \mathbf{W}_{\textrm{xh}} + \left(\ma
 ahol $\mathbf{W}_{\textrm{xh}} \in \mathbb{R}^{d \times h}$ és $\mathbf{W}_{\textrm{hh}} \in \mathbb{R}^{h \times h}$
 súlyparaméterek,
 $\mathbf{b}_\textrm{h} \in \mathbb{R}^{1 \times h}$
-a torzítás,
+az eltolás,
 és a $\odot$ szimbólum a Hadamard (elemenként vett) szorzat operátora.
 Ebben tanh aktivációs függvényt alkalmazunk.
 
@@ -164,9 +164,9 @@ A GRU modell jobb megértéséhez implementáljuk azt alapoktól.
 
 Az első lépés a modell paramétereinek inicializálása.
 A súlyokat Gauss-eloszlásból vesszük
-`sigma` szórással, és a torzítást 0-ra állítjuk.
+`sigma` szórással, és az eltolást 0-ra állítjuk.
 A `num_hiddens` hiperparaméter határozza meg a rejtett egységek számát.
-Inicializáljuk az összes súlyt és torzítást, amelyek
+Inicializáljuk az összes súlyt és eltolást, amelyek
 a frissítő kapuhoz, a visszaállító kapuhoz és a jelölt rejtett állapothoz kapcsolódnak.
 
 ```{.python .input}

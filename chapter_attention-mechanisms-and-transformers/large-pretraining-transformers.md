@@ -449,7 +449,7 @@ a nagyobb Parti képesebb nagy hűségű képgenerálásra és tartalomgazdag sz
 
 ## Gyakorlatok
 
-1. Lehetséges-e a T5 finomhangolása különböző feladatokból álló minibatch segítségével? Miért igen vagy miért nem? Mi a helyzet a GPT-2 esetében?
+1. Lehetséges-e a T5 finomhangolása különböző feladatokból álló mini-batch segítségével? Miért igen vagy miért nem? Mi a helyzet a GPT-2 esetében?
 1. Egy hatékony nyelvi modell adottságával milyen alkalmazásokra gondolhat?
 1. Tegyük fel, hogy megkérnek egy nyelvi modell finomhangolására szövegosztályozás elvégzéséhez további rétegek hozzáadásával. Hová adnád hozzá őket? Miért?
 1. Vegyük figyelembe a szekvencia-szekvencia problémákat (pl. gépi fordítás), ahol a bemeneti szekvencia mindig elérhető a célszekvencia előrejelzése során. Milyen korlátai lehetnek a csupán dekóderes Transformerekkel való modellezésnek? Miért?

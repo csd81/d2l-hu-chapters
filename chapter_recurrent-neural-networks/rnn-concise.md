@@ -61,7 +61,7 @@ Konkrétan, a rejtett állapot inicializálásához
 a `begin_state` tagmetódust hívjuk meg.
 Ez egy listát ad vissza, amely tartalmaz
 egy kezdeti rejtett állapotot
-a minibatch minden példájára,
+a mini-batch minden példájára,
 amelynek alakja
 (rejtett rétegek száma, batch méret, rejtett egységek száma).
 Néhány később bevezetett modellnél

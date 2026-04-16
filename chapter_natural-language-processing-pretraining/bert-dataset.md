@@ -379,7 +379,7 @@ def load_data_wiki(batch_size, max_len):
 ```
 
 A batch méretét 512-re, a BERT bemeneti szekvencia maximális hosszát 64-re állítva
-[**kiírjuk egy BERT előtanítási minibatch alakjait**].
+[**kiírjuk egy BERT előtanítási mini-batch alakjait**].
 Fontos megjegyezni, hogy minden BERT bemeneti szekvenciában
 $10$ ($64 \times 0.15$) pozíció kerül megjóslásra a maszkolt nyelvi modellezési feladatban.
 

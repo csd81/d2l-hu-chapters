@@ -1,5 +1,5 @@
 # Minibatch sztochasztikus gradienscsökkenés
-:label:`sec_minibatch_sgd`
+:label:`sec_mini-batch_sgd`
 
 Eddig két szélsőséget tapasztaltunk a gradiens alapú tanulás megközelítésében: a :numref:`sec_gd` szakasz a teljes adathalmazt használja a gradiensek kiszámításához és a paraméterek frissítéséhez, egyszerre egy átmenetben. Ezzel szemben a :numref:`sec_sgd` szakasz egyszerre egy tanítási példát dolgoz fel a haladás érdekében.
 Mindkettőnek megvannak a maga hátrányai.
@@ -10,7 +10,7 @@ Ez arra utal, hogy valahol a kettő között kellene lennie egy megoldásnak –
 
 ## Vektorizálás és gyorsítótárak
 
-A minibatchek alkalmazásának középpontjában a számítási hatékonyság áll. Ez legjobban akkor érthető meg, ha párhuzamos futtatást több GPU-n és több szerveren vizsgálunk. Ebben az esetben legalább egy képet kell küldeni minden egyes GPU-ra. Szerverenként 8 GPU-val és 16 szerverrel már legalább 128-as minibatch-mérethez jutunk.
+A mini-batch-ek alkalmazásának középpontjában a számítási hatékonyság áll. Ez legjobban akkor érthető meg, ha párhuzamos futtatást több GPU-n és több szerveren vizsgálunk. Ebben az esetben legalább egy képet kell küldeni minden egyes GPU-ra. Szerverenként 8 GPU-val és 16 szerverrel már legalább 128-as mini-batch-mérethez jutunk.
 
 A dolgok kissé árnyaltabbak egyetlen GPU vagy akár CPU esetén. Ezeknek az eszközöknek többféle típusú memóriájuk van, sokszor többféle számítási egységük, és különböző sávszélesség-korlátaik vannak köztük.
 Például egy CPU-nak van egy kis regiszterkészlete, majd L1, L2, és néhány esetben még L3 gyorsítótára (amelyet a különböző processzormagok megosztanak).
@@ -215,19 +215,19 @@ print(f'performance in Gigaflops: element {gigaflops[0]:.3f}, '
 
 ## Minibatchek
 
-:label:`sec_minibatches`
+:label:`sec_mini-batches`
 
-Eddig természetesnek vettük, hogy az adatokat *minibatchenként* olvassuk be, nem egyenként, a paraméterek frissítéséhez. Most rövid magyarázatot adunk erre. Az egyes megfigyelések feldolgozása sok egyszeres mátrix-vektor (vagy akár vektor-vektor) szorzást igényel, ami meglehetősen drága, és jelentős overheadet okoz a mögöttes mélytanulási keretrendszer részéről. Ez egyaránt vonatkozik a hálózat kiértékelésére adatokon (amelyet gyakran következtetésnek neveznek) és a gradiensek kiszámítására a paraméterek frissítéséhez. Vagyis ez érvényes minden alkalommal, amikor végrehajtjuk a $\mathbf{w} \leftarrow \mathbf{w} - \eta_t \mathbf{g}_t$ frissítést, ahol
+Eddig természetesnek vettük, hogy az adatokat *mini-batch-enként* olvassuk be, nem egyenként, a paraméterek frissítéséhez. Most rövid magyarázatot adunk erre. Az egyes megfigyelések feldolgozása sok egyszeres mátrix-vektor (vagy akár vektor-vektor) szorzást igényel, ami meglehetősen drága, és jelentős overheadet okoz a mögöttes mélytanulási keretrendszer részéről. Ez egyaránt vonatkozik a hálózat kiértékelésére adatokon (amelyet gyakran következtetésnek neveznek) és a gradiensek kiszámítására a paraméterek frissítéséhez. Vagyis ez érvényes minden alkalommal, amikor végrehajtjuk a $\mathbf{w} \leftarrow \mathbf{w} - \eta_t \mathbf{g}_t$ frissítést, ahol
 
 $$\mathbf{g}_t = \partial_{\mathbf{w}} f(\mathbf{x}_{t}, \mathbf{w})$$
 
-Ennek a műveletnek a *számítási* hatékonyságát növelhetjük azzal, hogy egyszerre megfigyelések minibatchére alkalmazzuk. Vagyis egyetlen megfigyelés $\mathbf{g}_t$ gradienssét egy kis batch feletti gradiensre cseréljük:
+Ennek a műveletnek a *számítási* hatékonyságát növelhetjük azzal, hogy egyszerre megfigyelések mini-batchére alkalmazzuk. Vagyis egyetlen megfigyelés $\mathbf{g}_t$ gradienssét egy kis batch feletti gradiensre cseréljük:
 
 $$\mathbf{g}_t = \partial_{\mathbf{w}} \frac{1}{|\mathcal{B}_t|} \sum_{i \in \mathcal{B}_t} f(\mathbf{x}_{i}, \mathbf{w})$$
 
-Vizsgáljuk meg, hogy ez mit tesz $\mathbf{g}_t$ statisztikai tulajdonságaival: mivel $\mathbf{x}_t$ és a $\mathcal{B}_t$ minibatch összes eleme egyenletesen véletlenszerűen kerül mintavételezésre a tanítóhalmazból, a gradiens várható értéke változatlan marad. A variancia viszont jelentősen csökken. Mivel a minibatch gradiens $b \stackrel{\textrm{def}}{=} |\mathcal{B}_t|$ független gradiens átlagából áll, szórása $b^{-\frac{1}{2}}$ faktorral csökken. Ez önmagában is jó dolog, mivel azt jelenti, hogy a frissítések megbízhatóbban igazodnak a teljes gradienshez.
+Vizsgáljuk meg, hogy ez mit tesz $\mathbf{g}_t$ statisztikai tulajdonságaival: mivel $\mathbf{x}_t$ és a $\mathcal{B}_t$ mini-batch összes eleme egyenletesen véletlenszerűen kerül mintavételezésre a tanítóhalmazból, a gradiens várható értéke változatlan marad. A variancia viszont jelentősen csökken. Mivel a mini-batch gradiens $b \stackrel{\textrm{def}}{=} |\mathcal{B}_t|$ független gradiens átlagából áll, szórása $b^{-\frac{1}{2}}$ faktorral csökken. Ez önmagában is jó dolog, mivel azt jelenti, hogy a frissítések megbízhatóbban igazodnak a teljes gradienshez.
 
-Naivan ez arra utalna, hogy nagy $\mathcal{B}_t$ minibatch választása általánosan kívánatos lenne. Sajnos egy bizonyos ponton túl a szórás további csökkentése elhanyagolható a számítási költség lineáris növekedéséhez képest. A gyakorlatban olyan minibatch-méretet választunk, amely elég nagy a jó számítási hatékonysághoz, miközben elfér a GPU memóriájában. A megtakarítások szemléltetéséhez nézzünk meg egy kódpéldát. Ebben ugyanazt a mátrix-mátrix szorzást végezzük el, de ezúttal egyszerre 64 oszlopból álló „minibatchekre" bontva.
+Naivan ez arra utalna, hogy nagy $\mathcal{B}_t$ mini-batch választása általánosan kívánatos lenne. Sajnos egy bizonyos ponton túl a szórás további csökkentése elhanyagolható a számítási költség lineáris növekedéséhez képest. A gyakorlatban olyan mini-batch-méretet választunk, amely elég nagy a jó számítási hatékonysághoz, miközben elfér a GPU memóriájában. A megtakarítások szemléltetéséhez nézzünk meg egy kódpéldát. Ebben ugyanazt a mátrix-mátrix szorzást végezzük el, de ezúttal egyszerre 64 oszlopból álló „mini-batch-ekre" bontva.
 
 ```{.python .input}
 #@tab mxnet
@@ -256,11 +256,11 @@ timer.stop()
 print(f'performance in Gigaflops: block {0.03 / timer.times[3]:.3f}')
 ```
 
-Ahogy látható, a minibatch-en végzett számítás lényegében ugyanolyan hatékony, mint a teljes mátrixon. Egy megjegyzés azonban szükséges. A :numref:`sec_batch_norm` szakaszban egy olyan regularizálási típust alkalmaztunk, amely erősen függött a minibatch-en belüli varianciától. Ahogy növeljük az utóbbit, a variancia csökken, és ezzel együtt a batch normalizálásból eredő zaj-injekció előnye is. A megfelelő tagok átskálázásáról és kiszámításáról részletekért lásd például :citet:`Ioffe.2017`.
+Ahogy látható, a mini-batch-en végzett számítás lényegében ugyanolyan hatékony, mint a teljes mátrixon. Egy megjegyzés azonban szükséges. A :numref:`sec_batch_norm` szakaszban egy olyan regularizálási típust alkalmaztunk, amely erősen függött a mini-batch-en belüli varianciától. Ahogy növeljük az utóbbit, a variancia csökken, és ezzel együtt a batch normalizálásból eredő zaj-injekció előnye is. A megfelelő tagok átskálázásáról és kiszámításáról részletekért lásd például :citet:`Ioffe.2017`.
 
 ## Az adathalmaz beolvasása
 
-Nézzük meg, hogyan generálhatók hatékonyan minibatchek adatokból. A következőkben egy NASA által kifejlesztett adathalmazt alkalmazunk, amelyet különböző repülőgépek [szárnyzajának](https://archive.ics.uci.edu/dataset/291/airfoil+self+noise) tesztelésére hoztak létre, az optimalizálási algoritmusok összehasonlítása céljából. Kényelmesség szempontjából csak az első $1500$ példát használjuk. Az adatokat fehérítik az előfeldolgozás során, vagyis eltávolítják az átlagot, és a varianciát $1$-re skálázzák koordinátánként.
+Nézzük meg, hogyan generálhatók hatékonyan mini-batch-ek adatokból. A következőkben egy NASA által kifejlesztett adathalmazt alkalmazunk, amelyet különböző repülőgépek [szárnyzajának](https://archive.ics.uci.edu/dataset/291/airfoil+self+noise) tesztelésére hoztak létre, az optimalizálási algoritmusok összehasonlítása céljából. Kényelmesség szempontjából csak az első $1500$ példát használjuk. Az adatokat fehérítik az előfeldolgozás során, vagyis eltávolítják az átlagot, és a varianciát $1$-re skálázzák koordinátánként.
 
 ```{.python .input}
 #@tab mxnet
@@ -312,7 +312,7 @@ def get_data_ch11(batch_size=10, n=1500):
 
 ## Implementálás alapoktól
 
-Idézzük fel a minibatch sztochasztikus gradienscsökkenés implementációját a :numref:`sec_linear_scratch` szakaszból. Az alábbiakban egy kissé általánosabb implementációt nyújtunk. Kényelmi szempontból ugyanolyan hívási aláírása van, mint a fejezet későbbi részében bemutatott többi optimalizálási algoritmusnak. Konkrétan hozzáadjuk az `states` állapot bemenetet, és a hiperparamétert egy `hyperparams` szótárba helyezzük. Emellett a tanítási függvényben minden minibatch példa veszteségének átlagát vesszük, így az optimalizálási algoritmusban lévő gradienst nem kell elosztani a batch méretével.
+Idézzük fel a mini-batch sztochasztikus gradienscsökkenés implementációját a :numref:`sec_linear_scratch` szakaszból. Az alábbiakban egy kissé általánosabb implementációt nyújtunk. Kényelmi szempontból ugyanolyan hívási aláírása van, mint a fejezet későbbi részében bemutatott többi optimalizálási algoritmusnak. Konkrétan hozzáadjuk az `states` állapot bemenetet, és a hiperparamétert egy `hyperparams` szótárba helyezzük. Emellett a tanítási függvényben minden mini-batch példa veszteségének átlagát vesszük, így az optimalizálási algoritmusban lévő gradienst nem kell elosztani a batch méretével.
 
 ```{.python .input}
 #@tab mxnet
@@ -336,7 +336,7 @@ def sgd(params, grads, states, hyperparams):
         param.assign_sub(hyperparams['lr']*grad)
 ```
 
-Ezután implementálunk egy általános tanítási függvényt a fejezet későbbi részében bemutatott többi optimalizálási algoritmus egyszerűsített alkalmazásához. Egy lineáris regressziós modellt inicializál, amelyet minibatch sztochasztikus gradienscsökkenéssel és a később bemutatott algoritmusokkal lehet betanítani.
+Ezután implementálunk egy általános tanítási függvényt a fejezet későbbi részében bemutatott többi optimalizálási algoritmus egyszerűsített alkalmazásához. Egy lineáris regressziós modellt inicializál, amelyet mini-batch sztochasztikus gradienscsökkenéssel és a később bemutatott algoritmusokkal lehet betanítani.
 
 ```{.python .input}
 #@tab mxnet
@@ -433,7 +433,7 @@ def train_ch11(trainer_fn, states, hyperparams, data_iter,
     return timer.cumsum(), animator.Y[0]
 ```
 
-Nézzük meg, hogyan halad az optimalizálás a batch gradienscsökkenés esetén. Ez úgy érhető el, hogy a minibatch-méretet 1500-ra állítjuk (azaz a példák teljes számára). Ennek eredményeként a modell paraméterei epocsonként csak egyszer frissülnek. Alig tapasztalható haladás. Valójában 6 lépés után a haladás megáll.
+Nézzük meg, hogyan halad az optimalizálás a batch gradienscsökkenés esetén. Ez úgy érhető el, hogy a mini-batch-méretet 1500-ra állítjuk (azaz a példák teljes számára). Ennek eredményeként a modell paraméterei epocsonként csak egyszer frissülnek. Alig tapasztalható haladás. Valójában 6 lépés után a haladás megáll.
 
 ```{.python .input}
 #@tab all
@@ -452,7 +452,7 @@ Ha a batch-méret egyenlő 1-gyel, sztochasztikus gradienscsökkenést alkalmazu
 sgd_res = train_sgd(0.005, 1)
 ```
 
-Végül, ha a batch-méret egyenlő 100-zal, minibatch sztochasztikus gradienscsökkenést alkalmazunk az optimalizáláshoz. Az epocsonkénti szükséges idő rövidebb, mint a sztochasztikus gradienscsökkenés esetén, és rövidebb, mint a batch gradienscsökkenés esetén is.
+Végül, ha a batch-méret egyenlő 100-zal, mini-batch sztochasztikus gradienscsökkenést alkalmazunk az optimalizáláshoz. Az epocsonkénti szükséges idő rövidebb, mint a sztochasztikus gradienscsökkenés esetén, és rövidebb, mint a batch gradienscsökkenés esetén is.
 
 ```{.python .input}
 #@tab all
@@ -466,7 +466,7 @@ A batch-méret 10-re csökkentése esetén minden epoc ideje növekszik, mivel a
 mini2_res = train_sgd(.05, 10)
 ```
 
-Most összehasonlíthatjuk az idő és a veszteség viszonyát az előző négy kísérletben. Ahogy látható, bár a sztochasztikus gradienscsökkenés gyorsabban konvergál, mint a GD a feldolgozott példák számát tekintve, több időt vesz igénybe ugyanolyan veszteség eléréséhez, mint a GD, mivel a gradiens példánkénti kiszámítása nem olyan hatékony. A minibatch sztochasztikus gradienscsökkenés egyensúlyt teremt a konvergenciasebesség és a számítási hatékonyság között. A 10-es minibatch-méret hatékonyabb, mint a sztochasztikus gradienscsökkenés; a 100-as minibatch-méret még a GD-t is felülmúlja futási idő tekintetében.
+Most összehasonlíthatjuk az idő és a veszteség viszonyát az előző négy kísérletben. Ahogy látható, bár a sztochasztikus gradienscsökkenés gyorsabban konvergál, mint a GD a feldolgozott példák számát tekintve, több időt vesz igénybe ugyanolyan veszteség eléréséhez, mint a GD, mivel a gradiens példánkénti kiszámítása nem olyan hatékony. A mini-batch sztochasztikus gradienscsökkenés egyensúlyt teremt a konvergenciasebesség és a számítási hatékonyság között. A 10-es mini-batch-méret hatékonyabb, mint a sztochasztikus gradienscsökkenés; a 100-as mini-batch-méret még a GD-t is felülmúlja futási idő tekintetében.
 
 ```{.python .input}
 #@tab all
@@ -603,17 +603,17 @@ train_concise_ch11(trainer, {'learning_rate': 0.05}, data_iter)
 
 * A vektorizálás hatékonyabbá teszi a kódot a mélytanulási keretrendszerből eredő overhead csökkentésével, valamint a CPU-kon és GPU-kon jobb memória-lokalitás és gyorsítótárazás révén.
 * Kompromisszum áll fenn a sztochasztikus gradienscsökkenésből eredő statisztikai hatékonyság és a nagy adatbatchek egyszeri feldolgozásából eredő számítási hatékonyság között.
-* A minibatch sztochasztikus gradienscsökkenés mindkét világ előnyeit kínálja: számítási és statisztikai hatékonyságot.
-* A minibatch sztochasztikus gradienscsökkenésben a tanítóadatok véletlenszerű permutációjával előállított adatbatcheket dolgozunk fel (azaz minden megfigyelést epocsonként csak egyszer dolgozunk fel, bár véletlenszerű sorrendben).
+* A mini-batch sztochasztikus gradienscsökkenés mindkét világ előnyeit kínálja: számítási és statisztikai hatékonyságot.
+* A mini-batch sztochasztikus gradienscsökkenésben a tanítóadatok véletlenszerű permutációjával előállított adatbatcheket dolgozunk fel (azaz minden megfigyelést epocsonként csak egyszer dolgozunk fel, bár véletlenszerű sorrendben).
 * Tanítás során célszerű csökkenteni a tanulási rátát.
-* Általánosságban a minibatch sztochasztikus gradienscsökkenés gyorsabb, mint a sztochasztikus gradienscsökkenés és a gradienscsökkenés a kisebb kockázathoz való konvergenciában, ha falióra-időben mérjük.
+* Általánosságban a mini-batch sztochasztikus gradienscsökkenés gyorsabb, mint a sztochasztikus gradienscsökkenés és a gradienscsökkenés a kisebb kockázathoz való konvergenciában, ha falióra-időben mérjük.
 
 ## Gyakorló feladatok
 
 1. Módosítsd a batch-méretet és a tanulási rátát, és figyeld meg a célfüggvény értékének csökkenési ütemét és az egyes epochokban eltelt időt.
-1. Olvasd el az MXNet dokumentációját, és a `Trainer` osztály `set_learning_rate` függvényét alkalmazva csökkentsd a minibatch sztochasztikus gradienscsökkenés tanulási rátaét az előző értékének 1/10-ére minden epoc után.
-1. Hasonlítsd össze a minibatch sztochasztikus gradienscsökkenést egy olyan változattal, amely *visszatevéssel mintavételez* a tanítóhalmazból. Mi történik?
-1. Egy gonosz szellem megkettőzi az adathalmazát anélkül, hogy szólna (azaz minden megfigyelés kétszer szerepel, és az adathalmaz kétszer akkora lesz, de senki sem mondta el). Hogyan változik a sztochasztikus gradienscsökkenés, a minibatch sztochasztikus gradienscsökkenés és a gradienscsökkenés viselkedése?
+1. Olvasd el az MXNet dokumentációját, és a `Trainer` osztály `set_learning_rate` függvényét alkalmazva csökkentsd a mini-batch sztochasztikus gradienscsökkenés tanulási rátaét az előző értékének 1/10-ére minden epoc után.
+1. Hasonlítsd össze a mini-batch sztochasztikus gradienscsökkenést egy olyan változattal, amely *visszatevéssel mintavételez* a tanítóhalmazból. Mi történik?
+1. Egy gonosz szellem megkettőzi az adathalmazát anélkül, hogy szólna (azaz minden megfigyelés kétszer szerepel, és az adathalmaz kétszer akkora lesz, de senki sem mondta el). Hogyan változik a sztochasztikus gradienscsökkenés, a mini-batch sztochasztikus gradienscsökkenés és a gradienscsökkenés viselkedése?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/353)

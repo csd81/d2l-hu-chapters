@@ -119,7 +119,7 @@ for data in [train_data, test_data]:
 
 ### [**Osztály definiálása az adathalmaz betöltéséhez**]
 
-Az alábbiakban definiálunk egy osztályt az SNLI adathalmaz betöltéséhez a Gluon `Dataset` osztályából örökölve. Az osztály konstruktorának `num_steps` argumentuma adja meg egy szövegsorozat hosszát, hogy minden minibatch sorozata azonos alakú legyen. Más szóval a hosszabb sorozatokban az első `num_steps` tokenen túli tokeneket levágjuk, míg a rövidebb sorozatokhoz speciális „&lt;pad&gt;" tokeneket fűzünk hozzá, amíg hosszuk el nem éri a `num_steps` értéket. A `__getitem__` függvény implementálásával az `idx` indexszel tetszőlegesen hozzáférhetünk a premisszához, hipotézishez és a címkéhez.
+Az alábbiakban definiálunk egy osztályt az SNLI adathalmaz betöltéséhez a Gluon `Dataset` osztályából örökölve. Az osztály konstruktorának `num_steps` argumentuma adja meg egy szövegsorozat hosszát, hogy minden mini-batch sorozata azonos alakú legyen. Más szóval a hosszabb sorozatokban az első `num_steps` tokenen túli tokeneket levágjuk, míg a rövidebb sorozatokhoz speciális „&lt;pad&gt;" tokeneket fűzünk hozzá, amíg hosszuk el nem éri a `num_steps` értéket. A `__getitem__` függvény implementálásával az `idx` indexszel tetszőlegesen hozzáférhetünk a premisszához, hipotézishez és a címkéhez.
 
 ```{.python .input}
 #@tab mxnet
@@ -233,7 +233,7 @@ train_iter, test_iter, vocab = load_data_snli(128, 50)
 len(vocab)
 ```
 
-Most kiírjuk az első minibatch alakját. A szentimentelemzéssel ellentétben két bemenetünk van: az `X[0]` és az `X[1]`, amelyek premissza–hipotézis párokat reprezentálnak.
+Most kiírjuk az első mini-batch alakját. A szentimentelemzéssel ellentétben két bemenetünk van: az `X[0]` és az `X[1]`, amelyek premissza–hipotézis párokat reprezentálnak.
 
 ```{.python .input}
 #@tab all

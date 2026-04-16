@@ -47,7 +47,7 @@ Az alábbiakban definiáljuk a `Classifier` osztályt. A `validation_step`-ben j
 Az alábbiakban definiáljuk a `Classifier` osztályt. A `validation_step`-ben jelentjük mind a veszteség értékét, mind az osztályozás pontosságát egy validációs batch-en. Minden `num_val_batches` batch-nél rajzolunk egy frissítést. Ennek az az előnye, hogy az átlagos veszteséget és pontosságot a teljes validációs adaton generálja. Ezek az átlagok nem pontosan helyesek, ha az utolsó batch kevesebb példányt tartalmaz, de ezt a kisebb különbséget figyelmen kívül hagyjuk az egyszerűbb kód érdekében.
 
 Újra is definiáljuk a `training_step` metódust JAX esetén, mivel az összes modell, amely majd a `Classifier` alosztálya lesz, egy olyan veszteséggel rendelkezik, amely segédadatokat is visszaad.
-Ezek a segédadatok felhasználhatók batch normalizációval rendelkező modellekhez
+Ezek a segédadatok felhasználhatók batchnormalizációval rendelkező modellekhez
 (amelyeket a :numref:`sec_batch_norm` szakasz magyaráz el), míg minden más esetben
 a veszteséget egy helyőrzőt (üres szótárat) is visszaadó módon tesszük,
 a segédadatokat képviselve.
@@ -85,7 +85,7 @@ class Classifier(d2l.Module):  #@save
                   train=False)
 ```
 
-Alapértelmezésként sztochasztikus gradienscsökkenés optimalizálót használunk, amelyet minibatch-eken alkalmazunk, ahogy a lineáris regresszió kontextusában is tettük.
+Alapértelmezésként sztochasztikus gradienscsökkenés optimalizálót használunk, amelyet mini-batch-eken alkalmazunk, ahogy a lineáris regresszió kontextusában is tettük.
 
 ```{.python .input}
 %%tab mxnet
@@ -197,7 +197,7 @@ Az osztályozás elég általános probléma ahhoz, hogy saját segédfüggvény
 
 ## Feladatok
 
-1. Jelöld $L_\textrm{v}$-vel a validációs veszteséget, és legyen $L_\textrm{v}^\textrm{q}$ a gyors és durva becslése, amelyet ebben a szakaszban a veszteségfüggvény átlagolásával számítottunk. Végül jelöld $l_\textrm{v}^\textrm{b}$-vel az utolsó minibatch-en számolt veszteséget. Fejezd ki $L_\textrm{v}$-t $L_\textrm{v}^\textrm{q}$, $l_\textrm{v}^\textrm{b}$ és a minta- és minibatch-méretek segítségével!
+1. Jelöld $L_\textrm{v}$-vel a validációs veszteséget, és legyen $L_\textrm{v}^\textrm{q}$ a gyors és durva becslése, amelyet ebben a szakaszban a veszteségfüggvény átlagolásával számítottunk. Végül jelöld $l_\textrm{v}^\textrm{b}$-vel az utolsó mini-batch-en számolt veszteséget. Fejezd ki $L_\textrm{v}$-t $L_\textrm{v}^\textrm{q}$, $l_\textrm{v}^\textrm{b}$ és a minta- és mini-batch-méretek segítségével!
 1. Mutasd meg, hogy a gyors és durva $L_\textrm{v}^\textrm{q}$ becslés torzítatlan! Vagyis mutasd meg, hogy $E[L_\textrm{v}] = E[L_\textrm{v}^\textrm{q}]$! Miért akarnád mégis inkább $L_\textrm{v}$-t használni?
 1. Adott egy többosztályos osztályozási veszteség, ahol $l(y,y')$ jelöli az $y'$ becslésekor kapott büntetést, ha $y$-t látunk, és adott $p(y \mid x)$ valószínűség esetén, fogalmazd meg az optimális $y'$ kiválasztásának szabályát! Tipp: a várható veszteséget $l$ és $p(y \mid x)$ segítségével fejezd ki!
 

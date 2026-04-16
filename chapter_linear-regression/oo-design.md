@@ -427,13 +427,13 @@ class Trainer(d2l.HyperParameters):  #@save
             params = variables['params']
 
             if 'batch_stats' in variables.keys():
-                # A batch_stats értéket később használjuk (pl. batch normalizációhoz)
+                # A batch_stats értéket később használjuk (pl. batchnormalizációhoz)
                 batch_stats = variables['batch_stats']
             else:
                 batch_stats = {}
 
             # A Flax optax-ot használ a háttérben egyetlen TrainState állapotobjektumhoz.
-            # Erről bővebben a dropout és a batch normalizáció szakaszban lesz szó
+            # Erről bővebben a dropout és a batchnormalizáció szakaszban lesz szó
             class TrainState(train_state.TrainState):
                 batch_stats: Any
                 dropout_rng: jax.random.PRNGKeyArray

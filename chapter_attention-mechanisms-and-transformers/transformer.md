@@ -254,7 +254,7 @@ Mindkettő kulcsfontosságú a hatékony mély architektúrákhoz.
 
 A :numref:`sec_batch_norm`-ban
 megmagyaráztuk, hogy a batch normalizálás hogyan
-tölti fel és skálázza újra a minibatch-en belüli példányokat.
+tölti fel és skálázza újra a mini-batch-en belüli példányokat.
 Ahogy a :numref:`subsec_layer-normalization-in-bn`-ban tárgyaltuk,
 a rétegnormalizálás ugyanolyan, mint a batch normalizálás,
 kivéve, hogy az előbbi

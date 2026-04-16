@@ -4,14 +4,14 @@
 Eddig azt tárgyaltuk, hogyan lehet modelleket hatékonyan tanítani CPU-kon és GPU-kon. Megmutattuk azt is, hogy a deep learning keretrendszerek hogyan teszik lehetővé a számítás és a kommunikáció automatikus párhuzamosítását közöttük a :numref:`sec_auto_para` részben. Szintén bemutattuk a :numref:`sec_use_gpu` részben, hogyan lehet felsorolni egy számítógép összes elérhető GPU-ját az `nvidia-smi` paranccsal.
 Amit *nem* tárgyaltunk, az az, hogy a deep learning tanítást valójában hogyan lehet párhuzamosítani.
 Ehelyett csak mellékesen jeleztük, hogy az adatokat valahogy el kell osztani több eszköz között, és működésre bírni a rendszert. A jelen rész kitölti ezeket a részleteket, és megmutatja, hogyan lehet egy hálózatot párhuzamosan tanítani a semmiből indulva. A magas szintű API-k funkcionalitásának kihasználásáról részletesebben a :numref:`sec_multi_gpu_concise` részben lesz szó.
-Feltételezzük, hogy ismered a minibatch sztochasztikus gradienscsökkenés algoritmusokat, mint amilyenek a :numref:`sec_minibatch_sgd` részben szerepelnek.
+Feltételezzük, hogy ismered a mini-batch sztochasztikus gradienscsökkenés algoritmusokat, mint amilyenek a :numref:`sec_mini-batch_sgd` részben szerepelnek.
 
 
 ## A feladat felosztása
 
 Kezdjük egy egyszerű számítógépes látási feladattal és egy kissé elavult hálózattal, például olyannal, amelynek több konvolúciós és pooling rétege van, és esetleg néhány teljesen összekötött réteg is van a végén.
 Vagyis kezdjük egy olyan hálózattal, amely meglehetősen hasonlít a LeNet :cite:`LeCun.Bottou.Bengio.ea.1998` vagy az AlexNet :cite:`Krizhevsky.Sutskever.Hinton.2012` hálózathoz.
-Több GPU esetén (2, ha asztali szerver, 4 egy AWS g4dn.12xlarge példányon, 8 egy p3.16xlarge-on, vagy 16 egy p2.16xlarge-on) a tanítást úgy szeretnénk felosztani, hogy jó gyorsulást érjünk el, miközben egyszerű és reprodukálható tervezési döntésekből profitálunk. A több GPU végső soron mind a *memória*, mind a *számítási* kapacitást növeli. Röviden szólva a következő lehetőségeink vannak, ha adott egy tanítási adatok minibatchje, amelyet osztályozni szeretnénk.
+Több GPU esetén (2, ha asztali szerver, 4 egy AWS g4dn.12xlarge példányon, 8 egy p3.16xlarge-on, vagy 16 egy p2.16xlarge-on) a tanítást úgy szeretnénk felosztani, hogy jó gyorsulást érjünk el, miközben egyszerű és reprodukálható tervezési döntésekből profitálunk. A több GPU végső soron mind a *memória*, mind a *számítási* kapacitást növeli. Röviden szólva a következő lehetőségeink vannak, ha adott egy tanítási adatok mini-batchje, amelyet osztályozni szeretnénk.
 
 Először feloszthatjuk a hálózatot több GPU között. Vagyis minden GPU bemenetként kapja az egy adott rétegbe beáramló adatokat, feldolgozza azokat néhány egymást követő rétegen át, majd elküldi az adatokat a következő GPU-nak.
 Ez lehetővé teszi, hogy nagyobb hálózatokkal dolgozzunk, mint amelyeket egyetlen GPU képes kezelni.
@@ -40,10 +40,10 @@ Azonban
 *nagyon nagy* számú szinkronizálási vagy barrier műveletre van szükségünk, mivel minden egyes réteg az összes többi réteg eredményeitől függ.
 Ráadásul az átviendő adatok mennyisége potenciálisan még nagyobb, mint amikor a rétegeket osztjuk el a GPU-k között. Ezért ezt a megközelítést sem ajánljuk a sávszélesség-igénye és összetettsége miatt.
 
-Végül feloszthatjuk az adatokat több GPU között. Így minden GPU ugyanolyan típusú munkát végez, bár különböző megfigyeléseken. A gradienseket minden tanítási adat-minibatch után összesítik a GPU-k között.
+Végül feloszthatjuk az adatokat több GPU között. Így minden GPU ugyanolyan típusú munkát végez, bár különböző megfigyeléseken. A gradienseket minden tanítási adat-mini-batch után összesítik a GPU-k között.
 Ez a legegyszerűbb megközelítés, és bármilyen helyzetben alkalmazható.
-Csupán minden minibatch után kell szinkronizálni. Ugyanakkor nagyon kívánatos, hogy a gradiensparamétereket már csere közben is kiszámítsuk, amíg a többiek még folyamatban vannak.
-Ráadásul a több GPU nagyobb minibatch méretekhez vezet, ezáltal növelve a tanítás hatékonyságát.
+Csupán minden mini-batch után kell szinkronizálni. Ugyanakkor nagyon kívánatos, hogy a gradiensparamétereket már csere közben is kiszámítsuk, amíg a többiek még folyamatban vannak.
+Ráadásul a több GPU nagyobb mini-batch méretekhez vezet, ezáltal növelve a tanítás hatékonyságát.
 Azonban több GPU hozzáadása nem teszi lehetővé, hogy nagyobb modelleket tanítsunk.
 
 
@@ -68,16 +68,16 @@ amikor $k=2$.
 
 Általánosságban a tanítás a következőképpen zajlik:
 
-* A tanítás bármely iterációjában, adott egy véletlenszerű minibatch, a batch példáit $k$ részre osztjuk, és egyenletesen elosztjuk a GPU-k között.
-* Minden GPU kiszámítja a veszteséget és a modellparaméterek gradiensét a hozzá rendelt minibatch-részlet alapján.
-* A $k$ GPU mindegyikének helyi gradienseit összesítik, hogy megkapják az aktuális minibatch sztochasztikus gradienst.
+* A tanítás bármely iterációjában, adott egy véletlenszerű mini-batch, a batch példáit $k$ részre osztjuk, és egyenletesen elosztjuk a GPU-k között.
+* Minden GPU kiszámítja a veszteséget és a modellparaméterek gradiensét a hozzá rendelt mini-batch-részlet alapján.
+* A $k$ GPU mindegyikének helyi gradienseit összesítik, hogy megkapják az aktuális mini-batch sztochasztikus gradienst.
 * Az összesített gradienst visszaterjesztik minden GPU-ra.
-* Minden GPU ezt a minibatch sztochasztikus gradienst használja a fenntartott modellparaméterek teljes készletének frissítéséhez.
+* Minden GPU ezt a mini-batch sztochasztikus gradienst használja a fenntartott modellparaméterek teljes készletének frissítéséhez.
 
 
 
 
-Megjegyzendő, hogy a gyakorlatban $k$-szorosára *növeljük* a minibatch méretét $k$ GPU-n való tanítás esetén, hogy minden GPU ugyanannyi munkát végezzen, mintha egyetlen GPU-n tanítanánk. Egy 16 GPU-s szerveren ez jelentősen megnövelheti a minibatch méretet, és előfordulhat, hogy a tanulási rátát is ennek megfelelően kell növelni.
+Megjegyzendő, hogy a gyakorlatban $k$-szorosára *növeljük* a mini-batch méretét $k$ GPU-n való tanítás esetén, hogy minden GPU ugyanannyi munkát végezzen, mintha egyetlen GPU-n tanítanánk. Egy 16 GPU-s szerveren ez jelentősen megnövelheti a mini-batch méretet, és előfordulhat, hogy a tanulási rátát is ennek megfelelően kell növelni.
 Megjegyzendő az is, hogy a :numref:`sec_batch_norm` részben tárgyalt batch normalizálást módosítani kell, például GPU-nkénti külön batch normalizálási együttható fenntartásával.
 A következőkben egy egyszerű hálózatot fogunk használni a több GPU-s tanítás szemléltetéséhez.
 
@@ -244,7 +244,7 @@ print('after allreduce:\n', data[0], '\n', data[1])
 
 ## Adatok elosztása
 
-Szükségünk van egy egyszerű segédfüggvényre, amely [**egy minibatchet egyenletesen oszt el több GPU között**]. Például két GPU esetén az adatok felét szeretnénk az egyik, másik felét a másik GPU-ra másolni.
+Szükségünk van egy egyszerű segédfüggvényre, amely [**egy mini-batch-et egyenletesen oszt el több GPU között**]. Például két GPU esetén az adatok felét szeretnénk az egyik, másik felét a másik GPU-ra másolni.
 Mivel kényelmesebb és tömörebb, a deep learning keretrendszer beépített függvényét használjuk, amelyet egy $4 \times 5$-ös mátrixon próbálunk ki.
 
 ```{.python .input}
@@ -291,7 +291,7 @@ def split_batch(X, y, devices):
 
 ## Tanítás
 
-Most megvalósíthatjuk a [**több GPU-s tanítást egyetlen minibatchre**]. Megvalósítása elsősorban az ebben a részben leírt adatpárhuzamossági megközelítésen alapul. Az imént tárgyalt segédfüggvényeket, az `allreduce`-t és a `split_and_load`-ot fogjuk használni az adatok szinkronizálásához több GPU között. Megjegyezzük, hogy nem kell semmiféle speciális kódot írnunk a párhuzamosítás eléréséhez. Mivel a számítási gráfnak nincsenek eszközök közötti függőségei egy minibatchon belül, az végrehajtása *automatikusan* párhuzamos lesz.
+Most megvalósíthatjuk a [**több GPU-s tanítást egyetlen mini-batch-re**]. Megvalósítása elsősorban az ebben a részben leírt adatpárhuzamossági megközelítésen alapul. Az imént tárgyalt segédfüggvényeket, az `allreduce`-t és a `split_and_load`-ot fogjuk használni az adatok szinkronizálásához több GPU között. Megjegyezzük, hogy nem kell semmiféle speciális kódot írnunk a párhuzamosítás eléréséhez. Mivel a számítási gráfnak nincsenek eszközök közötti függőségei egy mini-batchon belül, az végrehajtása *automatikusan* párhuzamos lesz.
 
 ```{.python .input}
 #@tab mxnet
@@ -346,7 +346,7 @@ def train(num_gpus, batch_size, lr):
     for epoch in range(num_epochs):
         timer.start()
         for X, y in train_iter:
-            # Több GPU-s tanítás egyetlen minibatchre
+            # Több GPU-s tanítás egyetlen mini-batch-re
             train_batch(X, y, device_params, devices, lr)
             npx.waitall()
         timer.stop()
@@ -370,7 +370,7 @@ def train(num_gpus, batch_size, lr):
     for epoch in range(num_epochs):
         timer.start()
         for X, y in train_iter:
-            # Több GPU-s tanítás egyetlen minibatchre
+            # Több GPU-s tanítás egyetlen mini-batch-re
             train_batch(X, y, device_params, devices, lr)
             torch.cuda.synchronize()
         timer.stop()
@@ -401,13 +401,13 @@ train(num_gpus=2, batch_size=256, lr=0.2)
 ## Összefoglalás
 
 * A deep hálózatok tanításának több GPU-ra való elosztásának több módja is van. Feloszthatjuk rétegek között, rétegeken belül vagy adatok szerint. Az első két módszer szorosan koordinált adatátvitelt igényel. Az adatpárhuzamosság a legegyszerűbb stratégia.
-* Az adatpárhuzamos tanítás egyszerűen megvalósítható. Ugyanakkor a hatékonyság érdekében megnöveli a tényleges minibatch méretet.
+* Az adatpárhuzamos tanítás egyszerűen megvalósítható. Ugyanakkor a hatékonyság érdekében megnöveli a tényleges mini-batch méretet.
 * Az adatpárhuzamosságban az adatok több GPU között oszlanak el, ahol minden GPU elvégzi a saját előre- és visszaszámítási műveletét, majd a gradienseket összesítik, és az eredményeket visszasugározzák a GPU-kra.
-* Nagyobb minibatchekhez esetleg kissé megnövelt tanulási rátát érdemes alkalmazni.
+* Nagyobb mini-batch-ekhez esetleg kissé megnövelt tanulási rátát érdemes alkalmazni.
 
 ## Feladatok
 
-1. Amikor $k$ GPU-n tanítunk, változtassuk meg a minibatch méretét $b$-ről $k \cdot b$-re, vagyis skálázzuk fel a GPU-k számával.
+1. Amikor $k$ GPU-n tanítunk, változtassuk meg a mini-batch méretét $b$-ről $k \cdot b$-re, vagyis skálázzuk fel a GPU-k számával.
 1. Hasonlítsuk össze a pontosságot különböző tanulási ráták esetén. Hogyan skálázódik a GPU-k számával?
 1. Valósítsunk meg egy hatékonyabb `allreduce` függvényt, amely különböző paramétereket aggregál különböző GPU-kon! Miért hatékonyabb ez?
 1. Valósítsuk meg a több GPU-s tesztelési pontosság kiszámítását!

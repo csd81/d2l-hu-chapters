@@ -158,17 +158,17 @@ def load_data_bananas(batch_size):
     return train_iter, val_iter
 ```
 
-[**Olvassunk be egy minibatch-et, és nyomtassuk ki a képek és a címkék alakját**] ebben a minibatch-ben.
-A képek minibatch-ének alakja
+[**Olvassunk be egy mini-batch-et, és nyomtassuk ki a képek és a címkék alakját**] ebben a mini-batch-ben.
+A képek mini-batch-ének alakja
 (batch méret, csatornák száma, magasság, szélesség)
 ismerős:
 ugyanaz, mint a korábbi képosztályozási feladatoknál.
-A címkék minibatch-ének alakja
+A címkék mini-batch-ének alakja
 (batch méret, $m$, 5),
 ahol $m$ az adathalmazban bármely képen lévő befoglaló téglalapok maximálisan lehetséges száma.
 
-Bár a minibatch-ekben való számítás hatékonyabb,
-megköveteli, hogy az összes képpélda azonos számú befoglaló téglalapot tartalmazzon az összefűzés útján való minibatch-formáláshoz.
+Bár a mini-batch-ekben való számítás hatékonyabb,
+megköveteli, hogy az összes képpélda azonos számú befoglaló téglalapot tartalmazzon az összefűzés útján való mini-batch-formáláshoz.
 Általában a képeknek eltérő számú befoglaló téglalapjuk lehet;
 ezért
 az $m$-nél kevesebb befoglaló téglalapot tartalmazó képeket érvénytelen befoglaló téglalapokkal egészítik ki,

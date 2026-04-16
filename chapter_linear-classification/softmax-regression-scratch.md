@@ -122,10 +122,10 @@ a hálózat kimeneteinek száma
 egyenlő kell legyen az osztályok számával.
 (**Mivel adathalmazunknak 10 osztálya van,
 hálózatunk kimeneti dimenziója 10.**) Következésképpen a súlyok egy $784 \times 10$-es mátrixot alkotnak,
-plusz egy $1 \times 10$-es sorvektor a torzításokhoz.
+plusz egy $1 \times 10$-es sorvektor az eltolásokhoz.
 A lineáris regresszióhoz hasonlóan
 a `W` súlyokat Gauss-zajjal inicializáljuk.
-A torzítások nullára vannak inicializálva.
+Az eltolások nullára vannak inicializálva.
 
 ```{.python .input}
 %%tab mxnet
@@ -275,7 +275,7 @@ def loss(self, params, X, y, state):
         return -d2l.reduce_mean(d2l.log(y_hat[list(range(len(y_hat))), y]))
     y_hat = state.apply_fn({'params': params}, *X)
     # A visszaadott üres szótár a segédadatok helyfoglalója,
-    # amelyet később használunk majd (pl. batch normalizációhoz)
+    # amelyet később használunk majd (pl. batchnormalizációhoz)
     return cross_entropy(y_hat, y), {}
 ```
 
@@ -284,7 +284,7 @@ def loss(self, params, X, y, state):
 Újra felhasználjuk a :numref:`sec_linear_scratch` szakaszban definiált `fit` metódust
 [**a modell tanításához 10 epokon keresztül.**]
 Megjegyezzük, hogy az epokszám (`max_epochs`),
-a minibatch mérete (`batch_size`),
+a mini-batch mérete (`batch_size`),
 és a tanulási ráta (`lr`)
 mind beállítható hiperparaméterek.
 Ez azt jelenti, hogy bár ezek az értékek nem
@@ -357,7 +357,7 @@ sokkal hatékonyabban implementálni ezt a modellt.
 1. Tegyük fel, hogy softmax regresszió segítségével akarjuk megjósolni a következő szót bizonyos jellemzők alapján. Milyen problémák adódhatnak egy nagy szókészletnél?
 1. Kísérletezz az e szakaszbeli kód hiperparamétereivel! Különösen:
     1. Ábrázold, hogyan változik a validációs veszteség a tanulási ráta változásával!
-    1. Változik-e a validációs és a tanítási veszteség a minibatch méretének változásával? Mekkora vagy milyen kicsi kell legyen, mielőtt hatást tapasztalsz?
+    1. Változik-e a validációs és a tanítási veszteség a mini-batch méretének változásával? Mekkora vagy milyen kicsi kell legyen, mielőtt hatást tapasztalsz?
 
 
 :begin_tab:`mxnet`

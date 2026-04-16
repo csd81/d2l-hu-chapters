@@ -134,7 +134,7 @@ Tekintsünk egy $f(x)$ neurális hálózat függvényt egy rejtett réteggel:
 
 $$f(x) = b + \sum_{i=1}^{J} v_i h(x; u_i).$$
 
-$b$ egy torzítás, $v_i$ a rejtett-kimenet súlyok, $h$ bármely korlátozott rejtett egység transzferfüggvény, $u_i$ a bemenet-rejtett súlyok, és $J$ a rejtett egységek száma. Legyen $b$ és $v_i$ egymástól független, zéró átlaggal és rendre $\sigma_b^2$ és $\sigma_v^2/J$ varianciával, és az $u_i$ értékek legyenek egymástól független, azonos eloszlású értékek. Ekkor a centrális határeloszlás tétele alkalmazható annak megmutatásához, hogy bármely függvényértékgyűjtemény $f(x_1),\dots,f(x_n)$ együttes multivariát Gauss-eloszlással rendelkezik.
+$b$ egy eltolás, $v_i$ a rejtett-kimenet súlyok, $h$ bármely korlátozott rejtett egység transzferfüggvény, $u_i$ a bemenet-rejtett súlyok, és $J$ a rejtett egységek száma. Legyen $b$ és $v_i$ egymástól független, zéró átlaggal és rendre $\sigma_b^2$ és $\sigma_v^2/J$ varianciával, és az $u_i$ értékek legyenek egymástól független, azonos eloszlású értékek. Ekkor a centrális határeloszlás tétele alkalmazható annak megmutatásához, hogy bármely függvényértékgyűjtemény $f(x_1),\dots,f(x_n)$ együttes multivariát Gauss-eloszlással rendelkezik.
 
 A megfelelő Gauss-folyamat átlag- és kovariancia-függvénye:
 

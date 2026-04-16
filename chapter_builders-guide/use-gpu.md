@@ -626,7 +626,7 @@ A deep learning keretrendszer megköveteli, hogy a számításhoz szükséges ö
   legyen az CPU vagy ugyanaz a GPU.
 Jelentős teljesítményt veszíthetünk, ha gondatlanul mozgatjuk az adatokat.
   Egy tipikus hiba: a veszteség kiszámítása
-  minden minibatch esetén a GPU-n, majd visszajelzése a felhasználónak
+  minden mini-batch esetén a GPU-n, majd visszajelzése a felhasználónak
   a parancssorban (vagy NumPy `ndarray`-be naplózva)
   globális interpreter zárolást vált ki, amely megakasztja az összes GPU-t.
   Sokkal jobb memóriát kiosztani

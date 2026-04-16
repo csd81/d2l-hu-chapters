@@ -37,7 +37,7 @@ $$\tilde{\mathbf{Q}} = \textrm{diag}^{-\frac{1}{2}}(\mathbf{Q}) \mathbf{Q} \text
 
 Ebben az esetben $\tilde{\mathbf{Q}}_{ij} = \mathbf{Q}_{ij} / \sqrt{\mathbf{Q}_{ii} \mathbf{Q}_{jj}}$, és különösen $\tilde{\mathbf{Q}}_{ii} = 1$ minden $i$-re. A legtöbb esetben ez jelentősen csökkenti a kondíciószámot. Például a korábban tárgyalt esetekben ez teljesen kiküszöbölné a problémát, mivel a probléma tengelyirányba esik.
 
-Sajnos egy újabb problémával szembesülünk: a mélytanulásban általában még a célfüggvény második deriváltjához sem férünk hozzá: $\mathbf{x} \in \mathbb{R}^d$ esetén a második derivált még egyetlen minibatch-en is $\mathcal{O}(d^2)$ tárhelyet és munkát igényelhet a kiszámításához, így a gyakorlatban kivitelezhetetlen. Az Adagrad zseniális ötlete az, hogy a Hesse-mátrix megfoghatatlan átlója helyett egy olyan helyettesítőt alkalmaz, amely viszonylag olcsón számítható és hatékony – magát a gradiens nagyságát.
+Sajnos egy újabb problémával szembesülünk: a mélytanulásban általában még a célfüggvény második deriváltjához sem férünk hozzá: $\mathbf{x} \in \mathbb{R}^d$ esetén a második derivált még egyetlen mini-batch-en is $\mathcal{O}(d^2)$ tárhelyet és munkát igényelhet a kiszámításához, így a gyakorlatban kivitelezhetetlen. Az Adagrad zseniális ötlete az, hogy a Hesse-mátrix megfoghatatlan átlója helyett egy olyan helyettesítőt alkalmaz, amely viszonylag olcsón számítható és hatékony – magát a gradiens nagyságát.
 
 Annak megértéséhez, hogy ez miért működik, vizsgáljuk meg $\bar{f}(\bar{\mathbf{x}})$-t. Az alábbi összefüggés áll fenn:
 
@@ -164,7 +164,7 @@ def adagrad(params, grads, states, hyperparams):
         p[:].assign(p - hyperparams['lr'] * g / tf.math.sqrt(s + eps))
 ```
 
-A :numref:`sec_minibatch_sgd` szakaszban végzett kísérlethez képest
+A :numref:`sec_mini-batch_sgd` szakaszban végzett kísérlethez képest
 nagyobb tanulási rátát alkalmazunk a modell tanításához.
 
 ```{.python .input}

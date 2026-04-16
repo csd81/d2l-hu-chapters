@@ -25,7 +25,7 @@ z^{(1)} &= \phi_1(\mathbf{U}_u, \mathbf{V}_i) = \left[ \mathbf{U}_u, \mathbf{V}_
 \end{aligned}
 $$
 
-ahol $\mathbf{W}^*, \mathbf{b}^*$ és $\alpha^*$ a súlymátrixot, a torzításvektort és az aktivációs függvényt jelöli. $\phi^*$ a megfelelő réteg függvényét jelöli. $\mathbf{z}^*$ a megfelelő réteg kimenetét jelöli.
+ahol $\mathbf{W}^*, \mathbf{b}^*$ és $\alpha^*$ a súlymátrixot, az eltolás vektort és az aktivációs függvényt jelöli. $\phi^*$ a megfelelő réteg függvényét jelöli. $\mathbf{z}^*$ a megfelelő réteg kimenetét jelöli.
 
 A GMF és az MLP eredményeinek összefűzéséhez – egyszerű összeadás helyett – a NeuMF a két alháló utolsó előtti rétegeit fűzi össze, hogy egy jellemzővektort hozzon létre, amely a további rétegekbe tovább adható. Ezt követően a kimeneteket a $\mathbf{h}$ mátrixszal és egy szigmoid aktivációs függvénnyel vetítik ki. Az előrejelzési réteg a következőképpen formalizálható:
 $$

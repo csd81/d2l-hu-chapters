@@ -152,7 +152,7 @@ def text_labels(self, indices):
 Hogy megkönnyítsük az életünket a tanítási és teszthalmazból való olvasáskor,
 a beépített adatiterátort használjuk ahelyett, hogy nulláról hoznánk létre egyet.
 Emlékeztetőül: minden iterációban az adatiterátor
-[**`batch_size` méretű adat minibatch-et olvas.**]
+[**`batch_size` méretű adat mini-batch-et olvas.**]
 A tanítási adatiterátor esetén a példákat véletlenszerűen is megkeverjük.
 
 ```{.python .input}
@@ -191,7 +191,7 @@ def get_dataloader(self, train):
                 self.batch_size).map(resize_fn).shuffle(shuffle_buf))
 ```
 
-Hogy lássuk, hogyan működik, töltsük be képek egy minibatch-ét a `train_dataloader` metódus meghívásával. 64 képet tartalmaz.
+Hogy lássuk, hogyan működik, töltsük be képek egy mini-batch-ét a `train_dataloader` metódus meghívásával. 64 képet tartalmaz.
 
 ```{.python .input}
 %%tab all

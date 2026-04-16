@@ -40,7 +40,7 @@ ahol minden példa egyetlen szövegsorozatból állt,
 itt minden példa két külön szövegsorozatból áll:
 egy a forrásnyelvből és egy (a fordítás) a célnyelvből.
 A következő kódrészletek megmutatják, hogyan
-tölthetők be az előfeldolgozott adatok minibatchekbe tanítás céljából.
+tölthetők be az előfeldolgozott adatok mini-batch-ekbe tanítás céljából.
 
 ```{.python .input  n=2}
 %%tab mxnet
@@ -208,9 +208,9 @@ egy forrás- és célszöveg-sorozat pár,
 ahol a két szövegsorozat különböző hosszúságú lehet.
 
 A számítási hatékonyság érdekében
-egy minibatch szövegsorozatot egyszerre is feldolgozhatunk
+egy mini-batch szövegsorozatot egyszerre is feldolgozhatunk
 *csonkítás* és *kitöltés* segítségével.
-Tegyük fel, hogy ugyanabban a minibatchben minden sorozatnak
+Tegyük fel, hogy ugyanabban a mini-batchben minden sorozatnak
 azonos `num_steps` hosszúságúnak kell lennie.
 Ha egy szövegsorozatnak kevesebb mint `num_steps` tokenje van,
 a végéhez folyamatosan hozzáfűzzük a speciális "&lt;pad&gt;" tokent,
@@ -219,7 +219,7 @@ Ellenkező esetben a szövegsorozatot csonkítjuk,
 csak az első `num_steps` tokenjét tartva meg és a maradékot elvetve.
 Így minden szövegsorozatnak
 azonos hossza lesz,
-és azonos alakú minibatchekbe tölthető.
+és azonos alakú mini-batch-ekbe tölthető.
 Ezen felül rögzítjük a forrássorozat hosszát is a kitöltési tokenek nélkül.
 Erre az információra néhány modellnek szüksége lesz, amelyeket később tárgyalunk.
 
@@ -290,7 +290,7 @@ def get_dataloader(self, train):
     return self.get_tensorloader(self.arrays, train, idx)
 ```
 
-**Olvassuk be az angol–francia adathalmaz első minibatchét.**
+**Olvassuk be az angol–francia adathalmaz első mini-batch-ét.**
 
 ```{.python .input  n=11}
 %%tab all
@@ -326,7 +326,7 @@ print('target:', data.tgt_vocab.to_tokens(d2l.astype(tgt[0], d2l.int32)))
 
 ## Összefoglalás
 
-A természetes nyelvi feldolgozásban a *gépi fordítás* az a feladat, amelynek során automatikusan leképezünk egy sorozatot, amely egy *forrás*nyelven lévő szövegláncot reprezentál, egy másik sorozatra, amely egy ésszerű fordítást reprezentál a *cél* nyelven. Szószintű tokenizálásnál a szókincs mérete lényegesen nagyobb lesz, mint karakterszintű tokenizálásnál, de a sorozathosszak lényegesen rövidebbek lesznek. A nagy szókincsméret enyhítésére a ritka tokeneket "ismeretlen" tokenként kezelhetjük. Csonkítással és kitöltéssel a szövegsorozatokat azonos hosszúságúvá tehetjük, hogy minibatchekbe tölthetők legyenek. A modern implementációk sokszor hasonló hosszúságú sorozatokat csoportosítanak, hogy elkerüljék a kitöltéssel járó felesleges számítást.
+A természetes nyelvi feldolgozásban a *gépi fordítás* az a feladat, amelynek során automatikusan leképezünk egy sorozatot, amely egy *forrás*nyelven lévő szövegláncot reprezentál, egy másik sorozatra, amely egy ésszerű fordítást reprezentál a *cél* nyelven. Szószintű tokenizálásnál a szókincs mérete lényegesen nagyobb lesz, mint karakterszintű tokenizálásnál, de a sorozathosszak lényegesen rövidebbek lesznek. A nagy szókincsméret enyhítésére a ritka tokeneket "ismeretlen" tokenként kezelhetjük. Csonkítással és kitöltéssel a szövegsorozatokat azonos hosszúságúvá tehetjük, hogy mini-batch-ekbe tölthetők legyenek. A modern implementációk sokszor hasonló hosszúságú sorozatokat csoportosítanak, hogy elkerüljék a kitöltéssel járó felesleges számítást.
 
 
 ## Feladatok

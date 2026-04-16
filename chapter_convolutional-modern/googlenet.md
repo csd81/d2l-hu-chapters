@@ -434,12 +434,12 @@ with d2l.try_gpu():
 
 A GoogLeNet egyik kulcstulajdonsága, hogy valójában *olcsóbban* számítható ki elődeinél, miközben jobb pontosságot is nyújt. Ez jelöli egy sokkal tudatosabb hálózattervezés kezdetét, amely egy hálózat kiértékelési költségét a hibák csökkentésével váltja fel. Ez jelöli a hálózattervezési hiperparaméterekkel való blokk szintű kísérletezés kezdetét is, bár ez akkoriban teljesen kézzel történt. Ezt a témát a :numref:`sec_cnn-design` részben fogjuk újra felvetni, amikor a hálózatstruktúra feltárási stratégiáit tárgyaljuk.
 
-A következő szakaszokban számos tervezési választással találkozunk majd (pl. batch normalizáció, reziduális kapcsolatok és csatorna-csoportosítás), amelyek lehetővé teszik a hálózatok jelentős javítását. Egyelőre büszkék lehetünk arra, hogy implementáltuk azt, ami minden bizonnyal az első igazán modern CNN.
+A következő szakaszokban számos tervezési választással találkozunk majd (pl. batchnormalizáció, reziduális kapcsolatok és csatorna-csoportosítás), amelyek lehetővé teszik a hálózatok jelentős javítását. Egyelőre büszkék lehetünk arra, hogy implementáltuk azt, ami minden bizonnyal az első igazán modern CNN.
 
 ## Feladatok
 
 1. A GoogLeNet olyan sikeres volt, hogy több iteráción ment keresztül, fokozatosan javítva a sebességet és a pontosságot. Próbálj meg implementálni és futtatni néhányat ezek közül. Ide tartoznak a következők:
-    1. Adj hozzá egy batch normalizációs réteget :cite:`Ioffe.Szegedy.2015`, amint az a :numref:`sec_batch_norm` részben leírásra kerül.
+    1. Adj hozzá egy batchnormalizációs réteget :cite:`Ioffe.Szegedy.2015`, amint az a :numref:`sec_batch_norm` részben leírásra kerül.
     1. Végezz módosításokat az Inception blokkon (szélesség, konvolúciók választása és sorrendje), amint az :citet:`Szegedy.Vanhoucke.Ioffe.ea.2016` leírja.
     1. Alkalmazz label smoothingot a modell regularizálásához, amint az :citet:`Szegedy.Vanhoucke.Ioffe.ea.2016` leírja.
     1. Végezz további módosításokat az Inception blokkon reziduális kapcsolat hozzáadásával :cite:`Szegedy.Ioffe.Vanhoucke.ea.2017`, amint az a :numref:`sec_resnet` részben leírásra kerül.

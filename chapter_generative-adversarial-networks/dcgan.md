@@ -139,7 +139,7 @@ for X, y in data_iter.take(1):
 
 ## A generátor
 
-A generátornak az $\mathbf z\in\mathbb R^d$ zajváltozót, egy $d$ hosszúságú vektort, egy $64\times 64$ szélességű és magasságú RGB képpé kell leképeznie. A :numref:`sec_fcn` szakaszban bemutattuk a teljesen konvolúciós hálózatot, amely transzponált konvolúciós rétegeket (lásd :numref:`sec_transposed_conv`) alkalmaz a bemeneti méret növelésére. A generátor alap blokkja egy transzponált konvolúciós rétegből áll, amelyet batch normalizáció és ReLU aktiváció követ.
+A generátornak az $\mathbf z\in\mathbb R^d$ zajváltozót, egy $d$ hosszúságú vektort, egy $64\times 64$ szélességű és magasságú RGB képpé kell leképeznie. A :numref:`sec_fcn` szakaszban bemutattuk a teljesen konvolúciós hálózatot, amely transzponált konvolúciós rétegeket (lásd :numref:`sec_transposed_conv`) alkalmaz a bemeneti méret növelésére. A generátor alap blokkja egy transzponált konvolúciós rétegből áll, amelyet batchnormalizáció és ReLU aktiváció követ.
 
 ```{.python .input}
 #@tab mxnet
@@ -334,7 +334,7 @@ Y = [tf.keras.layers.LeakyReLU(alpha)(x).numpy() for alpha in alphas]
 d2l.plot(x.numpy(), Y, 'x', 'y', alphas)
 ```
 
-A diszkriminátor alap blokkja egy konvolúciós rétegből áll, amelyet batch normalizációs réteg és szivárgó ReLU aktiváció követ. A konvolúciós réteg hiperparaméterei hasonlóak a generátor blokk transzponált konvolúciós rétegéhez.
+A diszkriminátor alap blokkja egy konvolúciós rétegből áll, amelyet batchnormalizációs réteg és szivárgó ReLU aktiváció követ. A konvolúciós réteg hiperparaméterei hasonlóak a generátor blokk transzponált konvolúciós rétegéhez.
 
 ```{.python .input}
 #@tab mxnet
@@ -630,7 +630,7 @@ train(net_D, net_G, data_iter, num_epochs, lr, latent_dim)
 ## Összefoglalás
 
 * A DCGAN architektúrája négy konvolúciós réteget tartalmaz a diszkriminátorhoz és négy „törtlépéses" konvolúciós réteget a generátorhoz.
-* A diszkriminátor 4 rétegű léptetett konvolúciókból áll batch normalizációval (kivéve a bemeneti réteget) és szivárgó ReLU aktivációkkal.
+* A diszkriminátor 4 rétegű léptetett konvolúciókból áll batchnormalizációval (kivéve a bemeneti réteget) és szivárgó ReLU aktivációkkal.
 * A szivárgó ReLU egy nemlineáris függvény, amely negatív bemenet esetén nem nulla kimenetet ad. Célja a „haldokló ReLU” probléma kijavítása, és segít a gradienseknek könnyebben átfolyni az architektúrán.
 
 

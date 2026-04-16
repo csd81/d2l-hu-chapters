@@ -116,7 +116,7 @@ devices = d2l.try_all_gpus()
 ```
 
 :begin_tab:`mxnet`
-A :numref:`sec_multi_gpu`-ban bemutatott `split_and_load` függvénnyel egy minibatch adatot eloszthatunk, és az egyes részeket átmásolhatjuk a `devices` változó által megadott eszközök listájára. A hálózatpéldány *automatikusan* a megfelelő GPU-t használja az előterjesztés értékének kiszámításához. Itt 4 megfigyelést generálunk, és elosztjuk őket a GPU-k között.
+A :numref:`sec_multi_gpu`-ban bemutatott `split_and_load` függvénnyel egy mini-batch adatot eloszthatunk, és az egyes részeket átmásolhatjuk a `devices` változó által megadott eszközök listájára. A hálózatpéldány *automatikusan* a megfelelő GPU-t használja az előterjesztés értékének kiszámításához. Itt 4 megfigyelést generálunk, és elosztjuk őket a GPU-k között.
 :end_tab:
 
 ```{.python .input}
@@ -143,7 +143,7 @@ weight.data(devices[0])[0], weight.data(devices[1])[0]
 ```
 
 :begin_tab:`mxnet`
-Ezután cseréljük le a [**pontosság kiértékelésére**] szolgáló kódot olyanra, amely (**párhuzamosan működik több eszközön**). Ez a :numref:`sec_lenet`-ben szereplő `evaluate_accuracy_gpu` függvény felváltásaként szolgál. A fő különbség az, hogy a hálózat meghívása előtt felosztjuk a minibatch-et. Minden más lényegében azonos.
+Ezután cseréljük le a [**pontosság kiértékelésére**] szolgáló kódot olyanra, amely (**párhuzamosan működik több eszközön**). Ez a :numref:`sec_lenet`-ben szereplő `evaluate_accuracy_gpu` függvény felváltásaként szolgál. A fő különbség az, hogy a hálózat meghívása előtt felosztjuk a mini-batch-et. Minden más lényegében azonos.
 :end_tab:
 
 ```{.python .input}
@@ -170,7 +170,7 @@ def evaluate_accuracy_gpus(net, data_iter, split_f=d2l.split_batch):
 Mint korábban, a tanítási kódnak több alapvető funkciót kell ellátnia a hatékony párhuzamossághoz:
 
 * A hálózat paramétereit minden eszközön inicializálni kell.
-* Az adathalmazon való iterálás során a minibatch-eket el kell osztani az összes eszköz között.
+* Az adathalmazon való iterálás során a mini-batch-eket el kell osztani az összes eszköz között.
 * A veszteséget és a gradiensét párhuzamosan számítjuk ki az eszközökön.
 * A gradienseket összegyűjtjük, és ennek megfelelően frissítjük a paramétereket.
 

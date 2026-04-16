@@ -1264,10 +1264,10 @@ ilyen óriási előrelépést érjenek el.
   javult a párhuzamos és elosztott tanítóalgoritmusok felépítésének
   képessége. A skálázható algoritmusok egyik kulcsproblémája, hogy a deep
   learning optimalizálásának igáslova, a sztochasztikus
-  gradienscsökkenés, viszonylag kis minibatch-ek feldolgozására támaszkodik.
+  gradienscsökkenés, viszonylag kis mini-batch-ek feldolgozására támaszkodik.
   Ugyanakkor a kis batch-ek korlátozzák a GPU-k hatékonyságát. Ezért az
-  1,024 GPU-n történő tanítás, mondjuk 32 képes minibatch-ekkel, nagyjából
-  32,000 képből álló aggregált minibatch-nek felel meg. Az előbb
+  1,024 GPU-n történő tanítás, mondjuk 32 képes mini-batch-ekkel, nagyjából
+  32,000 képből álló aggregált mini-batch-nek felel meg. Az előbb
   :citet:`Li.2017`, majd :citet:`You.Gitman.Ginsburg.2017` és
   :citet:`Jia.Song.He.ea.2018` által végzett munkák 64,000 megfigyelésig
   tolták fel ezt a méretet, és az ImageNet adathalmazon a ResNet-50

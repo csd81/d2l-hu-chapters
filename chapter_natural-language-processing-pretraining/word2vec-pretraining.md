@@ -80,7 +80,7 @@ Mivel a vektor dimenzió (`output_dim`)
 4-re van beállítva,
 a beágyazó réteg
 (2, 3, 4) alakú vektorokat ad vissza
-(2, 3) alakú tokenindexekből álló minibatch esetén.
+(2, 3) alakú tokenindexekből álló mini-batch esetén.
 
 ```{.python .input}
 #@tab all
@@ -96,7 +96,7 @@ a (batch méret, 1) alakú középső szó indexeket (`center`)
 és
 a (batch méret, `max_len`) alakú összefűzött kontextus- és zajszó indexeket (`contexts_and_negatives`),
 ahol `max_len`
-a :numref:`subsec_word2vec-minibatch-loading` fejezetben van definiálva.
+a :numref:`subsec_word2vec-mini-batch-loading` fejezetben van definiálva.
 Ez a két változó először a token indexekből vektorokká lesz átalakítva a beágyazó rétegen keresztül,
 majd ezek batch mátrix szorzása
 (leírva a :numref:`subsec_batch_dot` fejezetben)
@@ -167,7 +167,7 @@ loss = SigmoidBCELoss()
 
 Idézzük fel a maszk változó
 és a címke változó leírását a
-:numref:`subsec_word2vec-minibatch-loading` fejezetből.
+:numref:`subsec_word2vec-mini-batch-loading` fejezetből.
 A következő
 kiszámítja a
 bináris kereszt-entrópia veszteséget
@@ -346,7 +346,7 @@ get_similar_tokens('chip', 3, net[0])
 ## Gyakorló feladatok
 
 1. A betanított modell segítségével keressünk szemantikailag hasonló szavakat más bemeneti szavakhoz. Javíthatók-e az eredmények a hiperparaméterek hangolásával?
-1. Ha a tanítókorpusz hatalmas, a modellparaméterek frissítésekor gyakran mintavételezzük a kontextus- és zajszavakat az aktuális minibatch középső szavaihoz. Más szóval, ugyanaz a középső szó különböző tanítási korszakokban különböző kontextus- vagy zajszavakkal rendelkezhet. Mik ennek a módszernek az előnyei? Próbáld meg megvalósítani ezt a tanítási módszert.
+1. Ha a tanítókorpusz hatalmas, a modellparaméterek frissítésekor gyakran mintavételezzük a kontextus- és zajszavakat az aktuális mini-batch középső szavaihoz. Más szóval, ugyanaz a középső szó különböző tanítási korszakokban különböző kontextus- vagy zajszavakkal rendelkezhet. Mik ennek a módszernek az előnyei? Próbáld meg megvalósítani ezt a tanítási módszert.
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/384)

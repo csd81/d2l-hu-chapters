@@ -41,20 +41,20 @@ from jax import numpy as jnp
 
 :begin_tab:`mxnet`
 Alapértelmezés szerint az MXNet az egyenletes $U(-0.07, 0.07)$ eloszlásból véletlenszerűen húzva inicializálja a súlyparamétereket,
-a torzítás paramétereket nullára állítva.
+az eltolás paramétereket nullára állítva.
 Az MXNet `init` modulja számos
 előre beállított inicializálási módszert biztosít.
 :end_tab:
 
 :begin_tab:`pytorch`
-Alapértelmezés szerint a PyTorch egyenletesen inicializálja a súly- és torzítás mátrixokat
+Alapértelmezés szerint a PyTorch egyenletesen inicializálja a súly- és eltolás mátrixokat
 olyan tartományból húzva, amelyet a bemeneti és kimeneti dimenzió szerint számít.
 A PyTorch `nn.init` modulja számos
 előre beállított inicializálási módszert biztosít.
 :end_tab:
 
 :begin_tab:`tensorflow`
-Alapértelmezés szerint a Keras egyenletesen inicializálja a súlymátrixokat olyan tartományból húzva, amelyet a bemeneti és kimeneti dimenzió szerint számít, a torzítás paraméterek mind nullára vannak állítva.
+Alapértelmezés szerint a Keras egyenletesen inicializálja a súlymátrixokat olyan tartományból húzva, amelyet a bemeneti és kimeneti dimenzió szerint számít, az eltolás paraméterek mind nullára vannak állítva.
 A TensorFlow számos inicializálási módszert biztosít mind a gyökérmodulban, mind a `keras.initializers` modulban.
 :end_tab:
 
@@ -62,7 +62,7 @@ A TensorFlow számos inicializálási módszert biztosít mind a gyökérmodulba
 Alapértelmezés szerint a Flax a `jax.nn.initializers.lecun_normal` segítségével inicializálja a súlyokat,
 azaz 0 középpontú csonkított normális eloszlásból húz mintákat,
 ahol a szórás $1 / \textrm{fan}_{\textrm{in}}$ négyzetgyöke,
-ahol a `fan_in` a súlytenzor bemeneti egységeinek száma. A torzítás
+ahol a `fan_in` a súlytenzor bemeneti egységeinek száma. Az eltolás
 paraméterek mind nullára vannak állítva.
 A Jax `nn.initializers` modulja számos
 előre beállított inicializálási módszert biztosít.
@@ -111,7 +111,7 @@ net.apply(params, X).shape
 Kezdjük a beépített inicializálók meghívásával.
 Az alábbi kód az összes súlyparamétert
 Gauss-eloszlású véletlen változóként inicializálja
-0.01 szórással, míg a torzítás paramétereket nullára állítja.
+0.01 szórással, míg az eltolás paramétereket nullára állítja.
 
 ```{.python .input}
 %%tab mxnet

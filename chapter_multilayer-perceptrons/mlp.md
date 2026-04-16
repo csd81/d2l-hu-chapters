@@ -57,7 +57,7 @@ from jax import grad, vmap
 ## Rejtett rétegek
 
 Az affin transzformációkat a :numref:`subsec_linear_model` részben
-lineáris transzformációkként definiáltuk hozzáadott torzítással.
+lineáris transzformációkként definiáltuk hozzáadott eltolással.
 Kezdetként idézzük fel a softmax regressziós példánknak megfelelő
 modellarchitektúrát, amelyet a :numref:`fig_softmaxreg` ábra illusztrál.
 Ez a modell egyetlen affin transzformáción keresztül képezi le
@@ -172,7 +172,7 @@ a kimeneti réteg minden neuronjára. De még nem vagyunk teljesen készen.
 ### A lineáristól a nemlineárisig
 
 Korábbihoz hasonlóan az $\mathbf{X} \in \mathbb{R}^{n \times d}$ mátrixszal jelölünk
-egy $n$ példányból álló minibatchet, ahol minden példánynak $d$ bemenete (jellemzője) van.
+egy $n$ példányból álló mini-batch-et, ahol minden példánynak $d$ bemenete (jellemzője) van.
 Egy rejtett réteggel rendelkező MLP esetén, amelynek rejtett rétege $h$ rejtett egységből áll,
 $\mathbf{H} \in \mathbb{R}^{n \times h}$ jelöli a rejtett réteg kimeneteit,
 amelyeket *rejtett reprezentációknak* nevezzük.
@@ -230,7 +230,7 @@ $$
 \end{aligned}
 $$
 
-Mivel az $\mathbf{X}$ minden sora a minibatch egy példányának felel meg,
+Mivel az $\mathbf{X}$ minden sora a mini-batch egy példányának felel meg,
 némi jelölésvisszaéléssel a nemlinearitást
 $\sigma$-t soronként alkalmazzuk a bemenetekre,
 azaz egyszerre egy példányra.
@@ -281,7 +281,7 @@ A következő fejezetekben szigorúbb érvekre is kitérünk.
 :label:`subsec_activation-functions`
 
 Az aktivációs függvények döntik el, hogy egy neuront aktiválni kell-e vagy sem, a
-súlyozott összeg kiszámításával és torzítás hozzáadásával.
+súlyozott összeg kiszámításával és eltolás hozzáadásával.
 Differenciálható operátorok, amelyek bemeneti jeleket kimenetekké alakítanak,
 és legtöbbjük nemlinearitást ad hozzá.
 Mivel az aktivációs függvények alapvetők a mély tanulásban,
@@ -614,8 +614,8 @@ sok esetben jobb pontosságot adhat.
 1. Mutasd meg, hogy a csak ReLU-t (vagy pReLU-t) használó MLP egy folytonos darabonként lineáris függvényt konstruál.
 1. A sigmoid és a tanh nagyon hasonlók.
     1. Mutasd meg, hogy $\operatorname{tanh}(x) + 1 = 2 \operatorname{sigmoid}(2x)$.
-    1. Bizonyítsd be, hogy mindkét nemlinearitás által parametrizált függvényosztályok azonosak. Tipp: az affin rétegeknek is vannak torzítás tagjaik.
-1. Tegyük fel, hogy van egy nemlinearitásunk, amelyet egyszerre egy minibatchre alkalmazunk, például a batch normalizáció :cite:`Ioffe.Szegedy.2015`. Milyen problémákat okozhat ez?
+    1. Bizonyítsd be, hogy mindkét nemlinearitás által parametrizált függvényosztályok azonosak. Tipp: az affin rétegeknek is vannak eltolás tagjaik.
+1. Tegyük fel, hogy van egy nemlinearitásunk, amelyet egyszerre egy mini-batch-re alkalmazunk, például a batchnormalizáció :cite:`Ioffe.Szegedy.2015`. Milyen problémákat okozhat ez?
 1. Adj példát arra, ahol a gradiensek eltűnnek a sigmoid aktivációs függvény esetén.
 
 :begin_tab:`mxnet`

@@ -8,9 +8,9 @@ tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 
 A mély neurális hálózatok tanítása nehéz feladat.
 Ésszerű idő alatt való konvergáltatásuk trükkös lehet.
-Ebben a szakaszban a *batch normalizációt* írjuk le, egy népszerű és hatékony technikát, amely következetesen felgyorsítja a mély hálózatok konvergenciáját :cite:`Ioffe.Szegedy.2015`.
-A reziduális blokkokkal együtt — amelyeket a :numref:`sec_resnet` részben tárgyalunk — a batch normalizáció lehetővé tette a szakemberek számára, hogy rutinszerűen tanítsanak 100 rétegnél mélyebb hálózatokat.
-A batch normalizáció másodlagos (szerencsés) előnye a benne rejlő regularizáció.
+Ebben a szakaszban a *batchnormalizációt* írjuk le, egy népszerű és hatékony technikát, amely következetesen felgyorsítja a mély hálózatok konvergenciáját :cite:`Ioffe.Szegedy.2015`.
+A reziduális blokkokkal együtt — amelyeket a :numref:`sec_resnet` részben tárgyalunk — a batchnormalizáció lehetővé tette a szakemberek számára, hogy rutinszerűen tanítsanak 100 rétegnél mélyebb hálózatokat.
+A batchnormalizáció másodlagos (szerencsés) előnye a benne rejlő regularizáció.
 
 ```{.python .input}
 %%tab mxnet
@@ -55,36 +55,36 @@ A jellemzők kiválasztásáról és kinyeréséről szóló áttekintéshez lá
 A vektorok standardizálásának az a kellemes mellékhatása is van, hogy korlátozza az azokon ható függvények összetettségét. Például a support vector machines-ben alkalmazott klasszikus radius-margin korlát :cite:`Vapnik95` és a Perceptron Convergence Theorem :cite:`Novikoff62` korlátozott normájú bemenetekre támaszkodik.
 
 Intuitívan ez a standardizálás jól működik az optimalizálóinkkal, mivel a paramétereket *a priori* hasonló skálán helyezi el.
-Ezért természetes felvetni, hogy egy mély hálózaton *belüli* megfelelő normalizálási lépés vajon nem lenne-e hasznos. Bár ez nem egészen az a gondolat, amely a batch normalizáció :cite:`Ioffe.Szegedy.2015` feltalálásához vezetett, mégis hasznos módja annak megértésének — és rokonával, a rétegnormalizációval :cite:`Ba.Kiros.Hinton.2016` együtt — egy egységes keretrendszeren belül.
+Ezért természetes felvetni, hogy egy mély hálózaton *belüli* megfelelő normalizálási lépés vajon nem lenne-e hasznos. Bár ez nem egészen az a gondolat, amely a batchnormalizáció :cite:`Ioffe.Szegedy.2015` feltalálásához vezetett, mégis hasznos módja annak megértésének — és rokonával, a rétegnormalizációval :cite:`Ba.Kiros.Hinton.2016` együtt — egy egységes keretrendszeren belül.
 
 Másodszor, egy tipikus MLP vagy CNN esetén tanítás közben a közbenső rétegek változóinak értékei (pl. az MLP affin transzformációjának kimenetei) nagyon eltérő nagyságrendű értékeket vehetnek fel: akár a bemenettől a kimenetig lévő rétegek mentén, akár az ugyanazon rétegben lévő egységek között, akár időben a modellparaméterek frissítésének következtében.
-A batch normalizáció feltalálói informálisan azt állították, hogy az ilyen változók eloszlásának ez az eltolódása akadályozhatja a hálózat konvergenciáját.
+A batchnormalizáció feltalálói informálisan azt állították, hogy az ilyen változók eloszlásának ez az eltolódása akadályozhatja a hálózat konvergenciáját.
 Intuitívan azt sejthetjük, hogy ha az egyik réteg változó aktivációi 100-szor akkorák, mint egy másik rétegéi, ez szükségessé teheti a tanulási ráták kompenzációs kiigazítását. Az adaptív megoldók, mint például az AdaGrad :cite:`Duchi.Hazan.Singer.2011`, az Adam :cite:`Kingma.Ba.2014`, a Yogi :cite:`Zaheer.Reddi.Sachan.ea.2018` vagy a Distributed Shampoo :cite:`anil2020scalable`, az optimalizálás szempontjából próbálnak megoldást találni erre a problémára, pl. másodrendű módszerek szempontjait beépítve.
 Az alternatíva az, hogy egyszerűen adaptív normalizálással megelőzzük a probléma kialakulását.
 
 Harmadszor, a mélyebb hálózatok összetettebb és hajlamosabbak a túlillesztésre.
-Ez azt jelenti, hogy a regularizáció kritikusabbá válik. A regularizáció egyik általános technikája a zajinjektálás. Ez már régóta ismert, például a bemenetek zajinjektálásával kapcsolatban :cite:`Bishop.1995`. Ez képezi a dropout alapját is a :numref:`sec_dropout` részben. Mint kiderül, teljesen véletlenszerűen, a batch normalizáció mindhárom előnnyel jár: előfeldolgozás, numerikus stabilitás és regularizáció.
+Ez azt jelenti, hogy a regularizáció kritikusabbá válik. A regularizáció egyik általános technikája a zajinjektálás. Ez már régóta ismert, például a bemenetek zajinjektálásával kapcsolatban :cite:`Bishop.1995`. Ez képezi a dropout alapját is a :numref:`sec_dropout` részben. Mint kiderül, teljesen véletlenszerűen, a batchnormalizáció mindhárom előnnyel jár: előfeldolgozás, numerikus stabilitás és regularizáció.
 
-A batch normalizáció az egyes rétegekre, vagy opcionálisan az összesre alkalmazható:
-Minden tanítási iterációban először normalizáljuk a bemeneteket (a batch normalizáció bemeneteit) az átlaguk kivonásával és a szórásukkal való osztással, ahol mindkettőt az aktuális minibatch statisztikái alapján becsüljük.
-Ezután egy skálaegyütthatót és egy eltolást alkalmazunk az elveszített szabadsági fokok visszanyerésére. Pontosan ez a *batch* statisztikákon alapuló *normalizáció* adja a *batch normalizáció* nevét.
+A batchnormalizáció az egyes rétegekre, vagy opcionálisan az összesre alkalmazható:
+Minden tanítási iterációban először normalizáljuk a bemeneteket (a batchnormalizáció bemeneteit) az átlaguk kivonásával és a szórásukkal való osztással, ahol mindkettőt az aktuális mini-batch statisztikái alapján becsüljük.
+Ezután egy skálaegyütthatót és egy eltolást alkalmazunk az elveszített szabadsági fokok visszanyerésére. Pontosan ez a *batch* statisztikákon alapuló *normalizáció* adja a *batchnormalizáció* nevét.
 
-Megjegyezzük, hogy ha 1-es méretű minibatch-ekkel próbálnánk alkalmazni a batch normalizációt, nem tudnánk semmit sem tanulni.
+Megjegyezzük, hogy ha 1-es méretű mini-batch-ekkel próbálnánk alkalmazni a batchnormalizációt, nem tudnánk semmit sem tanulni.
 Ez azért van, mert az átlagok kivonása után minden rejtett egység 0 értéket venne fel.
-Ahogy sejthető, mivel egy egész szakaszt szentelünk a batch normalizációnak, elegendően nagy minibatch-ekkel a megközelítés hatékonynak és stabilnak bizonyul.
-Ebből az a tanulság, hogy a batch normalizáció alkalmazásakor a batch méretének megválasztása még fontosabb, mint batch normalizáció nélkül, vagy legalábbis megfelelő kalibrálás szükséges, ha a batch méretet módosítjuk.
+Ahogy sejthető, mivel egy egész szakaszt szentelünk a batchnormalizációnak, elegendően nagy mini-batch-ekkel a megközelítés hatékonynak és stabilnak bizonyul.
+Ebből az a tanulság, hogy a batchnormalizáció alkalmazásakor a batch méretének megválasztása még fontosabb, mint batchnormalizáció nélkül, vagy legalábbis megfelelő kalibrálás szükséges, ha a batch méretet módosítjuk.
 
-Jelöljük $\mathcal{B}$-vel a minibatch-t, és legyen $\mathbf{x} \in \mathcal{B}$ a batch normalizáció ($\textrm{BN}$) bemenete. Ebben az esetben a batch normalizáció a következőképpen definiált:
+Jelöljük $\mathcal{B}$-vel a mini-batch-t, és legyen $\mathbf{x} \in \mathcal{B}$ a batchnormalizáció ($\textrm{BN}$) bemenete. Ebben az esetben a batchnormalizáció a következőképpen definiált:
 
 $$\textrm{BN}(\mathbf{x}) = \boldsymbol{\gamma} \odot \frac{\mathbf{x} - \hat{\boldsymbol{\mu}}_\mathcal{B}}{\hat{\boldsymbol{\sigma}}_\mathcal{B}} + \boldsymbol{\beta}.$$
 :eqlabel:`eq_batchnorm`
 
-A :eqref:`eq_batchnorm`-ben $\hat{\boldsymbol{\mu}}_\mathcal{B}$ a $\mathcal{B}$ minibatch mintaátlaga, $\hat{\boldsymbol{\sigma}}_\mathcal{B}$ pedig a mintaszórása.
-A standardizáció alkalmazása után a kapott minibatch nulla átlagú és egységnyi varianciájú.
+A :eqref:`eq_batchnorm`-ben $\hat{\boldsymbol{\mu}}_\mathcal{B}$ a $\mathcal{B}$ mini-batch mintaátlaga, $\hat{\boldsymbol{\sigma}}_\mathcal{B}$ pedig a mintaszórása.
+A standardizáció alkalmazása után a kapott mini-batch nulla átlagú és egységnyi varianciájú.
 Az egységnyi variancia választása (más mágikus szám helyett) tetszőleges. Ezt a szabadsági fokot visszanyerjük egy elemenként értelmezett *skálaparaméter* $\boldsymbol{\gamma}$ és *eltolásparaméter* $\boldsymbol{\beta}$ beillesztésével, amelyek ugyanolyan alakúak, mint $\mathbf{x}$. Mindkét paramétert a modell tanítása során kell megtanulni.
 
-A közbenső rétegek változóinak nagyságrendjei nem divergálhatnak tanítás közben, mivel a batch normalizáció aktívan középre igazítja és átskálázza őket egy adott átlagra és méretre (a $\hat{\boldsymbol{\mu}}_\mathcal{B}$ és a ${\hat{\boldsymbol{\sigma}}_\mathcal{B}}$ segítségével).
-A gyakorlati tapasztalat megerősíti, hogy — ahogy a jellemzők átskálázásának tárgyalásakor már utaltunk rá — a batch normalizáció láthatóan agresszívabb tanulási rátákat tesz lehetővé.
+A közbenső rétegek változóinak nagyságrendjei nem divergálhatnak tanítás közben, mivel a batchnormalizáció aktívan középre igazítja és átskálázza őket egy adott átlagra és méretre (a $\hat{\boldsymbol{\mu}}_\mathcal{B}$ és a ${\hat{\boldsymbol{\sigma}}_\mathcal{B}}$ segítségével).
+A gyakorlati tapasztalat megerősíti, hogy — ahogy a jellemzők átskálázásának tárgyalásakor már utaltunk rá — a batchnormalizáció láthatóan agresszívabb tanulási rátákat tesz lehetővé.
 A $\hat{\boldsymbol{\mu}}_\mathcal{B}$ és ${\hat{\boldsymbol{\sigma}}_\mathcal{B}}$ értékeket a :eqref:`eq_batchnorm`-ben a következőképpen számítjuk:
 
 $$\hat{\boldsymbol{\mu}}_\mathcal{B} = \frac{1}{|\mathcal{B}|} \sum_{\mathbf{x} \in \mathcal{B}} \mathbf{x}
@@ -98,46 +98,46 @@ Azt gondolhatnád, hogy ez a zajosság problémát okozhat.
 
 Ez a deep learning-ben visszatérő témának bizonyult.
 Elméletileg még nem jól jellemzett okokból az optimalizálásban különböző zajforrások gyakran gyorsabb tanításhoz és kisebb túlillesztéshez vezetnek: ez a változékonyság a regularizáció egyik formájaként tűnik hatni.
-:citet:`Teye.Azizpour.Smith.2018` és :citet:`Luo.Wang.Shao.ea.2018` a batch normalizáció tulajdonságait a Bayes-féle priorokhoz és büntetőtagokhoz kapcsolta.
-Ez különösen rávilágít arra a talányra, hogy miért működik a batch normalizáció a legjobban az 50–100-as tartományban lévő mérsékelt minibatch-méreteknél.
-Ez a méret úgy tűnik, hogy éppen a "megfelelő mennyiségű" zajt injektálja rétegenként, mind a $\hat{\boldsymbol{\sigma}}$-n keresztüli skálázás, mind a $\hat{\boldsymbol{\mu}}$-n keresztüli eltolás tekintetében: egy nagyobb minibatch kevésbé regularizál a stabilabb becslések miatt, míg a nagyon kis minibatch-ek hasznosítható jelzéseket pusztítanak el a nagy variancia miatt. Ennek az iránynak a további feltárása, alternatív előfeldolgozási és szűrési típusok figyelembevételével, talán más hatékony regularizációs típusokhoz vezet.
+:citet:`Teye.Azizpour.Smith.2018` és :citet:`Luo.Wang.Shao.ea.2018` a batchnormalizáció tulajdonságait a Bayes-féle priorokhoz és büntetőtagokhoz kapcsolta.
+Ez különösen rávilágít arra a talányra, hogy miért működik a batchnormalizáció a legjobban az 50–100-as tartományban lévő mérsékelt mini-batch-méreteknél.
+Ez a méret úgy tűnik, hogy éppen a "megfelelő mennyiségű" zajt injektálja rétegenként, mind a $\hat{\boldsymbol{\sigma}}$-n keresztüli skálázás, mind a $\hat{\boldsymbol{\mu}}$-n keresztüli eltolás tekintetében: egy nagyobb mini-batch kevésbé regularizál a stabilabb becslések miatt, míg a nagyon kis mini-batch-ek hasznosítható jelzéseket pusztítanak el a nagy variancia miatt. Ennek az iránynak a további feltárása, alternatív előfeldolgozási és szűrési típusok figyelembevételével, talán más hatékony regularizációs típusokhoz vezet.
 
 Ha betanított modellt vizsgálunk, talán azt gondolnánk, hogy a teljes adathalmazt szeretnénk felhasználni az átlag és a variancia becslésére.
 Miután a tanítás befejeződött, miért akarnánk, hogy ugyanaz a kép különbözőképpen kerüljön besorolásra attól függően, hogy melyik batch-ben tartózkodik?
 A tanítás során az ilyen pontos számítás megvalósíthatatlan, mivel az összes adatpéldánk közbenső változói minden egyes modellfrissítéskor megváltoznak.
 Amint azonban a modell betanítottá válik, kiszámíthatjuk az egyes rétegek változóinak átlagát és varianciáját a teljes adathalmaz alapján.
-Ez az általános gyakorlat a batch normalizációt alkalmazó modelleknél; ezért a batch normalizációs rétegek másképpen működnek *tanítási módban* (normalizálás minibatch-statisztikák alapján), mint *predikciós módban* (normalizálás adathalmaz-statisztikák alapján).
+Ez az általános gyakorlat a batchnormalizációt alkalmazó modelleknél; ezért a batchnormalizációs rétegek másképpen működnek *tanítási módban* (normalizálás mini-batch-statisztikák alapján), mint *predikciós módban* (normalizálás adathalmaz-statisztikák alapján).
 Ebben a formában szorosan hasonlítanak a :numref:`sec_dropout` dropout regularizáció viselkedéséhez, ahol a zajt csak tanítás közben injektálják.
 
 
 ## Batch Normalizációs Rétegek
 
-A teljesen összekötött rétegek és a konvolúciós rétegek batch normalizáció implementációja kissé eltérő.
-Az egyik fő különbség a batch normalizáció és más rétegek között az, hogy mivel az előbbi egyszerre egy teljes minibatch-en dolgozik, nem hagyhatjuk figyelmen kívül a batch dimenziót, ahogy más rétegek bevezetésekor tettük.
+A teljesen összekötött rétegek és a konvolúciós rétegek batchnormalizáció implementációja kissé eltérő.
+Az egyik fő különbség a batchnormalizáció és más rétegek között az, hogy mivel az előbbi egyszerre egy teljes mini-batch-en dolgozik, nem hagyhatjuk figyelmen kívül a batch dimenziót, ahogy más rétegek bevezetésekor tettük.
 
 ### Teljesen Összekötött Rétegek
 
-A batch normalizáció teljesen összekötött rétegekre való alkalmazásakor :citet:`Ioffe.Szegedy.2015` az eredeti cikkben az affin transzformáció *után* és a nemlineáris aktivációs függvény *előtt* illesztette be a batch normalizációt. Későbbi alkalmazások az aktivációs függvények *után* való beillesztéssel is kísérleteztek.
-Jelöljük a teljesen összekötött réteg bemenetét $\mathbf{x}$-szel, az affin transzformációt $\mathbf{W}\mathbf{x} + \mathbf{b}$-vel (ahol $\mathbf{W}$ a súlyparaméter és $\mathbf{b}$ a torzítás-paraméter), és az aktivációs függvényt $\phi$-vel.
-A batch normalizáció által engedélyezett teljesen összekötött réteg kimenetét $\mathbf{h}$-val a következőképpen fejezhetjük ki:
+A batchnormalizáció teljesen összekötött rétegekre való alkalmazásakor :citet:`Ioffe.Szegedy.2015` az eredeti cikkben az affin transzformáció *után* és a nemlineáris aktivációs függvény *előtt* illesztette be a batchnormalizációt. Későbbi alkalmazások az aktivációs függvények *után* való beillesztéssel is kísérleteztek.
+Jelöljük a teljesen összekötött réteg bemenetét $\mathbf{x}$-szel, az affin transzformációt $\mathbf{W}\mathbf{x} + \mathbf{b}$-vel (ahol $\mathbf{W}$ a súlyparaméter és $\mathbf{b}$ az eltolás-paraméter), és az aktivációs függvényt $\phi$-vel.
+A batchnormalizáció által engedélyezett teljesen összekötött réteg kimenetét $\mathbf{h}$-val a következőképpen fejezhetjük ki:
 
 $$\mathbf{h} = \phi(\textrm{BN}(\mathbf{W}\mathbf{x} + \mathbf{b}) ).$$
 
-Ne feledjük, hogy az átlagot és a varianciát *ugyanazon* minibatch-en számítjuk, amelyre a transzformációt alkalmazzuk.
+Ne feledjük, hogy az átlagot és a varianciát *ugyanazon* mini-batch-en számítjuk, amelyre a transzformációt alkalmazzuk.
 
 ### Konvolúciós Rétegek
 
-Hasonlóképpen, konvolúciós rétegek esetén a batch normalizációt a konvolúció után, de a nemlineáris aktivációs függvény előtt alkalmazhatjuk. A teljesen összekötött rétegek batch normalizációjától való fő különbség az, hogy a műveletet csatornánként, *az összes helyen* végezzük. Ez összhangban van az eltolási invariancia feltételezésével, amely a konvolúciókhoz vezetett: feltételeztük, hogy egy minta adott helyzete a képen nem kritikus a megértés szempontjából.
+Hasonlóképpen, konvolúciós rétegek esetén a batchnormalizációt a konvolúció után, de a nemlineáris aktivációs függvény előtt alkalmazhatjuk. A teljesen összekötött rétegek batchnormalizációjától való fő különbség az, hogy a műveletet csatornánként, *az összes helyen* végezzük. Ez összhangban van az eltolási invariancia feltételezésével, amely a konvolúciókhoz vezetett: feltételeztük, hogy egy minta adott helyzete a képen nem kritikus a megértés szempontjából.
 
-Tegyük fel, hogy minibatch-jeink $m$ példát tartalmaznak, és minden csatornánál a konvolúció kimenete $p$ magasságú és $q$ szélességű.
-Konvolúciós rétegek esetén minden batch normalizációt a $m \cdot p \cdot q$ elemen hajtunk végre kimeneti csatornánként egyidejűleg.
+Tegyük fel, hogy mini-batch-jeink $m$ példát tartalmaznak, és minden csatornánál a konvolúció kimenete $p$ magasságú és $q$ szélességű.
+Konvolúciós rétegek esetén minden batchnormalizációt a $m \cdot p \cdot q$ elemen hajtunk végre kimeneti csatornánként egyidejűleg.
 Így az átlag és a variancia kiszámításakor az összes térbeli helyen összegyűjtjük az értékeket, és következésképpen ugyanazt az átlagot és varianciát alkalmazzuk egy adott csatornán belül az egyes térbeli helyek értékeinek normalizálására.
 Minden csatornának saját skálaparamétere és eltolásparamétere van, amelyek mindkettő skalárok.
 
 ### Rétegnormalizáció
 :label:`subsec_layer-normalization-in-bn`
 
-Megjegyezzük, hogy a konvolúciók kontextusában a batch normalizáció 1-es méretű minibatch-ek esetén is jól definiált: elvégre az összes kép-helyet átlagolhatjuk. Következésképpen az átlag és a variancia jól definiált, még ha egyetlen megfigyelésen belül is. Ez a megfontolás vezette :citet:`Ba.Kiros.Hinton.2016`-ot a *rétegnormalizáció* (*layer normalization*) fogalmának bevezetéséhez. Pontosan úgy működik, mint a batch normalizáció, csak egyetlen megfigyelésre alkalmazzák egyszerre. Ezért mind az eltolás, mind a skálázási tényező skalárok. Egy $n$-dimenziós $\mathbf{x}$ vektor esetén a rétegnormák a következők:
+Megjegyezzük, hogy a konvolúciók kontextusában a batchnormalizáció 1-es méretű mini-batch-ek esetén is jól definiált: elvégre az összes kép-helyet átlagolhatjuk. Következésképpen az átlag és a variancia jól definiált, még ha egyetlen megfigyelésen belül is. Ez a megfontolás vezette :citet:`Ba.Kiros.Hinton.2016`-ot a *rétegnormalizáció* (*layer normalization*) fogalmának bevezetéséhez. Pontosan úgy működik, mint a batchnormalizáció, csak egyetlen megfigyelésre alkalmazzák egyszerre. Ezért mind az eltolás, mind a skálázási tényező skalárok. Egy $n$-dimenziós $\mathbf{x}$ vektor esetén a rétegnormák a következők:
 
 $$\mathbf{x} \rightarrow \textrm{LN}(\mathbf{x}) =  \frac{\mathbf{x} - \hat{\mu}}{\hat\sigma},$$
 
@@ -148,22 +148,22 @@ $$\hat{\mu} \stackrel{\textrm{def}}{=} \frac{1}{n} \sum_{i=1}^n x_i \textrm{ and
 
 Mint korábban, kis $\epsilon > 0$ eltolást adunk hozzá a nullával való osztás megakadályozása érdekében. A rétegnormalizáció egyik fő előnye az, hogy megakadályozza a divergenciát. Elvégre, az $\epsilon$-t figyelmen kívül hagyva, a rétegnormalizáció kimenete skálafüggetlen. Vagyis $\textrm{LN}(\mathbf{x}) \approx \textrm{LN}(\alpha \mathbf{x})$ teljesül $\alpha \neq 0$ tetszőleges választásához. Ez egyenlőséggé válik $|\alpha| \to \infty$ esetén (a közelítő egyenlőség a variancia $\epsilon$ eltolásából fakad).
 
-A rétegnormalizáció másik előnye, hogy nem függ a minibatch méretétől. Szintén független attól, hogy tanítási vagy tesztelési módban vagyunk. Más szóval, csupán egy determinisztikus transzformáció, amely az aktivációkat adott skálára standardizálja. Ez nagyon hasznos lehet az optimalizálásbeli divergencia megakadályozásában. Kihagyjuk a további részleteket, és az érdeklődőknek az eredeti cikk elolvasását ajánljuk.
+A rétegnormalizáció másik előnye, hogy nem függ a mini-batch méretétől. Szintén független attól, hogy tanítási vagy tesztelési módban vagyunk. Más szóval, csupán egy determinisztikus transzformáció, amely az aktivációkat adott skálára standardizálja. Ez nagyon hasznos lehet az optimalizálásbeli divergencia megakadályozásában. Kihagyjuk a további részleteket, és az érdeklődőknek az eredeti cikk elolvasását ajánljuk.
 
 ### Batch Normalizáció Predikció Során
 
-Ahogy korábban említettük, a batch normalizáció tanítási módban jellemzően más viselkedést mutat, mint predikciós módban.
-Először is, a minibatch-enként becsült mintaátlagban és mintavarianciában lévő zaj már nem kívánatos, amint betanítottuk a modellt.
+Ahogy korábban említettük, a batchnormalizáció tanítási módban jellemzően más viselkedést mutat, mint predikciós módban.
+Először is, a mini-batch-enként becsült mintaátlagban és mintavarianciában lévő zaj már nem kívánatos, amint betanítottuk a modellt.
 Másodszor, előfordulhat, hogy nem rendelkezünk az egyes batch-enkénti normalizációs statisztikák kiszámításának lehetőségével.
 Például előfordulhat, hogy a modellt egyszerre csak egy predikció elvégzésére kell alkalmazni.
 
 Jellemzően a tanítás után az összes adathalmazt használjuk a változóstatisztikák stabil becslésének kiszámításához, majd predikciós időben rögzítjük azokat.
-Ezért a batch normalizáció tanítás közben másképpen viselkedik, mint tesztelési időben.
+Ezért a batchnormalizáció tanítás közben másképpen viselkedik, mint tesztelési időben.
 Emlékezzünk arra, hogy a dropout is mutat ilyen jellemzőt.
 
 ## (**Implementáció Alapoktól**)
 
-Hogy lássuk, hogyan működik a batch normalizáció a gyakorlatban, alább az alapoktól implementáljuk.
+Hogy lássuk, hogyan működik a batchnormalizáció a gyakorlatban, alább az alapoktól implementáljuk.
 
 ```{.python .input}
 %%tab mxnet
@@ -278,7 +278,7 @@ Az algoritmus részleteit félretéve, vegyük észre a rétegünk implementáci
 Ezt a funkcionalitást ezután egy egyéni rétegbe integráljuk, amelynek kódja főként könyvvezetési kérdésekkel foglalkozik, mint például az adatok a megfelelő eszközkontextusba való áthelyezése, a szükséges változók kiosztása és inicializálása, a mozgó átlagok követése (itt az átlagra és a varianciára), stb.
 Ez a minta lehetővé teszi a matematika és a sablonkód tiszta szétválasztását.
 Megjegyezzük továbbá, hogy a kényelem kedvéért nem foglalkoztunk a bemeneti alak automatikus kikövetkeztetésével; ezért minden jellemző számát meg kell adnunk.
-Mostanra minden modern deep learning keretrendszer automatikusan képes felismerni a méretet és az alakot a magas szintű batch normalizációs API-kban (a gyakorlatban ezt fogjuk használni).
+Mostanra minden modern deep learning keretrendszer automatikusan képes felismerni a méretet és az alakot a magas szintű batchnormalizációs API-kban (a gyakorlatban ezt fogjuk használni).
 
 ```{.python .input}
 %%tab mxnet
@@ -438,7 +438,7 @@ A múltbeli átlag- és varianciabecsléseket a `momentum` segítségével aggre
 ## [**LeNet Batch Normalizációval**]
 
 Hogy lássuk, hogyan alkalmazzuk a `BatchNorm`-ot kontextusban, alább egy hagyományos LeNet modellre alkalmazzuk (:numref:`sec_lenet`).
-Ne feledjük, hogy a batch normalizációt a konvolúciós rétegek vagy teljesen összekötött rétegek után, de a megfelelő aktivációs függvények előtt alkalmazzuk.
+Ne feledjük, hogy a batchnormalizációt a konvolúciós rétegek vagy teljesen összekötött rétegek után, de a megfelelő aktivációs függvények előtt alkalmazzuk.
 
 ```{.python .input}
 %%tab pytorch, mxnet, tensorflow
@@ -513,7 +513,7 @@ class BNLeNetScratch(d2l.Classifier):
 ```
 
 :begin_tab:`jax`
-Mivel a `BatchNorm` rétegeknek ki kell számítaniuk a batch statisztikákat (átlag és variancia), a Flax nyomon követi a `batch_stats` szótárt, és minden minibatch-csel frissíti azokat. Az olyan gyűjtemények, mint a `batch_stats`, tárolhatók a `TrainState` objektumban (a :numref:`oo-design-training` részben definiált `d2l.Trainer` osztályban) attribútumként, és a modell előrepasszolása során ezeket a `mutable` argumentumnak kell átadni, hogy a Flax visszaadja a módosított változókat.
+Mivel a `BatchNorm` rétegeknek ki kell számítaniuk a batch statisztikákat (átlag és variancia), a Flax nyomon követi a `batch_stats` szótárt, és minden mini-batch-csel frissíti azokat. Az olyan gyűjtemények, mint a `batch_stats`, tárolhatók a `TrainState` objektumban (a :numref:`oo-design-training` részben definiált `d2l.Trainer` osztályban) attribútumként, és a modell előrepasszolása során ezeket a `mutable` argumentumnak kell átadni, hogy a Flax visszaadja a módosított változókat.
 :end_tab:
 
 ```{.python .input}
@@ -553,7 +553,7 @@ with d2l.try_gpu():
     trainer.fit(model, data)
 ```
 
-[**Nézzük meg a `gamma` skálaparamétert és a `beta` eltolásparamétert**], amelyeket az első batch normalizációs réteg tanult.
+[**Nézzük meg a `gamma` skálaparamétert és a `beta` eltolásparamétert**], amelyeket az első batchnormalizációs réteg tanult.
 
 ```{.python .input}
 %%tab mxnet
@@ -681,12 +681,12 @@ with d2l.try_gpu():
 
 ## Vita
 
-Intuitívan a batch normalizáció simítja az optimalizálási tájképet.
+Intuitívan a batchnormalizáció simítja az optimalizálási tájképet.
 Azonban óvatosnak kell lennünk, hogy különbséget tegyünk a spekulatív intuíciók és a mély modellek tanításakor megfigyelt jelenségek tényleges magyarázatai között.
 Emlékezzünk arra, hogy még azt sem értjük igazán, miért generalizálnak jól az egyszerűbb mély neurális hálózatok (MLP-k és hagyományos CNN-ek).
 Még dropout-tal és súlycsökkentéssel is annyira rugalmasak, hogy az ismeretlen adatokra való általánosítási képességük valószínűleg lényegesen finomabb tanuláselméleti általánosítási garanciákat igényel.
 
-A batch normalizációt javasló eredeti cikk :cite:`Ioffe.Szegedy.2015`, amellett, hogy egy hatékony és hasznos eszközt mutatott be, magyarázatot is kínált arra, miért működik: az *internal covariate shift* (belső kovariancia-eltolódás) csökkentésével.
+A batchnormalizációt javasló eredeti cikk :cite:`Ioffe.Szegedy.2015`, amellett, hogy egy hatékony és hasznos eszközt mutatott be, magyarázatot is kínált arra, miért működik: az *internal covariate shift* (belső kovariancia-eltolódás) csökkentésével.
 Feltehetőleg az *internal covariate shift* alatt olyasmit értettek, mint a fent kifejezett intuíció — az a gondolat, hogy a változóértékek eloszlása megváltozik a tanítás során.
 Az magyarázatnak azonban két problémája volt:
 i) Ez az eltolódás nagyon különbözik a *covariate shift*-től, ami félrevezető elnevezéssé teszi. Ha bármihez hasonlítható, inkább a fogalom-eltolódáshoz hasonlít.
@@ -695,33 +695,33 @@ Egész könyvünkben arra törekszünk, hogy közvetítsük azokat az intuíció
 Azonban úgy gondoljuk, hogy fontos ezeket az iránymutatásul szolgáló intuíciókat elválasztani a megalapozott tudományos tényektől.
 Végül, amikor elsajátítod ezt az anyagot és elkezded írni saját kutatási cikkeidet, szeretnéd majd egyértelműen elválasztani a technikai állításokat a sejtésektől.
 
-A batch normalizáció sikere nyomán az *internal covariate shift* általi magyarázata ismételten felmerült a technikai irodalomban zajló vitákban és a gépi tanulás kutatásának bemutatásával kapcsolatos tágabb diskurzusban.
+A batchnormalizáció sikere nyomán az *internal covariate shift* általi magyarázata ismételten felmerült a technikai irodalomban zajló vitákban és a gépi tanulás kutatásának bemutatásával kapcsolatos tágabb diskurzusban.
 Egy emlékezetes beszédben, amelyet a 2017-es NeurIPS konferencián a Test of Time Award átvételekor tartott, Ali Rahimi az *internal covariate shift*-et egy olyan érvelés fókuszpontjaként használta, amely a modern deep learning gyakorlatát az alkímiához hasonlította.
 Ezt követően a példát részletesen újra megvizsgálták egy pozíciós cikkben, amely a gépi tanulás aggasztó tendenciáit vázolta fel :cite:`Lipton.Steinhardt.2018`.
-Más szerzők alternatív magyarázatokat javasoltak a batch normalizáció sikerére, néhányan :cite:`Santurkar.Tsipras.Ilyas.ea.2018` azt állítva, hogy a batch normalizáció sikere ellenére bizonyos tekintetben az eredeti cikkben állított viselkedéssel ellentétes viselkedést mutat.
+Más szerzők alternatív magyarázatokat javasoltak a batchnormalizáció sikerére, néhányan :cite:`Santurkar.Tsipras.Ilyas.ea.2018` azt állítva, hogy a batchnormalizáció sikere ellenére bizonyos tekintetben az eredeti cikkben állított viselkedéssel ellentétes viselkedést mutat.
 
 Megjegyezzük, hogy az *internal covariate shift* nem érdemel több kritikát, mint a gépi tanulás technikai irodalmában évente tett ezernyi hasonlóan homályos állítás bármelyike.
 Valószínűleg a viták fókuszpontjaként való visszhangja a célközönség számára széles körben ismert jellegéből fakad.
-A batch normalizáció nélkülözhetetlen módszernek bizonyult, amelyet szinte az összes telepített képosztályozóban alkalmaznak, és a technikát bevezető cikk tízezer idézetet szerzett. Mindazonáltal azt sejtjük, hogy a zajos injektáláson keresztüli regularizáció, az átskálázáson keresztüli gyorsítás és végül az előfeldolgozás vezérelvei talán a rétegek és technikák további találmányaihoz vezetnek majd a jövőben.
+A batchnormalizáció nélkülözhetetlen módszernek bizonyult, amelyet szinte az összes telepített képosztályozóban alkalmaznak, és a technikát bevezető cikk tízezer idézetet szerzett. Mindazonáltal azt sejtjük, hogy a zajos injektáláson keresztüli regularizáció, az átskálázáson keresztüli gyorsítás és végül az előfeldolgozás vezérelvei talán a rétegek és technikák további találmányaihoz vezetnek majd a jövőben.
 
-A gyakorlatibb oldalon számos szempont érdemes megjegyezni a batch normalizációval kapcsolatban:
+A gyakorlatibb oldalon számos szempont érdemes megjegyezni a batchnormalizációval kapcsolatban:
 
-* A modell tanítása során a batch normalizáció folyamatosan állítja a hálózat közbenső kimenetét a minibatch átlagának és szórásának felhasználásával, így a neurális hálózat egyes rétegein keresztüli közbenső kimenet értékei stabilabbak.
-* A batch normalizáció kissé eltérő a teljesen összekötött rétegek és a konvolúciós rétegek esetén. Valójában a konvolúciós rétegek esetén a rétegnormalizáció néha alternatívaként használható.
-* Mint a dropout réteg, a batch normalizációs rétegek is más viselkedést mutatnak tanítási módban, mint predikciós módban.
-* A batch normalizáció hasznos a regularizációhoz és az optimalizálásban való konvergencia javításához. Ezzel szemben az internal covariate shift csökkentésének eredeti motivációja nem tűnik érvényes magyarázatnak.
-* Robusztusabb modelleknél, amelyek kevésbé érzékenyek a bemeneti perturbációkra, fontold meg a batch normalizáció eltávolítását :cite:`wang2022removing`.
+* A modell tanítása során a batchnormalizáció folyamatosan állítja a hálózat közbenső kimenetét a mini-batch átlagának és szórásának felhasználásával, így a neurális hálózat egyes rétegein keresztüli közbenső kimenet értékei stabilabbak.
+* A batchnormalizáció kissé eltérő a teljesen összekötött rétegek és a konvolúciós rétegek esetén. Valójában a konvolúciós rétegek esetén a rétegnormalizáció néha alternatívaként használható.
+* Mint a dropout réteg, a batchnormalizációs rétegek is más viselkedést mutatnak tanítási módban, mint predikciós módban.
+* A batchnormalizáció hasznos a regularizációhoz és az optimalizálásban való konvergencia javításához. Ezzel szemben az internal covariate shift csökkentésének eredeti motivációja nem tűnik érvényes magyarázatnak.
+* Robusztusabb modelleknél, amelyek kevésbé érzékenyek a bemeneti perturbációkra, fontold meg a batchnormalizáció eltávolítását :cite:`wang2022removing`.
 
 ## Feladatok
 
-1. El kell-e távolítani a torzítás-paramétert a teljesen összekötött rétegből vagy a konvolúciós rétegből a batch normalizáció előtt? Miért?
-1. Hasonlítsd össze a LeNet tanulási rátáit batch normalizációval és anélkül.
+1. El kell-e távolítani az eltolás-paramétert a teljesen összekötött rétegből vagy a konvolúciós rétegből a batchnormalizáció előtt? Miért?
+1. Hasonlítsd össze a LeNet tanulási rátáit batchnormalizációval és anélkül.
     1. Ábrázold a validációs pontosság növekedését.
     1. Mekkora lehet a tanulási ráta, mielőtt az optimalizálás mindkét esetben meghibásodik?
-1. Szükséges-e batch normalizáció minden rétegben? Kísérletezz vele.
-1. Implementáld a batch normalizáció "lite" verzióját, amely csak az átlagot távolítja el, vagy alternatív módon olyat, amely csak a varianciát távolítja el. Hogyan viselkedik?
+1. Szükséges-e batchnormalizáció minden rétegben? Kísérletezz vele.
+1. Implementáld a batchnormalizáció "lite" verzióját, amely csak az átlagot távolítja el, vagy alternatív módon olyat, amely csak a varianciát távolítja el. Hogyan viselkedik?
 1. Rögzítsd a `beta` és a `gamma` paramétereket. Figyeld meg és elemezd az eredményeket.
-1. Helyettesítheted-e a dropoutot batch normalizációval? Hogyan változik a viselkedés?
+1. Helyettesítheted-e a dropoutot batchnormalizációval? Hogyan változik a viselkedés?
 1. Kutatási ötletek: gondolj más normalizációs transzformációkra, amelyeket alkalmazhatsz:
     1. Alkalmazhatod-e a valószínűségi integrál transzformációt?
     1. Használhatsz-e teljes rangú kovarianciabecslést? Miért valószínűleg nem kellene ezt tenned?

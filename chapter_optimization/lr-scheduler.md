@@ -4,7 +4,7 @@
 Eddig elsősorban az optimalizálási *algoritmusokra* összpontosítottunk, arra, hogyan frissítsük a súlyvektorokat, nem pedig arra a *sebességre*, amellyel a frissítések történnek. Ennek ellenére a tanulási ráta módosítása éppoly fontos, mint maga az algoritmus. Számos szempontot kell figyelembe venni:
 
 * A legkézenfekvőbben a tanulási ráta *nagysága* számít. Ha túl nagy, az optimalizálás divergál; ha túl kicsi, a tanítás túl sokáig tart, vagy szuboptimális eredményt kapunk. Korábban láttuk, hogy a probléma kondíciószáma számít (részletekért lásd pl. a :numref:`sec_momentum` szakaszt). Intuitívan ez a legkevésbé érzékeny irányban bekövetkező változás mértékének és a legérzékenyebb irányban bekövetkezőnek az aránya.
-* Másodszor, az üteme is éppoly fontos. Ha a tanulási ráta nagy marad, elképzelhető, hogy egyszerűen a minimum körül pattogunk, és nem érjük el az optimalitást. A :numref:`sec_minibatch_sgd` szakasz részletesen tárgyalta ezt, és a :numref:`sec_sgd` szakaszban teljesítménygaranciákat is elemeztük. Röviden: azt szeretnénk, hogy az ütem csökkenjön, de valószínűleg lassabban, mint $\mathcal{O}(t^{-\frac{1}{2}})$, ami konvex problémáknál jó választás lenne.
+* Másodszor, az üteme is éppoly fontos. Ha a tanulási ráta nagy marad, elképzelhető, hogy egyszerűen a minimum körül pattogunk, és nem érjük el az optimalitást. A :numref:`sec_mini-batch_sgd` szakasz részletesen tárgyalta ezt, és a :numref:`sec_sgd` szakaszban teljesítménygaranciákat is elemeztük. Röviden: azt szeretnénk, hogy az ütem csökkenjön, de valószínűleg lassabban, mint $\mathcal{O}(t^{-\frac{1}{2}})$, ami konvex problémáknál jó választás lenne.
 * Egy másik, éppoly fontos szempont az *inicializálás*. Ez vonatkozik arra is, hogyan állítjuk be kezdetben a paramétereket (részletekért lásd a :numref:`sec_numerical_stability` szakaszt), és hogyan fejlődnek kezdetben. Ezt *bemelegítésnek* (warmup) is nevezik: milyen gyorsan kezdünk el a megoldás felé haladni. A kezdeti nagy lépések nem feltétlenül hasznosak, különösen, mivel a paraméterek kezdeti készlete véletlenszerű. A kezdeti frissítési irányok is meglehetősen értelmetlenek lehetnek.
 * Végül vannak olyan optimalizálási változatok, amelyek ciklikus tanulási ráta módosítást végeznek. Ez meghaladja az aktuális fejezet kereteit. Javasoljuk az olvasónak, hogy tekintse meg :citet:`Izmailov.Podoprikhin.Garipov.ea.2018` részleteit, pl. hogyan kaphatunk jobb megoldásokat a paraméterek teljes *útjának* átlagolásával.
 
@@ -207,7 +207,7 @@ train(net, train_iter, test_iter, num_epochs, lr)
 
 ## Ütemezők
 
-A tanulási ráta módosításának egyik módja az explicit megadás minden lépésnél. Ez kényelmesen megvalósítható a `set_learning_rate` módszerrel. Minden epoc után (vagy akár minden minibatch után) csökkenthetjük, pl. dinamikus módon, az optimalizálás előrehaladásának megfelelően.
+A tanulási ráta módosításának egyik módja az explicit megadás minden lépésnél. Ez kényelmesen megvalósítható a `set_learning_rate` módszerrel. Minden epoc után (vagy akár minden mini-batch után) csökkenthetjük, pl. dinamikus módon, az optimalizálás előrehaladásának megfelelően.
 
 ```{.python .input}
 #@tab mxnet

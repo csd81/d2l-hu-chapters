@@ -150,7 +150,7 @@ params['params']['layers_2']
 Láthatjuk, hogy ez a teljesen összefüggő réteg
 két paramétert tartalmaz,
 amelyek az adott réteg
-súlyainak és torzításainak felelnek meg.
+súlyainak és eltolásainak felelnek meg.
 
 
 ### [**Célzott paraméterek**]
@@ -161,7 +161,7 @@ Ahhoz, hogy bármit hasznos dolgot tegyünk a paraméterekkel,
 először el kell érnünk a mögöttes numerikus értékeket.
 Erre több módszer is létezik.
 Néhány egyszerűbb, míg mások általánosabbak.
-A következő kód kiveszi a torzítást
+A következő kód kiveszi az eltolást
 a neurális hálózat második rétegéből, amely egy paraméterosztály-példányt ad vissza, és
 tovább éri el az adott paraméter értékét.
 

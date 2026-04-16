@@ -320,24 +320,24 @@ mint a vektorok elemenkénti összeadásainak megfelelő száma.
 Ez azt jelenti, hogy egy mintát egyszerre feldolgozni
 sokkal tovább tarthat, mint egy teljes batch-et.
 A második probléma, hogy egyes rétegek,
-például a batch normalizáció (lásd :numref:`sec_batch_norm`),
+például a batchnormalizáció (lásd :numref:`sec_batch_norm`),
 csak akkor működnek jól, ha egynél több megfigyeléshez van hozzáférésünk.
 
 Mindkét problémára az a megoldás, hogy köztes stratégiát válasszunk:
 ahelyett, hogy teljes batch-et vagy egyszerre csak egyetlen mintát vegyünk,
-egy *minibatch* megfigyelést veszünk :cite:`Li.Zhang.Chen.ea.2014`.
-Az adott minibatch méretének megválasztása számos tényezőtől függ,
+egy *mini-batch* megfigyelést veszünk :cite:`Li.Zhang.Chen.ea.2014`.
+Az adott mini-batch méretének megválasztása számos tényezőtől függ,
 például a memória mennyiségétől, a gyorsítók számától,
 a rétegek választásától és a teljes adathalmaz méretétől.
 Mindezek ellenére a 32 és 256 közötti érték,
 lehetőleg egy nagy $2$-es hatvány többszöröse, jó kiindulópont.
-Ez elvezet minket a *minibatch sztochasztikus gradiens módszerhez*.
+Ez elvezet minket a *mini-batch sztochasztikus gradiens módszerhez*.
 
 Legegyszerűbb formájában minden $t$ iterációban
-először véletlenszerűen kiveszünk egy $\mathcal{B}_t$ minibatch-et,
+először véletlenszerűen kiveszünk egy $\mathcal{B}_t$ mini-batch-et,
 amely rögzített számú $|\mathcal{B}|$ tanítópéldából áll.
 Ezután kiszámítjuk az átlagos veszteség deriváltját
-(gradienst) a minibatch felett a modellparaméterek szerint.
+(gradienst) a mini-batch felett a modellparaméterek szerint.
 Végül a gradienst megszorozzuk egy előre meghatározott
 kis pozitív $\eta$ értékkel,
 amelyet *tanulási rátának* nevezünk,
@@ -346,9 +346,9 @@ A frissítés a következőképpen fejezhető ki:
 
 $$(\mathbf{w},b) \leftarrow (\mathbf{w},b) - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}_t} \partial_{(\mathbf{w},b)} l^{(i)}(\mathbf{w},b).$$
 
-Összefoglalva, a minibatch SGD a következőképpen halad:
+Összefoglalva, a mini-batch SGD a következőképpen halad:
 (i) a modellparaméterek értékeit inicializáljuk, általában véletlenszerűen;
-(ii) iteratívan véletlenszerű minibatch-eket veszünk ki az adatokból,
+(ii) iteratívan véletlenszerű mini-batch-eket veszünk ki az adatokból,
 és a negatív gradiens irányában frissítjük a paramétereket.
 Négyzetes veszteségek és affin transzformációk esetén
 ennek zárt alakú kibontása van:
@@ -356,9 +356,9 @@ ennek zárt alakú kibontása van:
 $$\begin{aligned} \mathbf{w} & \leftarrow \mathbf{w} - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}_t} \partial_{\mathbf{w}} l^{(i)}(\mathbf{w}, b) && = \mathbf{w} - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}_t} \mathbf{x}^{(i)} \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right)\\ b &\leftarrow b -  \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}_t} \partial_b l^{(i)}(\mathbf{w}, b) &&  = b - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}_t} \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right). \end{aligned}$$
 :eqlabel:`eq_linreg_batch_update`
 
-Mivel $\mathcal{B}$ minibatch-et veszünk ki,
+Mivel $\mathcal{B}$ mini-batch-et veszünk ki,
 annak $|\mathcal{B}|$ méretével kell normalizálnunk.
-A minibatch mérete és a tanulási ráta felhasználó által meghatározott.
+A mini-batch mérete és a tanulási ráta felhasználó által meghatározott.
 Az ilyen, a tanítási ciklus során nem frissített,
 hangolható paramétereket *hiperparamétereknek* nevezzük.
 Ezek számos technikával automatikusan hangolhatók, például Bayes-optimalizálással
@@ -374,7 +374,7 @@ ezek a paraméterek nem lesznek a veszteség pontos minimalizálói, és még cs
 Bár az algoritmus lassan konvergál a minimalizálók felé,
 véges lépésszámban általában nem találja meg őket pontosan.
 Ráadásul a paraméterek frissítésére használt
-$\mathcal{B}$ minibatch-eket véletlenszerűen választják ki.
+$\mathcal{B}$ mini-batch-eket véletlenszerűen választják ki.
 Ez megszakítja a determinizmust.
 
 A lineáris regresszió egy globális minimummal rendelkező
@@ -417,7 +417,7 @@ A következőkben ahol lehetséges, az *előrejelzés* szót fogjuk használni.
 
 ## Vektorizáció a sebesség érdekében
 
-A modellek tanításakor általában egész minibatch-nyi példát
+A modellek tanításakor általában egész mini-batch-nyi példát
 szeretnénk egyszerre feldolgozni.
 Ennek hatékony elvégzéséhez szükség van arra, hogy (**mi**) (~~ne~~)
 (**vektorizáljuk a számításokat, és gyors lineáris algebrai könyvtárakat
@@ -715,7 +715,7 @@ Bár hamarosan teljesen elhagyjuk a lineáris modelleket,
 ezek elegendők ahhoz, hogy bevezessük
 az összes modellünk által igényelt összetevőket:
 paraméteres formák, differenciálható célfüggvények,
-optimalizálás minibatch sztochasztikus gradiens módszerrel,
+optimalizálás mini-batch sztochasztikus gradiens módszerrel,
 és végső soron kiértékelés korábban nem látott adatokon.
 
 
@@ -736,7 +736,7 @@ optimalizálás minibatch sztochasztikus gradiens módszerrel,
 1. Tegyük fel, hogy az additív $\epsilon$ zajt irányító zajmodell az exponenciális eloszlás. Azaz $p(\epsilon) = \frac{1}{2} \exp(-|\epsilon|)$.
     1. Írd fel az adatok negatív log-likelihood-ját a modell szerint: $-\log P(\mathbf y \mid \mathbf X)$.
     1. Találsz zárt alakú megoldást?
-    1. Javasolj minibatch sztochasztikus gradiens módszer algoritmust ennek a feladatnak a megoldásához. Mi mehet félre (tipp: mi történik az álló pont közelében, miközben folyamatosan frissítjük a paramétereket)? Meg tudod javítani?
+    1. Javasolj mini-batch sztochasztikus gradiens módszer algoritmust ennek a feladatnak a megoldásához. Mi mehet félre (tipp: mi történik az álló pont közelében, miközben folyamatosan frissítjük a paramétereket)? Meg tudod javítani?
 1. Tegyük fel, hogy két rétegből álló neurális hálózatot szeretnénk tervezni két lineáris réteg összetételével. Azaz az első réteg kimenete a második réteg bemenete lesz. Miért nem működne egy ilyen naiv összetétel?
 1. Mi történik, ha regressziót szeretnél használni házak vagy részvényárak valósághű árbecsléséhez?
     1. Mutasd meg, hogy az additív Gauss-zaj feltételezése nem megfelelő. Tipp: lehetnek-e negatív árak? Mi a helyzet a fluktuációkkal?

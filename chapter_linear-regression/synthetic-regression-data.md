@@ -116,14 +116,14 @@ print('features:', data.X[0],'\nlabel:', data.y[0])
 ## Az adathalmaz beolvasása
 
 A gépi tanulási modellek tanítása gyakran megköveteli az adathalmazon való többszöri áthaladást,
-egyszerre egy minibatch példányt megragadva.
+egyszerre egy mini-batch példányt megragadva.
 Ezeket az adatokat aztán a modell frissítéséhez használjuk.
 Ennek illusztrálásához
 [**implementáljuk a `get_dataloader` metódust,**]
 amelyet a `SyntheticRegressionData` osztályba regisztrálunk az `add_to_class` segítségével (amelyet a :numref:`oo-design-utilities` részben mutattunk be).
 (**Bemenetként egy kötegméretet, egy jellemzőmátrixot
-és egy címkevektort vesz, és `batch_size` méretű minibatch-eket generál.**)
-Így minden minibatch egy jellemzők és címkék párból áll.
+és egy címkevektort vesz, és `batch_size` méretű mini-batch-eket generál.**)
+Így minden mini-batch egy jellemzők és címkék párból áll.
 Ügyelni kell arra, hogy tanítási vagy validációs módban vagyunk-e:
 az előbbiben véletlenszerű sorrendben szeretnénk beolvasni az adatokat,
 míg az utóbbinál az adatok előre meghatározott sorrendben való olvasása
@@ -148,9 +148,9 @@ def get_dataloader(self, train):
             yield tf.gather(self.X, j), tf.gather(self.y, j)
 ```
 
-Némi intuíció felépítéséhez vizsgáljuk meg az adatok első minibatch-ét.
-Minden minibatch jellemzői megmutatják méretét és a bemeneti jellemzők dimenzionalitását.
-Hasonlóképpen, a minibatch címkéi `batch_size` által megadott illeszkedő alakkal rendelkeznek.
+Némi intuíció felépítéséhez vizsgáljuk meg az adatok első mini-batch-ét.
+Minden mini-batch jellemzői megmutatják méretét és a bemeneti jellemzők dimenzionalitását.
+Hasonlóképpen, a mini-batch címkéi `batch_size` által megadott illeszkedő alakkal rendelkeznek.
 
 ```{.python .input}
 %%tab all
@@ -166,7 +166,7 @@ Vegyük észre, hogy egy metódust adtunk a `SyntheticRegressionData` osztályho
 Ennek ellenére az objektum profitál az osztályhoz
 utólagosan hozzáadott funkcionalitásból.
 
-Az iteráció során különböző minibatch-eket kapunk,
+Az iteráció során különböző mini-batch-eket kapunk,
 amíg az egész adathalmaz ki nem merül (próbáld ki).
 Bár a fent implementált iteráció didaktikai szempontból megfelelő,
 valós problémáknál nehézségeket okozó hatékonysági hiányosságai vannak.

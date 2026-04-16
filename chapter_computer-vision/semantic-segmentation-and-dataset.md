@@ -327,7 +327,7 @@ voc_test = VOCSegDataset(False, crop_size, voc_dir)
 ```
 
 A batch méret 64-re állításával definiáljuk a tanítóhalmaz adatiterátorát.
-Nyomtassuk ki az első minibatch alakját.
+Nyomtassuk ki az első mini-batch alakját.
 A képosztályozástól vagy az objektumdetektálástól eltérően itt a felcímkézett képek háromdimenziós tenzorok.
 
 ```{.python .input}

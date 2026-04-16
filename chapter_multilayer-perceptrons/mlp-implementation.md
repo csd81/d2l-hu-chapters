@@ -60,7 +60,7 @@ hardverben való kiosztásának és kezelésének módja miatt.
 
 A paramétereinket ismét több tenzorral fogjuk jelölni.
 Megjegyezzük, hogy *minden rétegnél* nyomon kell követnünk
-egy súlymátrixot és egy torzításvektort.
+egy súlymátrixot és egy eltolás vektort.
 Mint mindig, lefoglalunk memóriát
 a veszteség ezen paraméterekre vonatkozó gradienseinek számára.
 
@@ -265,7 +265,7 @@ class MLP(d2l.Classifier):
         return X
 ```
 
-Korábban `forward` metódusokat definiáltunk a modellekhez, hogy a modell paramétereivel transzformálják a bemenetet. Ezek a műveletek lényegében egy csővezetéket alkotnak: fogunk egy bemenetet, és alkalmazunk egy transzformációt (pl. mátrixszorzás súlyokkal, majd torzítás hozzáadása), majd ismételten az aktuális transzformáció kimenetét használjuk a következő transzformáció bemeneteként. Vegyük észre azonban, hogy itt nincs `forward` metódus definiálva. Valójában az `MLP` a `Module` osztályból örökli a `forward` metódust (:numref:`subsec_oo-design-models`), amely egyszerűen meghívja a `self.net(X)`-et (ahol `X` a bemenet), amely most transzformációk sorozataként van definiálva a `Sequential` osztályon keresztül. A `Sequential` osztály absztrahálja az előre irányú folyamatot, lehetővé téve számunkra, hogy a transzformációkra összpontosítsunk. A `Sequential` osztály működéséről bővebben a :numref:`subsec_model-construction-sequential` részben tárgyalunk.
+Korábban `forward` metódusokat definiáltunk a modellekhez, hogy a modell paramétereivel transzformálják a bemenetet. Ezek a műveletek lényegében egy csővezetéket alkotnak: fogunk egy bemenetet, és alkalmazunk egy transzformációt (pl. mátrixszorzás súlyokkal, majd eltolás hozzáadása), majd ismételten az aktuális transzformáció kimenetét használjuk a következő transzformáció bemeneteként. Vegyük észre azonban, hogy itt nincs `forward` metódus definiálva. Valójában az `MLP` a `Module` osztályból örökli a `forward` metódust (:numref:`subsec_oo-design-models`), amely egyszerűen meghívja a `self.net(X)`-et (ahol `X` a bemenet), amely most transzformációk sorozataként van definiálva a `Sequential` osztályon keresztül. A `Sequential` osztály absztrahálja az előre irányú folyamatot, lehetővé téve számunkra, hogy a transzformációkra összpontosítsunk. A `Sequential` osztály működéséről bővebben a :numref:`subsec_model-construction-sequential` részben tárgyalunk.
 
 
 ### Tanítás

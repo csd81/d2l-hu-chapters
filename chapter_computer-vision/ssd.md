@@ -101,7 +101,7 @@ Ahogy említettük, az egylépéses többdobozos felismerés többléptékű jel
 Különböző léptékeken a jellemzőtérképek alakjai, vagy az azonos egységet középpontként vevő horgonydobozok száma eltérhet.
 Ezért a jóslási kimenetek alakjai különböző léptékeken eltérhetnek.
 
-Az alábbi példában azonos minibatch-re két különböző léptéken építünk jellemzőtérképeket: `Y1` és `Y2`, ahol `Y2` magassága és szélessége `Y1`-nek a fele.
+Az alábbi példában azonos mini-batch-re két különböző léptéken építünk jellemzőtérképeket: `Y1` és `Y2`, ahol `Y2` magassága és szélessége `Y1`-nek a fele.
 Példaként vegyük az osztályjóslást.
 Tegyük fel, hogy `Y1` és `Y2` minden egységéhez rendre 5 és 3 horgonydoboz generálódik.
 Tegyük fel továbbá, hogy az objektumok osztályainak száma 10.
@@ -154,7 +154,7 @@ def concat_preds(preds):
     return torch.cat([flatten_pred(p) for p in preds], dim=1)
 ```
 
-Ily módon, bár `Y1` és `Y2` eltérő méretű csatornákban, magasságban és szélességben, az azonos minibatch-re vonatkozó két különböző léptékű jóslási kimenetet még mindig összefűzhetjük.
+Ily módon, bár `Y1` és `Y2` eltérő méretű csatornákban, magasságban és szélességben, az azonos mini-batch-re vonatkozó két különböző léptékű jóslási kimenetet még mindig összefűzhetjük.
 
 ```{.python .input}
 #@tab all
@@ -369,7 +369,7 @@ class TinySSD(nn.Module):
         return anchors, cls_preds, bbox_preds
 ```
 
-[**Létrehozunk egy modellpéldányt és előreterjesztést végzünk**] $256 \times 256$ pixeles képek `X` minibatch-én.
+[**Létrehozunk egy modellpéldányt és előreterjesztést végzünk**] $256 \times 256$ pixeles képek `X` mini-batch-én.
 
 Ahogy a szakasz elején bemutattuk, az első blokk $32 \times 32$-es jellemzőtérképeket ad ki.
 Emlékeztetünk arra, hogy a második-negyedik lefele mintavételezési blokkok felezik a magasságot és a szélességet, az ötödik blokk pedig globális poolingot alkalmaz.

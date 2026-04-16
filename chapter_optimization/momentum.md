@@ -10,13 +10,13 @@ Ebben a szakaszban hatékonyabb optimalizálási algoritmusokat vizsgálunk, kü
 
 ### Kiszivárgó átlagok
 
-Az előző szakaszban a minibatch SGD-t tárgyaltuk a számítás gyorsításának eszközeként. Ennek kellemesebb mellékhatása is volt: a gradiensek átlagolása csökkentette a variancia mértékét. A minibatch sztochasztikus gradienscsökkenés a következőképpen számítható:
+Az előző szakaszban a mini-batch SGD-t tárgyaltuk a számítás gyorsításának eszközeként. Ennek kellemesebb mellékhatása is volt: a gradiensek átlagolása csökkentette a variancia mértékét. A mini-batch sztochasztikus gradienscsökkenés a következőképpen számítható:
 
 $$\mathbf{g}_{t, t-1} = \partial_{\mathbf{w}} \frac{1}{|\mathcal{B}_t|} \sum_{i \in \mathcal{B}_t} f(\mathbf{x}_{i}, \mathbf{w}_{t-1}) = \frac{1}{|\mathcal{B}_t|} \sum_{i \in \mathcal{B}_t} \mathbf{h}_{i, t-1}.
 $$
 
 A jelölés egyszerűsítése érdekében $\mathbf{h}_{i, t-1} = \partial_{\mathbf{w}} f(\mathbf{x}_i, \mathbf{w}_{t-1})$-t az $i$ mintához tartozó sztochasztikus gradienscsökkenésként használtuk a $t-1$ időpontban frissített súlyokkal.
-Jó lenne, ha a varianciaredukció hatásából a minibatch-en belüli gradienátlagoláson túl is profitálhatnánk. Ennek egyik módja a gradiens számítás helyettesítése egy „kiszivárgó átlaggal":
+Jó lenne, ha a varianciaredukció hatásából a mini-batch-en belüli gradienátlagoláson túl is profitálhatnánk. Ennek egyik módja a gradiens számítás helyettesítése egy „kiszivárgó átlaggal":
 
 $$\mathbf{v}_t = \beta \mathbf{v}_{t-1} + \mathbf{g}_{t, t-1}$$
 
@@ -128,7 +128,7 @@ eta, beta = 0.6, 0.25
 d2l.show_trace_2d(f_2d, d2l.train_2d(momentum_2d))
 ```
 
-Megjegyezzük, hogy a momentum kombinálható a sztochasztikus gradienscsökkenéssel, különösen a minibatch sztochasztikus gradienscsökkenéssel. Az egyetlen különbség az, hogy ekkor a $\mathbf{g}_{t, t-1}$ gradienst $\mathbf{g}_t$-vel helyettesítjük. Végül kényelmi okokból $\mathbf{v}_0 = 0$-val inicializálunk $t=0$ időpontban. Nézzük meg, mit tesz valójában a kiszivárgó átlagolás a frissítésekkel.
+Megjegyezzük, hogy a momentum kombinálható a sztochasztikus gradienscsökkenéssel, különösen a mini-batch sztochasztikus gradienscsökkenéssel. Az egyetlen különbség az, hogy ekkor a $\mathbf{g}_{t, t-1}$ gradienst $\mathbf{g}_t$-vel helyettesítjük. Végül kényelmi okokból $\mathbf{v}_0 = 0$-val inicializálunk $t=0$ időpontban. Nézzük meg, mit tesz valójában a kiszivárgó átlagolás a frissítésekkel.
 
 ### Effektív mintasúly
 
@@ -151,7 +151,7 @@ Nézzük meg, hogyan működik a momentum a gyakorlatban, vagyis amikor egy megf
 
 ### Implementálás alapoktól
 
-A (minibatch) sztochasztikus gradienscsökkenéshez képest a momentum módszernek egy kiegészítő változókészletet kell fenntartania, vagyis a sebességet. Ugyanolyan alakú, mint a gradiensek (és az optimalizálási probléma változói). Az alábbi implementációban ezeket a változókat `states`-nek nevezzük.
+A (mini-batch) sztochasztikus gradienscsökkenéshez képest a momentum módszernek egy kiegészítő változókészletet kell fenntartania, vagyis a sebességet. Ugyanolyan alakú, mint a gradiensek (és az optimalizálási probléma változói). Az alábbi implementációban ezeket a változókat `states`-nek nevezzük.
 
 ```{.python .input}
 #@tab mxnet,pytorch
@@ -323,7 +323,7 @@ A konvergencia viselkedését irányító $2 \times 2$-es mátrix jelölésére 
 1. Próbálj ki más momentum hiperparaméter és tanulási ráta kombinációkat, és figyeld meg és elemezd a különböző kísérleti eredményeket.
 1. Próbáld ki a gradienscsökkenést és a momentumot másodfokú problémán, ahol több sajátértéke van: $f(x) = \frac{1}{2} \sum_i \lambda_i x_i^2$, pl. $\lambda_i = 2^{-i}$. Ábrázold, hogyan csökken $x$ értéke az $x_i = 1$ inicializálás esetén.
 1. Határozd meg a $h(\mathbf{x}) = \frac{1}{2} \mathbf{x}^\top \mathbf{Q} \mathbf{x} + \mathbf{x}^\top \mathbf{c} + b$ minimumértékét és minimalizálóját.
-1. Mi változik, ha sztochasztikus gradienscsökkenést végzünk momentummal? Mi történik, ha minibatch sztochasztikus gradienscsökkenést alkalmazunk momentummal? Kísérletezz a paraméterekkel?
+1. Mi változik, ha sztochasztikus gradienscsökkenést végzünk momentummal? Mi történik, ha mini-batch sztochasztikus gradienscsökkenést alkalmazunk momentummal? Kísérletezz a paraméterekkel?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/354)

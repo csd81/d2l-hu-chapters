@@ -31,7 +31,7 @@ Lássuk, hogyan fordítható ez le matematikára.
 
 Kezdésképpen figyelembe vehetünk egy MLP-t kétdimenziós $\mathbf{X}$ képekkel mint bemenetekkel és azok közvetlen $\mathbf{H}$ rejtett reprezentációival, amelyeket hasonlóan mátrixokként ábrázolunk (kódban kétdimenziós tenzorok), ahol mind $\mathbf{X}$, mind $\mathbf{H}$ azonos alakú. Gondoljuk meg ezt. Most elképzeljük, hogy nemcsak a bemenetek, hanem a rejtett reprezentációk is térbeli struktúrával rendelkeznek.
 
-Legyen $[\mathbf{X}]_{i, j}$ és $[\mathbf{H}]_{i, j}$ a bemeneti kép és rejtett reprezentáció $(i,j)$ helyzetű pixele. Következésképpen, ha minden rejtett egység bemenetet kap minden bemeneti pixeltől, súlymátrixok használatáról (ahogyan korábban az MLP-kben tettük) áttérnénk paramétereink negyedrendű $\mathsf{W}$ súlytenzorként való ábrázolásához. Tegyük fel, hogy $\mathbf{U}$ tartalmazza a torzításokat, akkor formálisan kifejezhetjük a teljesen összekötött réteget:
+Legyen $[\mathbf{X}]_{i, j}$ és $[\mathbf{H}]_{i, j}$ a bemeneti kép és rejtett reprezentáció $(i,j)$ helyzetű pixele. Következésképpen, ha minden rejtett egység bemenetet kap minden bemeneti pixeltől, súlymátrixok használatáról (ahogyan korábban az MLP-kben tettük) áttérnénk paramétereink negyedrendű $\mathsf{W}$ súlytenzorként való ábrázolásához. Tegyük fel, hogy $\mathbf{U}$ tartalmazza az eltolásokat, akkor formálisan kifejezhetjük a teljesen összekötött réteget:
 
 $$\begin{aligned} \left[\mathbf{H}\right]_{i, j} &= [\mathbf{U}]_{i, j} + \sum_k \sum_l[\mathsf{W}]_{i, j, k, l}  [\mathbf{X}]_{k, l}\\ &=  [\mathbf{U}]_{i, j} +
 \sum_a \sum_b [\mathsf{V}]_{i, j, a, b}  [\mathbf{X}]_{i+a, j+b}.\end{aligned}$$

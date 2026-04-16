@@ -121,9 +121,9 @@ corr2d(X, K)
 
 ## Konvolúciós rétegek
 
-Egy konvolúciós réteg keresztkorrelációt számít a bemenet és a kernel között, és skaláris torzítást ad hozzá a kimenet előállításához. A konvolúciós réteg két paramétere a kernel és a skaláris torzítás. Konvolúciós rétegeken alapuló modellek tanításakor általában véletlenszerűen inicializáljuk a kerneleket, ahogyan egy teljesen összekötött réteggel is tennénk.
+Egy konvolúciós réteg keresztkorrelációt számít a bemenet és a kernel között, és skaláris eltolást ad hozzá a kimenet előállításához. A konvolúciós réteg két paramétere a kernel és a skaláris eltolás. Konvolúciós rétegeken alapuló modellek tanításakor általában véletlenszerűen inicializáljuk a kerneleket, ahogyan egy teljesen összekötött réteggel is tennénk.
 
-Most készen állunk egy [**kétdimenziós konvolúciós réteg implementálására**] a fent definiált `corr2d` függvény alapján. A `__init__` konstruktor metódusban a `weight`-et és a `bias`-t két modell paraméterként deklaráljuk. Az előreterjesztési metódus meghívja a `corr2d` függvényt és hozzáadja a torzítást.
+Most készen állunk egy [**kétdimenziós konvolúciós réteg implementálására**] a fent definiált `corr2d` függvény alapján. A `__init__` konstruktor metódusban a `weight`-et és a `bias`-t két modell paraméterként deklaráljuk. Az előreterjesztési metódus meghívja a `corr2d` függvényt és hozzáadja az eltolást.
 
 ```{.python .input}
 %%tab mxnet
@@ -233,12 +233,12 @@ corr2d(d2l.transpose(X), K)
 
 Egy éldetektort véges differenciák `[1, -1]` segítségével tervezni elegáns megoldás, ha tudjuk, hogy pontosan ezt keressük. Azonban, ha nagyobb kerneleket vizsgálunk, és konvolúciókat egymásra következő rétegeit vesszük figyelembe, lehetetlen lehet pontosan meghatározni, hogy mit csináljon manuálisan minden szűrő.
 
-Most lássuk, meg tudjuk-e [**tanulni azt a kernelt, amely `Y`-t generálta `X`-ből**], csak a bemenet-kimenet párok vizsgálatával. Először felépítünk egy konvolúciós réteget, és kernelét véletlenszerű tenzorként inicializáljuk. Ezután minden iterációban a négyzethibát fogjuk használni a `Y` és a konvolúciós réteg kimenetének összehasonlításához. Majd kiszámíthatjuk a gradienst a kernel frissítéséhez. Az egyszerűség kedvéért a következőkben a kétdimenziós konvolúciós rétegek beépített osztályát használjuk, és figyelmen kívül hagyjuk a torzítást.
+Most lássuk, meg tudjuk-e [**tanulni azt a kernelt, amely `Y`-t generálta `X`-ből**], csak a bemenet-kimenet párok vizsgálatával. Először felépítünk egy konvolúciós réteget, és kernelét véletlenszerű tenzorként inicializáljuk. Ezután minden iterációban a négyzethibát fogjuk használni a `Y` és a konvolúciós réteg kimenetének összehasonlításához. Majd kiszámíthatjuk a gradienst a kernel frissítéséhez. Az egyszerűség kedvéért a következőkben a kétdimenziós konvolúciós rétegek beépített osztályát használjuk, és figyelmen kívül hagyjuk az eltolást.
 
 ```{.python .input}
 %%tab mxnet
 # Kétdimenziós konvolúciós réteget építünk 1 kimeneti csatornával és
-# (1, 2) alakú kernellel. Az egyszerűség kedvéért a torzítást figyelmen kívül hagyjuk
+# (1, 2) alakú kernellel. Az egyszerűség kedvéért az eltolást figyelmen kívül hagyjuk
 conv2d = nn.Conv2D(1, kernel_size=(1, 2), use_bias=False)
 conv2d.initialize()
 
@@ -263,7 +263,7 @@ for i in range(10):
 ```{.python .input}
 %%tab pytorch
 # Kétdimenziós konvolúciós réteget építünk 1 kimeneti csatornával és
-# (1, 2) alakú kernellel. Az egyszerűség kedvéért a torzítást figyelmen kívül hagyjuk
+# (1, 2) alakú kernellel. Az egyszerűség kedvéért az eltolást figyelmen kívül hagyjuk
 conv2d = nn.LazyConv2d(1, kernel_size=(1, 2), bias=False)
 
 # A kétdimenziós konvolúciós réteg négydimenzós be- és kimenetet használ
@@ -287,7 +287,7 @@ for i in range(10):
 ```{.python .input}
 %%tab tensorflow
 # Kétdimenziós konvolúciós réteget építünk 1 kimeneti csatornával és
-# (1, 2) alakú kernellel. Az egyszerűség kedvéért a torzítást figyelmen kívül hagyjuk
+# (1, 2) alakú kernellel. Az egyszerűség kedvéért az eltolást figyelmen kívül hagyjuk
 conv2d = tf.keras.layers.Conv2D(1, (1, 2), use_bias=False)
 
 # A kétdimenziós konvolúciós réteg négydimenzós be- és kimenetet használ
@@ -315,7 +315,7 @@ for i in range(10):
 ```{.python .input}
 %%tab jax
 # Kétdimenziós konvolúciós réteget építünk 1 kimeneti csatornával és
-# (1, 2) alakú kernellel. Az egyszerűség kedvéért a torzítást figyelmen kívül hagyjuk
+# (1, 2) alakú kernellel. Az egyszerűség kedvéért az eltolást figyelmen kívül hagyjuk
 conv2d = nn.Conv(1, kernel_size=(1, 2), use_bias=False, padding='VALID')
 
 # A kétdimenziós konvolúciós réteg négydimenzós be- és kimenetet használ

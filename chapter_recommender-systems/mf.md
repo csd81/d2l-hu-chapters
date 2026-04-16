@@ -11,7 +11,7 @@ Jelölje $\mathbf{R} \in \mathbb{R}^{m \times n}$ az interakciós mátrixot $m$ 
 
 $$\hat{\mathbf{R}} = \mathbf{PQ}^\top$$
 
-ahol $\hat{\mathbf{R}}\in \mathbb{R}^{m \times n}$ a becsült értékelési mátrix, amelynek alakja megegyezik $\mathbf{R}$-ével. Ennek az előrejelzési szabálynak az egyik fő problémája, hogy nem képes modellezni a felhasználók és az elemek torzításait. Például egyes felhasználók általában magasabb értékeléseket adnak, vagy egyes elemek gyengébb minőségük miatt mindig alacsonyabb értékeléseket kapnak. Ezek a torzítások mindennaposak a valós alkalmazásokban. Ezek megragadásához felhasználó-specifikus és elem-specifikus torzítási tagokat vezetünk be. Konkrétan az $u$ felhasználó $i$ elemre adott becsült értékelése a következőképpen számítható:
+ahol $\hat{\mathbf{R}}\in \mathbb{R}^{m \times n}$ a becsült értékelési mátrix, amelynek alakja megegyezik $\mathbf{R}$-ével. Ennek az előrejelzési szabálynak az egyik fő problémája, hogy nem képes modellezni a felhasználók és az elemek eltolásait. Például egyes felhasználók általában magasabb értékeléseket adnak, vagy egyes elemek gyengébb minőségük miatt mindig alacsonyabb értékeléseket kapnak. Ezek az eltolások mindennaposak a valós alkalmazásokban. Ezek megragadásához felhasználó-specifikus és elem-specifikus eltolási tagokat vezetünk be. Konkrétan az $u$ felhasználó $i$ elemre adott becsült értékelése a következőképpen számítható:
 
 $$
 \hat{\mathbf{R}}_{ui} = \mathbf{p}_u\mathbf{q}^\top_i + b_u + b_i
@@ -45,7 +45,7 @@ npx.set_np()
 
 ## A modell megvalósítása
 
-Először megvalósítjuk a fent leírt mátrixfaktorizációs modellt. A felhasználói és elem látens faktorok az `nn.Embedding` segítségével hozhatók létre. Az `input_dim` az elemek/felhasználók száma, az `output_dim` pedig a látens faktorok $k$ dimenziója. Az `nn.Embedding` felhasználható a felhasználói/elem torzítások létrehozására is, ha az `output_dim`-et egyre állítjuk. A `forward` függvényben a felhasználói és elem azonosítók az embeddingjük kikeresésére szolgálnak.
+Először megvalósítjuk a fent leírt mátrixfaktorizációs modellt. A felhasználói és elem látens faktorok az `nn.Embedding` segítségével hozhatók létre. Az `input_dim` az elemek/felhasználók száma, az `output_dim` pedig a látens faktorok $k$ dimenziója. Az `nn.Embedding` felhasználható a felhasználói/elem eltolások létrehozására is, ha az `output_dim`-et egyre állítjuk. A `forward` függvényben a felhasználói és elem azonosítók az embeddingjük kikeresésére szolgálnak.
 
 ```{.python .input  n=4}
 #@tab mxnet

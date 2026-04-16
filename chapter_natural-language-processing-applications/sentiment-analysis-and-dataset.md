@@ -118,7 +118,7 @@ d2l.plt.hist([len(line) for line in train_tokens], bins=range(0, 1000, 50));
 Ahogy vártuk,
 a kritikák különböző hosszúságúak.
 Annak érdekében, hogy
-ilyen kritikák egy minibatch-jét egyszerre tudjuk feldolgozni,
+ilyen kritikák egy mini-batch-jét egyszerre tudjuk feldolgozni,
 minden kritika hosszát 500-ra állítjuk csonkítással és párnázással,
 ami hasonló a
 gépi fordítási adathalmaznál alkalmazott
@@ -136,7 +136,7 @@ print(train_features.shape)
 ## Adatiterátorok létrehozása
 
 Most létrehozhatjuk az adatiterátorokat.
-Minden iterációban egy minibatch-nyi példa kerül visszaadásra.
+Minden iterációban egy mini-batch-nyi példa kerül visszaadásra.
 
 ```{.python .input}
 #@tab mxnet

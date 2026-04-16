@@ -1,7 +1,7 @@
 # Előre irányú terjesztés, visszaterjesztés és számítási gráfok
 :label:`sec_backprop`
 
-Eddig minibatch sztochasztikus gradienscsökkenés segítségével tanítottuk modelleinket.
+Eddig mini-batch sztochasztikus gradienscsökkenés segítségével tanítottuk modelleinket.
 Amikor azonban az algoritmust implementáltuk,
 csak a modellen keresztüli *előre irányú terjesztés* számításaival foglalkoztunk.
 Amikor a gradiensek kiszámítására került sor,
@@ -39,7 +39,7 @@ Ez kissé fáradságosnak tűnhet, de minden mélyebb megértésnek megvan az á
 
 Az egyszerűség kedvéért tegyük fel,
 hogy a bemeneti példa $\mathbf{x}\in \mathbb{R}^d$,
-és hogy a rejtett réteg nem tartalmaz torzítás tagot.
+és hogy a rejtett réteg nem tartalmaz eltolás tagot.
 Itt a köztes változó:
 
 $$\mathbf{z}= \mathbf{W}^{(1)} \mathbf{x},$$
@@ -249,13 +249,13 @@ Mély tanulási modellek tanításakor az előre irányú terjesztés és a viss
 ## Feladatok
 
 1. Tegyük fel, hogy valamely skaláris $f$ függvény bemenetei $\mathbf{X}$, amelyek $n \times m$-es mátrixok. Mi az $f$ gradiensének dimenziója $\mathbf{X}$-re vonatkozóan?
-1. Adj torzítást az ebben a részben leírt modell rejtett rétegéhez (nem kell torzítást belefoglalni a regularizációs tagba).
+1. Adj eltolást az ebben a részben leírt modell rejtett rétegéhez (nem kell eltolást belefoglalni a regularizációs tagba).
     1. Rajzold meg a megfelelő számítási gráfot.
     1. Vezedd le az előre irányú és visszafelé irányú terjesztés egyenleteit.
 1. Számítsd ki a memóriaigényt a jelen részben leírt modell tanításához és előrejelzéséhez.
 1. Tegyük fel, hogy másodfokú deriváltakat szeretnél kiszámítani. Mi történik a számítási gráffal? Milyen hosszúra becsülöd a számítás idejét?
 1. Tegyük fel, hogy a számítási gráf túl nagy a GPU-d számára.
     1. Szét lehet-e osztani több GPU között?
-    1. Mik az előnyei és hátrányai a kisebb minibatchcsel való tanításhoz képest?
+    1. Mik az előnyei és hátrányai a kisebb mini-batchcsel való tanításhoz képest?
 
 [Discussions](https://discuss.d2l.ai/t/102)

@@ -4,7 +4,7 @@
 Az ebbe a szakaszba vezető tárgyalások során számos technikával találkoztunk a hatékony optimalizálás érdekében. Összefoglaljuk ezeket részletesen:
 
 * Láttuk, hogy a :numref:`sec_sgd` szakasz hatékonyabb, mint a gradienscsökkenés optimalizálási problémák megoldásánál, pl. a redundáns adatokkal szembeni belső rugalmassága miatt.
-* Láttuk, hogy a :numref:`sec_minibatch_sgd` szakasz a vektorizálásból eredő jelentős további hatékonyságot kínál, az egyik minibatchben nagyobb megfigyeléssorozatokat alkalmazva. Ez a kulcsa a hatékony multi-gépes, multi-GPU és összességében párhuzamos feldolgozásnak.
+* Láttuk, hogy a :numref:`sec_mini-batch_sgd` szakasz a vektorizálásból eredő jelentős további hatékonyságot kínál, az egyik mini-batchben nagyobb megfigyeléssorozatokat alkalmazva. Ez a kulcsa a hatékony multi-gépes, multi-GPU és összességében párhuzamos feldolgozásnak.
 * A :numref:`sec_momentum` szakasz hozzáadott egy mechanizmust a korábbi gradiensek előzményeinek összesítésére a konvergencia gyorsítása érdekében.
 * A :numref:`sec_adagrad` szakasz koordinátánkénti skálázást alkalmazott, hogy lehetővé tegye a számításilag hatékony előkondicionálást.
 * A :numref:`sec_rmsprop` szakasz szétválasztotta a koordinátánkénti skálázást a tanulási ráta módosításától.
@@ -213,9 +213,9 @@ d2l.train_ch11(yogi, init_adam_states(feature_dim),
 ## Összefoglalás
 
 * Az Adam számos optimalizálási algoritmus jellemzőit kombinálja egy meglehetősen robusztus frissítési szabállyá.
-* Az RMSProp alapján létrehozva az Adam EWMA-t is alkalmaz a minibatch sztochasztikus gradiensre.
+* Az RMSProp alapján létrehozva az Adam EWMA-t is alkalmaz a mini-batch sztochasztikus gradiensre.
 * Az Adam torzításkorrekciót alkalmaz a lassú indulás kompenzálásához a momentum és a második momentum becslésekor.
-* Jelentős varianciával rendelkező gradiensek esetén konvergenciaproblémák merülhetnek fel. Ezek kezelhetők nagyobb minibatch-ek alkalmazásával, vagy az $\mathbf{s}_t$ javított becslésére való áttéréssel. A Yogi ilyen alternatívát kínál.
+* Jelentős varianciával rendelkező gradiensek esetén konvergenciaproblémák merülhetnek fel. Ezek kezelhetők nagyobb mini-batch-ek alkalmazásával, vagy az $\mathbf{s}_t$ javított becslésére való áttéréssel. A Yogi ilyen alternatívát kínál.
 
 ## Gyakorló feladatok
 

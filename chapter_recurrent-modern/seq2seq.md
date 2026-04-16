@@ -297,7 +297,7 @@ Konkrét példával
 **szemléltetjük a fenti kódoló-implementációt.**
 Alább egy kétrétegű GRU kódolót hozunk létre,
 amelynek 16 rejtett egysége van.
-Adott egy szekvencia-bemenet minibatch `X`
+Adott egy szekvencia-bemenet mini-batch `X`
 (batch méret $=4$; időlépések száma $=9$),
 a végső réteg rejtett állapotai
 az összes időlépésnél
@@ -601,7 +601,7 @@ hogy a speciális kitöltési tokenek
 a sorozatok végéhez lesznek fűzve,
 így a különböző hosszúságú sorozatok
 hatékonyan betölthetők
-azonos alakú minibatchekbe.
+azonos alakú mini-batch-ekbe.
 Azonban a kitöltési tokenek előrejelzését
 ki kell zárni a veszteség-számításból.
 Ebből a célból

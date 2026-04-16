@@ -5,7 +5,7 @@
 A :numref:`sec_language-model` fejezetben leírtuk a Markov-modelleket és $n$-gramokat a nyelvmodellezéshez, ahol a $t$ időlépésnél lévő $x_t$ token feltételes valószínűsége csak az előző $n-1$ tokentől függ.
 Ha be szeretnénk vonni a $t-(n-1)$ időlépésnél korábbi tokenek lehetséges hatását $x_t$-re,
 növelnünk kell $n$-t.
-A modell paramétereinek száma azonban ezzel exponenciálisan nőne, mivel egy $\mathcal{V}$ szókincskészlethez $|\mathcal{V}|^n$ számot kell tárolnunk.
+A modell paramétereinek száma azonban ezzel exponenciálisan nőne, mivel egy $\mathcal{V}$ szókészlethez $|\mathcal{V}|^n$ számot kell tárolnunk.
 Ezért a $P(x_t \mid x_{t-1}, \ldots, x_{t-n+1})$ modellezése helyett célszerűbb egy látens változómodellt alkalmazni:
 
 $$P(x_t \mid x_{t-1}, \ldots, x_1) \approx P(x_t \mid h_{t-1}),$$
@@ -64,18 +64,18 @@ from jax import numpy as jnp
 
 Nézzük meg egy egyrétegű rejtett réteggel rendelkező MLP-t.
 Legyen a rejtett réteg aktivációs függvénye $\phi$.
-Egy $n$ batch méretű és $d$ bemenetű példák $\mathbf{X} \in \mathbb{R}^{n \times d}$ minibatch-jéhez a rejtett réteg kimenete $\mathbf{H} \in \mathbb{R}^{n \times h}$ a következőképpen számítható:
+Egy $n$ batch méretű és $d$ bemenetű példák $\mathbf{X} \in \mathbb{R}^{n \times d}$ mini-batch-jéhez a rejtett réteg kimenete $\mathbf{H} \in \mathbb{R}^{n \times h}$ a következőképpen számítható:
 
 $$\mathbf{H} = \phi(\mathbf{X} \mathbf{W}_{\textrm{xh}} + \mathbf{b}_\textrm{h}).$$
 :eqlabel:`rnn_h_without_state`
 
-A :eqref:`rnn_h_without_state`-ban megvan a $\mathbf{W}_{\textrm{xh}} \in \mathbb{R}^{d \times h}$ súlyparaméter, a $\mathbf{b}_\textrm{h} \in \mathbb{R}^{1 \times h}$ torzítás paraméter, és a rejtett egységek $h$ száma a rejtett réteghez.
+A :eqref:`rnn_h_without_state`-ban megvan a $\mathbf{W}_{\textrm{xh}} \in \mathbb{R}^{d \times h}$ súlyparaméter, a $\mathbf{b}_\textrm{h} \in \mathbb{R}^{1 \times h}$ eltolás paraméter, és a rejtett egységek $h$ száma a rejtett réteghez.
 Ezzel felvértezve az összeadásnál kiterjesztést (Broadcasting) alkalmazunk (ld. :numref:`subsec_broadcasting`).
 Ezután a rejtett réteg kimenete $\mathbf{H}$ a kimeneti réteg bemeneteként kerül felhasználásra, amelyet a következő adja meg:
 
 $$\mathbf{O} = \mathbf{H} \mathbf{W}_{\textrm{hq}} + \mathbf{b}_\textrm{q},$$
 
-ahol $\mathbf{O} \in \mathbb{R}^{n \times q}$ a kimeneti változó, $\mathbf{W}_{\textrm{hq}} \in \mathbb{R}^{h \times q}$ a súlyparaméter, és $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ a kimeneti réteg torzítás paramétere. Ha osztályozási problémáról van szó, a $\mathrm{softmax}(\mathbf{O})$ segítségével kiszámíthatjuk a kimeneti kategóriák valószínűségeloszlását.
+ahol $\mathbf{O} \in \mathbb{R}^{n \times q}$ a kimeneti változó, $\mathbf{W}_{\textrm{hq}} \in \mathbb{R}^{h \times q}$ a súlyparaméter, és $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ a kimeneti réteg eltolás paramétere. Ha osztályozási problémáról van szó, a $\mathrm{softmax}(\mathbf{O})$ segítségével kiszámíthatjuk a kimeneti kategóriák valószínűségeloszlását.
 
 Ez teljesen analóg a :numref:`sec_sequence` fejezetben korábban megoldott regressziós problémával, ezért kihagyjuk a részleteket.
 Elég annyit megjegyezni, hogy véletlenszerűen vehetünk jellemző-címke párokat, és az automatikus differenciálás és sztochasztikus gradienscsökkenés segítségével megtaníthatjuk a hálózat paramétereit.
@@ -86,9 +86,9 @@ Elég annyit megjegyezni, hogy véletlenszerűen vehetünk jellemző-címke pár
 A dolgok teljesen másak, ha rejtett állapotaink vannak. Nézzük meg a struktúrát részletesebben.
 
 Tegyük fel, hogy a $t$ időlépésnél
-$\mathbf{X}_t \in \mathbb{R}^{n \times d}$ bemenetekből álló minibatch-ünk van.
+$\mathbf{X}_t \in \mathbb{R}^{n \times d}$ bemenetekből álló mini-batch-ünk van.
 Más szóval,
-$n$ sorozatpélda minibatch-jénél,
+$n$ sorozatpélda mini-batch-jénél,
 a $\mathbf{X}_t$ minden sora megfelel egy példának a $t$ időlépésnél a sorozatból.
 Ezután
 jelöljük $\mathbf{H}_t  \in \mathbb{R}^{n \times h}$-val a $t$ időlépés rejtett réteg kimenetét.
@@ -117,9 +117,9 @@ $$\mathbf{O}_t = \mathbf{H}_t \mathbf{W}_{\textrm{hq}} + \mathbf{b}_\textrm{q}.$
 
 Az RNN paraméterei
 magukban foglalják a rejtett réteg $\mathbf{W}_{\textrm{xh}} \in \mathbb{R}^{d \times h}, \mathbf{W}_{\textrm{hh}} \in \mathbb{R}^{h \times h}$ súlyait
-és $\mathbf{b}_\textrm{h} \in \mathbb{R}^{1 \times h}$ torzítását,
+és $\mathbf{b}_\textrm{h} \in \mathbb{R}^{1 \times h}$ eltolását,
 valamint a kimeneti réteg $\mathbf{W}_{\textrm{hq}} \in \mathbb{R}^{h \times q}$ súlyait
-és $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ torzítását.
+és $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ eltolását.
 Érdemes megemlíteni, hogy
 még különböző időlépéseknél is
 az RNN-ek mindig ugyanezeket a modellparamétereket használják.
@@ -133,7 +133,7 @@ a rejtett állapot számítása kezelhető:
 (ii) az összefűzés eredményének egy teljesen összekötött rétegbe adásaként a $\phi$ aktivációs függvénnyel.
 Az ilyen teljesen összekötött réteg kimenete az aktuális $t$ időlépés $\mathbf{H}_t$ rejtett állapota.
 Ebben az esetben
-a modell paraméterei a $\mathbf{W}_{\textrm{xh}}$ és $\mathbf{W}_{\textrm{hh}}$ összefűzése, és egy $\mathbf{b}_\textrm{h}$ torzítás, mindkettő a :eqref:`rnn_h_with_state`-ből.
+a modell paraméterei a $\mathbf{W}_{\textrm{xh}}$ és $\mathbf{W}_{\textrm{hh}}$ összefűzése, és egy $\mathbf{b}_\textrm{h}$ eltolás, mindkettő a :eqref:`rnn_h_with_state`-ből.
 Az aktuális $t$ időlépés rejtett állapota, $\mathbf{H}_t$, részt vesz a következő $t+1$ időlépés $\mathbf{H}_{t+1}$ rejtett állapotának kiszámításában.
 Sőt, $\mathbf{H}_t$-t
 a teljesen összekötött kimeneti rétegbe is
@@ -200,7 +200,7 @@ célokként (címkékként).
 :citet:`Bengio.Ducharme.Vincent.ea.2003` először javasolta
 neurális hálózat alkalmazását a nyelvmodellezéshez.
 Az alábbiakban bemutatjuk, hogyan alkalmazhatók az RNN-ek egy nyelvmodell felépítéséhez.
-Legyen a minibatch mérete egy, és a szöveg sorozata "machine".
+Legyen a mini-batch mérete egy, és a szöveg sorozata "machine".
 A tanítás egyszerűsítése érdekében a következő szakaszokban
 a szöveget szavak helyett karakterekre tokenizáljuk,
 és egy *karakter szintű nyelvmodellt* veszünk figyelembe.

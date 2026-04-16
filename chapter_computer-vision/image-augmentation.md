@@ -204,7 +204,7 @@ d2l.show_images([all_images[i][0] for i in range(32)], 4, 8, scale=0.8);
 ```
 
 A jóslás során határozott eredmények elérése érdekében általában csak a tanítópéldákra alkalmazzuk a képaugmentációt, és nem használunk véletlen műveleteket tartalmazó képaugmentációt a jósláskor.
-[**Itt csak a legegyszerűbb véletlen vízszintes tükrözési módszert használjuk**]. Emellett egy `ToTensor` példányt használunk a képek minibatch-ének a deep learning keretrendszer által igényelt formátumba konvertálásához, azaz 0 és 1 közötti 32 bites lebegőpontos számokká, amelyek alakja (batch méret, csatornák száma, magasság, szélesség).
+[**Itt csak a legegyszerűbb véletlen vízszintes tükrözési módszert használjuk**]. Emellett egy `ToTensor` példányt használunk a képek mini-batch-ének a deep learning keretrendszer által igényelt formátumba konvertálásához, azaz 0 és 1 közötti 32 bites lebegőpontos számokká, amelyek alakja (batch méret, csatornák száma, magasság, szélesség).
 
 ```{.python .input}
 #@tab mxnet

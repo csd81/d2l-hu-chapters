@@ -75,7 +75,7 @@ A DenseNet-et alkotó fő komponensek a *sűrű blokkok* és az *átmeneti réte
 
 ## [**Sűrű Blokkok**]
 
-A DenseNet a ResNet módosított "batch normalizáció, aktiváció és konvolúció" struktúráját alkalmazza (lásd a :numref:`sec_resnet` feladatát).
+A DenseNet a ResNet módosított "batchnormalizáció, aktiváció és konvolúció" struktúráját alkalmazza (lásd a :numref:`sec_resnet` feladatát).
 Először ezt a konvolúciós blokk struktúrát implementáljuk.
 
 ```{.python .input}

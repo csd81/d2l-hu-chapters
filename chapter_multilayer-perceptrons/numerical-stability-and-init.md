@@ -248,14 +248,14 @@ ugyanolyan aktivációt produkálva,
 amelyet a kimeneti egységbe táplálnak.
 A visszaterjesztés során a kimeneti egység $\mathbf{W}^{(1)}$ paraméterekre vonatkozó differenciálása
 olyan gradienseket ad, amelyek összes eleme azonos értéket vesz fel.
-Így a gradiens alapú iteráció (pl. minibatch sztochasztikus gradienscsökkenés) után
+Így a gradiens alapú iteráció (pl. mini-batch sztochasztikus gradienscsökkenés) után
 a $\mathbf{W}^{(1)}$ összes eleme még mindig azonos értéket vesz fel.
 Az ilyen iterációk sohasem *törnék meg a szimmetriát* önállóan,
 és lehet, hogy soha nem tudnánk realizálni
 a hálózat kifejezőerejét.
 A rejtett réteg úgy viselkedne,
 mintha csak egyetlen egységből állna.
-Vegyük észre, hogy bár a minibatch sztochasztikus gradienscsökkenés nem törné meg ezt a szimmetriát,
+Vegyük észre, hogy bár a mini-batch sztochasztikus gradienscsökkenés nem törné meg ezt a szimmetriát,
 a dropout regularizáció (amelyet később mutatunk be) megtörné!
 
 

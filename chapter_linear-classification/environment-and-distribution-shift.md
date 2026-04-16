@@ -294,7 +294,7 @@ Először gondolkozzunk el pontosan azon,
 mi történik a modell tanítása során:
 a tanítási adatok jellemzőin és hozzájuk tartozó feliratain iterálunk
 $\{(\mathbf{x}_1, y_1), \ldots, (\mathbf{x}_n, y_n)\}$,
-és minden minibatch után frissítjük az $f$ modell paramétereit.
+és minden mini-batch után frissítjük az $f$ modell paramétereit.
 Az egyszerűség kedvéért nem vesszük figyelembe a regularizációt,
 ezért nagyjából minimalizáljuk a tanítás veszteségét:
 

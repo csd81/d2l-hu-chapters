@@ -151,7 +151,7 @@ def __call__(self, inputs, state=None):
     return outputs, state
 ```
 
-Bemeneti sorozatok minibatch-jét a következőképpen adhatjuk be egy RNN modellbe.
+Bemeneti sorozatok mini-batch-jét a következőképpen adhatjuk be egy RNN modellbe.
 
 ```{.python .input}
 %%tab pytorch, mxnet, tensorflow
@@ -331,16 +331,16 @@ tf.one_hot(tf.constant([0, 2]), 5)
 jax.nn.one_hot(jnp.array([0, 2]), 5)
 ```
 
-(**Az egyes iterációknál mintavételezett minibatch-ek
+(**Az egyes iterációknál mintavételezett mini-batch-ek
 (batch méret, időlépések száma) alakot vesznek fel.
 Miután minden bemenetet egyforró vektorként ábrázoltunk,
-minden minibatch-t háromdimenziós tenzorként kezelhetünk,
+minden mini-batch-t háromdimenziós tenzorként kezelhetünk,
 ahol a harmadik tengely mentén lévő hosszt
 a szókincs mérete adja meg (`len(vocab)`).**)
 Gyakran transzponáljuk a bemenetet, hogy
 (időlépések száma, batch méret, szókincs mérete) alakú kimenetet kapjunk.
 Ez lehetővé teszi, hogy kényelmesebben végighurkolhassunk a legkülső dimenzión
-egy minibatch rejtett állapotainak frissítésekor,
+egy mini-batch rejtett állapotainak frissítésekor,
 időlépésenként
 (pl. a fenti `forward` metódusban).
 
@@ -442,7 +442,7 @@ az érdeklődési paraméterünket, mondjuk egy $\mathbf{x}$ vektort,
 de a negatív $\mathbf{g}$ gradiens irányában toljuk
 (sztochasztikus gradienscsökkenés esetén
 ezt a gradienst
-egy véletlenszerűen mintavételezett minibatch-en számítjuk ki).
+egy véletlenszerűen mintavételezett mini-batch-en számítjuk ki).
 Például $\eta > 0$ tanulási rátával
 minden frissítés $\mathbf{x} \gets \mathbf{x} - \eta \mathbf{g}$ formát ölt.
 Tegyük fel tovább, hogy az $f$ célfüggvény
@@ -501,7 +501,7 @@ Ez biztosítja, hogy a gradiens normája soha ne haladja meg $\theta$-t,
 $\mathbf{g}$ eredeti irányához.
 Emellett kívánatos mellékhatása is van,
 hogy korlátozza, mennyit befolyásolhat
-bármely adott minibatch
+bármely adott mini-batch
 (és azon belül bármely adott minta)
 a paramétervektort.
 Ez bizonyos fokú robusztusságot ad a modellnek.
@@ -703,7 +703,7 @@ Tanítás során a gradiens vágás enyhítheti a robbanó gradiensek problémá
 1. Az implementált nyelvmodell az *Az időgép* összes múltbeli tokenje alapján jósolja-e meg a következő tokent, egészen az első tokenig visszamenve?
 1. Melyik hiperparaméter szabályozza az előrejelzéshez felhasznált előzmény hosszát?
 1. Mutasd meg, hogy az egyforró kódolás ekvivalens azzal, hogy minden objektumhoz különböző beágyazást választunk!
-1. Állítsd be a hiperparamétereket (pl. epochok száma, rejtett egységek száma, időlépések száma egy minibatch-ben és a tanulási ráta) a perplexitás javításához! Milyen alacsonyra mehetsz le, ha ragaszkodsz ehhez az egyszerű architektúrához?
+1. Állítsd be a hiperparamétereket (pl. epochok száma, rejtett egységek száma, időlépések száma egy mini-batch-ben és a tanulási ráta) a perplexitás javításához! Milyen alacsonyra mehetsz le, ha ragaszkodsz ehhez az egyszerű architektúrához?
 1. Cseréld fel az egyforró kódolást tanulható beágyazásokra! Ez jobb teljesítményhez vezet-e?
 1. Végezz kísérletet annak meghatározásához, hogy ez az *Az időgépen* tanított nyelvmodell
    milyen jól működik H. G. Wells más könyvein,

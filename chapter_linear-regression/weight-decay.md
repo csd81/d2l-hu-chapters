@@ -83,7 +83,7 @@ import optax
 (**Ahelyett, hogy közvetlenül a paraméterek számát manipulálnánk,
 a *súlycsökkentés* (weight decay) a paraméterek által felvehető értékek korlátozásával működik.**)
 A deep learning körökön kívül általánosan $\ell_2$ regularizációnak nevezik,
-minibatch sztochasztikus gradienscsökkenéssel optimalizálva,
+mini-batch sztochasztikus gradienscsökkenéssel optimalizálva,
 a súlycsökkentés talán a legelterjedtebb technika
 a paraméteres gépi tanulási modellek regularizálásához.
 A technika motivációja az az alapvető intuíció,
@@ -184,7 +184,7 @@ esetleg nem kell adatokat gyűjtenünk, tárolnunk vagy továbbítanunk
 a többi (elhagyott) jellemzőhöz.
 
 A :eqref:`eq_linreg_batch_update` egyenlettel megegyező jelölést használva,
-a minibatch sztochasztikus gradienscsökkenés frissítései
+a mini-batch sztochasztikus gradienscsökkenés frissítései
 az $\ell_2$-regularizált regresszióhoz:
 
 $$\begin{aligned}
@@ -205,10 +205,10 @@ $\lambda$ kisebb értékei
 kevésbé korlátozott $\mathbf{w}$-nek felelnek meg,
 míg $\lambda$ nagyobb értékei
 $\mathbf{w}$-t jelentősen korlátozzák.
-Az, hogy megfelelő torzításbüntetést $b^2$ is beleszámítunk-e,
+Az, hogy megfelelő eltolás-büntetést $b^2$ is beleszámítunk-e,
 implementációnként változhat,
 és a neurális hálózat rétegei között is változhat.
-Általában nem regularizáljuk a torzítás tagot.
+Általában nem regularizáljuk az eltolás tagot.
 Emellett,
 bár az $\ell_2$ regularizáció nem feltétlenül egyenértékű a súlycsökkentéssel más optimalizálási algoritmusoknál,
 a regularizáció ötlete a
@@ -259,7 +259,7 @@ class Data(d2l.DataModule):
 ## Implementáció nulláról
 
 Most próbáljuk meg implementálni a súlycsökkentést nulláról.
-Mivel a minibatch sztochasztikus gradienscsökkenés
+Mivel a mini-batch sztochasztikus gradienscsökkenés
 az optimalizálónk,
 csupán hozzá kell adnunk a négyzetes $\ell_2$ büntetést
 az eredeti veszteségfüggvényhez.
@@ -367,12 +367,12 @@ Az alábbiakban
 a súlycsökkentés hiperparamétert közvetlenül
 a `wd`-n keresztül adjuk meg a `Trainer` példányosításakor.
 Alapértelmezés szerint a Gluon egyszerre csökkenti
-a súlyokat és a torzításokat.
+a súlyokat és az eltolásokat.
 Megjegyezzük, hogy a `wd` hiperparaméter
 meg lesz szorozva `wd_mult`-tal
 a modell paramétereinek frissítésekor.
 Tehát, ha a `wd_mult`-ot nullára állítjuk,
-a $b$ torzítás paraméter nem fog csökkeni.
+a $b$ eltolás paraméter nem fog csökkeni.
 :end_tab:
 
 :begin_tab:`pytorch`
@@ -380,12 +380,12 @@ Az alábbiakban
 a súlycsökkentés hiperparamétert közvetlenül
 a `weight_decay`-en keresztül adjuk meg az optimalizáló példányosításakor.
 Alapértelmezés szerint a PyTorch egyszerre csökkenti
-a súlyokat és a torzításokat, de
+a súlyokat és az eltolásokat, de
 beállíthatjuk az optimalizálót, hogy különböző paramétereket
 különböző irányelvek szerint kezelje.
 Itt csak a `weight_decay`-t állítjuk be
-a súlyokhoz (a `net.weight` paraméterekhez), ezért a
-torzítás (a `net.bias` paraméter) nem fog csökkeni.
+a súlyokhoz (a `net.weight` paraméterekhez), ezért az
+eltolás (a `net.bias` paraméter) nem fog csökkeni.
 :end_tab:
 
 :begin_tab:`tensorflow`
@@ -484,7 +484,7 @@ egy mély hálózat összes rétegére.
 ## Összefoglalás
 
 A regularizáció egy általános módszer a túlillesztés kezelésére. A klasszikus regularizációs technikák büntetési tagot adnak a veszteségfüggvényhez (tanítás közben), hogy csökkentsék a tanult modell komplexitását.
-Az $\ell_2$ büntetés alkalmazása az egyik különleges választás, amely egyszerűvé teszi a modellt. Ez súlycsökkentéshez vezet a minibatch sztochasztikus gradienscsökkenés algoritmus frissítési lépéseiben.
+Az $\ell_2$ büntetés alkalmazása az egyik különleges választás, amely egyszerűvé teszi a modellt. Ez súlycsökkentéshez vezet a mini-batch sztochasztikus gradienscsökkenés algoritmus frissítési lépéseiben.
 A gyakorlatban a súlycsökkentés funkcionalitást a deep learning keretrendszerek optimalizálói biztosítják.
 A különböző paraméterek különböző frissítési viselkedéssel rendelkezhetnek ugyanazon tanítási cikluson belül.
 

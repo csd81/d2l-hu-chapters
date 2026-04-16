@@ -314,7 +314,7 @@ class Seq2SeqAttentionDecoder(nn.Module):
 ```
 
 A következőkben [**teszteljük az implementált dekódolót**] figyelemmel,
-négy szekvenciából álló minibatch-csel, amelyek mindegyike hét időlépés hosszú.
+négy szekvenciából álló mini-batch-csel, amelyek mindegyike hét időlépés hosszú.
 
 ```{.python .input}
 %%tab all

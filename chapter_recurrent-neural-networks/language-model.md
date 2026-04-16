@@ -213,8 +213,8 @@ a következő token előrejelzésében
 az adott tokenek ismeretében szöveges sorozatokban.
 A modell bevezetése előtt
 tegyük fel, hogy egyszerre
-előre meghatározott hosszúságú sorozatok egy minibatch-ét dolgozza fel.
-Most az a kérdés, hogyan lehet **véletlenszerűen olvasni a bemeneti sorozatok és a célsorozatok minibatch-eit**.
+előre meghatározott hosszúságú sorozatok egy mini-batch-ét dolgozza fel.
+Most az a kérdés, hogyan lehet **véletlenszerűen olvasni a bemeneti sorozatok és a célsorozatok mini-batch-eit**.
 
 
 Tegyük fel, hogy az adathalmaz egy $T$ tokenindexből álló sorozat formájában van a `corpus`-ban.
@@ -260,9 +260,9 @@ def __init__(self, batch_size, num_steps, num_train=10000, num_val=5000):
 
 A nyelvmodellek tanításához
 véletlenszerűen fogunk mintavételezni
-bemeneti sorozatok és célsorozatok párjait minibatch-ekben.
-A következő adatbetöltő minden alkalommal véletlenszerűen generál egy minibatch-et az adathalmazból.
-A `batch_size` argumentum meghatározza az egyes minibatch-ben lévő részsorozat-példányok számát,
+bemeneti sorozatok és célsorozatok párjait mini-batch-ekben.
+A következő adatbetöltő minden alkalommal véletlenszerűen generál egy mini-batch-et az adathalmazból.
+A `batch_size` argumentum meghatározza az egyes mini-batch-ben lévő részsorozat-példányok számát,
 a `num_steps` pedig a részsorozat hosszát tokenekben.
 
 ```{.python .input  n=6}
@@ -275,7 +275,7 @@ def get_dataloader(self, train):
 ```
 
 Ahogy a következőkben láthatjuk,
-egy célsorozatokból álló minibatch megszerezhető
+egy célsorozatokból álló mini-batch megszerezhető
 a bemeneti sorozatok egy tokennel való eltolásával.
 
 ```{.python .input  n=7}
@@ -289,7 +289,7 @@ for X, Y in data.train_dataloader():
 ## Összefoglalás és megbeszélés
 
 A nyelvmodellek egy szöveges sorozat együttes valószínűségét becslik meg. Hosszú sorozatoknál az $n$-gramok kényelmes modellt biztosítanak a függőség csonkításával. Azonban sok struktúra van, de nincs elég gyakoriság a ritka szókombinációk hatékony kezeléséhez Laplace-simítással. Ezért a következő szakaszokban a neurális nyelvmodellezésre fogunk összpontosítani.
-A nyelvmodellek tanításához véletlenszerűen mintavételezhetünk bemeneti sorozatok és célsorozatok párjait minibatch-ekben. A tanítás után perplexitással mérjük a nyelvmodell minőségét.
+A nyelvmodellek tanításához véletlenszerűen mintavételezhetünk bemeneti sorozatok és célsorozatok párjait mini-batch-ekben. A tanítás után perplexitással mérjük a nyelvmodell minőségét.
 
 A nyelvmodellek skálázhatók az adatméret, a modellméret és a tanítási számítás mennyiségének növelésével. A nagy nyelvmodellek elvégezhetik a kívánt feladatokat azzal, hogy a bemeneti szöveges utasítások alapján kimeneti szöveget jósolnak. Ahogy a :numref:`sec_large-pretraining-transformers` fejezetben is tárgyaljuk,
 jelenleg
@@ -304,7 +304,7 @@ a nagy nyelvmodellek képezik az élvonalbeli rendszerek alapját a változatos 
 1. Gondolj arra a módszerünkre, amellyel minden epoch elején eldobunk néhány tokent véletlenszerűen.
     1. Valóban egyenletes eloszlást eredményez-e a dokumentum sorozatai felett?
     1. Mit kellene tenned, hogy még egyenletesebbé tedd?
-1. Ha azt szeretnénk, hogy egy sorozatpélda teljes mondat legyen, milyen problémát okoz ez a minibatch mintavételezésénél? Hogyan javíthatjuk ki?
+1. Ha azt szeretnénk, hogy egy sorozatpélda teljes mondat legyen, milyen problémát okoz ez a mini-batch mintavételezésénél? Hogyan javíthatjuk ki?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/117)

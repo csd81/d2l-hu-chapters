@@ -172,7 +172,7 @@ minden egyéni réteghez.
 
 Most implementáljuk a teljesen összefüggő réteg saját változatát.
 Emlékezzünk, hogy ez a réteg két paramétert igényel,
-egyet a súly és egyet a torzítás megjelenítéséhez.
+egyet a súly és egyet az eltolás megjelenítéséhez.
 Ebben az implementációban a ReLU aktivációt beépítjük alapértelmezettként.
 Ez a réteg két bemeneti argumentumot igényel: `in_units` és `units`, amelyek
 a bemenetek és kimenetek számát jelölik.

@@ -103,7 +103,7 @@ annotate('global minimum', (1.1, -0.95), (0.6, 0.8))
 
 A mélytanulási modellek célfüggvényének általában sok lokális optimuma van.
 Ha az optimalizálási probléma numerikus megoldása a lokális optimum közelében van, a végső iterációval kapott numerikus megoldás a célfüggvényt csak *lokálisan* minimalizálhatja, nem *globálisan*, mivel a célfüggvény megoldásainak gradiense közel nullává válik vagy nullává lesz.
-Csupán némi zaj képes kilökni a paramétert a lokális minimumból. Ez egyébként a minibatch sztochasztikus gradienscsökkenés egyik előnyös tulajdonsága: a gradiensek természetes variabilitása a minibatchek között képes kiszabadítani a paramétereket a lokális minimumokból.
+Csupán némi zaj képes kilökni a paramétert a lokális minimumból. Ez egyébként a mini-batch sztochasztikus gradienscsökkenés egyik előnyös tulajdonsága: a gradiensek természetes variabilitása a mini-batch-ek között képes kiszabadítani a paramétereket a lokális minimumokból.
 
 
 ### Nyeregpontok

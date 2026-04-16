@@ -137,7 +137,7 @@ $$
 $$
 
 ahol $\mathbf{W}_{\textrm{xi}}, \mathbf{W}_{\textrm{xf}}, \mathbf{W}_{\textrm{xo}} \in \mathbb{R}^{d \times h}$ és $\mathbf{W}_{\textrm{hi}}, \mathbf{W}_{\textrm{hf}}, \mathbf{W}_{\textrm{ho}} \in \mathbb{R}^{h \times h}$ súlyparaméterek,
-és $\mathbf{b}_\textrm{i}, \mathbf{b}_\textrm{f}, \mathbf{b}_\textrm{o} \in \mathbb{R}^{1 \times h}$ torzítási paraméterek.
+és $\mathbf{b}_\textrm{i}, \mathbf{b}_\textrm{f}, \mathbf{b}_\textrm{o} \in \mathbb{R}^{1 \times h}$ eltolási paraméterek.
 Vegyük figyelembe, hogy az összeg során broadcasting
 (lásd :numref:`subsec_broadcasting`)
 aktiválódik.
@@ -158,7 +158,7 @@ Ez a következő egyenlethez vezet a $t$ időlépésnél:
 
 $$\tilde{\mathbf{C}}_t = \textrm{tanh}(\mathbf{X}_t \mathbf{W}_{\textrm{xc}} + \mathbf{H}_{t-1} \mathbf{W}_{\textrm{hc}} + \mathbf{b}_\textrm{c}),$$
 
-ahol $\mathbf{W}_{\textrm{xc}} \in \mathbb{R}^{d \times h}$ és $\mathbf{W}_{\textrm{hc}} \in \mathbb{R}^{h \times h}$ súlyparaméterek és $\mathbf{b}_\textrm{c} \in \mathbb{R}^{1 \times h}$ torzítási paraméter.
+ahol $\mathbf{W}_{\textrm{xc}} \in \mathbb{R}^{d \times h}$ és $\mathbf{W}_{\textrm{hc}} \in \mathbb{R}^{h \times h}$ súlyparaméterek és $\mathbf{b}_\textrm{c} \in \mathbb{R}^{1 \times h}$ eltolási paraméter.
 
 A bemeneti csomópont rövid szemléltetése látható a :numref:`fig_lstm_1` ábrán.
 
@@ -239,7 +239,7 @@ Ahogy korábban, a `num_hiddens` hiperparaméter
 határozza meg a rejtett egységek számát.
 A súlyokat Gauss-eloszlásból inicializáljuk
 0.01-es szórással,
-és a torzításokat 0-ra állítjuk.
+és az eltolásokat 0-ra állítjuk.
 
 ```{.python .input}
 %%tab pytorch, mxnet, tensorflow

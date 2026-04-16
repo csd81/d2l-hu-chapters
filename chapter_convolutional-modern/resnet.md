@@ -43,7 +43,7 @@ import jax
 ## Függvényosztályok
 
 Tekintsük $\mathcal{F}$-et, azt a függvényosztályt, amelyet egy adott hálózati architektúra (a tanulási rátákkal és más hiperparaméter-beállításokkal együtt) elérhet.
-Vagyis minden $f \in \mathcal{F}$ esetén létezik egy paraméterállomány (pl. súlyok és torzítások), amelyek egy megfelelő adathalmazon való tanítással megszerezhetők.
+Vagyis minden $f \in \mathcal{F}$ esetén létezik egy paraméterállomány (pl. súlyok és eltolások), amelyek egy megfelelő adathalmazon való tanítással megszerezhetők.
 Tegyük fel, hogy $f^*$ az az "igaz" függvény, amelyet valóban meg szeretnénk találni.
 Ha $\mathcal{F}$-ben van, akkor jó helyzetben vagyunk, de jellemzően nem vagyunk ilyen szerencsések.
 Ehelyett megpróbálunk találni egy $f^*_\mathcal{F}$-et, amely a legjobb megközelítésünk $\mathcal{F}$-en belül.
@@ -77,7 +77,7 @@ Koncentráljunk egy neurális hálózat helyi részére, ahogy a :numref:`fig_re
 Feltételezzük, hogy $f(\mathbf{x})$, a tanulással elérni kívánt alapleképezés, bemenetként szolgál a tetején lévő aktivációs függvényhez.
 A bal oldalon a szaggatott vonalú doboz belsejében lévő résznek közvetlenül kell megtanulnia $f(\mathbf{x})$-et.
 A jobb oldalon a szaggatott vonalú doboz belsejében lévő résznek kell megtanulnia a *reziduális leképezést* $g(\mathbf{x}) = f(\mathbf{x}) - \mathbf{x}$, ebből fakad a reziduális blokk neve.
-Ha az $f(\mathbf{x}) = \mathbf{x}$ identitásleképezés a kívánt alapleképezés, a reziduális leképezés $g(\mathbf{x}) = 0$, és így könnyebb megtanulni: csak a szaggatott vonalú dobozban lévő felső súlyréteg (pl. teljesen összekötött réteg és konvolúciós réteg) súlyait és torzításait kell nullára tolnunk.
+Ha az $f(\mathbf{x}) = \mathbf{x}$ identitásleképezés a kívánt alapleképezés, a reziduális leképezés $g(\mathbf{x}) = 0$, és így könnyebb megtanulni: csak a szaggatott vonalú dobozban lévő felső súlyréteg (pl. teljesen összekötött réteg és konvolúciós réteg) súlyait és eltolásait kell nullára tolnunk.
 A jobb oldali ábra szemlélteti a ResNet *reziduális blokkját*, ahol a rétegebemenetet $\mathbf{x}$-et az összeadó operátorhoz vezető folytonos vonal *reziduális kapcsolatnak* (vagy *átugrási kapcsolatnak*) nevezünk.
 Reziduális blokkokkal a bemenetek gyorsabban terjeszkedhetnek előre a reziduális kapcsolatokon keresztül a rétegeken át.
 Valójában a reziduális blokk a többágú Inception blokk speciális esetének tekinthető: két ággal rendelkezik, amelyek egyike az identitásleképezés.
@@ -86,7 +86,7 @@ Valójában a reziduális blokk a többágú Inception blokk speciális eseténe
 :label:`fig_residual_block`
 
 
-A ResNet a VGG teljes $3\times 3$-as konvolúciós réteg tervezését alkalmazza. A reziduális blokk két $3\times 3$-as konvolúciós rétegből áll, azonos számú kimeneti csatornával. Minden konvolúciós réteget batch normalizációs réteg és ReLU aktivációs függvény követ. Ezután kihagyjuk ezt a két konvolúciós műveletet, és a bemenetet közvetlenül adjuk hozzá a végső ReLU aktivációs függvény előtt.
+A ResNet a VGG teljes $3\times 3$-as konvolúciós réteg tervezését alkalmazza. A reziduális blokk két $3\times 3$-as konvolúciós rétegből áll, azonos számú kimeneti csatornával. Minden konvolúciós réteget batchnormalizációs réteg és ReLU aktivációs függvény követ. Ezután kihagyjuk ezt a két konvolúciós műveletet, és a bemenetet közvetlenül adjuk hozzá a végső ReLU aktivációs függvény előtt.
 Ez a fajta tervezés megköveteli, hogy a két konvolúciós réteg kimenete ugyanolyan alakú legyen, mint a bemenet, hogy össze lehessen őket adni. Ha módosítani szeretnénk a csatornák számát, be kell vezetnünk egy további $1\times 1$-es konvolúciós réteget a bemenet kívánt alakra való transzformálásához az összeadási művelethez. Nézzük meg az alábbi kódot.
 
 ```{.python .input}
@@ -249,7 +249,7 @@ blk.init_with_output(d2l.get_key(), X)[0].shape
 
 ## [**ResNet Modell**]
 
-A ResNet első két rétege megegyezik a korábban leírt GoogLeNet rétegével: a 64 kimeneti csatornás és 2-es lépésközű $7\times 7$-es konvolúciós réteget a $3\times 3$-as max-pooling réteg követi 2-es lépésközzel. A különbség az, hogy a ResNet-ben minden konvolúciós réteg után batch normalizációs réteget adtak hozzá.
+A ResNet első két rétege megegyezik a korábban leírt GoogLeNet rétegével: a 64 kimeneti csatornás és 2-es lépésközű $7\times 7$-es konvolúciós réteget a $3\times 3$-as max-pooling réteg követi 2-es lépésközzel. A különbség az, hogy a ResNet-ben minden konvolúciós réteg után batchnormalizációs réteget adtak hozzá.
 
 ```{.python .input}
 %%tab pytorch, mxnet, tensorflow
@@ -663,7 +663,7 @@ Az eddig tárgyalt tervek közös jellemzője, hogy a hálózattervezés meglehe
 1. Melyek a fő különbségek a :numref:`fig_inception` Inception blokkja és a reziduális blokk között? Hogyan hasonlítanak egymáshoz a számítás, a pontosság és az általuk leírható függvényosztályok szempontjából?
 1. A ResNet cikk 1. táblázatát :cite:`He.Zhang.Ren.ea.2016` felhasználva implementáld a hálózat különböző változatait.
 1. Mélyebb hálózatoknál a ResNet "bottleneck" architektúrát vezet be a modell összetettségének csökkentése érdekében. Próbáld meg implementálni.
-1. A ResNet későbbi verzióiban a szerzők a "konvolúció, batch normalizáció és aktiváció" struktúrát a "batch normalizáció, aktiváció és konvolúció" struktúrára változtatták. Hajtsd végre ezt a fejlesztést saját magad. A részletekért lásd az 1. ábrát :citet:`He.Zhang.Ren.ea.2016*1`-ben.
+1. A ResNet későbbi verzióiban a szerzők a "konvolúció, batchnormalizáció és aktiváció" struktúrát a "batchnormalizáció, aktiváció és konvolúció" struktúrára változtatták. Hajtsd végre ezt a fejlesztést saját magad. A részletekért lásd az 1. ábrát :citet:`He.Zhang.Ren.ea.2016*1`-ben.
 1. Miért nem növelhetjük a függvények összetettségét korlátlanul, még akkor sem, ha a függvényosztályok egymásba ágyazottak?
 
 :begin_tab:`mxnet`

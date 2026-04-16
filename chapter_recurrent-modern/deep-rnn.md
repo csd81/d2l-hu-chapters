@@ -44,7 +44,7 @@ mind az előző réteg ugyanazon időlépésbeli értékétől.
 ![Mély RNN architektúrája.](../img/deep-rnn.svg)
 :label:`fig_deep_rnn`
 
-Formálisan, tegyük fel, hogy a $t$ időlépésnél van egy minibatch bemenetünk
+Formálisan, tegyük fel, hogy a $t$ időlépésnél van egy mini-batch bemenetünk
 $\mathbf{X}_t \in \mathbb{R}^{n \times d}$
 (példák száma $=n$; az egyes példákban lévő bemenetek száma $=d$).
 Ugyanannál az időlépésnél,
@@ -62,7 +62,7 @@ $$\mathbf{H}_t^{(l)} = \phi_l(\mathbf{H}_t^{(l-1)} \mathbf{W}_{\textrm{xh}}^{(l)
 :eqlabel:`eq_deep_rnn_H`
 
 ahol a $\mathbf{W}_{\textrm{xh}}^{(l)} \in \mathbb{R}^{h \times h}$ és $\mathbf{W}_{\textrm{hh}}^{(l)} \in \mathbb{R}^{h \times h}$ súlyok, valamint
-a $\mathbf{b}_\textrm{h}^{(l)} \in \mathbb{R}^{1 \times h}$ torzítás
+a $\mathbf{b}_\textrm{h}^{(l)} \in \mathbb{R}^{1 \times h}$ eltolás
 az $l$-edik rejtett réteg modell paraméterei.
 
 Végül a kimeneti réteg kiszámítása
@@ -71,7 +71,7 @@ csak a végső $L$-edik rejtett réteg rejtett állapotán alapul:
 $$\mathbf{O}_t = \mathbf{H}_t^{(L)} \mathbf{W}_{\textrm{hq}} + \mathbf{b}_\textrm{q},$$
 
 ahol a $\mathbf{W}_{\textrm{hq}} \in \mathbb{R}^{h \times q}$ súly
-és a $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ torzítás
+és a $\mathbf{b}_\textrm{q} \in \mathbb{R}^{1 \times q}$ eltolás
 a kimeneti réteg modell paraméterei.
 
 Akárcsak az MLP-knél, a rejtett rétegek száma $L$
