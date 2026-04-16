@@ -68,6 +68,9 @@ DENYLIST: list[tuple[str, str, int]] = [
     (r"előre irányú menet",              "előremenet",                          re.I),
     (r"forward propagation",             "előreterjesztés",                     re.I),
     (r"objektumfelismerés",              "objektumdetektálás",                  re.I),
+    # Positional encoding
+    (r"pozicionális kódolás",            "pozíciókódolás",                      re.I),
+    (r"pozícióenkódolás",                "pozíciókódolás",                      re.I),
 ]
 
 # Patterns that are always OK regardless of context (suppress false positives)

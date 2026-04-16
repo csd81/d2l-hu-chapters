@@ -219,7 +219,7 @@ Ha találat van, javítsd a táblázat alapján, mielőtt pusholsz.
 | pooling                              | pooling                                  | megtartjuk angolul mélytanulási kontextusban               |
 | population                           | populáció                                | következetesen; alternatíva: *alapsokaság*                 |
 | population error                     | populációs hiba                          |                                                            |
-| positional encoding                  | pozicionális kódolás                     |                                                            |
+| positional encoding                  | pozíciókódolás                           | nem: *pozicionális kódolás*, nem: *pozícióenkódolás*       |
 | preconditioning                      | előkondicionálás                         |                                                            |
 | pretraining                          | előtanítás                               |                                                            |
 | prior                                | prior                                    | megtartjuk angolul                                         |
