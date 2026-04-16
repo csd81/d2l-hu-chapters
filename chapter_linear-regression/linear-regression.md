@@ -104,19 +104,19 @@ $$\textrm{price} = w_{\textrm{area}} \cdot \textrm{area} + w_{\textrm{age}} \cdo
 :eqlabel:`eq_price-area`
 
 Itt $w_{\textrm{area}}$ és $w_{\textrm{age}}$
-*súlyoknak* nevezzük, $b$ pedig *torzításnak*
-(vagy *eltolásnak* illetve *tengelymetszet-tagnak*).
+*súlyoknak* nevezzük, $b$ pedig *eltolásnak*
+(vagy *tengelymetszet-tagnak*).
 A súlyok határozzák meg, hogy az egyes jellemzők
 mennyire befolyásolják az előrejelzésünket.
-A torzítás határozza meg a becslés értékét
+Az eltolás határozza meg a becslés értékét
 akkor, ha minden jellemző nulla.
 Bár soha nem fogunk látni nullás alapterületű, újonnan épített házat,
-mégis szükségünk van a torzításra, mert nélküle
+mégis szükségünk van az eltolásra, mert nélküle
 csak az origón átmenő egyeneseket tudnánk kifejezni
 (nem az összes lineáris függvényt).
-Szigorúan szólva, :eqref:`eq_price-area` a bemeneti jellemzők *affin transzformációja*, amelyet a jellemzők *lineáris transzformációja* (súlyozott összeg formájában) és egy *eltolás* (a hozzáadott torzítás révén) jellemez.
+Szigorúan szólva, :eqref:`eq_price-area` a bemeneti jellemzők *affin transzformációja*, amelyet a jellemzők *lineáris transzformációja* (súlyozott összeg formájában) és egy *eltolás* (a hozzáadott eltolás révén) jellemez.
 Adott adathalmaz esetén célunk
-a $\mathbf{w}$ súlyok és $b$ torzítás megválasztása úgy,
+a $\mathbf{w}$ súlyok és $b$ eltolás megválasztása úgy,
 hogy átlagosan a modell előrejelzései
 a lehető legjobban illeszkedjenek az adatokban
 megfigyelt valódi árakhoz.
@@ -157,11 +157,11 @@ mátrix–vektor szorzattal fejezhetők ki:
 $${\hat{\mathbf{y}}} = \mathbf{X} \mathbf{w} + b,$$
 :eqlabel:`eq_linreg-y-vec`
 
-ahol az összegzésnél sugárzás (:numref:`subsec_broadcasting`) érvényesül.
+ahol az összegzésnél kiterjesztés (:numref:`subsec_broadcasting`) érvényesül.
 Adott tanítóadatbázis $\mathbf{X}$ jellemzőivel
 és a megfelelő (ismert) $\mathbf{y}$ címkékkel,
 a lineáris regresszió célja megtalálni
-a $\mathbf{w}$ súlyvektort és a $b$ torzítás tagot,
+a $\mathbf{w}$ súlyvektort és a $b$ eltolás tagot,
 hogy a $\mathbf{X}$-ével azonos eloszlásból vett
 új adatpélda esetén
 annak címkéje (várható értékben)
@@ -244,7 +244,7 @@ optimalizálási feladatot kínál.
 Különösen, az optimális paramétereket
 (a tanítóadatokon értékelve)
 analitikusan megtalálhatjuk egy egyszerű képlettel.
-Először beolvaszthatjuk a $b$ torzítást a $\mathbf{w}$ paraméterbe
+Először beolvaszthatjuk a $b$ eltolást a $\mathbf{w}$ paraméterbe
 oly módon, hogy a tervmátrixhoz egy csupa 1-esből álló oszlopot fűzünk.
 Ekkor az előrejelzési feladatunk $\|\mathbf{y} - \mathbf{X}\mathbf{w}\|^2$ minimalizálása.
 Mindaddig, amíg a $\mathbf{X}$ tervmátrix teljes rangú
@@ -624,7 +624,7 @@ amelyekben minden jellemzőt egy bemeneti neuron képvisel,
 ábrázolja a lineáris regressziót.
 Az ábra kiemeli a kapcsolódási mintát,
 például hogy minden bemenet hogyan kapcsolódik a kimenethez,
-de nem mutatja a súlyok vagy torzítások konkrét értékeit.
+de nem mutatja a súlyok vagy eltolások konkrét értékeit.
 
 ![A lineáris regresszió egyetlen rétegű neurális hálózat.](../img/singleneuron.svg)
 :label:`fig_single_neuron`

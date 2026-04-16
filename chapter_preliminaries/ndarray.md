@@ -444,18 +444,18 @@ Most, hogy tudjuk, hogyan kell tenzorokat létrehozni,
 megkezdhetjük a különféle matematikai
 műveletekkel való manipulálásukat.
 Ezek közül a leghasznosabbak
-az *elemenként* elvégzett műveletek.
+az *elemenkénti* műveletek.
 Ezek egy standard skaláris műveletet alkalmaznak
 a tenzor minden elemére.
 Két tenzort bemenetként fogadó függvények esetén
-az elemenként elvégzett műveletek valamilyen standard bináris operátort alkalmaznak
+az elemenkénti műveletek valamilyen standard bináris operátort alkalmaznak
 a megfelelő elempárokra.
 Bármely skalárisból skalárisba képező függvényből
-létrehozhatunk elemenként elvégzett függvényt.
+létrehozhatunk elemenkénti függvényt.
 
 Matematikai jelölésben az ilyen
 *unáris* skaláris operátorokat (egy bemenetet fogadva)
-az alábbi szignaturával jelöljük:
+az alábbi szignatúrával jelöljük:
 $f: \mathbb{R} \rightarrow \mathbb{R}$.
 Ez csupán azt jelenti, hogy a függvény
 bármely valós számból egy másik valós számba képez.
@@ -484,7 +484,7 @@ jnp.exp(x)
 Hasonlóképpen jelöljük a *bináris* skaláris operátorokat,
 amelyek valós számok párjait
 egyetlen valós számba képezik,
-az alábbi szignaturával:
+az alábbi szignatúrával:
 $f: \mathbb{R}, \mathbb{R} \rightarrow \mathbb{R}$.
 Adott bármely két *azonos alakú* $\mathbf{u}$
 és $\mathbf{v}$ vektor,
@@ -501,7 +501,7 @@ Az összeadás (`+`), kivonás (`-`),
 szorzás (`*`), osztás (`/`)
 és hatványozás (`**`)
 szokásos aritmetikai operátorai
-mind *emelve* lettek elemenként elvégzett műveletekké
+mind *emelve* lettek elemenkénti műveletekké
 azonos alakú, tetszőleges méretű tenzorokhoz.
 
 ```{.python .input}
@@ -532,7 +532,7 @@ y = jnp.array([2, 2, 2, 2])
 x + y, x - y, x * y, x / y, x ** y
 ```
 
-Az elemenként elvégzett számítások mellett
+Az elemenkénti számítások mellett
 lineáris algebrai műveleteket is végezhetünk,
 például skaláris szorzatot és mátrixszorzást.
 Ezeket részletesen tárgyaljuk
@@ -602,22 +602,22 @@ X.sum()
 tf.reduce_sum(X)
 ```
 
-## Sugárzás (Broadcasting)
+## Kiterjesztés (Broadcasting)
 :label:`subsec_broadcasting`
 
 Mostanra már tudod, hogyan kell
-elemenként elvégzett bináris műveleteket végezni
+elemenkénti bináris műveleteket végezni
 azonos alakú két tenzorral.
 Bizonyos feltételek mellett,
 még akkor is, ha az alakok eltérnek,
-[**elvégezhetünk elemenként elvégzett bináris műveleteket
-a *sugárzási mechanizmus* meghívásával.**]
-A sugárzás az alábbi kétlépéses eljárás szerint működik:
+[**elvégezhetünk elemenkénti bináris műveleteket
+a *kiterjesztési mechanizmus* meghívásával.**]
+A kiterjesztés az alábbi kétlépéses eljárás szerint működik:
 (i) bővítsük ki az egyik vagy mindkét tömböt
-az elemek másolásával az 1-es hosszú tengelyek mentén,
+az elemek másolásával az 1-es hosszúságú tengelyek mentén,
 hogy az átalakítás után
 a két tenzornak azonos alakja legyen;
-(ii) végezzünk elemenként elvégzett műveletet
+(ii) végezzünk elemenkénti műveletet
 a kapott tömbökön.
 
 ```{.python .input}
@@ -650,7 +650,7 @@ a, b
 
 Mivel `a` és `b` rendre $3\times1$ és $1\times2$ méretű mátrixok,
 alakjuk nem egyezik meg.
-A sugárzás egy nagyobb $3\times2$ mátrixot állít elő
+A kiterjesztés egy nagyobb $3\times2$ mátrixot állít elő
 azáltal, hogy az `a` mátrixot az oszlopok mentén,
 a `b` mátrixot a sorok mentén sokszorozza meg,
 majd elemenként összeadja őket.
@@ -779,7 +779,7 @@ id(X) == before
 %%tab tensorflow
 @tf.function
 def computation(X, Y):
-    Z = tf.zeros_like(Y)  # Ez a nem használt érték ki lesz pruningolva
+    Z = tf.zeros_like(Y)  # Ez a nem használt érték el lesz távolítva
     A = X + Y  # A lefoglalások újrafelhasználódnak, ha már nem kellenek
     B = A + Y
     C = B + Y
@@ -867,13 +867,13 @@ a, a.item(), float(a), int(a)
 ## Összefoglalás
 
 A tenzor osztály a fő felület az adatok tárolásához és kezeléséhez a deep learning könyvtárakban.
-A tenzorok számos funkciót biztosítanak, többek között: létrehozási eljárásokat; indexelést és szeletelést; alapvető matematikai műveleteket; sugárzást; memóriahatékony értékadást; és konverziót más Python objektumokra, illetve azokból.
+A tenzorok számos funkciót biztosítanak, többek között: létrehozási eljárásokat; indexelést és szeletelést; alapvető matematikai műveleteket; kiterjesztést; memóriahatékony értékadást; és konverziót más Python objektumokra, illetve azokból.
 
 
 ## Feladatok
 
 1. Futtasd le a kódot ebben a szakaszban. Változtasd meg az `X == Y` feltételes kifejezést `X < Y`-ra vagy `X > Y`-ra, majd nézd meg, milyen tenzort kapsz.
-1. Cseréld le a sugárzási mechanizmusban elemenként működő két tenzort más alakúakra, például 3-dimenziós tenzorokra. Az eredmény megfelel a várakozásoknak?
+1. Cseréld le a kiterjesztési mechanizmusban elemenként működő két tenzort más alakúakra, például 3-dimenziós tenzorokra. Az eredmény megfelel a várakozásoknak?
 
 :begin_tab:`mxnet`
 [Megbeszélések](https://discuss.d2l.ai/t/26)
