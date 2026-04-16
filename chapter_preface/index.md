@@ -39,7 +39,7 @@ biomedicináig.
 
 ## A könyvről
 
-Ez a könyv arra tett kísérletünk, hogy a mélytanuláset közel hozzuk az
+Ez a könyv arra tett kísérletünk, hogy a mélytanulást közel hozzuk az
 olvasóhoz, és egyszerre tanítsuk meg a *fogalmakat*, az
 *összefüggéseket* és a *kódot*.
 

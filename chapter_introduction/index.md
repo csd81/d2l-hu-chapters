@@ -855,7 +855,7 @@ feltenni.
   Betanítás után egy generatív modellt használhatunk arra, hogy a példákat
   pontozzuk aszerint, mennyire valószínűek, vagy arra, hogy a megtanult
   eloszlásból szintetikus példákat mintavételezzünk. A generatív modellezés
-  korai mélytanulás áttörései a *variációs autokódolóek*
+  korai mélytanulás áttörései a *variációs autokódolók*
   :cite:`Kingma.Welling.2014,rezende2014stochastic` feltalálásával
   kezdődtek, majd a *generatív versengő hálózatok*
   :cite:`Goodfellow.Pouget-Abadie.Mirza.ea.2014` kifejlesztésével
@@ -937,7 +937,7 @@ kölcsönhatásba lép a környezetével és cselekszik is benne, akkor nagy
 valószínűséggel a *megerősítéses tanulásra* fogsz összpontosítani. Ez
 magában foglalhat robotikai alkalmazásokat, párbeszédrendszereket, sőt
 akár videójátékokhoz készült mesterséges intelligenciát is. A
-*mély megerősítéses tanulás*, amely a mélytanuláset alkalmazza
+*mély megerősítéses tanulás*, amely a mélytanulást alkalmazza
 megerősítéses tanulási problémákra, rendkívüli népszerűségre tett szert.
 A vizuális bemenetre támaszkodó, embereket legyőző Atari-játékos deep
 Q-network :cite:`mnih2015human`, valamint a Go világbajnokát letaszító
@@ -1374,7 +1374,7 @@ mélytanulásnek tulajdonítanak.
   vagy a Waymo már részleges autonómiát nyújtó termékeket szállítanak. A
   teljes autonómiát az teszi olyan nehézzé, hogy a helyes vezetéshez
   érzékelni, következtetni és szabályokat kell a rendszerbe építeni.
-  Jelenleg a mélytanuláset elsősorban ezeknek a problémáknak a vizuális
+  Jelenleg a mélytanulást elsősorban ezeknek a problémáknak a vizuális
   aspektusában használják. A többit nagyrészt mérnökök hangolják finomra.
 
 Ez még mindig csak a felszínt karcolja a gépi tanulás jelentős
@@ -1430,7 +1430,7 @@ a mélytanulás elképesztően sokféle modellt, technikát,
 problémaformalizálást és alkalmazást hívott életre. Sok intuíció
 született a mélység előnyeinek magyarázatára. Tulajdonképpen minden gépi
 tanulás sok rétegnyi számításból áll, amelyek közül az első a jellemzők
-feldolgozását végzi. A mélytanuláset az különbözteti meg, hogy a sok
+feldolgozását végzi. A mélytanulást az különbözteti meg, hogy a sok
 reprezentációs rétegben megtanult műveleteket közösen, adatokból tanulja.
 
 Az eddig tárgyalt problémák, például a nyers hangjelből való tanulás, a

@@ -126,7 +126,7 @@ a DistilBERT (könnyűsúlyú, tudásdesztilláció révén) :cite:`sanh2019dist
 Emellett a BERT inspirálta a Transformer előtanítást a számítógépes látásban is,
 például látási Transformerekkel :cite:`Dosovitskiy.Beyer.Kolesnikov.ea.2021`,
 Swin Transformerekkel :cite:`liu2021swin`,
-és MAE-vel (maszkolt autokódolóek) :cite:`he2022masked`.
+és MAE-vel (maszkolt autokódolók) :cite:`he2022masked`.
 
 ## Kódoló–dekódoló
 
@@ -135,7 +135,7 @@ azonos számú kimeneti reprezentációvá alakítja,
 a csupán kódolós mód nem képes tetszőleges hosszúságú sorozatot generálni,
 mint ahogy azt a gépi fordítás megkívánja.
 Ahogy eredetileg gépi fordításra javasolták,
-a Transformer architektúra kiegészíthető egy dekódolórel,
+a Transformer architektúra kiegészíthető egy dekódolóval,
 amely autoregresszív módon, tokenenként, tetszőleges hosszúságú
 célszekvenciát jósol meg a kódoló és a dekódoló kimenetétől feltételesen:
 (i) a kódoló kimenetétől való feltételezéshez a kódoló–dekódoló keresztfigyelelem

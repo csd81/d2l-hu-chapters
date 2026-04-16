@@ -66,7 +66,7 @@ d2l.plt.show()
 
 ## Az adathalmaz felosztása
 
-Az adathalmazt tanító- és teszthalmazra osztjuk. A következő függvény két felosztási módot kínál: `random` és `seq-aware`. A `random` módban a függvény időbélyeg figyelembevétele nélkül véletlenszerűen osztja fel a 100k interakciót, és alapértelmezés szerint az adatok 90%-át tanító-, 10%-át tesztmintának használja. A `seq-aware` módban minden felhasználónál a legutóbb értékelt elemet hagyjuk ki tesztelésre, a korábbi interakciókat pedig tanítóhalmazként használjuk. A felhasználói történeti interakciókat időbélyeg alapján a legrégebbitől a legújabbig rendezzük. Ezt a módot fogjuk használni a sorrendtudatos ajánlási részben.
+Az adathalmazt tanító- és teszthalmazra osztjuk. A következő függvény két felosztási módot kínál: `random` és `seq-aware`. A `random` módban a függvény időbélyeg figyelembevétele nélkül véletlenszerűen osztja fel a 100k interakciót, és alapértelmezés szerint az adatok 90%-át tanító-, 10%-át teszthalmaznak használja. A `seq-aware` módban minden felhasználónál a legutóbb értékelt elemet hagyjuk ki tesztelésre, a korábbi interakciókat pedig tanítóhalmazként használjuk. A felhasználói történeti interakciókat időbélyeg alapján a legrégebbitől a legújabbig rendezzük. Ezt a módot fogjuk használni a sorrendtudatos ajánlási részben.
 
 ```{.python .input  n=5}
 #@tab mxnet

@@ -1,4 +1,4 @@
-# AutoRec: Értékbecslés autokódolóekkel
+# AutoRec: Értékbecslés autokódolókkal
 
 Bár a mátrixfaktorizációs modell elfogadható teljesítményt ér el az értékbecslési feladaton, lényegében lineáris modell. Ezért az ilyen modellek nem képesek megragadni az összetett, nemlineáris és finom kapcsolódásokat, amelyek a felhasználói preferenciák előrejelzésében hasznosak lehetnek. Ebben a szakaszban egy nemlineáris neurális hálózati kollaboratív szűrési modellt, az AutoRec-et :cite:`Sedhain.Menon.Sanner.ea.2015` mutatjuk be. Ez a kollaboratív szűrést (CF) autokódoló-architektúrával azonosítja, és arra törekszik, hogy az explicit visszajelzés alapján nemlineáris transzformációkat építsen be a CF-be. A neurális hálózatokról bebizonyosodott, hogy bármely folytonos függvényt képesek közelíteni, ezért jól alkalmasak a mátrixfaktorizáció korlátainak kezelésére és kifejezőképességének növelésére.
 
@@ -111,7 +111,7 @@ d2l.train_recsys_rating(net, train_iter, test_iter, loss, trainer, num_epochs,
 
 ## Összefoglalás
 
-* Az autokódolóekkel a mátrixfaktorizációs algoritmus nemlineáris rétegekkel és dropout regularizációval egészíthető ki.
+* Az autokódolókkal a mátrixfaktorizációs algoritmus nemlineáris rétegekkel és dropout regularizációval egészíthető ki.
 * A MovieLens 100K adathalmazon végzett kísérletek azt mutatják, hogy az AutoRec jobb teljesítményt ér el, mint a mátrixfaktorizáció.
 
 
