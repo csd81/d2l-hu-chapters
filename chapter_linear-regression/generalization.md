@@ -358,7 +358,7 @@ eredő hatalmas adathalmazok bősége magyarázza.
 hogy több, különböző szempontból eltérő modellt kiértékeltünk
 (különböző architektúrák, tanítási célkitűzések,
 kiválasztott jellemzők, adatelőfeldolgozás,
-tanulási sebességek stb.).
+tanulási ráták stb.).
 A sok modell közül való választást találóan
 *modellválasztásnak* nevezzük.
 

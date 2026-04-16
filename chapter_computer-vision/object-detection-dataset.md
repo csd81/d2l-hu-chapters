@@ -1,8 +1,8 @@
-# Az objektumfelismerési adathalmaz
+# Az objektumdetektálási adathalmaz
 :label:`sec_object-detection-dataset`
 
-Az objektumfelismerés területén nincsenek olyan kis adathalmazok, mint az MNIST vagy a Fashion-MNIST.
-Az objektumfelismerési modellek gyors bemutatásához
+Az objektumdetektálás területén nincsenek olyan kis adathalmazok, mint az MNIST vagy a Fashion-MNIST.
+Az objektumdetektálási modellek gyors bemutatásához
 [**összegyűjtöttünk és felcímkéztünk egy kis adathalmazt**].
 Először az irodánkban lévő szabad banánokról készítettünk fényképeket, és
 különböző forgatásokkal és méretekkel 1000 banánképet generáltunk.
@@ -214,14 +214,14 @@ for ax, label in zip(axes, batch[1][:10]):
 
 ## Összefoglalás
 
-* Az összegyűjtött banánfelismerési adathalmaz objektumfelismerési modellek bemutatására használható.
-* Az objektumfelismeréshez szükséges adatbetöltés hasonló a képosztályozáséhoz. Azonban az objektumfelismerésben a címkék a valódi befoglaló téglalapok információit is tartalmazzák, ami a képosztályozásban hiányzik.
+* Az összegyűjtött banánfelismerési adathalmaz objektumdetektálási modellek bemutatására használható.
+* Az objektumdetektáláshoz szükséges adatbetöltés hasonló a képosztályozáséhoz. Azonban az objektumdetektálásban a címkék a valódi befoglaló téglalapok információit is tartalmazzák, ami a képosztályozásban hiányzik.
 
 
 ## Feladatok
 
 1. Mutass be más képeket valódi befoglaló téglalapjaikkal a banánfelismerési adathalmazból. Miben különböznek a befoglaló téglalapok és az objektumok szempontjából?
-1. Tegyük fel, hogy adataugmentációt, például véletlen kivágást szeretnénk alkalmazni az objektumfelismeréshez. Miben különbözhet ez a képosztályozásnál alkalmazottól? Tipp: mi van akkor, ha a kivágott kép csak egy kis részét tartalmazza az objektumnak?
+1. Tegyük fel, hogy adataugmentációt, például véletlen kivágást szeretnénk alkalmazni az objektumdetektáláshoz. Miben különbözhet ez a képosztályozásnál alkalmazottól? Tipp: mi van akkor, ha a kivágott kép csak egy kis részét tartalmazza az objektumnak?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/372)

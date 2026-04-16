@@ -6,14 +6,14 @@ A korábbi fejezetekben (pl. :numref:`sec_alexnet`--:numref:`sec_googlenet`) kü
 A képosztályozási feladatokban feltételezzük, hogy a képen *egyetlen* fő objektum van, és csak arra összpontosítunk, hogyan ismerjük fel annak kategóriáját.
 Azonban a vizsgált képeken gyakran *több* objektum is megtalálható.
 Nemcsak a kategóriájukat szeretnénk tudni, hanem a képen belüli konkrét pozíciójukat is.
-A számítógépes látásban az ilyen feladatokat *objektumfelismerésnek* (vagy *objektumdetektálásnak*) nevezzük.
+A számítógépes látásban az ilyen feladatokat *objektumdetektálásnak* (vagy *objektumdetektálásnak*) nevezzük.
 
-Az objektumfelismerést számos területen széles körben alkalmazzák.
+Az objektumdetektálást számos területen széles körben alkalmazzák.
 Például az önvezető autóknak az útvonalat kell megtervezniük az elfogott videóképeken lévő járművek, gyalogosok, utak és akadályok pozíciójának felismerésével.
 Emellett a robotok e technikát alkalmazhatják az érdeklődési objektumok felismerésére és helymeghatározására, miközben a környezetükben navigálnak.
 Továbbá a biztonsági rendszereknek szükségük lehet rendellenes objektumok, például betolakodók vagy bombák felismerésére.
 
-A következő néhány fejezetben bemutatunk néhány deep learning alapú objektumfelismerési módszert.
+A következő néhány fejezetben bemutatunk néhány deep learning alapú objektumdetektálási módszert.
 Az objektumok *pozíciójának* (vagy *helyzetének*) bemutatásával kezdjük.
 
 ```{.python .input}
@@ -58,7 +58,7 @@ d2l.plt.imshow(img);
 
 ## Befoglaló téglalapok
 
-Az objektumfelismerésben általában *befoglaló téglalapot* használunk az objektum térbeli elhelyezkedésének leírására.
+Az objektumdetektálásban általában *befoglaló téglalapot* használunk az objektum térbeli elhelyezkedésének leírására.
 A befoglaló téglalap téglalap alakú, amelyet a téglalap bal felső sarkának $x$ és $y$ koordinátái, valamint a jobb alsó sarok koordinátái határoznak meg.
 Egy másik általánosan használt befoglaló téglalap ábrázolás a befoglaló téglalap középpontjának $(x, y)$-tengelykoordinátái, valamint a doboz szélessége és magassága.
 
@@ -136,7 +136,7 @@ fig.axes.add_patch(bbox_to_rect(cat_bbox, 'red'));
 
 ## Összefoglalás
 
-* Az objektumfelismerés nemcsak felismeri a képen lévő összes érdeklődési objektumot, hanem azok pozícióját is meghatározza. A pozíciót általában téglalap alakú befoglaló téglalappal ábrázolják.
+* Az objektumdetektálás nemcsak felismeri a képen lévő összes érdeklődési objektumot, hanem azok pozícióját is meghatározza. A pozíciót általában téglalap alakú befoglaló téglalappal ábrázolják.
 * Két általánosan használt befoglaló téglalap ábrázolás között konvertálhatunk.
 
 ## Feladatok

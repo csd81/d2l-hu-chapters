@@ -102,7 +102,7 @@ net = nn.Sequential(*list(pretrained_net.children())[:-2])
 ```
 
 Adott egy 320 és 480 magasságú és szélességű bemenet esetén,
-a `net` előre terjesztése
+a `net` előreterjesztése
 az eredeti méret 1/32-ére csökkenti a bemeneti magasságot és szélességet, azaz 10-re és 15-re.
 
 ```{.python .input}
@@ -384,7 +384,7 @@ ha egy bemeneti kép magassága vagy szélessége nem osztható 32-vel,
 a transzponált konvolúciós réteg kimeneti magassága vagy szélessége eltér a bemeneti kép alakjától.
 E probléma kezelésére
 a képből több téglalap alakú területet vághatunk ki, amelyek magassága és szélessége 32 egész számszorosai,
-és ezeken a területeken külön-külön végzünk előre terjesztést.
+és ezeken a területeken külön-külön végzünk előreterjesztést.
 Megjegyezzük, hogy
 e téglalap alakú területek uniójának teljesen le kell fednie a bemeneti képet.
 Ha egy pixelt több téglalap alakú terület is lefed,

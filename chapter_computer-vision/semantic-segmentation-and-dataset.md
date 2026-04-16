@@ -1,11 +1,11 @@
 # Szemantikai szegmentáció és az adathalmaz
 :label:`sec_semantic_segmentation`
 
-Az objektumfelismerési feladatok tárgyalásakor a :numref:`sec_bbox`--:numref:`sec_rcnn` fejezetekben befoglaló téglalapokat alkalmazunk a képeken lévő objektumok felcímkézésére és jóslására.
+Az objektumdetektálási feladatok tárgyalásakor a :numref:`sec_bbox`--:numref:`sec_rcnn` fejezetekben befoglaló téglalapokat alkalmazunk a képeken lévő objektumok felcímkézésére és jóslására.
 Ez a fejezet a *szemantikai szegmentáció* problémáját tárgyalja, amely arra összpontosít, hogyan osztjuk fel a képet a különböző szemantikai osztályokba tartozó régiókra.
-Eltérően az objektumfelismeréstől, a szemantikai szegmentáció pixelszinten ismeri fel és érti a képeken lévőket: a szemantikai régiók felcímkézése és jóslása pixelszintű.
+Eltérően az objektumdetektálástól, a szemantikai szegmentáció pixelszinten ismeri fel és érti a képeken lévőket: a szemantikai régiók felcímkézése és jóslása pixelszintű.
 A :numref:`fig_segmentation` ábra bemutatja a kép kutyájának, macskájának és hátterének szemantikai szegmentációs felcímkézését.
-Az objektumfelismeréshez képest a szemantikai szegmentációban felcímkézett pixelszintű határok nyilvánvalóan finomabbak.
+Az objektumdetektáláshoz képest a szemantikai szegmentációban felcímkézett pixelszintű határok nyilvánvalóan finomabbak.
 
 
 ![A kép kutyájának, macskájának és hátterének felcímkézése szemantikai szegmentációban.](../img/segmentation.svg)
@@ -328,7 +328,7 @@ voc_test = VOCSegDataset(False, crop_size, voc_dir)
 
 A batch méret 64-re állításával definiáljuk a tanítóhalmaz adatiterátorát.
 Nyomtassuk ki az első minibatch alakját.
-A képosztályozástól vagy az objektumfelismeréstől eltérően itt a felcímkézett képek háromdimenziós tenzorok.
+A képosztályozástól vagy az objektumdetektálástól eltérően itt a felcímkézett képek háromdimenziós tenzorok.
 
 ```{.python .input}
 #@tab mxnet

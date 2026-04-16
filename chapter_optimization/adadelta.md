@@ -1,7 +1,7 @@
 # Adadelta
 :label:`sec_adadelta`
 
-Az Adadelta az AdaGrad (:numref:`sec_adagrad`) még egy változata. A fő különbség abban rejlik, hogy csökkenti azt a mértéket, amennyire a tanulási sebesség a koordinátákhoz alkalmazkodik. Ráadásul hagyományosan úgy emlegetik, mint ami nem rendelkezik tanulási sebességgel, mivel a változás mértékét magát alkalmazza a jövőbeli változás kalibrálásához. Az algoritmust :citet:`Zeiler.2012` javasolta. Az előző algoritmusok eddigi tárgyalása alapján meglehetősen egyszerűen érthető.
+Az Adadelta az AdaGrad (:numref:`sec_adagrad`) még egy változata. A fő különbség abban rejlik, hogy csökkenti azt a mértéket, amennyire a tanulási ráta a koordinátákhoz alkalmazkodik. Ráadásul hagyományosan úgy emlegetik, mint ami nem rendelkezik tanulási rátával, mivel a változás mértékét magát alkalmazza a jövőbeli változás kalibrálásához. Az algoritmust :citet:`Zeiler.2012` javasolta. Az előző algoritmusok eddigi tárgyalása alapján meglehetősen egyszerűen érthető.
 
 ## Az algoritmus
 
@@ -130,7 +130,7 @@ d2l.train_concise_ch11(trainer, {'rho': 0.9}, data_iter)
 
 ```{.python .input}
 #@tab tensorflow
-# az adadelta az alapértelmezett tanulási sebességnél nem konvergál
+# az adadelta az alapértelmezett tanulási rátanél nem konvergál
 # de lr = 5.0 esetén konvergál
 trainer = tf.keras.optimizers.Adadelta
 d2l.train_concise_ch11(trainer, {'learning_rate':5.0, 'rho': 0.9}, data_iter)
@@ -138,7 +138,7 @@ d2l.train_concise_ch11(trainer, {'learning_rate':5.0, 'rho': 0.9}, data_iter)
 
 ## Összefoglalás
 
-* Az Adadeltának nincs tanulási sebesség paramétere. Ehelyett a paraméterek változásának mértékét alkalmazza a tanulási sebesség adaptálásához.
+* Az Adadeltának nincs tanulási ráta paramétere. Ehelyett a paraméterek változásának mértékét alkalmazza a tanulási ráta adaptálásához.
 * Az Adadelta két állapotváltozót igényel a gradiens és a paraméterváltozás második momentumainak tárolásához.
 * Az Adadelta kiszivárgó átlagokat alkalmaz a megfelelő statisztikák folyamatos becslésének fenntartásához.
 
@@ -146,7 +146,7 @@ d2l.train_concise_ch11(trainer, {'learning_rate':5.0, 'rho': 0.9}, data_iter)
 
 1. Módosítsd a $\rho$ értékét. Mi történik?
 1. Mutasd meg, hogyan implementálható az algoritmus $\mathbf{g}_t'$ nélkül. Miért lehet ez jó ötlet?
-1. Valóban tanulási sebesség-mentes-e az Adadelta? Találnál-e olyan optimalizálási problémákat, amelyek megtörik az Adadeltát?
+1. Valóban tanulási ráta-mentes-e az Adadelta? Találnál-e olyan optimalizálási problémákat, amelyek megtörik az Adadeltát?
 1. Hasonlítsd össze az Adadeltát az Adagraddal és az RMSProppal a konvergencia-viselkedésük tárgyalása érdekében.
 
 :begin_tab:`mxnet`

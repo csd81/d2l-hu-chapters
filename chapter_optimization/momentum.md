@@ -1,7 +1,7 @@
 # Momentum
 :label:`sec_momentum`
 
-A :numref:`sec_sgd` szakaszban áttekintettük, mi történik a sztochasztikus gradienscsökkenés végrehajtásakor, vagyis amikor az optimalizálás során csak a gradiens zajos változata áll rendelkezésre. Különösen azt vettük észre, hogy zajos gradiensek esetén rendkívül körültekintőnek kell lennünk a tanulási sebesség megválasztásakor a zaj figyelembevételével. Ha túl gyorsan csökkentjük, a konvergencia megáll. Ha túl engedékenyek vagyunk, nem konvergálunk elég jó megoldáshoz, mivel a zaj folyamatosan az optimalitástól visz el bennünket.
+A :numref:`sec_sgd` szakaszban áttekintettük, mi történik a sztochasztikus gradienscsökkenés végrehajtásakor, vagyis amikor az optimalizálás során csak a gradiens zajos változata áll rendelkezésre. Különösen azt vettük észre, hogy zajos gradiensek esetén rendkívül körültekintőnek kell lennünk a tanulási ráta megválasztásakor a zaj figyelembevételével. Ha túl gyorsan csökkentjük, a konvergencia megáll. Ha túl engedékenyek vagyunk, nem konvergálunk elég jó megoldáshoz, mivel a zaj folyamatosan az optimalitástól visz el bennünket.
 
 ## Alapok
 
@@ -39,7 +39,7 @@ A momentum módszer geometriai tulajdonságainak jobb megértéséhez visszatér
 
 $$f(\mathbf{x}) = 0.1 x_1^2 + 2 x_2^2.$$
 
-Mint korábban, $f$ minimuma $(0, 0)$-ban van. Ez a függvény az $x_1$ irányában *nagyon* lapos. Nézzük meg, mi történik, ha a gradienscsökkenést alkalmazzuk az új függvényen ugyanúgy, mint korábban. $0.4$-es tanulási sebességet választunk.
+Mint korábban, $f$ minimuma $(0, 0)$-ban van. Ez a függvény az $x_1$ irányában *nagyon* lapos. Nézzük meg, mi történik, ha a gradienscsökkenést alkalmazzuk az új függvényen ugyanúgy, mint korábban. $0.4$-es tanulási rátát választunk.
 
 ```{.python .input}
 #@tab mxnet
@@ -87,7 +87,7 @@ def gd_2d(x1, x2, s1, s2):
 d2l.show_trace_2d(f_2d, d2l.train_2d(gd_2d))
 ```
 
-A szerkezeti felépítésből adódóan az $x_2$ irányú gradiens *sokkal* nagyobb, és sokkal gyorsabban változik, mint a vízszintes $x_1$ irányban. Tehát két kedvezőtlen választási lehetőség között rekedünk: ha kis tanulási sebességet választunk, biztosítjuk, hogy a megoldás nem tér el az $x_2$ irányban, de lassú konvergenciával kell szembenéznünk az $x_1$ irányban. Ezzel szemben nagy tanulási sebességgel gyorsan haladunk az $x_1$ irányban, de eltérünk az $x_2$ irányban. Az alábbi példa bemutatja, mi történik még a tanulási sebesség $0.4$-ről $0.6$-ra való enyhe növelésekor is. Az $x_1$ irányú konvergencia javul, de az összesített megoldás minősége sokkal rosszabb.
+A szerkezeti felépítésből adódóan az $x_2$ irányú gradiens *sokkal* nagyobb, és sokkal gyorsabban változik, mint a vízszintes $x_1$ irányban. Tehát két kedvezőtlen választási lehetőség között rekedünk: ha kis tanulási rátát választunk, biztosítjuk, hogy a megoldás nem tér el az $x_2$ irányban, de lassú konvergenciával kell szembenéznünk az $x_1$ irányban. Ezzel szemben nagy tanulási rátával gyorsan haladunk az $x_1$ irányban, de eltérünk az $x_2$ irányban. Az alábbi példa bemutatja, mi történik még a tanulási ráta $0.4$-ről $0.6$-ra való enyhe növelésekor is. Az $x_1$ irányú konvergencia javul, de az összesített megoldás minősége sokkal rosszabb.
 
 ```{.python .input}
 #@tab all
@@ -120,7 +120,7 @@ eta, beta = 0.6, 0.5
 d2l.show_trace_2d(f_2d, d2l.train_2d(momentum_2d))
 ```
 
-Ahogy látható, ugyanolyan tanulási sebesség mellett is a momentum jól konvergál. Nézzük meg, mi történik, ha csökkentjük a momentum hiperparamétert. Felezve $\beta = 0.25$-re alig konvergáló trajektóriát kapunk. Ennek ellenére sokkal jobb, mint momentum nélkül (amikor a megoldás eltér).
+Ahogy látható, ugyanolyan tanulási ráta mellett is a momentum jól konvergál. Nézzük meg, mi történik, ha csökkentjük a momentum hiperparamétert. Felezve $\beta = 0.25$-re alig konvergáló trajektóriát kapunk. Ennek ellenére sokkal jobb, mint momentum nélkül (amikor a megoldás eltér).
 
 ```{.python .input}
 #@tab all
@@ -208,14 +208,14 @@ data_iter, feature_dim = d2l.get_data_ch11(batch_size=10)
 train_momentum(0.02, 0.5)
 ```
 
-Ha a `momentum` momentum hiperparamétert 0.9-re növeljük, ez lényegesen nagyobb effektív mintaméretet jelent: $\frac{1}{1 - 0.9} = 10$. A tanulási sebességet kissé $0.01$-re csökkentjük, hogy a dolgok kézben maradjanak.
+Ha a `momentum` momentum hiperparamétert 0.9-re növeljük, ez lényegesen nagyobb effektív mintaméretet jelent: $\frac{1}{1 - 0.9} = 10$. A tanulási rátát kissé $0.01$-re csökkentjük, hogy a dolgok kézben maradjanak.
 
 ```{.python .input}
 #@tab all
 train_momentum(0.01, 0.9)
 ```
 
-A tanulási sebesség további csökkentése kezeli a nem sima optimalizálási problémák eseteit. $0.005$-re állítva jó konvergenciatulajdonságokat kapunk.
+A tanulási ráta további csökkentése kezeli a nem sima optimalizálási problémák eseteit. $0.005$-re állítva jó konvergenciatulajdonságokat kapunk.
 
 ```{.python .input}
 #@tab all
@@ -285,7 +285,7 @@ A fenti eredmény alapján nézzük meg, mi történik, ha az $f(x) = \frac{\lam
 
 $$x_{t+1} = x_t - \eta \lambda x_t = (1 - \eta \lambda) x_t.$$
 
-Ha $|1 - \eta \lambda| < 1$, az optimalizálás exponenciális ütemben konvergál, mivel $t$ lépés után $x_t = (1 - \eta \lambda)^t x_0$. Ez megmutatja, hogyan javul kezdetben a konvergencia üteme a tanulási sebesség $\eta$ növelésével, egészen $\eta \lambda = 1$-ig. Ezen túl az optimalizálás eltér, és $\eta \lambda > 2$ esetén divergál.
+Ha $|1 - \eta \lambda| < 1$, az optimalizálás exponenciális ütemben konvergál, mivel $t$ lépés után $x_t = (1 - \eta \lambda)^t x_0$. Ez megmutatja, hogyan javul kezdetben a konvergencia üteme a tanulási ráta $\eta$ növelésével, egészen $\eta \lambda = 1$-ig. Ezen túl az optimalizálás eltér, és $\eta \lambda > 2$ esetén divergál.
 
 ```{.python .input}
 #@tab all
@@ -320,7 +320,7 @@ A konvergencia viselkedését irányító $2 \times 2$-es mátrix jelölésére 
 
 ## Gyakorló feladatok
 
-1. Próbálj ki más momentum hiperparaméter és tanulási sebesség kombinációkat, és figyeld meg és elemezd a különböző kísérleti eredményeket.
+1. Próbálj ki más momentum hiperparaméter és tanulási ráta kombinációkat, és figyeld meg és elemezd a különböző kísérleti eredményeket.
 1. Próbáld ki a gradienscsökkenést és a momentumot másodfokú problémán, ahol több sajátértéke van: $f(x) = \frac{1}{2} \sum_i \lambda_i x_i^2$, pl. $\lambda_i = 2^{-i}$. Ábrázold, hogyan csökken $x$ értéke az $x_i = 1$ inicializálás esetén.
 1. Határozd meg a $h(\mathbf{x}) = \frac{1}{2} \mathbf{x}^\top \mathbf{Q} \mathbf{x} + \mathbf{x}^\top \mathbf{c} + b$ minimumértékét és minimalizálóját.
 1. Mi változik, ha sztochasztikus gradienscsökkenést végzünk momentummal? Mi történik, ha minibatch sztochasztikus gradienscsökkenést alkalmazunk momentummal? Kísérletezz a paraméterekkel?

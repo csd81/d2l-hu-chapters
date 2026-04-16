@@ -293,8 +293,8 @@ Mindazonáltal most elértük az 1980-as évek végi fejlett állapotot, amikor 
 1. Módosítsd a rejtett egységek számát `num_hiddens`, és ábrázold, hogyan befolyásolja a száma a modell pontosságát. Mi ennek a hiperparaméternek a legjobb értéke?
 1. Próbálj meg egy rejtett réteget hozzáadni, és nézd meg, hogyan befolyásolja az eredményeket.
 1. Miért rossz ötlet egyetlen neuronból álló rejtett réteget beilleszteni? Mi mehet rosszul?
-1. Hogyan változtatja meg a tanulási sebesség megváltoztatása az eredményeket? Az összes többi paraméter rögzítése mellett melyik tanulási sebesség adja a legjobb eredményt? Hogyan függ ez össze az epochok számával?
-1. Optimalizáljunk az összes hiperparaméter felett együttesen, azaz a tanulási sebesség, az epochok száma, a rejtett rétegek száma és a rétegenként lévő rejtett egységek száma felett.
+1. Hogyan változtatja meg a tanulási ráta megváltoztatása az eredményeket? Az összes többi paraméter rögzítése mellett melyik tanulási ráta adja a legjobb eredményt? Hogyan függ ez össze az epochok számával?
+1. Optimalizáljunk az összes hiperparaméter felett együttesen, azaz a tanulási ráta, az epochok száma, a rejtett rétegek száma és a rétegenként lévő rejtett egységek száma felett.
     1. Mi a legjobb eredmény, amelyet az összes paraméter optimalizálásával elérhetsz?
     1. Miért sokkal kihívóbb több hiperparaméterrel foglalkozni?
     1. Írj le egy hatékony stratégiát több paraméter együttes optimalizálásához.

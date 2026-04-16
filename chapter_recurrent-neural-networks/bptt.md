@@ -14,7 +14,7 @@ Remélhetőleg ez a tárgyalás némi pontosságot hoz
 az *eltűnő* és *robbanó* gradiensek fogalmába.
 Ha visszaemlékszünk a számítási gráfokon keresztüli előre és visszafele terjedés tárgyalására,
 amelyet az MLP-k bevezetésekor ismertettük a :numref:`sec_backprop` fejezetben,
-akkor az RNN-ekben való előre terjedés
+akkor az RNN-ekben való előreterjesztés
 viszonylag egyértelmű kell legyen.
 A visszaterjesztés alkalmazása az RNN-ekben
 *visszaterjesztés időben* :cite:`Werbos.1990` néven ismert.
@@ -80,7 +80,7 @@ ahol $f$ és $g$ rendre a rejtett réteg és a kimeneti réteg transzformációi
 Tehát egy rekurrens számítás által egymástól
 függő értéklánccal rendelkezünk:
 $\{\ldots, (x_{t-1}, h_{t-1}, o_{t-1}), (x_{t}, h_{t}, o_t), \ldots\}$.
-Az előre terjedés meglehetősen egyértelmű.
+Az előreterjesztés meglehetősen egyértelmű.
 Mindössze annyit kell tenni, hogy végighurkoljuk az $(x_t, h_t, o_t)$ tripleteket egy időlépésenként.
 Az $o_t$ kimenet és az $y_t$ kívánt cél közötti eltérést
 egy célfüggvény értékeli ki
@@ -378,7 +378,7 @@ a numerikus stabilitást befolyásoló kulcsfontosságú mennyiség.
 
 Mivel a visszaterjesztés időben a visszaterjesztés alkalmazása az RNN-ekben,
 ahogy a :numref:`sec_backprop` fejezetben kifejtettük,
-az RNN-ek tanítása felváltva alkalmazza az előre terjedést
+az RNN-ek tanítása felváltva alkalmazza az előreterjesztést
 a visszaterjesztéssel időben.
 Sőt, a visszaterjesztés időben
 sorban kiszámítja és tárolja a fenti gradienseket.

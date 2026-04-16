@@ -1,14 +1,14 @@
 # Tanulási sebesség ütemezése
 :label:`sec_scheduler`
 
-Eddig elsősorban az optimalizálási *algoritmusokra* összpontosítottunk, arra, hogyan frissítsük a súlyvektorokat, nem pedig arra a *sebességre*, amellyel a frissítések történnek. Ennek ellenére a tanulási sebesség módosítása éppoly fontos, mint maga az algoritmus. Számos szempontot kell figyelembe venni:
+Eddig elsősorban az optimalizálási *algoritmusokra* összpontosítottunk, arra, hogyan frissítsük a súlyvektorokat, nem pedig arra a *sebességre*, amellyel a frissítések történnek. Ennek ellenére a tanulási ráta módosítása éppoly fontos, mint maga az algoritmus. Számos szempontot kell figyelembe venni:
 
-* A legkézenfekvőbben a tanulási sebesség *nagysága* számít. Ha túl nagy, az optimalizálás divergál; ha túl kicsi, a tanítás túl sokáig tart, vagy szuboptimális eredményt kapunk. Korábban láttuk, hogy a probléma kondíciószáma számít (részletekért lásd pl. a :numref:`sec_momentum` szakaszt). Intuitívan ez a legkevésbé érzékeny irányban bekövetkező változás mértékének és a legérzékenyebb irányban bekövetkezőnek az aránya.
-* Másodszor, az üteme is éppoly fontos. Ha a tanulási sebesség nagy marad, elképzelhető, hogy egyszerűen a minimum körül pattogunk, és nem érjük el az optimalitást. A :numref:`sec_minibatch_sgd` szakasz részletesen tárgyalta ezt, és a :numref:`sec_sgd` szakaszban teljesítménygaranciákat is elemeztük. Röviden: azt szeretnénk, hogy az ütem csökkenjön, de valószínűleg lassabban, mint $\mathcal{O}(t^{-\frac{1}{2}})$, ami konvex problémáknál jó választás lenne.
+* A legkézenfekvőbben a tanulási ráta *nagysága* számít. Ha túl nagy, az optimalizálás divergál; ha túl kicsi, a tanítás túl sokáig tart, vagy szuboptimális eredményt kapunk. Korábban láttuk, hogy a probléma kondíciószáma számít (részletekért lásd pl. a :numref:`sec_momentum` szakaszt). Intuitívan ez a legkevésbé érzékeny irányban bekövetkező változás mértékének és a legérzékenyebb irányban bekövetkezőnek az aránya.
+* Másodszor, az üteme is éppoly fontos. Ha a tanulási ráta nagy marad, elképzelhető, hogy egyszerűen a minimum körül pattogunk, és nem érjük el az optimalitást. A :numref:`sec_minibatch_sgd` szakasz részletesen tárgyalta ezt, és a :numref:`sec_sgd` szakaszban teljesítménygaranciákat is elemeztük. Röviden: azt szeretnénk, hogy az ütem csökkenjön, de valószínűleg lassabban, mint $\mathcal{O}(t^{-\frac{1}{2}})$, ami konvex problémáknál jó választás lenne.
 * Egy másik, éppoly fontos szempont az *inicializálás*. Ez vonatkozik arra is, hogyan állítjuk be kezdetben a paramétereket (részletekért lásd a :numref:`sec_numerical_stability` szakaszt), és hogyan fejlődnek kezdetben. Ezt *bemelegítésnek* (warmup) is nevezik: milyen gyorsan kezdünk el a megoldás felé haladni. A kezdeti nagy lépések nem feltétlenül hasznosak, különösen, mivel a paraméterek kezdeti készlete véletlenszerű. A kezdeti frissítési irányok is meglehetősen értelmetlenek lehetnek.
-* Végül vannak olyan optimalizálási változatok, amelyek ciklikus tanulási sebesség módosítást végeznek. Ez meghaladja az aktuális fejezet kereteit. Javasoljuk az olvasónak, hogy tekintse meg :citet:`Izmailov.Podoprikhin.Garipov.ea.2018` részleteit, pl. hogyan kaphatunk jobb megoldásokat a paraméterek teljes *útjának* átlagolásával.
+* Végül vannak olyan optimalizálási változatok, amelyek ciklikus tanulási ráta módosítást végeznek. Ez meghaladja az aktuális fejezet kereteit. Javasoljuk az olvasónak, hogy tekintse meg :citet:`Izmailov.Podoprikhin.Garipov.ea.2018` részleteit, pl. hogyan kaphatunk jobb megoldásokat a paraméterek teljes *útjának* átlagolásával.
 
-Tekintettel arra, hogy a tanulási sebességek kezeléséhez sok részletre van szükség, a legtöbb mélytanulási keretrendszer rendelkezik eszközökkel ennek automatikus kezeléséhez. Az aktuális fejezetben áttekintjük, milyen hatással vannak a különböző ütemezők a pontosságra, és azt is bemutatjuk, hogyan kezelhető ez hatékonyan egy *tanulási sebesség ütemező* segítségével.
+Tekintettel arra, hogy a tanulási ráták kezeléséhez sok részletre van szükség, a legtöbb mélytanulási keretrendszer rendelkezik eszközökkel ennek automatikus kezeléséhez. Az aktuális fejezetben áttekintjük, milyen hatással vannak a különböző ütemezők a pontosságra, és azt is bemutatjuk, hogyan kezelhető ez hatékonyan egy *tanulási ráta ütemező* segítségével.
 
 ## Játékprobléma
 
@@ -181,7 +181,7 @@ def train(net_fn, train_iter, test_iter, num_epochs, lr,
     return net
 ```
 
-Nézzük meg, mi történik, ha az alapértelmezett beállításokkal hívjuk meg az algoritmust, például $0.3$-as tanulási sebességgel, $30$ iteráción át tanítva. Figyeljük meg, hogy a tanítási pontosság folyamatosan növekszik, miközben a teszt pontosságában mért előrehaladás egy ponton megáll. A két görbe közötti rés túlillesztést jelzi.
+Nézzük meg, mi történik, ha az alapértelmezett beállításokkal hívjuk meg az algoritmust, például $0.3$-as tanulási rátával, $30$ iteráción át tanítva. Figyeljük meg, hogy a tanítási pontosság folyamatosan növekszik, miközben a teszt pontosságában mért előrehaladás egy ponton megáll. A két görbe közötti rés túlillesztést jelzi.
 
 ```{.python .input}
 #@tab mxnet
@@ -207,7 +207,7 @@ train(net, train_iter, test_iter, num_epochs, lr)
 
 ## Ütemezők
 
-A tanulási sebesség módosításának egyik módja az explicit megadás minden lépésnél. Ez kényelmesen megvalósítható a `set_learning_rate` módszerrel. Minden epoc után (vagy akár minden minibatch után) csökkenthetjük, pl. dinamikus módon, az optimalizálás előrehaladásának megfelelően.
+A tanulási ráta módosításának egyik módja az explicit megadás minden lépésnél. Ez kényelmesen megvalósítható a `set_learning_rate` módszerrel. Minden epoc után (vagy akár minden minibatch után) csökkenthetjük, pl. dinamikus módon, az optimalizálás előrehaladásának megfelelően.
 
 ```{.python .input}
 #@tab mxnet
@@ -230,7 +230,7 @@ dummy_model.compile(tf.keras.optimizers.SGD(learning_rate=lr), loss='mse')
 print(f'learning rate is now ,', dummy_model.optimizer.lr.numpy())
 ```
 
-Általánosabban ütemezőt szeretnénk definiálni. Ha a frissítések számával hívjuk meg, visszaadja a tanulási sebesség megfelelő értékét. Definiáljunk egy egyszerűt, amely a tanulási sebességet $\eta = \eta_0 (t + 1)^{-\frac{1}{2}}$-re állítja.
+Általánosabban ütemezőt szeretnénk definiálni. Ha a frissítések számával hívjuk meg, visszaadja a tanulási ráta megfelelő értékét. Definiáljunk egy egyszerűt, amely a tanulási rátát $\eta = \eta_0 (t + 1)^{-\frac{1}{2}}$-re állítja.
 
 ```{.python .input}
 #@tab all
@@ -273,15 +273,15 @@ train(net, train_iter, test_iter, num_epochs, lr,
       custom_callback=LearningRateScheduler(scheduler))
 ```
 
-Ez lényegesen jobban működött, mint korábban. Két dolog tűnik ki: a görbe simább volt, mint korábban. Másodszor, kevesebb volt a túlillesztés. Sajnos nem teljesen megoldott kérdés, hogy *elméletileg* miért vezet egyes stratégiák kevesebb túlillesztéshez. Van némi érvelés amellett, hogy a kisebb lépésméretek nullához közelibb paramétereket eredményeznek, és ezáltal egyszerűbbeket. Ez azonban nem magyarázza teljes mértékben a jelenséget, mivel nem állítjuk le korán a tanítást, csupán óvatosan csökkentjük a tanulási sebességet.
+Ez lényegesen jobban működött, mint korábban. Két dolog tűnik ki: a görbe simább volt, mint korábban. Másodszor, kevesebb volt a túlillesztés. Sajnos nem teljesen megoldott kérdés, hogy *elméletileg* miért vezet egyes stratégiák kevesebb túlillesztéshez. Van némi érvelés amellett, hogy a kisebb lépésméretek nullához közelibb paramétereket eredményeznek, és ezáltal egyszerűbbeket. Ez azonban nem magyarázza teljes mértékben a jelenséget, mivel nem állítjuk le korán a tanítást, csupán óvatosan csökkentjük a tanulási rátát.
 
 ## Stratégiák
 
-Bár nem tudjuk az összes tanulási sebesség ütemező változatát áttekinteni, az alábbiakban rövid összefoglalót nyújtunk a népszerű stratégiákról. Általánosan alkalmazott választások a polinomiális csökkentés és a lépésenkénti konstans ütemek. Ezen túl a koszinusz tanulási sebesség ütemezők bizonyos problémáknál empirikusan jól teljesítenek. Végül egyes problémáknál előnyös lehet az optimalizálót nagy tanulási sebességek alkalmazása előtt bemelegíteni.
+Bár nem tudjuk az összes tanulási ráta ütemező változatát áttekinteni, az alábbiakban rövid összefoglalót nyújtunk a népszerű stratégiákról. Általánosan alkalmazott választások a polinomiális csökkentés és a lépésenkénti konstans ütemek. Ezen túl a koszinusz tanulási ráta ütemezők bizonyos problémáknál empirikusan jól teljesítenek. Végül egyes problémáknál előnyös lehet az optimalizálót nagy tanulási ráták alkalmazása előtt bemelegíteni.
 
 ### Faktoros ütemező
 
-A polinomiális csökkentés alternatívája a szorzó jellegű, vagyis $\eta_{t+1} \leftarrow \eta_t \cdot \alpha$ valamely $\alpha \in (0, 1)$ esetén. Annak megakadályozása érdekében, hogy a tanulási sebesség egy ésszerű alsó határ alá csökkenjen, a frissítési egyenletet gyakran módosítják: $\eta_{t+1} \leftarrow \mathop{\mathrm{max}}(\eta_{\mathrm{min}}, \eta_t \cdot \alpha)$.
+A polinomiális csökkentés alternatívája a szorzó jellegű, vagyis $\eta_{t+1} \leftarrow \eta_t \cdot \alpha$ valamely $\alpha \in (0, 1)$ esetén. Annak megakadályozása érdekében, hogy a tanulási ráta egy ésszerű alsó határ alá csökkenjen, a frissítési egyenletet gyakran módosítják: $\eta_{t+1} \leftarrow \mathop{\mathrm{max}}(\eta_{\mathrm{min}}, \eta_t \cdot \alpha)$.
 
 ```{.python .input}
 #@tab all
@@ -303,7 +303,7 @@ Ez az MXNet-ben is elérhető beépített ütemezővel, a `lr_scheduler.FactorSc
 
 ### Többlépéses faktoros ütemező
 
-Mély hálózatok tanításának egyik elterjedt stratégiája a tanulási sebesség lépésenkénti konstanson tartása és meghatározott időközönként egy adott mértékű csökkentés. Vagyis egy $s = \{5, 10, 20\}$ időpontok halmazát megadva $\eta_{t+1} \leftarrow \eta_t \cdot \alpha$ csökkentés következik be, ha $t \in s$. Feltéve, hogy az értékek minden lépésnél felezők, az alábbiak szerint implementálhatjuk.
+Mély hálózatok tanításának egyik elterjedt stratégiája a tanulási ráta lépésenkénti konstanson tartása és meghatározott időközönként egy adott mértékű csökkentés. Vagyis egy $s = \{5, 10, 20\}$ időpontok halmazát megadva $\eta_{t+1} \leftarrow \eta_t \cdot \alpha$ csökkentés következik be, ha $t \in s$. Feltéve, hogy az értékek minden lépésnél felezők, az alábbiak szerint implementálhatjuk.
 
 ```{.python .input}
 #@tab mxnet
@@ -347,7 +347,7 @@ scheduler = MultiFactorScheduler(step=[15, 30], factor=0.5, base_lr=0.5)
 d2l.plot(d2l.arange(num_epochs), [scheduler(t) for t in range(num_epochs)])
 ```
 
-A lépésenkénti konstans tanulási sebesség ütemező mögötti intuíció az, hogy az optimalizálást addig hagyjuk haladni, amíg a súlyvektorok eloszlása tekintetében stacionárius pontra nem jutunk. Csak ekkor (és nem korábban) csökkentjük a sebességet, hogy egy jó lokális minimum jobb minőségű közelítőjét kapjuk. Az alábbi példa bemutatja, hogyan eredményez ez minden esetben enyhén jobb megoldásokat.
+A lépésenkénti konstans tanulási ráta ütemező mögötti intuíció az, hogy az optimalizálást addig hagyjuk haladni, amíg a súlyvektorok eloszlása tekintetében stacionárius pontra nem jutunk. Csak ekkor (és nem korábban) csökkentjük a sebességet, hogy egy jó lokális minimum jobb minőségű közelítőjét kapjuk. Az alábbi példa bemutatja, hogyan eredményez ez minden esetben enyhén jobb megoldásokat.
 
 ```{.python .input}
 #@tab mxnet
@@ -370,12 +370,12 @@ train(net, train_iter, test_iter, num_epochs, lr,
 
 ### Koszinusz ütemező
 
-Meglehetősen meglepő heurisztikát javasolt :citet:`Loshchilov.Hutter.2016`. Arra az megfigyelésre épül, hogy elképzelhető, hogy nem szeretnénk a tanulási sebességet túlságosan drasztikusan csökkenteni az elején, és ráadásul a végén nagyon kis tanulási sebességgel szeretnénk „finomítani" a megoldást. Ez koszinuszszerű ütemezést eredményez, amelynek funkcionális alakja a $t \in [0, T]$ tartományon lévő tanulási sebességekre:
+Meglehetősen meglepő heurisztikát javasolt :citet:`Loshchilov.Hutter.2016`. Arra az megfigyelésre épül, hogy elképzelhető, hogy nem szeretnénk a tanulási rátát túlságosan drasztikusan csökkenteni az elején, és ráadásul a végén nagyon kis tanulási rátával szeretnénk „finomítani" a megoldást. Ez koszinuszszerű ütemezést eredményez, amelynek funkcionális alakja a $t \in [0, T]$ tartományon lévő tanulási rátákre:
 
 $$\eta_t = \eta_T + \frac{\eta_0 - \eta_T}{2} \left(1 + \cos(\pi t/T)\right)$$
 
 
-ahol $\eta_0$ a kezdeti tanulási sebesség, $\eta_T$ a $T$ időpontbeli célsebesség. Ráadásul $t > T$ esetén egyszerűen $\eta_T$-n tartjuk az értéket, növelés nélkül. Az alábbi példában a maximális frissítési lépést $T = 20$-ra állítjuk.
+ahol $\eta_0$ a kezdeti tanulási ráta, $\eta_T$ a $T$ időpontbeli célsebesség. Ráadásul $t > T$ esetén egyszerűen $\eta_T$-n tartjuk az értéket, növelés nélkül. Az alábbi példában a maximális frissítési lépést $T = 20$-ra állítjuk.
 
 ```{.python .input}
 #@tab mxnet
@@ -439,9 +439,9 @@ train(net, train_iter, test_iter, num_epochs, lr,
 
 ### Bemelegítés
 
-Egyes esetekben a paraméterek inicializálása önmagában nem elégséges a jó megoldás garantálásához. Ez különösen problémás egyes fejlett hálózati architektúráknál, amelyek instabil optimalizálási problémákhoz vezethetnek. Ezt kezelhetjük kellően kis tanulási sebesség megválasztásával a divergencia megelőzéséhez az elején. Sajnos ez lassú előrehaladást jelent. Ezzel szemben a kezdeti nagy tanulási sebesség divergenciához vezet.
+Egyes esetekben a paraméterek inicializálása önmagában nem elégséges a jó megoldás garantálásához. Ez különösen problémás egyes fejlett hálózati architektúráknál, amelyek instabil optimalizálási problémákhoz vezethetnek. Ezt kezelhetjük kellően kis tanulási ráta megválasztásával a divergencia megelőzéséhez az elején. Sajnos ez lassú előrehaladást jelent. Ezzel szemben a kezdeti nagy tanulási ráta divergenciához vezet.
 
-Ennek a dilemmának egy meglehetősen egyszerű megoldása egy bemelegítési periódus alkalmazása, amely alatt a tanulási sebesség *növekszik* a kezdeti maximumig, majd az optimalizálási folyamat végéig csökken. Az egyszerűség kedvéért erre általában lineáris növelést alkalmaznak. Ez az alábbi alakú ütemezéshez vezet.
+Ennek a dilemmának egy meglehetősen egyszerű megoldása egy bemelegítési periódus alkalmazása, amely alatt a tanulási ráta *növekszik* a kezdeti maximumig, majd az optimalizálási folyamat végéig csökken. Az egyszerűség kedvéért erre általában lineáris növelést alkalmaznak. Ez az alábbi alakú ütemezéshez vezet.
 
 ```{.python .input}
 #@tab mxnet
@@ -479,20 +479,20 @@ train(net, train_iter, test_iter, num_epochs, lr,
       custom_callback=LearningRateScheduler(scheduler))
 ```
 
-A bemelegítés bármely ütemezőre alkalmazható (nem csak a koszinuszra). A tanulási sebesség ütemezők és számos további kísérlet részletesebb tárgyalásához lásd :cite:`Gotmare.Keskar.Xiong.ea.2018`. Különösen azt találják, hogy egy bemelegítési szakasz korlátozza a paraméterek eltérésének mértékét nagyon mély hálózatokban. Ez intuitívan is érthető, mivel a véletlenszerű inicializáció miatt várható jelentős eltérés a hálózat azon részeinél, amelyeknek a legtöbb időre van szükségük az előrehaladáshoz az elején.
+A bemelegítés bármely ütemezőre alkalmazható (nem csak a koszinuszra). A tanulási ráta ütemezők és számos további kísérlet részletesebb tárgyalásához lásd :cite:`Gotmare.Keskar.Xiong.ea.2018`. Különösen azt találják, hogy egy bemelegítési szakasz korlátozza a paraméterek eltérésének mértékét nagyon mély hálózatokban. Ez intuitívan is érthető, mivel a véletlenszerű inicializáció miatt várható jelentős eltérés a hálózat azon részeinél, amelyeknek a legtöbb időre van szükségük az előrehaladáshoz az elején.
 
 ## Összefoglalás
 
-* A tanulási sebesség csökkentése a tanítás során javíthatja a pontosságot és (talán meglepő módon) csökkentheti a modell túlillesztését.
-* A tanulási sebesség lépésenkénti csökkentése, ha a haladás megállt, hatékony a gyakorlatban. Ez lényegében biztosítja, hogy hatékonyan konvergálunk egy megfelelő megoldáshoz, és csak ezután csökkentjük a paraméterek inherens varianciáját a tanulási sebesség csökkentésével.
+* A tanulási ráta csökkentése a tanítás során javíthatja a pontosságot és (talán meglepő módon) csökkentheti a modell túlillesztését.
+* A tanulási ráta lépésenkénti csökkentése, ha a haladás megállt, hatékony a gyakorlatban. Ez lényegében biztosítja, hogy hatékonyan konvergálunk egy megfelelő megoldáshoz, és csak ezután csökkentjük a paraméterek inherens varianciáját a tanulási ráta csökkentésével.
 * A koszinusz ütemezők népszerűek egyes számítógépes látási problémáknál. Részletekért lásd pl. a [GluonCV](http://gluon-cv.mxnet.io) oldalt.
 * Az optimalizálás előtti bemelegítési periódus megakadályozhatja a divergenciát.
-* Az optimalizálás a mélytanulásban több célt szolgál. A tanítási célfüggvény minimalizálásán kívül az optimalizálási algoritmusok és a tanulási sebesség ütemezők különböző megválasztása meglehetősen eltérő általánosítási és túlillesztési mértéket eredményezhet a teszthalmazon (azonos tanítási hiba mellett).
+* Az optimalizálás a mélytanulásban több célt szolgál. A tanítási célfüggvény minimalizálásán kívül az optimalizálási algoritmusok és a tanulási ráta ütemezők különböző megválasztása meglehetősen eltérő általánosítási és túlillesztési mértéket eredményezhet a teszthalmazon (azonos tanítási hiba mellett).
 
 ## Gyakorló feladatok
 
-1. Kísérletezz az optimalizálási viselkedéssel adott rögzített tanulási sebesség esetén. Milyen a legjobb modell, amit így lehet elérni?
-1. Hogyan változik a konvergencia, ha megváltoztatod a tanulási sebesség csökkentésének kitevőjét? Kényelmed érdekében a kísérletekhez használd a `PolyScheduler`-t.
+1. Kísérletezz az optimalizálási viselkedéssel adott rögzített tanulási ráta esetén. Milyen a legjobb modell, amit így lehet elérni?
+1. Hogyan változik a konvergencia, ha megváltoztatod a tanulási ráta csökkentésének kitevőjét? Kényelmed érdekében a kísérletekhez használd a `PolyScheduler`-t.
 1. Alkalmazd a koszinusz ütemezőt nagy számítógépes látási problémákra, pl. az ImageNet tanításakor. Hogyan befolyásolja a teljesítményt más ütemezőkhöz képest?
 1. Mennyi ideig tartson a bemelegítés?
 1. Összekapcsolható-e az optimalizálás és a mintavételezés? Kezdd :citet:`Welling.Teh.2011` sztochasztikus gradiens Langevin-dinamikára vonatkozó eredményeivel.

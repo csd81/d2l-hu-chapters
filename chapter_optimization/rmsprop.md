@@ -2,9 +2,9 @@
 :label:`sec_rmsprop`
 
 
-A :numref:`sec_adagrad` szakasz egyik kulcsproblémája, hogy a tanulási sebesség előre meghatározott $\mathcal{O}(t^{-\frac{1}{2}})$ ütemben csökken. Bár ez általában megfelelő konvex problémáknál, nemkonvex esetekben – mint a mélytanulásban – nem biztos, hogy ideális. Az Adagrad koordinátánkénti alkalmazkodóképessége azonban előkondicionálóként rendkívül kívánatos.
+A :numref:`sec_adagrad` szakasz egyik kulcsproblémája, hogy a tanulási ráta előre meghatározott $\mathcal{O}(t^{-\frac{1}{2}})$ ütemben csökken. Bár ez általában megfelelő konvex problémáknál, nemkonvex esetekben – mint a mélytanulásban – nem biztos, hogy ideális. Az Adagrad koordinátánkénti alkalmazkodóképessége azonban előkondicionálóként rendkívül kívánatos.
 
-:citet:`Tieleman.Hinton.2012` az RMSProp algoritmust javasolta egyszerű megoldásként, amely szétválasztja az ütemezési sebességet a koordinátánkénti adaptív tanulási sebességektől. A probléma az, hogy az Adagrad a $\mathbf{g}_t$ gradiens négyzetét halmozza fel a $\mathbf{s}_t = \mathbf{s}_{t-1} + \mathbf{g}_t^2$ állapotvektorba. Ennek eredményeként $\mathbf{s}_t$ normalizáció hiányában határ nélkül nő, lényegében lineárisan az algoritmus konvergálásával.
+:citet:`Tieleman.Hinton.2012` az RMSProp algoritmust javasolta egyszerű megoldásként, amely szétválasztja az ütemezési sebességet a koordinátánkénti adaptív tanulási rátáktől. A probléma az, hogy az Adagrad a $\mathbf{g}_t$ gradiens négyzetét halmozza fel a $\mathbf{s}_t = \mathbf{s}_{t-1} + \mathbf{g}_t^2$ állapotvektorba. Ennek eredményeként $\mathbf{s}_t$ normalizáció hiányában határ nélkül nő, lényegében lineárisan az algoritmus konvergálásával.
 
 Ennek a problémának egyik megoldása az $\mathbf{s}_t / t$ alkalmazása. A $\mathbf{g}_t$ ésszerű eloszlásaira ez konvergál. Sajnos nagyon hosszú ideig tarthat, amíg a határviselkedés érdemlegessé válik, mivel az eljárás az értékek teljes trajektóriájára emlékezik. Alternatíva a momentum módszerben alkalmazott kiszivárgó átlag, vagyis $\mathbf{s}_t \leftarrow \gamma \mathbf{s}_{t-1} + (1-\gamma) \mathbf{g}_t^2$ valamely $\gamma > 0$ paraméterrel. Az összes többi rész változatlanul hagyása adja az RMSPropot.
 
@@ -17,7 +17,7 @@ $$\begin{aligned}
     \mathbf{x}_t & \leftarrow \mathbf{x}_{t-1} - \frac{\eta}{\sqrt{\mathbf{s}_t + \epsilon}} \odot \mathbf{g}_t.
 \end{aligned}$$
 
-Az $\epsilon > 0$ konstanst általában $10^{-6}$-ra állítják, hogy elkerüljük a nullával való osztást vagy a túlságosan nagy lépésméreteket. Ezen kiterjesztés alapján most már szabadon szabályozhatjuk a $\eta$ tanulási sebességet a koordinátánkénti skálázástól függetlenül. A kiszivárgó átlagok tekintetében ugyanazt a logikát alkalmazhatjuk, mint a momentum módszernél. A $\mathbf{s}_t$ definíciójának kifejtésével:
+Az $\epsilon > 0$ konstanst általában $10^{-6}$-ra állítják, hogy elkerüljük a nullával való osztást vagy a túlságosan nagy lépésméreteket. Ezen kiterjesztés alapján most már szabadon szabályozhatjuk a $\eta$ tanulási rátát a koordinátánkénti skálázástól függetlenül. A kiszivárgó átlagok tekintetében ugyanazt a logikát alkalmazhatjuk, mint a momentum módszernél. A $\mathbf{s}_t$ definíciójának kifejtésével:
 
 $$
 \begin{aligned}
@@ -64,7 +64,7 @@ d2l.plt.xlabel('time');
 
 ## Implementálás alapoktól
 
-Mint korábban, az $f(\mathbf{x})=0.1x_1^2+2x_2^2$ másodfokú függvényt alkalmazva megfigyeljük az RMSProp trajektóriáját. Felidézve a :numref:`sec_adagrad` szakaszt: amikor az Adagradet 0.4-es tanulási sebességgel alkalmaztuk, a változók nagyon lassan mozogtak az algoritmus késői szakaszaiban, mert a tanulási sebesség túl gyorsan csökkent. Mivel az RMSPropban $\eta$-t külön szabályozzuk, ez nem fordulhat elő.
+Mint korábban, az $f(\mathbf{x})=0.1x_1^2+2x_2^2$ másodfokú függvényt alkalmazva megfigyeljük az RMSProp trajektóriáját. Felidézve a :numref:`sec_adagrad` szakaszt: amikor az Adagradet 0.4-es tanulási rátával alkalmaztuk, a változók nagyon lassan mozogtak az algoritmus késői szakaszaiban, mert a tanulási ráta túl gyorsan csökkent. Mivel az RMSPropban $\eta$-t külön szabályozzuk, ez nem fordulhat elő.
 
 ```{.python .input}
 #@tab all
@@ -130,7 +130,7 @@ def rmsprop(params, grads, states, hyperparams):
         p[:].assign(p - hyperparams['lr'] * g / tf.math.sqrt(s + eps))
 ```
 
-A kezdeti tanulási sebességet 0.01-re, a $\gamma$ súlyozási paramétert 0.9-re állítjuk. Vagyis $\mathbf{s}$ átlagosan az elmúlt $1/(1-\gamma) = 10$ négyzetes gradiensmegfigyelés felett aggregálódik.
+A kezdeti tanulási rátát 0.01-re, a $\gamma$ súlyozási paramétert 0.9-re állítjuk. Vagyis $\mathbf{s}$ átlagosan az elmúlt $1/(1-\gamma) = 10$ négyzetes gradiensmegfigyelés felett aggregálódik.
 
 ```{.python .input}
 #@tab all
@@ -167,14 +167,14 @@ d2l.train_concise_ch11(trainer, {'learning_rate': 0.01, 'rho': 0.9},
 
 * Az RMSProp nagyon hasonlít az Adagradhoz, amennyiben mindkettő a gradiens négyzetét alkalmazza az együtthatók skálázásához.
 * Az RMSProp a momentumhoz hasonlóan kiszivárgó átlagolást alkalmaz. Az RMSProp azonban ezt a technikát az együtthatónkénti előkondicionáló módosítására alkalmazza.
-* A tanulási sebességet a kísérletezőnek kell a gyakorlatban ütemeznie.
+* A tanulási rátát a kísérletezőnek kell a gyakorlatban ütemeznie.
 * A $\gamma$ együttható meghatározza, hogy milyen hosszú a korábbi adatok figyelembevételi ablaka a koordinátánkénti skála módosításakor.
 
 ## Gyakorló feladatok
 
 1. Mi történik kísérletileg, ha $\gamma = 1$-et állítunk be? Miért?
 1. Forgasd el az optimalizálási problémát a $f(\mathbf{x}) = 0.1 (x_1 + x_2)^2 + 2 (x_1 - x_2)^2$ minimalizálásához. Mi történik a konvergenciával?
-1. Próbáld ki, mi történik az RMSProppal egy valódi gépi tanulási problémán, például Fashion-MNIST tanításakor. Kísérletezz a tanulási sebesség módosításának különböző lehetőségeivel.
+1. Próbáld ki, mi történik az RMSProppal egy valódi gépi tanulási problémán, például Fashion-MNIST tanításakor. Kísérletezz a tanulási ráta módosításának különböző lehetőségeivel.
 1. Módosítanád-e $\gamma$-t az optimalizálás előrehaladtával? Mennyire érzékeny az RMSProp erre?
 
 :begin_tab:`mxnet`

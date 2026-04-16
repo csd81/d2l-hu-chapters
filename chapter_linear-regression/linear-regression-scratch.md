@@ -177,11 +177,11 @@ Ezután frissítjük a paramétereket
 abba az irányba, amely csökkentheti a veszteséget.
 
 A következő kód alkalmazza a frissítést,
-adott paraméterek és egy `lr` tanulási sebesség esetén.
+adott paraméterek és egy `lr` tanulási ráta esetén.
 Mivel a veszteségünket a minibatch átlagaként számítjuk,
-nem kell a tanulási sebességet a kötegmérethez igazítani.
+nem kell a tanulási rátát a kötegmérethez igazítani.
 A következő fejezetekben megvizsgáljuk,
-hogyan kell a tanulási sebességet beállítani
+hogyan kell a tanulási rátát beállítani
 nagyon nagy minibatch-ek esetén,
 ahogyan azok az elosztott, nagy léptékű tanítás során felmerülnek.
 Egyelőre figyelmen kívül hagyhatjuk ezt a függőséget.
@@ -441,10 +441,10 @@ Már majdnem készen állunk a modell tanítására,
 de először szükségünk van néhány tanítási adatra.
 Itt a `SyntheticRegressionData` osztályt használjuk,
 és megadjuk az igazi paramétereket.
-Ezután `lr=0.03` tanulási sebességgel tanítjuk a modellünket,
+Ezután `lr=0.03` tanulási rátával tanítjuk a modellünket,
 és `max_epochs=3`-t állítunk be.
 Megjegyezzük, hogy általában mind a korszakok száma,
-mind a tanulási sebesség hiperparaméter.
+mind a tanulási ráta hiperparaméter.
 Általában a hiperparaméterek beállítása nehézkes,
 és általában háromirányú felosztást szeretnénk alkalmazni:
 az egyik halmazt tanításra,
@@ -533,7 +533,7 @@ A következő részekben látni fogjuk, hogyan tehető ez
 1. Használhatod-e a [Planck-törvényt](https://en.wikipedia.org/wiki/Planck%27s_law) egy tárgy hőmérsékletének meghatározásához spektrális energiasűrűség alapján? Referencia: egy fekete test által kibocsátott sugárzás $B$ spektrális sűrűsége: $B(\lambda, T) = \frac{2 hc^2}{\lambda^5} \cdot \left(\exp \frac{h c}{\lambda k T} - 1\right)^{-1}$. Itt $\lambda$ a hullámhossz, $T$ a hőmérséklet, $c$ a fénysebesség, $h$ a Planck-állandó, és $k$ a Boltzmann-állandó. Különböző $\lambda$ hullámhosszakra mérted az energiát, és most a spektrális sűrűséggörbét kell illesztened a Planck-törvényhez.
 1. Milyen problémák merülhetnek fel, ha a veszteség második deriváltjait szeretnéd kiszámítani? Hogyan javítanád ezeket?
 1. Miért szükséges a `reshape` metódus a `loss` függvényben?
-1. Kísérletezz különböző tanulási sebességekkel, hogy megtudd, milyen gyorsan csökken a veszteségfüggvény értéke. Csökkenthető-e a hiba a tanítási korszakok számának növelésével?
+1. Kísérletezz különböző tanulási rátákkel, hogy megtudd, milyen gyorsan csökken a veszteségfüggvény értéke. Csökkenthető-e a hiba a tanítási korszakok számának növelésével?
 1. Ha a példányok száma nem osztható a kötegmérettel, mi történik a `data_iter`-rel egy korszak végén?
 1. Próbálj meg egy másik veszteségfüggvényt implementálni, mint például az abszolút értékű veszteség `(y_hat - d2l.reshape(y, y_hat.shape)).abs().sum()`.
     1. Ellenőrizd, mi történik normál adatoknál.

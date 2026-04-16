@@ -1,4 +1,4 @@
-# Többléptékű objektumfelismerés
+# Többléptékű objektumdetektálás
 :label:`sec_multiscale-object-detection`
 
 
@@ -117,7 +117,7 @@ display_anchors(fmap_w=1, fmap_h=1, s=[0.8])
 
 
 Mivel többléptékű horgonydobozokat generáltunk, ezeket különböző léptékeken különböző méretű objektumok felismerésére fogjuk használni.
-A következőkben bemutatunk egy konvolúciós neurális hálózaton alapuló többléptékű objektumfelismerési módszert, amelyet a :numref:`sec_ssd` fejezetben implementálunk.
+A következőkben bemutatunk egy konvolúciós neurális hálózaton alapuló többléptékű objektumdetektálási módszert, amelyet a :numref:`sec_ssd` fejezetben implementálunk.
 
 Bizonyos léptéken tegyük fel, hogy $c$ jellemzőtérképünk van $h \times w$ alakban.
 A :numref:`subsec_multiscale-anchor-boxes` fejezetben ismertetett módszer alkalmazásával
@@ -127,11 +127,11 @@ Például a :numref:`subsec_multiscale-anchor-boxes` fejezetben végzett kísér
 adott tíz (csatornaszám) $4 \times 4$-es jellemzőtérképből
 16 horgonydoboz-halmazt generáltunk,
 ahol minden halmaz 3 azonos középpontú horgonydobozt tartalmaz.
-Ezután minden horgonydobozt a valódi befoglaló téglalapok alapján osztállyal és eltolással látnak el. Az aktuális léptéken az objektumfelismerési modellnek meg kell jósolni a bemeneti képen lévő $hw$ horgonydoboz-halmaz osztályait és eltolásait, ahol a különböző halmazoknak különböző középpontjaik vannak.
+Ezután minden horgonydobozt a valódi befoglaló téglalapok alapján osztállyal és eltolással látnak el. Az aktuális léptéken az objektumdetektálási modellnek meg kell jósolni a bemeneti képen lévő $hw$ horgonydoboz-halmaz osztályait és eltolásait, ahol a különböző halmazoknak különböző középpontjaik vannak.
 
 
 Feltéve, hogy a $c$ jellemzőtérkép itt
-a konvolúciós neurális hálózat előre terjesztésével a bemeneti kép alapján kapott közbenső kimenetek.
+a konvolúciós neurális hálózat előreterjesztésével a bemeneti kép alapján kapott közbenső kimenetek.
 Mivel minden jellemzőtérképen $hw$ különböző térbeli pozíció van,
 ugyanaz a térbeli pozíció $c$ egységgel rendelkezőnek tekinthető.
 A :numref:`sec_conv_layer` fejezetben bemutatott receptív mező definíciója szerint
@@ -145,7 +145,7 @@ Lényegében a bemeneti kép egy bizonyos receptív mezőben lévő információ
 Amikor a különböző rétegeken lévő jellemzőtérképeknek különböző méretű receptív mezőik vannak a bemeneti képen, felhasználhatók különböző méretű objektumok felismerésére.
 Például tervezhetünk egy neurális hálózatot, amelyben a kimeneti réteghez közelebb lévő jellemzőtérképek egységeinek szélesebb receptív mezői vannak, így nagyobb objektumokat tudnak felismerni a bemeneti képből.
 
-Röviden összefoglalva, a mély neurális hálózatok segítségével kihasználhatjuk a képek rétegenkénti, több szintű reprezentációit a többléptékű objektumfelismeréshez.
+Röviden összefoglalva, a mély neurális hálózatok segítségével kihasználhatjuk a képek rétegenkénti, több szintű reprezentációit a többléptékű objektumdetektáláshoz.
 Megmutatjuk, hogyan működik ez egy konkrét példán keresztül a :numref:`sec_ssd` fejezetben.
 
 
@@ -154,12 +154,12 @@ Megmutatjuk, hogyan működik ez egy konkrét példán keresztül a :numref:`sec
 * Több léptéken különböző méretű horgonydobozokat generálhatunk különböző méretű objektumok felismeréséhez.
 * A jellemzőtérképek alakjának meghatározásával meghatározhatjuk az egyenletesen mintavételezett horgonydobozok középpontjait bármely képen.
 * A bemeneti kép egy bizonyos receptív mezőben lévő információit a bemeneti képen ahhoz a receptív mezőhöz közel elhelyezkedő horgonydobozok osztályainak és eltolásainak megjóslására használjuk.
-* Deep learning segítségével kihasználhatjuk a képek rétegenkénti, több szintű reprezentációit a többléptékű objektumfelismeréshez.
+* Deep learning segítségével kihasználhatjuk a képek rétegenkénti, több szintű reprezentációit a többléptékű objektumdetektáláshoz.
 
 
 ## Feladatok
 
-1. A :numref:`sec_alexnet` fejezetben folytatott megbeszéléseink alapján a mély neurális hálózatok hierarchikus jellemzőket tanulnak egyre növekvő absztrakciós szinteken a képekhez. A többléptékű objektumfelismerésben a különböző léptékeken lévő jellemzőtérképek különböző absztrakciós szinteknek felelnek meg? Miért vagy miért nem?
+1. A :numref:`sec_alexnet` fejezetben folytatott megbeszéléseink alapján a mély neurális hálózatok hierarchikus jellemzőket tanulnak egyre növekvő absztrakciós szinteken a képekhez. A többléptékű objektumdetektálásban a különböző léptékeken lévő jellemzőtérképek különböző absztrakciós szinteknek felelnek meg? Miért vagy miért nem?
 1. A :numref:`subsec_multiscale-anchor-boxes` fejezetben végzett kísérletek első léptékén (`fmap_w=4, fmap_h=4`) generálj egyenletesen elosztott, esetleg átfedő horgonydobozokat.
 1. Adott egy $1 \times c \times h \times w$ alakú jellemzőtérkép változó, ahol $c$, $h$ és $w$ rendre a jellemzőtérképek csatornáinak száma, magassága és szélessége. Hogyan alakítható át ez a változó a horgonydobozok osztályaivá és eltolásaivá? Mi a kimenet alakja?
 

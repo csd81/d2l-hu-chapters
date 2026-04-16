@@ -235,7 +235,7 @@ Ezért erősen ösztönzünk arra, hogy a következő implementációk *mindkét
 1. A mély tanulás számos különböző számformátumot alkalmaz, köztük FP64 dupla pontosságú (rendkívül ritkán használt), FP32 egyszeres pontosságú, BFLOAT16 (tömörített ábrázolásokhoz jó), FP16 (nagyon instabil), TF32 (az NVIDIA új formátuma) és INT8 formátumokat. Számítsd ki az exponenciális függvény legkisebb és legnagyobb argumentumát, amelyre az eredmény nem okoz numerikus alulcsordulást vagy túlcsordulást!
 1. Az INT8 egy nagyon korlátozott formátum, amely $1$-től $255$-ig terjedő nem nulla számokat tartalmaz. Hogyan bővíthetnéd dinamikus tartományát anélkül, hogy több bitet használnál? A szokásos szorzás és összeadás továbbra is működik?
 1. Növeld az epokszámot a tanításban! Miért csökkenhet a validációs pontosság egy idő után? Hogyan lehetne ezt megoldani?
-1. Mi történik, ha növeled a tanulási sebességet? Hasonlítsd össze a veszteséggörbéket különböző tanulási sebességek esetén! Melyik működik jobban? Mikor?
+1. Mi történik, ha növeled a tanulási rátát? Hasonlítsd össze a veszteséggörbéket különböző tanulási ráták esetén! Melyik működik jobban? Mikor?
 
 :begin_tab:`mxnet`
 [Megbeszélések](https://discuss.d2l.ai/t/52)

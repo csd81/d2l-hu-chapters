@@ -445,7 +445,7 @@ def train_sgd(lr, batch_size, num_epochs=2):
 gd_res = train_sgd(1, 1500, 10)
 ```
 
-Ha a batch-méret egyenlő 1-gyel, sztochasztikus gradienscsökkenést alkalmazunk az optimalizáláshoz. Az implementáció egyszerűsége érdekében állandó (bár kis) tanulási sebességet választottunk. A sztochasztikus gradienscsökkenésben a modell paraméterei minden egyes feldolgozott példa után frissülnek. Esetünkben ez epocsonként 1500 frissítést jelent. Ahogy látható, a célfüggvény értékének csökkenése lassul az első epoc után. Bár mindkét eljárás 1500 példát dolgozott fel egy epoc alatt, a sztochasztikus gradienscsökkenés kísérletünkben több időt vesz igénybe, mint a gradienscsökkenés. Ennek oka, hogy a sztochasztikus gradienscsökkenés gyakrabban frissítette a paramétereket, és az egyes megfigyelések egyenkénti feldolgozása kevésbé hatékony.
+Ha a batch-méret egyenlő 1-gyel, sztochasztikus gradienscsökkenést alkalmazunk az optimalizáláshoz. Az implementáció egyszerűsége érdekében állandó (bár kis) tanulási rátát választottunk. A sztochasztikus gradienscsökkenésben a modell paraméterei minden egyes feldolgozott példa után frissülnek. Esetünkben ez epocsonként 1500 frissítést jelent. Ahogy látható, a célfüggvény értékének csökkenése lassul az első epoc után. Bár mindkét eljárás 1500 példát dolgozott fel egy epoc alatt, a sztochasztikus gradienscsökkenés kísérletünkben több időt vesz igénybe, mint a gradienscsökkenés. Ennek oka, hogy a sztochasztikus gradienscsökkenés gyakrabban frissítette a paramétereket, és az egyes megfigyelések egyenkénti feldolgozása kevésbé hatékony.
 
 ```{.python .input}
 #@tab all
@@ -605,13 +605,13 @@ train_concise_ch11(trainer, {'learning_rate': 0.05}, data_iter)
 * Kompromisszum áll fenn a sztochasztikus gradienscsökkenésből eredő statisztikai hatékonyság és a nagy adatbatchek egyszeri feldolgozásából eredő számítási hatékonyság között.
 * A minibatch sztochasztikus gradienscsökkenés mindkét világ előnyeit kínálja: számítási és statisztikai hatékonyságot.
 * A minibatch sztochasztikus gradienscsökkenésben a tanítóadatok véletlenszerű permutációjával előállított adatbatcheket dolgozunk fel (azaz minden megfigyelést epocsonként csak egyszer dolgozunk fel, bár véletlenszerű sorrendben).
-* Tanítás során célszerű csökkenteni a tanulási sebességet.
+* Tanítás során célszerű csökkenteni a tanulási rátát.
 * Általánosságban a minibatch sztochasztikus gradienscsökkenés gyorsabb, mint a sztochasztikus gradienscsökkenés és a gradienscsökkenés a kisebb kockázathoz való konvergenciában, ha falióra-időben mérjük.
 
 ## Gyakorló feladatok
 
-1. Módosítsd a batch-méretet és a tanulási sebességet, és figyeld meg a célfüggvény értékének csökkenési ütemét és az egyes epochokban eltelt időt.
-1. Olvasd el az MXNet dokumentációját, és a `Trainer` osztály `set_learning_rate` függvényét alkalmazva csökkentsd a minibatch sztochasztikus gradienscsökkenés tanulási sebességét az előző értékének 1/10-ére minden epoc után.
+1. Módosítsd a batch-méretet és a tanulási rátát, és figyeld meg a célfüggvény értékének csökkenési ütemét és az egyes epochokban eltelt időt.
+1. Olvasd el az MXNet dokumentációját, és a `Trainer` osztály `set_learning_rate` függvényét alkalmazva csökkentsd a minibatch sztochasztikus gradienscsökkenés tanulási rátaét az előző értékének 1/10-ére minden epoc után.
 1. Hasonlítsd össze a minibatch sztochasztikus gradienscsökkenést egy olyan változattal, amely *visszatevéssel mintavételez* a tanítóhalmazból. Mi történik?
 1. Egy gonosz szellem megkettőzi az adathalmazát anélkül, hogy szólna (azaz minden megfigyelés kétszer szerepel, és az adathalmaz kétszer akkora lesz, de senki sem mondta el). Hogyan változik a sztochasztikus gradienscsökkenés, a minibatch sztochasztikus gradienscsökkenés és a gradienscsökkenés viselkedése?
 

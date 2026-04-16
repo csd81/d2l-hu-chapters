@@ -1,10 +1,10 @@
 # Egylépéses többdobozos felismerés (SSD)
 :label:`sec_ssd`
 
-A :numref:`sec_bbox`--:numref:`sec_object-detection-dataset` fejezetekben bemutattuk a befoglaló téglalapokat, a horgonydobozokat, a többléptékű objektumfelismerést és az objektumfelismerési adathalmazt.
-Most készen állunk arra, hogy ezeket az előzetes ismereteket felhasználva tervezzünk egy objektumfelismerési modellt: az egylépéses többdobozos felismerést (SSD) :cite:`Liu.Anguelov.Erhan.ea.2016`.
+A :numref:`sec_bbox`--:numref:`sec_object-detection-dataset` fejezetekben bemutattuk a befoglaló téglalapokat, a horgonydobozokat, a többléptékű objektumdetektálást és az objektumdetektálási adathalmazt.
+Most készen állunk arra, hogy ezeket az előzetes ismereteket felhasználva tervezzünk egy objektumdetektálási modellt: az egylépéses többdobozos felismerést (SSD) :cite:`Liu.Anguelov.Erhan.ea.2016`.
 Ez a modell egyszerű, gyors és széles körben használt.
-Bár ez csupán egy a rengeteg objektumfelismerési modell közül, ebben a fejezetben egyes tervezési elvek és implementációs részletek más modellekre is alkalmazhatók.
+Bár ez csupán egy a rengeteg objektumdetektálási modell közül, ebben a fejezetben egyes tervezési elvek és implementációs részletek más modellekre is alkalmazhatók.
 
 
 ## Modell
@@ -17,13 +17,13 @@ A tervünkön keresztül az alaphálózatot úgy alakíthatjuk, hogy nagyobb jel
 Ezután minden többléptékű jellemzőtérkép-blokk csökkenti (pl. felére) az előző blokk jellemzőtérképeinek magasságát és szélességét, és lehetővé teszi a jellemzőtérképek minden egységének, hogy növelje receptív mezőjét a bemeneti képen.
 
 
-Emlékeztetünk a mély neurális hálózatok rétegenkénti képreprezentációin keresztül megvalósuló többléptékű objektumfelismerés tervére a :numref:`sec_multiscale-object-detection` fejezetből.
+Emlékeztetünk a mély neurális hálózatok rétegenkénti képreprezentációin keresztül megvalósuló többléptékű objektumdetektálás tervére a :numref:`sec_multiscale-object-detection` fejezetből.
 Mivel a :numref:`fig_ssd` ábra tetejéhez közelebb lévő többléptékű jellemzőtérképek kisebbek, de nagyobb receptív mezőkkel rendelkeznek, alkalmasabbak kevesebb, de nagyobb objektum felismerésére.
 
-Röviden összefoglalva, alaphálózatán és számos többléptékű jellemzőtérkép-blokkján keresztül az egylépéses többdobozos felismerés változó számú, különböző méretű horgonydobozt generál, és változó méretű objektumokat ismer fel ezen horgonydobozok osztályainak és eltolásainak (és így a befoglaló téglalapoknak) jóslásával; így ez egy többléptékű objektumfelismerési modell.
+Röviden összefoglalva, alaphálózatán és számos többléptékű jellemzőtérkép-blokkján keresztül az egylépéses többdobozos felismerés változó számú, különböző méretű horgonydobozt generál, és változó méretű objektumokat ismer fel ezen horgonydobozok osztályainak és eltolásainak (és így a befoglaló téglalapoknak) jóslásával; így ez egy többléptékű objektumdetektálási modell.
 
 
-![Többléptékű objektumfelismerési modellként az egylépéses többdobozos felismerés főleg egy alaphálózatból és azt követő számos többléptékű jellemzőtérkép-blokkból áll.](../img/ssd.svg)
+![Többléptékű objektumdetektálási modellként az egylépéses többdobozos felismerés főleg egy alaphálózatból és azt követő számos többléptékű jellemzőtérkép-blokkból áll.](../img/ssd.svg)
 :label:`fig_ssd`
 
 
@@ -163,7 +163,7 @@ concat_preds([Y1, Y2]).shape
 
 ### [**Lefele mintavételezési blokk**]
 
-Több léptéken való objektumfelismerés céljából definiáljuk a következő `down_sample_blk` lefele mintavételezési blokkot, amely a bemeneti jellemzőtérképek magasságát és szélességét felezi.
+Több léptéken való objektumdetektálás céljából definiáljuk a következő `down_sample_blk` lefele mintavételezési blokkot, amely a bemeneti jellemzőtérképek magasságát és szélességét felezi.
 Valójában ez a blokk alkalmazza a VGG blokkok tervét a :numref:`subsec_vgg-blocks` fejezetből.
 Konkrétabban minden lefele mintavételezési blokk két, 1-es párnázású $3\times3$-as konvolúciós rétegből áll, amelyeket egy 2-es lépésközt alkalmazó $2\times2$-es max-pooling réteg követ.
 Ahogy tudjuk, az 1-es párnázású $3\times3$-as konvolúciós rétegek nem változtatják meg a jellemzőtérképek alakját.
@@ -272,7 +272,7 @@ def get_blk(i):
     return blk
 ```
 
-Most [**definiáljuk az előre terjesztést**] minden blokkhoz.
+Most [**definiáljuk az előreterjesztést**] minden blokkhoz.
 Eltérően a képosztályozási feladatoktól, a kimenetek itt a következőket tartalmazzák: (i) `Y` konvolúciós neurális hálózati jellemzőtérképek, (ii) az aktuális léptéken `Y` felhasználásával generált horgonydobozok, és (iii) ezen horgonydobozokra vonatkozó jósolt (a `Y` alapján) osztályok és eltolások.
 
 ```{.python .input}
@@ -296,7 +296,7 @@ def blk_forward(X, blk, size, ratio, cls_predictor, bbox_predictor):
 ```
 
 Emlékeztetünk arra, hogy a :numref:`fig_ssd` ábrán a tetejéhez közelebb lévő többléptékű jellemzőtérkép-blokk nagyobb objektumok felismerésére szolgál; ezért nagyobb horgonydobozokat kell generálnia.
-A fenti előre terjesztésben minden többléptékű jellemzőtérkép-blokknál két méretértékből álló listát adunk meg a `multibox_prior` függvény (a :numref:`sec_anchor` fejezetben leírva) `sizes` argumentumán keresztül.
+A fenti előreterjesztésben minden többléptékű jellemzőtérkép-blokknál két méretértékből álló listát adunk meg a `multibox_prior` függvény (a :numref:`sec_anchor` fejezetben leírva) `sizes` argumentumán keresztül.
 A következőkben a 0.2 és 1.05 közötti intervallumot öt egyenlő részre osztják fel, hogy meghatározzák a kisebb méretértékeket az öt blokknál: 0.2, 0.37, 0.54, 0.71 és 0.88.
 Ezután a nagyobb méretértékek $\sqrt{0.2 \times 0.37} = 0.272$, $\sqrt{0.37 \times 0.54} = 0.447$ stb.
 
@@ -369,7 +369,7 @@ class TinySSD(nn.Module):
         return anchors, cls_preds, bbox_preds
 ```
 
-[**Létrehozunk egy modellpéldányt és előre terjesztést végzünk**] $256 \times 256$ pixeles képek `X` minibatch-én.
+[**Létrehozunk egy modellpéldányt és előreterjesztést végzünk**] $256 \times 256$ pixeles képek `X` minibatch-én.
 
 Ahogy a szakasz elején bemutattuk, az első blokk $32 \times 32$-es jellemzőtérképeket ad ki.
 Emlékeztetünk arra, hogy a második-negyedik lefele mintavételezési blokkok felezik a magasságot és a szélességet, az ötödik blokk pedig globális poolingot alkalmaz.
@@ -400,7 +400,7 @@ print('output bbox preds:', bbox_preds.shape)
 
 ## Tanítás
 
-Most elmagyarázzuk, hogyan tanítható az egylépéses többdobozos felismerési modell objektumfelismeréshez.
+Most elmagyarázzuk, hogyan tanítható az egylépéses többdobozos felismerési modell objektumdetektáláshoz.
 
 
 ### Az adathalmaz beolvasása és a modell inicializálása
@@ -431,7 +431,7 @@ trainer = torch.optim.SGD(net.parameters(), lr=0.2, weight_decay=5e-4)
 
 ### [**Veszteség- és kiértékelési függvények definiálása**]
 
-Az objektumfelismerésnek két típusú veszteségfüggvénye van.
+Az objektumdetektálásnak két típusú veszteségfüggvénye van.
 Az első a horgonydobozok osztályaival foglalkozik: kiszámítása egyszerűen felhasználhatja a képosztályozásnál alkalmazott kereszt-entrópia veszteségfüggvényt.
 A második a pozitív (nem háttér) horgonydobozok eltolásaival foglalkozik: ez egy regressziós probléma.
 Ehhez a regressziós problémához azonban nem alkalmazzuk a :numref:`subsec_normal_distribution_and_squared_loss` fejezetben leírt négyzetes veszteséget.
@@ -494,7 +494,7 @@ def bbox_eval(bbox_preds, bbox_labels, bbox_masks):
 
 ### [**A modell tanítása**]
 
-A modell tanításakor az előre terjesztésben többléptékű horgonydobozokat (`anchors`) kell generálnunk, és jósolnunk kell osztályaikat (`cls_preds`) és eltolásaikat (`bbox_preds`).
+A modell tanításakor az előreterjesztésben többléptékű horgonydobozokat (`anchors`) kell generálnunk, és jósolnunk kell osztályaikat (`cls_preds`) és eltolásaikat (`bbox_preds`).
 Ezután felcímkézzük a generált horgonydobozok osztályait (`cls_labels`) és eltolásait (`bbox_labels`) az `Y` címkeinformáció alapján.
 Végül a veszteségfüggvényt az osztályok és eltolások jósolt és felcímkézett értékei alapján számítjuk ki.
 A tömör implementáció érdekében a tesztadathalmaz kiértékelése itt kimaradt.
@@ -653,7 +653,7 @@ display(img, output.cpu(), threshold=0.9)
 
 ## Összefoglalás
 
-* Az egylépéses többdobozos felismerés egy többléptékű objektumfelismerési modell. Alaphálózatán és számos többléptékű jellemzőtérkép-blokkján keresztül az egylépéses többdobozos felismerés változó számú, különböző méretű horgonydobozt generál, és változó méretű objektumokat ismer fel ezen horgonydobozok osztályainak és eltolásainak jóslásával (és így a befoglaló téglalapokkal).
+* Az egylépéses többdobozos felismerés egy többléptékű objektumdetektálási modell. Alaphálózatán és számos többléptékű jellemzőtérkép-blokkján keresztül az egylépéses többdobozos felismerés változó számú, különböző méretű horgonydobozt generál, és változó méretű objektumokat ismer fel ezen horgonydobozok osztályainak és eltolásainak jóslásával (és így a befoglaló téglalapokkal).
 * Az egylépéses többdobozos felismerési modell tanítása során a veszteségfüggvényt a horgonydoboz osztályok és eltolások jósolt és felcímkézett értékei alapján számítják ki.
 
 
@@ -740,7 +740,7 @@ d2l.plt.legend();
     1. Ha egy objektum sokkal kisebb a képhez képest, a modell nagyobbra méretezheti a bemeneti képet.
     1. Általában nagyszámú negatív horgonydoboz van. Az osztályeloszlás kiegyensúlyozottabbá tételéhez le lehetne mintavételezni a negatív horgonydobozokat.
     1. A veszteségfüggvényben különböző súlyhiperparamétereket rendelünk az osztályveszteséghez és az eltolási veszteséghez.
-    1. Más módszereket is alkalmazhatunk az objektumfelismerési modell kiértékeléséhez, például az egylépéses többdobozos felismerési cikkben :cite:`Liu.Anguelov.Erhan.ea.2016` leírtakat.
+    1. Más módszereket is alkalmazhatunk az objektumdetektálási modell kiértékeléséhez, például az egylépéses többdobozos felismerési cikkben :cite:`Liu.Anguelov.Erhan.ea.2016` leírtakat.
 
 
 

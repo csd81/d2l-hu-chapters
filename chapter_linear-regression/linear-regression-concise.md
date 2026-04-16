@@ -257,7 +257,7 @@ a neurális hálózatok optimalizálásához,
 Amikor (**példányosítunk egy `SGD` példányt,**)
 megadjuk az optimalizálandó paramétereket,
 amelyek a modellünkből a `self.parameters()` segítségével nyerhetők ki,
-és a tanulási sebességet (`self.lr`)
+és a tanulási rátát (`self.lr`)
 amelyet az optimalizálási algoritmusunk igényel.
 :end_tab:
 
@@ -407,13 +407,13 @@ A hálózatok dimenzionalitása és tárhelye automatikusan következtethető ki
 
 ## Feladatok
 
-1. Hogyan kellene megváltoztatnod a tanulási sebességet, ha a minibatch feletti összesített veszteséget
+1. Hogyan kellene megváltoztatnod a tanulási rátát, ha a minibatch feletti összesített veszteséget
    a minibatch veszteségének átlagával helyettesítenéd?
 1. Tekintsd át a keretrendszer dokumentációját, hogy melyik veszteségfüggvények állnak rendelkezésre. Különösen
    cseréld le a négyzethibát Huber robusztus veszteségfüggvényére. Azaz, használd a veszteségfüggvényt:
    $$l(y,y') = \begin{cases}|y-y'| -\frac{\sigma}{2} & \textrm{ ha } |y-y'| > \sigma \\ \frac{1}{2 \sigma} (y-y')^2 & \textrm{ egyébként}\end{cases}$$
 1. Hogyan éred el a modell súlyainak gradiensét?
-1. Mi a hatása a megoldásra, ha megváltoztatod a tanulási sebességet és a korszakok számát? Folyamatosan javul-e?
+1. Mi a hatása a megoldásra, ha megváltoztatod a tanulási rátát és a korszakok számát? Folyamatosan javul-e?
 1. Hogyan változik a megoldás, ahogy változtatod a generált adatok mennyiségét?
     1. Ábrázold a becslési hibát $\hat{\mathbf{w}} - \mathbf{w}$ és $\hat{b} - b$ az adatok mennyiségének függvényében. Tipp: logaritmikusan növeld az adatok mennyiségét, nem lineárisan, azaz 5, 10, 20, 50, ..., 10000, nem pedig 1000, 2000, ..., 10000.
     2. Miért megfelelő a tippben szereplő javaslat?

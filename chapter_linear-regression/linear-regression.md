@@ -340,7 +340,7 @@ Ezután kiszámítjuk az átlagos veszteség deriváltját
 (gradienst) a minibatch felett a modellparaméterek szerint.
 Végül a gradienst megszorozzuk egy előre meghatározott
 kis pozitív $\eta$ értékkel,
-amelyet *tanulási sebességnek* nevezünk,
+amelyet *tanulási rátának* nevezünk,
 és a kapott tagot kivonjuk az aktuális paraméterértékekből.
 A frissítés a következőképpen fejezhető ki:
 
@@ -358,7 +358,7 @@ $$\begin{aligned} \mathbf{w} & \leftarrow \mathbf{w} - \frac{\eta}{|\mathcal{B}|
 
 Mivel $\mathcal{B}$ minibatch-et veszünk ki,
 annak $|\mathcal{B}|$ méretével kell normalizálnunk.
-A minibatch mérete és a tanulási sebesség felhasználó által meghatározott.
+A minibatch mérete és a tanulási ráta felhasználó által meghatározott.
 Az ilyen, a tanítási ciklus során nem frissített,
 hangolható paramétereket *hiperparamétereknek* nevezzük.
 Ezek számos technikával automatikusan hangolhatók, például Bayes-optimalizálással

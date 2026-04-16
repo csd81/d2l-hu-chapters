@@ -2,13 +2,13 @@
 :label:`sec_anchor`
 
 
-Az objektumfelismerési algoritmusok általában
+Az objektumdetektálási algoritmusok általában
 nagyszámú régiót mintavételeznek a bemeneti képből, meghatározzák, hogy ezek a régiók tartalmaznak-e érdeklődési objektumokat, és a régiók határait úgy igazítják, hogy pontosabban megjósolják az objektumok *valós befoglaló téglalapjait*.
 A különböző modellek eltérő régió-mintavételezési sémákat alkalmazhatnak.
 Itt az egyik ilyen módszert mutatjuk be:
 ez minden pixelt középpontként véve változó méretű és képarányú befoglaló téglalapokat generál.
 Ezeket a befoglaló téglalapokat *horgonydobozoknak* nevezzük.
-A :numref:`sec_ssd` fejezetben horgonydobozokon alapuló objektumfelismerési modellt tervezünk.
+A :numref:`sec_ssd` fejezetben horgonydobozokon alapuló objektumdetektálási modellt tervezünk.
 
 Először módosítsuk a nyomtatási pontosságot a tömörebb kimenet érdekében.
 
@@ -285,7 +285,7 @@ def box_iou(boxes1, boxes2):
 
 
 A tanítóadathalmazban minden horgonydobozt tanítópéldának tekintünk.
-Az objektumfelismerési modell tanításához minden horgonydobozhoz *osztály*- és *eltolás*-címkékre van szükségünk,
+Az objektumdetektálási modell tanításához minden horgonydobozhoz *osztály*- és *eltolás*-címkékre van szükségünk,
 ahol az előbbi a horgonydobozhoz kapcsolódó objektum osztálya,
 az utóbbi pedig a valódi befoglaló téglalapnak a horgonydobozhoz viszonyított eltolása.
 A jóslás során
@@ -295,7 +295,7 @@ pozícióikat a jósolt eltolások szerint igazítjuk a jósolt befoglaló tégl
 és végül csak azokat a jósolt befoglaló téglalapokat adjuk ki, amelyek bizonyos feltételeknek megfelelnek.
 
 
-Ahogy tudjuk, egy objektumfelismerési tanítóhalmaz a *valódi befoglaló téglalapok* helyzetéhez és a körülöttük lévő objektumok osztályaihoz tartozó címkéket tartalmaz.
+Ahogy tudjuk, egy objektumdetektálási tanítóhalmaz a *valódi befoglaló téglalapok* helyzetéhez és a körülöttük lévő objektumok osztályaihoz tartozó címkéket tartalmaz.
 Bármely generált *horgonydoboz* felcímkézéséhez a hozzá legközelebb eső *hozzárendelt* valódi befoglaló téglalap felcímkézett helyzetére és osztályára hivatkozunk.
 A következőkben leírunk egy algoritmust a legközelebbi valódi befoglaló téglalapok hozzárendeléséhez a horgonydobozokhoz.
 
@@ -604,7 +604,7 @@ a *nem-maximum szuppresszió* (NMS) segítségével.
 
 Így működik a nem-maximum szuppresszió.
 Egy $B$ jósolt befoglaló téglalap esetén
-az objektumfelismerési modell kiszámítja a jósolt valószínűséget minden osztályhoz.
+az objektumdetektálási modell kiszámítja a jósolt valószínűséget minden osztályhoz.
 Jelöljük $p$-vel a legnagyobb jósolt valószínűséget;
 az ehhez a valószínűséghez tartozó osztály a $B$ jósolt osztálya.
 Konkrétan, $p$-t a $B$ jósolt befoglaló téglalap *megbízhatóságának* (pontszámának) nevezzük.

@@ -3,7 +3,7 @@
 
 Ebben a szakaszban bemutatjuk a *gradienscsökkenés* mögött álló alapfogalmakat.
 Bár a mélytanulásban ritkán alkalmazzák közvetlenül, a gradienscsökkenés megértése kulcsfontosságú a sztochasztikus gradienscsökkenés algoritmusok megértéséhez.
-Például az optimalizálási probléma eltérhet a megoldástól a túlságosan nagy tanulási sebesség miatt. Ez a jelenség már a gradienscsökkenés esetén is megfigyelhető. Hasonlóképpen, az előkondicionálás a gradienscsökkenés egyik általánosan alkalmazott technikája, amely a fejlettebb algoritmusokra is érvényes.
+Például az optimalizálási probléma eltérhet a megoldástól a túlságosan nagy tanulási ráta miatt. Ez a jelenség már a gradienscsökkenés esetén is megfigyelhető. Hasonlóképpen, az előkondicionálás a gradienscsökkenés egyik általánosan alkalmazott technikája, amely a fejlettebb algoritmusokra is érvényes.
 Kezdjük egy egyszerű speciális esettel.
 
 
@@ -97,14 +97,14 @@ show_trace(results, f)
 ### Tanulási sebesség
 :label:`subsec_gd-learningrate`
 
-A $\eta$ tanulási sebességet az algoritmus tervezője állíthatja be. Ha túl kis tanulási sebességet alkalmazunk, $x$ nagyon lassan frissül, és több iteráció szükséges a jobb megoldás eléréséhez. Ennek szemléltetéséhez tekintsük az ugyanolyan optimalizálási probléma haladását $\eta = 0.05$ esetén. Ahogy látható, még 10 lépés után is messze vagyunk az optimális megoldástól.
+A $\eta$ tanulási rátát az algoritmus tervezője állíthatja be. Ha túl kis tanulási rátát alkalmazunk, $x$ nagyon lassan frissül, és több iteráció szükséges a jobb megoldás eléréséhez. Ennek szemléltetéséhez tekintsük az ugyanolyan optimalizálási probléma haladását $\eta = 0.05$ esetén. Ahogy látható, még 10 lépés után is messze vagyunk az optimális megoldástól.
 
 ```{.python .input}
 #@tab all
 show_trace(gd(0.05, f_grad), f)
 ```
 
-Ezzel szemben, ha túl nagy tanulási sebességet alkalmazunk, a $\left|\eta f'(x)\right|$ túl nagy lehet az elsőrendű Taylor-kifejtési képlethez. Vagyis a :eqref:`gd-taylor-2`-beli $\mathcal{O}(\eta^2 f'^2(x))$ tag jelentőssé válhat. Ebben az esetben nem garantálható, hogy $x$ iterálása csökkenti $f(x)$ értékét. Például ha $\eta=1.1$ tanulási sebességet állítunk be, $x$ túllő az $x=0$ optimális megoldáson, és fokozatosan eltér.
+Ezzel szemben, ha túl nagy tanulási rátát alkalmazunk, a $\left|\eta f'(x)\right|$ túl nagy lehet az elsőrendű Taylor-kifejtési képlethez. Vagyis a :eqref:`gd-taylor-2`-beli $\mathcal{O}(\eta^2 f'^2(x))$ tag jelentőssé válhat. Ebben az esetben nem garantálható, hogy $x$ iterálása csökkenti $f(x)$ értékét. Például ha $\eta=1.1$ tanulási rátát állítunk be, $x$ túllő az $x=0$ optimális megoldáson, és fokozatosan eltér.
 
 ```{.python .input}
 #@tab all
@@ -113,7 +113,7 @@ show_trace(gd(1.1, f_grad), f)
 
 ### Lokális minimumok
 
-Annak szemléltetéséhez, hogy nemkonvex függvényeknél mi történik, tekintsük az $f(x) = x \cdot \cos(cx)$ esetet valamely $c$ konstansra. Ennek a függvénynek végtelen sok lokális minimuma van. A tanulási sebesség megválasztásától és a probléma kondicionáltságától függően a sok megoldás egyikéhez juthatunk. Az alábbi példa szemlélteti, hogy a (nem realisztikusan) nagy tanulási sebesség egy rossz lokális minimumhoz vezet.
+Annak szemléltetéséhez, hogy nemkonvex függvényeknél mi történik, tekintsük az $f(x) = x \cdot \cos(cx)$ esetet valamely $c$ konstansra. Ennek a függvénynek végtelen sok lokális minimuma van. A tanulási ráta megválasztásától és a probléma kondicionáltságától függően a sok megoldás egyikéhez juthatunk. Az alábbi példa szemlélteti, hogy a (nem realisztikusan) nagy tanulási ráta egy rossz lokális minimumhoz vezet.
 
 ```{.python .input}
 #@tab all
@@ -139,7 +139,7 @@ A $\partial f(\mathbf{x})/\partial x_i$ parciális derivált elem a gradiensvekt
 $$f(\mathbf{x} + \boldsymbol{\epsilon}) = f(\mathbf{x}) + \mathbf{\boldsymbol{\epsilon}}^\top \nabla f(\mathbf{x}) + \mathcal{O}(\|\boldsymbol{\epsilon}\|^2).$$
 :eqlabel:`gd-multi-taylor`
 
-Más szóval: $\boldsymbol{\epsilon}$-ban másodrendű tagokig a legmeredekebb ereszkedés iránya a negatív gradiens $-\nabla f(\mathbf{x})$. Megfelelő $\eta > 0$ tanulási sebesség megválasztásával kapjuk az archetipikus gradienscsökkenés algoritmust:
+Más szóval: $\boldsymbol{\epsilon}$-ban másodrendű tagokig a legmeredekebb ereszkedés iránya a negatív gradiens $-\nabla f(\mathbf{x})$. Megfelelő $\eta > 0$ tanulási ráta megválasztásával kapjuk az archetipikus gradienscsökkenés algoritmust:
 
 $$\mathbf{x} \leftarrow \mathbf{x} - \eta \nabla f(\mathbf{x}).$$
 
@@ -204,7 +204,7 @@ def show_trace_2d(f, results):  #@save
     d2l.plt.ylabel('x2')
 ```
 
-Ezután megfigyeljük a $\mathbf{x}$ optimalizálási változó trajektóriáját $\eta = 0.1$ tanulási sebesség mellett. Látható, hogy 20 lépés után $\mathbf{x}$ értéke közelíti a $[0, 0]$-beli minimumát. A haladás meglehetősen rendezett, bár eléggé lassú.
+Ezután megfigyeljük a $\mathbf{x}$ optimalizálási változó trajektóriáját $\eta = 0.1$ tanulási ráta mellett. Látható, hogy 20 lépés után $\mathbf{x}$ értéke közelíti a $[0, 0]$-beli minimumát. A haladás meglehetősen rendezett, bár eléggé lassú.
 
 ```{.python .input}
 #@tab all
@@ -224,7 +224,7 @@ show_trace_2d(f_2d, train_2d(gd_2d, f_grad=f_2d_grad))
 
 ## Adaptív módszerek
 
-Ahogy a :numref:`subsec_gd-learningrate` szakaszban láthattuk, a $\eta$ tanulási sebesség „tökéletes" meghatározása nehéz feladat. Ha túl kicsit választunk, alig haladunk. Ha túl nagyot választunk, az megoldás oszcillál, és a legrosszabb esetben akár el is térhet. Mi lenne, ha automatikusan meghatározhatnánk $\eta$-t, vagy teljesen el tudnánk kerülni a tanulási sebesség megválasztásának szükségességét?
+Ahogy a :numref:`subsec_gd-learningrate` szakaszban láthattuk, a $\eta$ tanulási ráta „tökéletes" meghatározása nehéz feladat. Ha túl kicsit választunk, alig haladunk. Ha túl nagyot választunk, az megoldás oszcillál, és a legrosszabb esetben akár el is térhet. Mi lenne, ha automatikusan meghatározhatnánk $\eta$-t, vagy teljesen el tudnánk kerülni a tanulási ráta megválasztásának szükségességét?
 A másodrendű módszerek, amelyek nemcsak a célfüggvény értékét és gradienst, hanem *görbületét* is figyelembe veszik, segíthetnek ebben. Bár ezek a módszerek közvetlenül nem alkalmazhatók a mélytanulásban a számítási költség miatt, hasznos intuíciót nyújtanak a fejlett optimalizálási algoritmusok tervezéséhez, amelyek az alább leírt algoritmusok sok kívánatos tulajdonságát utánozzák.
 
 
@@ -296,8 +296,8 @@ def f_hess(x):  # A célfüggvény Hesse-mátrixa
 show_trace(newton(), f)
 ```
 
-Ez látványosan rosszul sült el. Hogyan javíthatjuk? Az egyik módszer a Hesse-mátrix „javítása" az abszolút értékek használatával. Másik stratégia a tanulási sebesség visszavezetése. Ez ugyan látszólag ellentmond a célnak, de nem teljesen. A másodrendű információk lehetővé teszik, hogy óvatosak legyünk, ha a görbület nagy, és hosszabb lépéseket tegyünk, ha a célfüggvény simább.
-Nézzük meg, hogyan működik ez egy kissé kisebb tanulási sebességgel, mondjuk $\eta = 0.5$. Ahogy látható, meglehetősen hatékony algoritmust kapunk.
+Ez látványosan rosszul sült el. Hogyan javíthatjuk? Az egyik módszer a Hesse-mátrix „javítása" az abszolút értékek használatával. Másik stratégia a tanulási ráta visszavezetése. Ez ugyan látszólag ellentmond a célnak, de nem teljesen. A másodrendű információk lehetővé teszik, hogy óvatosak legyünk, ha a görbület nagy, és hosszabb lépéseket tegyünk, ha a célfüggvény simább.
+Nézzük meg, hogyan működik ez egy kissé kisebb tanulási rátával, mondjuk $\eta = 0.5$. Ahogy látható, meglehetősen hatékony algoritmust kapunk.
 
 ```{.python .input}
 #@tab all
@@ -339,28 +339,28 @@ $$\mathbf{x} \leftarrow \mathbf{x} - \eta \textrm{diag}(\mathbf{H})^{-1} \nabla 
 
 
 Bár ez nem olyan jó, mint a teljes Newton-módszer, mégis sokkal jobb, mintha egyáltalán nem alkalmaznánk.
-Annak megértéséhez, hogy ez miért lehet jó ötlet, képzeljük el, hogy az egyik változó milliméteres magasságot, a másik kilométeres magasságot jelöl. Feltételezve, hogy mindkettőnél a természetes skála méterben van, szörnyű eltérés van a parameterizációban. Szerencsére az előkondicionálás alkalmazása megszünteti ezt. A gradienscsökkenéssel kombinált előkondicionálás lényegében különböző tanulási sebességet jelent az egyes változók (a $\mathbf{x}$ vektor koordinátái) számára.
+Annak megértéséhez, hogy ez miért lehet jó ötlet, képzeljük el, hogy az egyik változó milliméteres magasságot, a másik kilométeres magasságot jelöl. Feltételezve, hogy mindkettőnél a természetes skála méterben van, szörnyű eltérés van a parameterizációban. Szerencsére az előkondicionálás alkalmazása megszünteti ezt. A gradienscsökkenéssel kombinált előkondicionálás lényegében különböző tanulási rátát jelent az egyes változók (a $\mathbf{x}$ vektor koordinátái) számára.
 Ahogy később látni fogjuk, az előkondicionálás számos innováció motorja a sztochasztikus gradienscsökkenés optimalizálási algoritmusokban.
 
 
 ### Gradienscsökkenés vonalkereséssel
 
-A gradienscsökkenés egyik kulcsproblémája, hogy túllőhetünk a célon, vagy nem haladunk elég gyorsan. Egyszerű megoldás a vonalkeresés kombinálása a gradienscsökkenéssel. Vagyis a $\nabla f(\mathbf{x})$ által adott irányt használjuk, majd bináris keresést végzünk annak meghatározására, hogy melyik $\eta$ tanulási sebesség minimalizálja az $f(\mathbf{x} - \eta \nabla f(\mathbf{x}))$ értéket.
+A gradienscsökkenés egyik kulcsproblémája, hogy túllőhetünk a célon, vagy nem haladunk elég gyorsan. Egyszerű megoldás a vonalkeresés kombinálása a gradienscsökkenéssel. Vagyis a $\nabla f(\mathbf{x})$ által adott irányt használjuk, majd bináris keresést végzünk annak meghatározására, hogy melyik $\eta$ tanulási ráta minimalizálja az $f(\mathbf{x} - \eta \nabla f(\mathbf{x}))$ értéket.
 
 Ez az algoritmus gyorsan konvergál (az elemzést és bizonyítást lásd például :citet:`Boyd.Vandenberghe.2004`). Azonban a mélytanulás szempontjából ez nem teljesen megvalósítható, mivel a vonalkeresés minden lépéséhez a célfüggvényt a teljes adathalmazon kellene kiértékelni. Ez túlságosan drága.
 
 ## Összefoglalás
 
-* A tanulási sebesség számít. Ha túl nagy, eltérünk; ha túl kicsi, nem haladunk.
+* A tanulási ráta számít. Ha túl nagy, eltérünk; ha túl kicsi, nem haladunk.
 * A gradienscsökkenés beragadhat lokális minimumokba.
-* Nagy dimenziókban a tanulási sebesség beállítása bonyolult.
+* Nagy dimenziókban a tanulási ráta beállítása bonyolult.
 * Az előkondicionálás segíthet a skálázási problémákon.
 * A Newton-módszer sokkal gyorsabb, ha megfelelően működik konvex problémákon.
 * Légy óvatos a Newton-módszer alkalmazásakor módosítások nélkül nemkonvex problémákon.
 
 ## Gyakorló feladatok
 
-1. Kísérletezz különböző tanulási sebességekkel és célfüggvényekkel gradienscsökkenés esetén.
+1. Kísérletezz különböző tanulási rátákkel és célfüggvényekkel gradienscsökkenés esetén.
 1. Valósítsd meg a vonalkeresést egy konvex függvény minimalizálásához a $[a, b]$ intervallumon.
     1. Szükséges-e derivált a bináris kereséshez, vagyis a $[a, (a+b)/2]$ vagy az $[(a+b)/2, b]$ interval kiválasztásához?
     1. Milyen gyors az algoritmus konvergenciasebessége?

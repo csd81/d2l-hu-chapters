@@ -3,7 +3,7 @@
 
 A gépi tanulásban az egyik legelterjedtebb gondolkodásmód a maximum likelihood elve. Ez azt jelenti, hogy ha ismeretlen paraméterekkel rendelkező valószínűségi modellel dolgozunk, akkor azok a paraméterek a legvalószínűbbek, amelyek mellett az adatok a legnagyobb valószínűséggel fordulnak elő.
 
-## A maximális valószínűség elve
+## A maximum likelihood elve
 
 Ennek van egy Bayes-i értelmezése is, amely hasznos lehet. Tegyük fel, hogy van egy $\boldsymbol{\theta}$ paraméterekkel rendelkező modellünk és egy $X$ adatgyűjteményünk. Konkrétan elképzelhetjük, hogy $\boldsymbol{\theta}$ egyetlen érték, amely annak valószínűségét jelöli, hogy egy pénzfeldobásnál fej jön ki, $X$ pedig egymástól független pénzfeldobások sorozata. Ezt a példát részletesen megvizsgáljuk.
 
@@ -229,7 +229,7 @@ $$
 
 amely egy forrás véletlenszerűségét méri. Ez nem más, mint az átlagos $-\log$ valószínűség, ezért ha a negatív log-likelihood-et elosztjuk az adatpéldák számával, az entrópiával rokon, keresztentrópiának nevezett mennyiséget kapjuk. Ez az elméleti összefüggés önmagában is elégséges indok arra, hogy a modell teljesítményének mérésére az adathalmaz feletti átlagos negatív log-likelihood-et használjuk.
 
-## Maximális valószínűség folytonos változók esetén
+## Maximum likelihood folytonos változók esetén
 
 Mindeddig feltételeztük, hogy diszkrét véletlen változókkal dolgozunk — de mi van, ha folytonos változókkal szeretnénk dolgozni?
 
@@ -271,7 +271,7 @@ $$
 
 ## Összefoglalás
 * A maximum likelihood elve azt mondja ki, hogy egy adott adathalmazhoz legjobban illeszkedő modell az, amelyik a legnagyobb valószínűséggel generálja az adatokat.
-* Sok esetben a negatív log-likelihood-del dolgoznak számos okból kifolyólag: numerikus stabilitás, szorzatok összegekké alakítása (ami egyszerűsíti a gradiens számítást), valamint az információelmélethez fűződő elméleti kapcsolat.
+* Sok esetben a negatív log-likelihood-del dolgoznak számos okból kifolyólag: numerikus stabilitás, szorzatok összegekké alakítása (ami egyszerűsíti a gradiensszámítást), valamint az információelmélethez fűződő elméleti kapcsolat.
 * Bár a diszkrét esetben a legkönnyebb motiválni, a folytonos esetre is szabadon általánosítható az adatpontokhoz rendelt valószínűségsűrűség maximalizálásával.
 
 ## Feladatok

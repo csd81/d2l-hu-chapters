@@ -3,7 +3,7 @@
 tab.interact_select(['mxnet', 'pytorch', 'tensorflow', 'jax'])
 ```
 
-# Automatikus Differenciálás
+# Automatikus differenciálás
 :label:`sec_autograd`
 
 Ahogyan a :numref:`sec_calculus` fejezetben láttuk,
@@ -15,7 +15,7 @@ kézzel elvégezni fáradságos és hibalehetőségekkel teli,
 és ez a probléma csak nő,
 ahogy modelljeink összetettebbé válnak.
 
-Szerencsére minden modern deep learning keretrendszer
+Szerencsére minden modern mélytanulási keretrendszer
 leveszi ezt a terhet a vállunkról
 azáltal, hogy *automatikus differenciálást*
 (gyakran *autograd*-nak rövidítve) kínál.
@@ -40,7 +40,7 @@ egy 1980-as PhD-dolgozathoz köthetők :cite:`Speelpenning.1980`,
 Bár a backpropagation mára az alapértelmezett módszerré vált
 a gradiensek kiszámítására, nem ez az egyetlen lehetőség.
 Például a Julia programozási nyelv
-előre terjedést (forward propagation) alkalmaz :cite:`Revels.Lubin.Papamarkou.2016`.
+előreterjesztést (forward propagation) alkalmaz :cite:`Revels.Lubin.Papamarkou.2016`.
 Mielőtt megvizsgálnánk a módszereket,
 először sajátítsuk el az autograd csomagot.
 
@@ -103,7 +103,7 @@ $\mathbf{x}$-hez képest,
 szükségünk van egy helyre a tárolásához.**]
 Általában kerüljük, hogy minden deriváltszámításnál
 új memóriát foglaljunk le,
-mivel a deep learning megköveteli,
+mivel a mélytanulás megköveteli,
 hogy ugyanazon paraméterekhez képest
 nagyszámú deriváltat számítsunk egymás után,
 és fennáll a veszélye, hogy elfogy a memóriánk.
@@ -330,7 +330,7 @@ $\partial_{\mathbf{x}} \sum_i y_i$.
 :end_tab:
 
 :begin_tab:`pytorch`
-Mivel a deep learning keretrendszerek eltérően értelmezik
+Mivel a mélytanulási keretrendszerek eltérően értelmezik
 a nem skaláris tenzorok gradienseit,
 a PyTorch bizonyos lépéseket tesz a félreértések elkerülése érdekében.
 A `backward` meghívása nem skaláris értéken hibát okoz,
@@ -620,7 +620,7 @@ d_grad == d / a
 d_grad == d / a
 ```
 
-A dinamikus vezérlési folyam nagyon elterjedt a deep learning-ben.
+A dinamikus vezérlési folyam nagyon elterjedt a mélytanulásban.
 Például szövegfeldolgozáskor a számítási gráf
 a bemenet hosszától függ.
 Ilyen esetekben az automatikus differenciálás
@@ -629,10 +629,10 @@ mivel a gradiens *a priori* kiszámítása lehetetlen.
 
 ## Megbeszélés
 
-Most már kaptál egy ízlelítőt az automatikus differenciálás erejéből.
+Most már kaptál egy ízelítőt az automatikus differenciálás erejéből.
 A deriváltak automatikus és hatékony kiszámítására szolgáló könyvtárak fejlesztése
 óriási termelékenységnövekedést hozott
-a deep learning szakemberei számára,
+a mélytanulási szakemberei számára,
 felszabadítva őket, hogy kevésbé unalmas feladatokra összpontosítsanak.
 Ezenkívül az autograd lehetővé teszi, hogy hatalmas modelleket tervezzünk,
 amelyeknél a kézzel történő gradienszámítás elfogadhatatlanul időigényes lenne.
@@ -656,7 +656,7 @@ Egyelőre próbáld megjegyezni ezeket az alapokat: (i) csatold a gradienseket a
 1. Legyen $f(x) = \sin(x)$. Rajzold fel $f$ és $f'$ deriváltjának grafikonját. Ne használd ki, hogy $f'(x) = \cos(x)$, hanem automatikus differenciálással kapd meg az eredményt.
 1. Legyen $f(x) = ((\log x^2) \cdot \sin x) + x^{-1}$. Írj fel egy függőségi gráfot, amely $x$-től $f(x)$-ig nyomkövet az eredményeken.
 1. A lánc-szabály segítségével számítsd ki a fent említett függvény $\frac{df}{dx}$ deriváltját, minden tagot elhelyezve a korábban felépített függőségi gráfon.
-1. A gráf és a közbenső derivált eredmények alapján számos lehetőséged van a gradiens kiszámítására. Értékeld az eredményt egyszer $x$-től $f$-ig haladva, majd egyszer $f$-től visszafelé $x$-ig. Az $x$-től $f$-ig vezető utat általában *előre irányú differenciálás*-nak, az $f$-től $x$-ig vezető utat pedig visszafelé irányú differenciálás-nak nevezzük.
+1. A gráf és a közbenső derivált eredmények alapján számos lehetőséged van a gradiens kiszámítására. Értékeld az eredményt egyszer $x$-től $f$-ig haladva, majd egyszer $f$-től visszafelé $x$-ig. Az $x$-től $f$-ig vezető utat általában *előre irányú differenciálás*-nak, az $f$-től $x$-ig vezető utat pedig visszafelé irányú differenciálásnak nevezzük.
 1. Mikor érdemes előre irányú, és mikor visszafelé irányú differenciálást használni? Tipp: vedd figyelembe a szükséges közbenső adatok mennyiségét, a lépések párhuzamosíthatóságát, valamint az érintett mátrixok és vektorok méretét.
 
 :begin_tab:`mxnet`

@@ -285,7 +285,7 @@ def loss(self, params, X, y, state):
 [**a modell tanításához 10 epokon keresztül.**]
 Megjegyezzük, hogy az epokszám (`max_epochs`),
 a minibatch mérete (`batch_size`),
-és a tanulási sebesség (`lr`)
+és a tanulási ráta (`lr`)
 mind beállítható hiperparaméterek.
 Ez azt jelenti, hogy bár ezek az értékek nem
 kerülnek megtanulásra az elsődleges tanítási ciklusban,
@@ -356,7 +356,7 @@ sokkal hatékonyabban implementálni ezt a modellt.
 1. Mindig jó ötlet a legvalószínűbb címkét visszaadni? Például megtennéd-e ezt orvosi diagnózisnál? Hogyan próbálnád megoldani ezt a problémát?
 1. Tegyük fel, hogy softmax regresszió segítségével akarjuk megjósolni a következő szót bizonyos jellemzők alapján. Milyen problémák adódhatnak egy nagy szókészletnél?
 1. Kísérletezz az e szakaszbeli kód hiperparamétereivel! Különösen:
-    1. Ábrázold, hogyan változik a validációs veszteség a tanulási sebesség változásával!
+    1. Ábrázold, hogyan változik a validációs veszteség a tanulási ráta változásával!
     1. Változik-e a validációs és a tanítási veszteség a minibatch méretének változásával? Mekkora vagy milyen kicsi kell legyen, mielőtt hatást tapasztalsz?
 
 

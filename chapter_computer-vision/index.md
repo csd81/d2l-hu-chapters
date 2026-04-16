@@ -8,8 +8,8 @@ Erre való tekintettel ez a fejezet a számítógépes látás területére öss
 
 :numref:`chap_cnn` és :numref:`chap_modern_cnn` fejezetekben különféle konvolúciós neurális hálózatokat tanulmányoztunk, amelyeket a számítógépes látásban széles körben alkalmaznak, és egyszerű képosztályozási feladatokon is kipróbáltuk őket.
 E fejezet elején két olyan módszert ismertetünk, amelyek javíthatják a modell általánosítóképességét: a *képaugmentációt* és a *finomhangolást*, és ezeket képosztályozásra is alkalmazzuk.
-Mivel a mély neurális hálózatok képesek a képeket többszintű reprezentációkban hatékonyan leírni, ezeket a rétegenkénti reprezentációkat sikerrel alkalmazták különféle számítógépes látási feladatokban, mint az *objektumfelismerés*, a *szemantikai szegmentáció* és a *stílusátvitel*.
-A számítógépes látásban alkalmazott rétegenkénti reprezentációk kulcsgondolatát követve először az objektumfelismerés fő összetevőivel és technikáival foglalkozunk. Ezután megmutatjuk, hogyan használhatók a *teljesen konvolúciós hálózatok* a képek szemantikai szegmentációjához. Majd ismertetjük, hogyan alkalmazhatók a stílusátviteli technikák képek előállítására – például a könyv borítójához hasonló képek generálásához.
+Mivel a mély neurális hálózatok képesek a képeket többszintű reprezentációkban hatékonyan leírni, ezeket a rétegenkénti reprezentációkat sikerrel alkalmazták különféle számítógépes látási feladatokban, mint az *objektumdetektálás*, a *szemantikai szegmentáció* és a *stílusátvitel*.
+A számítógépes látásban alkalmazott rétegenkénti reprezentációk kulcsgondolatát követve először az objektumdetektálás fő összetevőivel és technikáival foglalkozunk. Ezután megmutatjuk, hogyan használhatók a *teljesen konvolúciós hálózatok* a képek szemantikai szegmentációjához. Majd ismertetjük, hogyan alkalmazhatók a stílusátviteli technikák képek előállítására – például a könyv borítójához hasonló képek generálásához.
 A fejezet végén az itt és a korábbi fejezetekben tanultakat két népszerű számítógépes látási benchmark adathalmazon alkalmazzuk.
 
 ```toc

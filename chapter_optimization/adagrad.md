@@ -4,15 +4,15 @@
 Kezdjük ritkán előforduló jellemzőkkel rendelkező tanulási problémák vizsgálatával.
 
 
-## Ritka jellemzők és tanulási sebességek
+## Ritka jellemzők és tanulási ráták
 
-Képzeljük el, hogy egy nyelvi modellt tanítunk. A jó pontosság eléréséhez általában csökkenteni kell a tanulási sebességet a tanítás előrehaladtával, általában $\mathcal{O}(t^{-\frac{1}{2}})$ vagy ennél kisebb ütemben. Tekintsük most az olyan modell tanítását, amely ritka jellemzőkre épül, vagyis olyan jellemzőkre, amelyek csak ritkán fordulnak elő. Ez természetes nyelvben is elterjedt: például sokkal ritkábban találkozunk az *előkondicionálás* szóval, mint a *tanulás* szóval. Ez azonban más területeken is elterjedt, például a számítógépes hirdetésben és a személyre szabott kollaboratív szűrésben. Elvégre sok olyan dolog létezik, amely csak kevesek számára érdekes.
+Képzeljük el, hogy egy nyelvi modellt tanítunk. A jó pontosság eléréséhez általában csökkenteni kell a tanulási rátát a tanítás előrehaladtával, általában $\mathcal{O}(t^{-\frac{1}{2}})$ vagy ennél kisebb ütemben. Tekintsük most az olyan modell tanítását, amely ritka jellemzőkre épül, vagyis olyan jellemzőkre, amelyek csak ritkán fordulnak elő. Ez természetes nyelvben is elterjedt: például sokkal ritkábban találkozunk az *előkondicionálás* szóval, mint a *tanulás* szóval. Ez azonban más területeken is elterjedt, például a számítógépes hirdetésben és a személyre szabott kollaboratív szűrésben. Elvégre sok olyan dolog létezik, amely csak kevesek számára érdekes.
 
-A ritkán előforduló jellemzőkhöz tartozó paraméterek csak akkor kapnak értelmes frissítéseket, ha ezek a jellemzők ténylegesen megjelennek. A csökkenő tanulási sebesség esetén előfordulhat, hogy a gyakori jellemzőkhöz tartozó paraméterek viszonylag gyorsan konvergálnak optimális értékeikre, míg a ritkán előfordulók esetén még nem figyeltük meg őket elégszer ahhoz, hogy meghatározható legyen az optimális érték. Más szóval a tanulási sebesség vagy túl lassan csökken a gyakori jellemzőknél, vagy túl gyorsan a ritka jellemzőknél.
+A ritkán előforduló jellemzőkhöz tartozó paraméterek csak akkor kapnak értelmes frissítéseket, ha ezek a jellemzők ténylegesen megjelennek. A csökkenő tanulási ráta esetén előfordulhat, hogy a gyakori jellemzőkhöz tartozó paraméterek viszonylag gyorsan konvergálnak optimális értékeikre, míg a ritkán előfordulók esetén még nem figyeltük meg őket elégszer ahhoz, hogy meghatározható legyen az optimális érték. Más szóval a tanulási ráta vagy túl lassan csökken a gyakori jellemzőknél, vagy túl gyorsan a ritka jellemzőknél.
 
-A probléma kezelésére lehetséges trükk az egyes jellemzők megjelenéseinek megszámlálása, és ezt felhasználni a tanulási sebességek módosításakor. Vagyis $\eta = \frac{\eta_0}{\sqrt{t + c}}$ alakú tanulási sebesség helyett $\eta_i = \frac{\eta_0}{\sqrt{s(i, t) + c}}$-t alkalmazhatnánk. A $s(i, t)$ az $i$ jellemző nem-nulla megjelenéseinek száma a $t$ időpontig. Ez valójában könnyen implementálható, lényeges overhead nélkül. Azonban csődöt mond, ha nem feltételezünk ritkaságot, hanem olyan adatokkal van dolgunk, amelyeknél a gradiensek általában nagyon kicsik, és csak ritkán nagyok. Elvégre nem egyértelmű, hol lenne a határ egy megfigyelt és egy nem megfigyelt jellemző között.
+A probléma kezelésére lehetséges trükk az egyes jellemzők megjelenéseinek megszámlálása, és ezt felhasználni a tanulási ráták módosításakor. Vagyis $\eta = \frac{\eta_0}{\sqrt{t + c}}$ alakú tanulási ráta helyett $\eta_i = \frac{\eta_0}{\sqrt{s(i, t) + c}}$-t alkalmazhatnánk. A $s(i, t)$ az $i$ jellemző nem-nulla megjelenéseinek száma a $t$ időpontig. Ez valójában könnyen implementálható, lényeges overhead nélkül. Azonban csődöt mond, ha nem feltételezünk ritkaságot, hanem olyan adatokkal van dolgunk, amelyeknél a gradiensek általában nagyon kicsik, és csak ritkán nagyok. Elvégre nem egyértelmű, hol lenne a határ egy megfigyelt és egy nem megfigyelt jellemző között.
 
-Az Adagrad :citet:`Duchi.Hazan.Singer.2011` ezt úgy kezeli, hogy a meglehetősen durva $s(i, t)$ számlálót felváltja a korábban megfigyelt gradiensek négyzetösszegével. Konkrétan: $s(i, t+1) = s(i, t) + \left(\partial_i f(\mathbf{x})\right)^2$-t alkalmaz a tanulási sebesség módosítására. Ennek két előnye van: először nem kell dönteni, mikor elég nagy a gradiens. Másodszor, automatikusan skálázódik a gradiensek nagyságával. A rendszeresen nagy gradieneknek megfelelő koordinátákat lényegesen kisebbre skálázzák, míg mások kis gradienekkel sokkal enyhébb bánásmódban részesülnek. A gyakorlatban ez egy rendkívül hatékony optimalizálási eljárást eredményez számítógépes hirdetési és kapcsolódó problémáknál. De ez elrejt néhány további, az Adagradban rejlő előnyt, amelyeket az előkondicionálás kontextusában lehet a legjobban megérteni.
+Az Adagrad :citet:`Duchi.Hazan.Singer.2011` ezt úgy kezeli, hogy a meglehetősen durva $s(i, t)$ számlálót felváltja a korábban megfigyelt gradiensek négyzetösszegével. Konkrétan: $s(i, t+1) = s(i, t) + \left(\partial_i f(\mathbf{x})\right)^2$-t alkalmaz a tanulási ráta módosítására. Ennek két előnye van: először nem kell dönteni, mikor elég nagy a gradiens. Másodszor, automatikusan skálázódik a gradiensek nagyságával. A rendszeresen nagy gradieneknek megfelelő koordinátákat lényegesen kisebbre skálázzák, míg mások kis gradienekkel sokkal enyhébb bánásmódban részesülnek. A gyakorlatban ez egy rendkívül hatékony optimalizálási eljárást eredményez számítógépes hirdetési és kapcsolódó problémáknál. De ez elrejt néhány további, az Adagradban rejlő előnyt, amelyeket az előkondicionálás kontextusában lehet a legjobban megérteni.
 
 
 ## Előkondicionálás
@@ -55,15 +55,15 @@ $$\begin{aligned}
     \mathbf{w}_t & = \mathbf{w}_{t-1} - \frac{\eta}{\sqrt{\mathbf{s}_t + \epsilon}} \cdot \mathbf{g}_t.
 \end{aligned}$$
 
-A műveletek koordinátánként alkalmazandók. Vagyis $\mathbf{v}^2$ elemei $v_i^2$. Hasonlóan $\frac{1}{\sqrt{v}}$ elemei $\frac{1}{\sqrt{v_i}}$, $\mathbf{u} \cdot \mathbf{v}$ elemei $u_i v_i$. Mint korábban, $\eta$ a tanulási sebesség, $\epsilon$ egy additív konstans, amely biztosítja, hogy ne osszunk $0$-val. Végül $\mathbf{s}_0 = \mathbf{0}$-val inicializálunk.
+A műveletek koordinátánként alkalmazandók. Vagyis $\mathbf{v}^2$ elemei $v_i^2$. Hasonlóan $\frac{1}{\sqrt{v}}$ elemei $\frac{1}{\sqrt{v_i}}$, $\mathbf{u} \cdot \mathbf{v}$ elemei $u_i v_i$. Mint korábban, $\eta$ a tanulási ráta, $\epsilon$ egy additív konstans, amely biztosítja, hogy ne osszunk $0$-val. Végül $\mathbf{s}_0 = \mathbf{0}$-val inicializálunk.
 
-Ahogy a momentum eseténél, itt is szükség van egy kiegészítő változó nyilvántartására, ebben az esetben azért, hogy koordinátánként egyéni tanulási sebességet lehessen alkalmazni. Ez nem növeli jelentősen az Adagrad költségét az SGD-hez képest, egyszerűen azért, mert a fő költség általában az $l(y_t, f(\mathbf{x}_t, \mathbf{w}))$ és deriváltjának kiszámítása.
+Ahogy a momentum eseténél, itt is szükség van egy kiegészítő változó nyilvántartására, ebben az esetben azért, hogy koordinátánként egyéni tanulási rátát lehessen alkalmazni. Ez nem növeli jelentősen az Adagrad költségét az SGD-hez képest, egyszerűen azért, mert a fő költség általában az $l(y_t, f(\mathbf{x}_t, \mathbf{w}))$ és deriváltjának kiszámítása.
 
-Fontos megjegyezni, hogy a négyzetes gradiensek felhalmozása $\mathbf{s}_t$-ben azt jelenti, hogy $\mathbf{s}_t$ lényegében lineáris ütemben nő (a gyakorlatban kissé lassabban a lineárisnál, mivel a gradiensek kezdetben csökkennek). Ez $\mathcal{O}(t^{-\frac{1}{2}})$ tanulási sebességhez vezet, bár koordinátánként módosítva. Konvex problémák esetén ez teljesen megfelelő. A mélytanulásban azonban a tanulási sebességet lassabban is csökkenthetjük. Ez számos Adagrad-variánshoz vezetett, amelyeket a következő fejezetekben tárgyalunk. Egyelőre nézzük meg, hogyan viselkedik egy másodfokú konvex problémán. Ugyanazt a problémát alkalmazzuk, mint korábban:
+Fontos megjegyezni, hogy a négyzetes gradiensek felhalmozása $\mathbf{s}_t$-ben azt jelenti, hogy $\mathbf{s}_t$ lényegében lineáris ütemben nő (a gyakorlatban kissé lassabban a lineárisnál, mivel a gradiensek kezdetben csökkennek). Ez $\mathcal{O}(t^{-\frac{1}{2}})$ tanulási rátához vezet, bár koordinátánként módosítva. Konvex problémák esetén ez teljesen megfelelő. A mélytanulásban azonban a tanulási rátát lassabban is csökkenthetjük. Ez számos Adagrad-variánshoz vezetett, amelyeket a következő fejezetekben tárgyalunk. Egyelőre nézzük meg, hogyan viselkedik egy másodfokú konvex problémán. Ugyanazt a problémát alkalmazzuk, mint korábban:
 
 $$f(\mathbf{x}) = 0.1 x_1^2 + 2 x_2^2.$$
 
-Az Adagradet a korábban használt tanulási sebességgel implementáljuk, vagyis $\eta = 0.4$. Ahogy látható, a független változó iteratív trajektóriája simább. Azonban $\boldsymbol{s}_t$ kumulatív hatása miatt a tanulási sebesség folyamatosan csökken, így a független változó az iteráció késői szakaszaiban nem mozdul annyit.
+Az Adagradet a korábban használt tanulási rátával implementáljuk, vagyis $\eta = 0.4$. Ahogy látható, a független változó iteratív trajektóriája simább. Azonban $\boldsymbol{s}_t$ kumulatív hatása miatt a tanulási ráta folyamatosan csökken, így a független változó az iteráció késői szakaszaiban nem mozdul annyit.
 
 ```{.python .input}
 #@tab mxnet
@@ -108,7 +108,7 @@ eta = 0.4
 d2l.show_trace_2d(f_2d, d2l.train_2d(adagrad_2d))
 ```
 
-Ha a tanulási sebességet $2$-re növeljük, sokkal jobb viselkedést tapasztalunk. Ez már jelzi, hogy a tanulási sebesség csökkentése talán túl agresszív, még zaj-mentes esetben is, és biztosítani kell a paraméterek megfelelő konvergenciáját.
+Ha a tanulási rátát $2$-re növeljük, sokkal jobb viselkedést tapasztalunk. Ez már jelzi, hogy a tanulási ráta csökkentése talán túl agresszív, még zaj-mentes esetben is, és biztosítani kell a paraméterek megfelelő konvergenciáját.
 
 ```{.python .input}
 #@tab all
@@ -165,7 +165,7 @@ def adagrad(params, grads, states, hyperparams):
 ```
 
 A :numref:`sec_minibatch_sgd` szakaszban végzett kísérlethez képest
-nagyobb tanulási sebességet alkalmazunk a modell tanításához.
+nagyobb tanulási rátát alkalmazunk a modell tanításához.
 
 ```{.python .input}
 #@tab all
@@ -197,12 +197,12 @@ d2l.train_concise_ch11(trainer, {'learning_rate' : 0.1}, data_iter)
 
 ## Összefoglalás
 
-* Az Adagrad dinamikusan csökkenti a tanulási sebességet koordinátánként.
-* A gradiens nagyságát alkalmazza annak mértékeként, hogy milyen gyorsan érjük el a haladást – a nagy gradieneknek megfelelő koordinátákat kisebb tanulási sebességgel kompenzálja.
+* Az Adagrad dinamikusan csökkenti a tanulási rátát koordinátánként.
+* A gradiens nagyságát alkalmazza annak mértékeként, hogy milyen gyorsan érjük el a haladást – a nagy gradieneknek megfelelő koordinátákat kisebb tanulási rátával kompenzálja.
 * A pontos második derivált kiszámítása általában nem kivitelezhető a mélytanulásban memória- és számítási korlátok miatt. A gradiens hasznos közelítőként szolgálhat.
 * Ha az optimalizálási problémának meglehetősen egyenetlen szerkezete van, az Adagrad segíthet csökkenteni a torzítást.
-* Az Adagrad különösen hatékony ritka jellemzők esetén, ahol a tanulási sebességnek lassabban kell csökkenie a ritkán előforduló tagnál.
-* A mélytanulási problémáknál az Adagrad néha túl agresszívan csökkenti a tanulási sebességet. A mérséklési stratégiákat a :numref:`sec_adam` kontextusában tárgyaljuk.
+* Az Adagrad különösen hatékony ritka jellemzők esetén, ahol a tanulási rátának lassabban kell csökkenie a ritkán előforduló tagnál.
+* A mélytanulási problémáknál az Adagrad néha túl agresszívan csökkenti a tanulási rátát. A mérséklési stratégiákat a :numref:`sec_adam` kontextusában tárgyaljuk.
 
 ## Gyakorló feladatok
 
@@ -211,7 +211,7 @@ d2l.train_concise_ch11(trainer, {'learning_rate' : 0.1}, data_iter)
 1. Bizonyítsd be a [Gerschgorin-körök tételét](https://en.wikipedia.org/wiki/Gershgorin_circle_theorem), amely kimondja, hogy a $\mathbf{M}$ mátrix $\lambda_i$ sajátértékeire legalább egy $j$ választás esetén teljesül: $|\lambda_i - \mathbf{M}_{jj}| \leq \sum_{k \neq j} |\mathbf{M}_{jk}|$.
 1. Mit mond a Gerschgorin-tétel az átlósan előkondicionált $\textrm{diag}^{-\frac{1}{2}}(\mathbf{M}) \mathbf{M} \textrm{diag}^{-\frac{1}{2}}(\mathbf{M})$ mátrix sajátértékeiről?
 1. Próbáld ki az Adagradet egy megfelelő mély hálózaton, például a :numref:`sec_lenet` szakaszban a Fashion-MNIST adathalmazra alkalmazva.
-1. Hogyan kellene módosítani az Adagradet, hogy kevésbé agresszív tanulási sebesség csökkenést érjen el?
+1. Hogyan kellene módosítani az Adagradet, hogy kevésbé agresszív tanulási ráta csökkenést érjen el?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/355)

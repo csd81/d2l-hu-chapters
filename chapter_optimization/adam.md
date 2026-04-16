@@ -7,7 +7,7 @@ Az ebbe a szakaszba vezető tárgyalások során számos technikával találkozt
 * Láttuk, hogy a :numref:`sec_minibatch_sgd` szakasz a vektorizálásból eredő jelentős további hatékonyságot kínál, az egyik minibatchben nagyobb megfigyeléssorozatokat alkalmazva. Ez a kulcsa a hatékony multi-gépes, multi-GPU és összességében párhuzamos feldolgozásnak.
 * A :numref:`sec_momentum` szakasz hozzáadott egy mechanizmust a korábbi gradiensek előzményeinek összesítésére a konvergencia gyorsítása érdekében.
 * A :numref:`sec_adagrad` szakasz koordinátánkénti skálázást alkalmazott, hogy lehetővé tegye a számításilag hatékony előkondicionálást.
-* A :numref:`sec_rmsprop` szakasz szétválasztotta a koordinátánkénti skálázást a tanulási sebesség módosításától.
+* A :numref:`sec_rmsprop` szakasz szétválasztotta a koordinátánkénti skálázást a tanulási ráta módosításától.
 
 Az Adam :cite:`Kingma.Ba.2014` mindezeket a technikákat egyetlen hatékony tanulási algoritmusba foglalja. Ahogy várható, ez lett az egyik legnépszerűbb és legrobusztusabb optimalizálási algoritmus a mélytanulásban. Nem mentes a problémáktól sem: különösen :cite:`Reddi.Kale.Kumar.2019` megmutatja, hogy vannak olyan helyzetek, amikor az Adam divergálhat a rossz varianciaszabályozás miatt. Egy rákövetkező munkában :citet:`Zaheer.Reddi.Sachan.ea.2018` az Adam egy javított változatát javasolta Yogi néven, amely ezeket a problémákat kezeli. Erről bővebben később. Egyelőre tekintsük át az Adam algoritmust.
 
@@ -34,7 +34,7 @@ Most már minden összetevő rendelkezésre áll a frissítések kiszámításá
 
 $$\mathbf{x}_t \leftarrow \mathbf{x}_{t-1} - \mathbf{g}_t'.$$
 
-Az Adam tervezését áttekintve az ihlete egyértelmű. A momentum és a skálázás egyértelműen látható az állapotváltozókban. Furcsa definíciójuk arra kényszerít minket, hogy korrigáljuk a torzítást (ez kissé eltérő inicializálással és frissítési feltétellel is megoldható lenne). Másodszor, mindkét tag kombinálása meglehetősen egyszerű az RMSProp alapján. Végül az explicit $\eta$ tanulási sebesség lehetővé teszi a lépéshossz szabályozását a konvergencia problémáinak kezelésére.
+Az Adam tervezését áttekintve az ihlete egyértelmű. A momentum és a skálázás egyértelműen látható az állapotváltozókban. Furcsa definíciójuk arra kényszerít minket, hogy korrigáljuk a torzítást (ez kissé eltérő inicializálással és frissítési feltétellel is megoldható lenne). Másodszor, mindkét tag kombinálása meglehetősen egyszerű az RMSProp alapján. Végül az explicit $\eta$ tanulási ráta lehetővé teszi a lépéshossz szabályozását a konvergencia problémáinak kezelésére.
 
 ## Implementáció
 
@@ -112,7 +112,7 @@ def adam(params, grads, states, hyperparams):
                     / tf.math.sqrt(s_bias_corr) + eps)
 ```
 
-Készen állunk az Adam alkalmazására a modell tanításához. $\eta = 0.01$ tanulási sebességet alkalmazunk.
+Készen állunk az Adam alkalmazására a modell tanításához. $\eta = 0.01$ tanulási rátát alkalmazunk.
 
 ```{.python .input}
 #@tab all
@@ -219,9 +219,9 @@ d2l.train_ch11(yogi, init_adam_states(feature_dim),
 
 ## Gyakorló feladatok
 
-1. Módosítsd a tanulási sebességet, és figyeld meg és elemezd a kísérleti eredményeket!
+1. Módosítsd a tanulási rátát, és figyeld meg és elemezd a kísérleti eredményeket!
 1. Átírhatod-e a momentum és a második momentum frissítéseit úgy, hogy ne igényelje a torzításkorrekciót?
-1. Miért kell csökkenteni a $\eta$ tanulási sebességet, ahogy konvergálunk?
+1. Miért kell csökkenteni a $\eta$ tanulási rátát, ahogy konvergálunk?
 1. Próbálj meg olyan esetet konstruálni, amelyben az Adam divergál, de a Yogi konvergál!
 
 :begin_tab:`mxnet`

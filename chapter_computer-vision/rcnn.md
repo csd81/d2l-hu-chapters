@@ -1,7 +1,7 @@
 # Régióalapú konvolúciós neurális hálózatok (R-CNN)
 :label:`sec_rcnn`
 
-A :numref:`sec_ssd` fejezetben leírt egylépéses többdobozos felismerés mellett a régióalapú konvolúciós neurális hálózatok, más néven régiók CNN jellemzőkkel (R-CNN-ek) szintén az úttörő megközelítések közé tartoznak a deep learning objektumfelismerésre való alkalmazásában :cite:`Girshick.Donahue.Darrell.ea.2014`.
+A :numref:`sec_ssd` fejezetben leírt egylépéses többdobozos felismerés mellett a régióalapú konvolúciós neurális hálózatok, más néven régiók CNN jellemzőkkel (R-CNN-ek) szintén az úttörő megközelítések közé tartoznak a deep learning objektumdetektálásre való alkalmazásában :cite:`Girshick.Donahue.Darrell.ea.2014`.
 Ebben a fejezetben bemutatjuk az R-CNN-t és fejlesztéseinek sorozatát: a gyors R-CNN-t :cite:`Girshick.2015`, a gyorsabb R-CNN-t :cite:`Ren.He.Girshick.ea.2015` és a maszk R-CNN-t :cite:`He.Gkioxari.Dollar.ea.2017`.
 Helyhiány miatt csak ezeknek a modelleknek a tervezésére összpontosítunk.
 
@@ -11,7 +11,7 @@ Helyhiány miatt csak ezeknek a modelleknek a tervezésére összpontosítunk.
 
 
 Az *R-CNN* először sok (pl. 2000) *régiójavaslatot* von ki a bemeneti képből (pl. a horgonydobozok is tekinthetők régiójavaslatnak), felcímkézve osztályaikat és befoglaló téglalapjaikat (pl. eltolásaikat). :cite:`Girshick.Donahue.Darrell.ea.2014`
-Majd egy konvolúciós neurális hálózatot alkalmaznak az előre terjesztés elvégzésére minden egyes régiójavaslathoz annak jellemzőinek kinyeréséhez.
+Majd egy konvolúciós neurális hálózatot alkalmaznak az előreterjesztés elvégzésére minden egyes régiójavaslathoz annak jellemzőinek kinyeréséhez.
 Ezután minden régióajánlat jellemzőit a régióajánlat osztályának és befoglaló téglalapjának jóslásához alkalmazzák.
 
 
@@ -21,20 +21,20 @@ Ezután minden régióajánlat jellemzőit a régióajánlat osztályának és b
 A :numref:`fig_r-cnn` ábra bemutatja az R-CNN modellt. Konkrétabban az R-CNN a következő négy lépésből áll:
 
 1. *Szelektív keresés* elvégzése a bemeneti képen több, jó minőségű régióajánlat kinyeréséhez :cite:`Uijlings.Van-De-Sande.Gevers.ea.2013`. Ezeket a javasolt régiókat általában több léptéken választják ki, különböző alakokkal és méretekkel. Minden régióajánlatot egy osztállyal és egy valódi befoglaló téglalappal látnak el.
-1. Válasszunk egy előtanított konvolúciós neurális hálózatot, és csonkítsuk a kimeneti réteg előtt. Méretezzük át minden régióajánlatot a hálózat által igényelt bemeneti méretre, és az előre terjesztésen keresztül adjuk ki a régióajánlat kinyert jellemzőit.
+1. Válasszunk egy előtanított konvolúciós neurális hálózatot, és csonkítsuk a kimeneti réteg előtt. Méretezzük át minden régióajánlatot a hálózat által igényelt bemeneti méretre, és az előreterjesztésen keresztül adjuk ki a régióajánlat kinyert jellemzőit.
 1. Vegyük minden régióajánlat kinyert jellemzőit és felcímkézett osztályát példaként. Tanítsunk több támaszvektor-gépet az objektumok osztályozásához, ahol minden támaszvektor-gép külön-külön állapítja meg, hogy a példa tartalmaz-e egy adott osztályt.
 1. Vegyük minden régióajánlat kinyert jellemzőit és felcímkézett befoglaló téglalapját példaként. Tanítsunk egy lineáris regressziós modellt a valódi befoglaló téglalap jóslásához.
 
 
 Bár az R-CNN modell hatékonyan vonja ki a képjellemzőket az előtanított konvolúciós neurális hálózatok segítségével, lassú.
-Képzeljük el, hogy egyetlen bemeneti képből ezer régióajánlatot választunk ki: ehhez ezer konvolúciós neurális hálózat előre terjesztési lépésre van szükség az objektumfelismerés elvégzéséhez.
+Képzeljük el, hogy egyetlen bemeneti képből ezer régióajánlatot választunk ki: ehhez ezer konvolúciós neurális hálózat előreterjesztési lépésre van szükség az objektumdetektálás elvégzéséhez.
 Ez a hatalmas számítási terhelés kivitelezhetetlenné teszi az R-CNN-ek széleskörű valós alkalmazási felhasználását.
 
 ## Gyors R-CNN
 
-Az R-CNN fő teljesítménybeli szűk keresztmetszetje az egyes régióajánlatokhoz végzett független konvolúciós neurális hálózat előre terjesztésben rejlik, amely nem osztja meg a számításokat.
+Az R-CNN fő teljesítménybeli szűk keresztmetszetje az egyes régióajánlatokhoz végzett független konvolúciós neurális hálózat előreterjesztésben rejlik, amely nem osztja meg a számításokat.
 Mivel ezek a régiók általában átfednek, a független jellemzőkinyerés sok ismételt számítást eredményez.
-A *gyors R-CNN* egyik fő fejlesztése az R-CNN-hez képest az, hogy a konvolúciós neurális hálózat előre terjesztését csak az egész képen végzik el :cite:`Girshick.2015`.
+A *gyors R-CNN* egyik fő fejlesztése az R-CNN-hez képest az, hogy a konvolúciós neurális hálózat előreterjesztését csak az egész képen végzik el :cite:`Girshick.2015`.
 
 ![A gyors R-CNN modell.](../img/fast-rcnn.svg)
 :label:`fig_fast_r-cnn`
@@ -115,7 +115,7 @@ torchvision.ops.roi_pool(X, rois, output_size=(2, 2), spatial_scale=0.1)
 
 ## Gyorsabb R-CNN
 
-A pontosabb objektumfelismeréshez a gyors R-CNN modellnek általában sok régióajánlatot kell generálnia a szelektív keresésben.
+A pontosabb objektumdetektáláshoz a gyors R-CNN modellnek általában sok régióajánlatot kell generálnia a szelektív keresésben.
 A régióajánlatok pontosság veszteség nélküli csökkentéséhez a *gyorsabb R-CNN* azt javasolja, hogy a szelektív keresést egy *régióajánlati hálózattal* váltsák fel :cite:`Ren.He.Girshick.ea.2015`.
 
 
@@ -135,13 +135,13 @@ A régióajánlati hálózat a következő lépésekben működik:
 
 
 Érdemes megjegyezni, hogy a gyorsabb R-CNN modell részeként a régióajánlati hálózatot a modell többi részével közösen tanítják.
-Más szóval a gyorsabb R-CNN célfüggvénye nemcsak az osztály- és befoglaló téglalap-jóslást tartalmazza az objektumfelismerésben, hanem a horgonydobozok bináris osztályát és befoglaló téglalap-jóslását is a régióajánlati hálózatban.
-A végponttól végpontig tartó tanítás eredményeképpen a régióajánlati hálózat megtanulja, hogyan generáljon magas minőségű régióajánlatokat, hogy pontosan maradjon az objektumfelismerésben az adatokból tanult, csökkentett számú régióajánlattal.
+Más szóval a gyorsabb R-CNN célfüggvénye nemcsak az osztály- és befoglaló téglalap-jóslást tartalmazza az objektumdetektálásban, hanem a horgonydobozok bináris osztályát és befoglaló téglalap-jóslását is a régióajánlati hálózatban.
+A végponttól végpontig tartó tanítás eredményeképpen a régióajánlati hálózat megtanulja, hogyan generáljon magas minőségű régióajánlatokat, hogy pontosan maradjon az objektumdetektálásban az adatokból tanult, csökkentett számú régióajánlattal.
 
 
 ## Maszk R-CNN
 
-A tanítóadathalmazban, ha az objektumok pixelszintű pozícióit is felcímkézik a képeken, a *maszk R-CNN* hatékonyan ki tudja használni ezeket a részletes címkéket az objektumfelismerés pontosságának további javítására :cite:`He.Gkioxari.Dollar.ea.2017`.
+A tanítóadathalmazban, ha az objektumok pixelszintű pozícióit is felcímkézik a képeken, a *maszk R-CNN* hatékonyan ki tudja használni ezeket a részletes címkéket az objektumdetektálás pontosságának további javítására :cite:`He.Gkioxari.Dollar.ea.2017`.
 
 
 ![A maszk R-CNN modell.](../img/mask-rcnn.svg)
@@ -158,15 +158,15 @@ A teljesen konvolúciós hálózatok alkalmazásának részletei a kép pixelszi
 ## Összefoglalás
 
 
-* Az R-CNN sok régióajánlatot von ki a bemeneti képből, konvolúciós neurális hálózatot alkalmaz az előre terjesztés elvégzésére minden egyes régióajánlathoz annak jellemzőinek kinyeréséhez, majd ezeket a jellemzőket alkalmazza a régióajánlat osztályának és befoglaló téglalapjának jóslásához.
-* A gyors R-CNN egyik fő fejlesztése az R-CNN-hez képest az, hogy a konvolúciós neurális hálózat előre terjesztését csak az egész képen végzik. Bevezeti az érdeklődési régió pooling réteget is, hogy azonos alakú jellemzőket vonhassanak ki az eltérő alakú érdeklődési régiókból.
-* A gyorsabb R-CNN a gyors R-CNN-ben alkalmazott szelektív keresést közösen tanított régióajánlati hálózattal váltja fel, így az előbbi pontosan maradhat az objektumfelismerésben a csökkentett számú régióajánlattal.
-* A gyorsabb R-CNN alapján a maszk R-CNN egy teljesen konvolúciós hálózatot is bevezet, hogy kihasználja a pixelszintű címkéket az objektumfelismerés pontosságának további javítására.
+* Az R-CNN sok régióajánlatot von ki a bemeneti képből, konvolúciós neurális hálózatot alkalmaz az előreterjesztés elvégzésére minden egyes régióajánlathoz annak jellemzőinek kinyeréséhez, majd ezeket a jellemzőket alkalmazza a régióajánlat osztályának és befoglaló téglalapjának jóslásához.
+* A gyors R-CNN egyik fő fejlesztése az R-CNN-hez képest az, hogy a konvolúciós neurális hálózat előreterjesztését csak az egész képen végzik. Bevezeti az érdeklődési régió pooling réteget is, hogy azonos alakú jellemzőket vonhassanak ki az eltérő alakú érdeklődési régiókból.
+* A gyorsabb R-CNN a gyors R-CNN-ben alkalmazott szelektív keresést közösen tanított régióajánlati hálózattal váltja fel, így az előbbi pontosan maradhat az objektumdetektálásban a csökkentett számú régióajánlattal.
+* A gyorsabb R-CNN alapján a maszk R-CNN egy teljesen konvolúciós hálózatot is bevezet, hogy kihasználja a pixelszintű címkéket az objektumdetektálás pontosságának további javítására.
 
 
 ## Feladatok
 
-1. Fel lehet-e fogni az objektumfelismerést egyetlen regressziós problémának, például befoglaló téglalapok és osztályvalószínűségek jóslásával? A YOLO modell tervét veheted alapul :cite:`Redmon.Divvala.Girshick.ea.2016`.
+1. Fel lehet-e fogni az objektumdetektálást egyetlen regressziós problémának, például befoglaló téglalapok és osztályvalószínűségek jóslásával? A YOLO modell tervét veheted alapul :cite:`Redmon.Divvala.Girshick.ea.2016`.
 1. Hasonlítsd össze az egylépéses többdobozos felismerést az ebben a fejezetben bemutatott módszerekkel. Melyek a fő különbségeik? A :citet:`Zhao.Zheng.Xu.ea.2019` 2. ábrájára hivatkozhatsz.
 
 :begin_tab:`mxnet`
