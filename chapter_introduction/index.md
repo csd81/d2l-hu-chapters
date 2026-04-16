@@ -378,7 +378,7 @@ adathalmazt kapunk, amely jellemzőket és címkéket egyaránt tartalmaz, és
 arra kérnek bennünket, hogy készítsünk egy modellt, amely a címkéket
 jósolja meg a bemeneti jellemzők alapján. Minden jellemző--címke párt
 egy példának nevezünk. Néha, ha a szövegkörnyezet egyértelmű, a
-*példák* kifejezést használjuk a bemenetekre akkor is, ha a
+*példák* kifejezést a bemenetek gyűjteményére is használjuk akkor is, ha a
 hozzájuk tartozó címkék ismeretlenek. A felügyelet ott jelenik meg, hogy
 a paraméterek kiválasztásához mi
 (a felügyelők) címkézett példákból álló adathalmazt adunk a modellnek.
