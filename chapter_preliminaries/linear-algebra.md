@@ -37,7 +37,7 @@ import tensorflow as tf
 from jax import numpy as jnp
 ```
 
-## Skalárisok
+## Skalárok
 
 
 A mindennapos matematika nagy részét
@@ -176,7 +176,7 @@ x[2]
 
 Annak jelzésére, hogy egy vektor $n$ elemet tartalmaz,
 a $\mathbf{x} \in \mathbb{R}^n$ jelölést használjuk.
-Formálisan az $n$ értéket a vektor *dimenzionalitásának* nevezzük.
+Formálisan az $n$ értéket a vektor *dimenziószámának* nevezzük.
 [**Kódban ez a tenzor hosszának felel meg**],
 amely a Python beépített `len` függvényével érhető el.
 

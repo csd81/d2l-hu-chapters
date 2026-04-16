@@ -177,8 +177,8 @@ Egy rejtett réteggel rendelkező MLP esetén, amelynek rejtett rétege $h$ rejt
 $\mathbf{H} \in \mathbb{R}^{n \times h}$ jelöli a rejtett réteg kimeneteit,
 amelyeket *rejtett reprezentációknak* nevezzük.
 Mivel mind a rejtett, mind a kimeneti réteg teljesen összekötött,
-rejtett réteg súlyai $\mathbf{W}^{(1)} \in \mathbb{R}^{d \times h}$ és torzítása $\mathbf{b}^{(1)} \in \mathbb{R}^{1 \times h}$,
-kimeneti réteg súlyai $\mathbf{W}^{(2)} \in \mathbb{R}^{h \times q}$ és torzítása $\mathbf{b}^{(2)} \in \mathbb{R}^{1 \times q}$.
+rejtett réteg súlyai $\mathbf{W}^{(1)} \in \mathbb{R}^{d \times h}$ és eltolása $\mathbf{b}^{(1)} \in \mathbb{R}^{1 \times h}$,
+kimeneti réteg súlyai $\mathbf{W}^{(2)} \in \mathbb{R}^{h \times q}$ és eltolása $\mathbf{b}^{(2)} \in \mathbb{R}^{1 \times q}$.
 Ez lehetővé teszi, hogy az egy rejtett rétegű MLP $\mathbf{O} \in \mathbb{R}^{n \times q}$ kimeneteit
 a következőképpen számítsuk ki:
 
@@ -345,7 +345,7 @@ Ezekben az esetekben alapértelmezetten a bal oldali
 deriváltat használjuk, és azt mondjuk, hogy a derivált 0, amikor a bemenet 0.
 Megtehetjük ezt, mert
 a bemenet a valóságban soha nem lesz pontosan nulla (a matematikusok azt mondanák,
-hogy nulla mértékű halmazon nem differenciálható).
+hogy nullmértékű halmazon nem differenciálható).
 Van egy régi mondás, hogy ha a finom határfeltételek számítanak,
 valószínűleg (*valódi*) matematikát végzünk, nem mérnöki munkát.
 Ez a konvencionális bölcsesség itt is érvényes lehet, vagy legalábbis az a tény,
@@ -399,7 +399,7 @@ $$\operatorname{pReLU}(x) = \max(0, x) + \alpha \min(0, x).$$
 amelyek értékei a $\mathbb{R}$ tartományban vannak,
 (**a (0, 1) intervallumon lévő kimenetekké.**)
 Ezért a sigmoidt
-gyakran *összenyomó függvénynek* nevezik:
+gyakran *értékkészletet szűkítő függvénynek* nevezik:
 az (−inf, inf) tartomány bármely bemenetét
 a (0, 1) tartomány valamelyik értékére nyomja össze:
 
@@ -407,7 +407,7 @@ $$\operatorname{sigmoid}(x) = \frac{1}{1 + \exp(-x)}.$$
 
 A korai neurális hálózatokban a kutatók
 biológiai neuronok modellezésével foglalkoztak,
-amelyek vagy *tüzelnek*, vagy *nem tüzelnek*.
+amelyek vagy *kisülnek*, vagy *nem*.
 Ezért ennek a területnek az úttörői,
 egészen McCulloch és Pittsig,
 a mesterséges neuron feltalálóiig visszamenőleg,
