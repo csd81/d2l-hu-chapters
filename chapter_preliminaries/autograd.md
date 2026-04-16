@@ -40,7 +40,7 @@ egy 1980-as PhD-dolgozathoz köthetők :cite:`Speelpenning.1980`,
 Bár a visszaterjesztés mára az alapértelmezett módszerré vált
 a gradiensek kiszámítására, nem ez az egyetlen lehetőség.
 Például a Julia programozási nyelv
-előreterjesztést (forward propagation) alkalmaz :cite:`Revels.Lubin.Papamarkou.2016`.
+előreterjesztést (előreterjesztés) alkalmaz :cite:`Revels.Lubin.Papamarkou.2016`.
 Mielőtt megvizsgálnánk a módszereket,
 először sajátítsuk el az autograd csomagot.
 

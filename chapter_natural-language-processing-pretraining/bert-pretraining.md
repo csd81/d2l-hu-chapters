@@ -34,7 +34,7 @@ train_iter, vocab = d2l.load_data_wiki(batch_size, max_len)
 ## A BERT előtanítása
 
 Az eredeti BERT-nek két, eltérő modellméretű változata létezik :cite:`Devlin.Chang.Lee.ea.2018`.
-Az alap modell ($\textrm{BERT}_{\textrm{BASE}}$) 12 réteget (transformer enkóder blokkot) használ
+Az alap modell ($\textrm{BERT}_{\textrm{BASE}}$) 12 réteget (transformer kódoló blokkot) használ
 768 rejtett egységgel (rejtett méret) és 12 önfigyelmi fejjel.
 A nagy modell ($\textrm{BERT}_{\textrm{LARGE}}$) 24 réteget használ
 1024 rejtett egységgel és 16 önfigyelmi fejjel.

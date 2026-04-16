@@ -26,32 +26,41 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 DENYLIST: list[tuple[str, str, int]] = [
     # Optimization
-    (r"gradiens ereszkedés",          "gradienscsökkenés",              re.I),
-    (r"gradient descent",             "gradienscsökkenés",              re.I),
-    (r"tanulási sebesség",            "tanulási ráta",                  re.I),
-    # Attention
-    (r"figyelem mechanizmus",         "figyelemmechanizmus",            re.I),
-    (r"figyelmi mechanizmus",         "figyelemmechanizmus",            re.I),
+    (r"gradiens ereszkedés",             "gradienscsökkenés",                   re.I),
+    (r"gradient descent",                "gradienscsökkenés",                   re.I),
+    (r"gradiens módszer",                "gradienscsökkenés",                   re.I),
+    (r"sztochasztikus gradiens módszer", "sztochasztikus gradienscsökkenés",    re.I),
+    (r"sztochasztikus gradiens descent", "sztochasztikus gradienscsökkenés",    re.I),
+    (r"tanulási sebesség",               "tanulási ráta",                       re.I),
+    (r"learning rate",                   "tanulási ráta",                       re.I),
+    (r"batch size",                      "batch méret",                         re.I),
+    # Attention / Transformer
+    (r"figyelem mechanizmus",            "figyelemmechanizmus",                 re.I),
+    (r"figyelmi mechanizmus",            "figyelemmechanizmus",                 re.I),
+    (r"Transzformer",                    "Transformer",                         0),
+    (r"enkóder",                         "kódoló",                              re.I),
+    (r"dekóder",                         "dekódoló",                            re.I),
     # Datasets
-    (r"tanítási halmaz",              "tanítóhalmaz",                   re.I),
-    (r"tanítókészlet",                "tanítóhalmaz",                   re.I),
-    (r"tesztkészlet",                 "teszthalmaz",                    re.I),
-    (r"tesztelési halmaz",            "teszthalmaz",                    re.I),
-    (r"érvényesítési halmaz",         "validációs halmaz",              re.I),
-    (r"érvényesítési készlet",        "validációs halmaz",              re.I),
+    (r"tanítási halmaz",                 "tanítóhalmaz",                        re.I),
+    (r"tanítókészlet",                   "tanítóhalmaz",                        re.I),
+    (r"tesztkészlet",                    "teszthalmaz",                         re.I),
+    (r"tesztelési halmaz",               "teszthalmaz",                         re.I),
+    (r"tesztelési készlet",              "teszthalmaz",                         re.I),
+    (r"érvényesítési halmaz",            "validációs halmaz",                   re.I),
+    (r"érvényesítési készlet",           "validációs halmaz",                   re.I),
     # Neural network / architecture
-    (r"minibatch(?![-‑]sgd)",         "mini-batch",                     re.I),
-    (r"batch normalizáció",           "batchnormalizáció",              re.I),
-    (r"batch norm\b",                 "batchnormalizáció",              re.I),
-    (r"\bbackpropagation\b",          "visszaterjesztés",               re.I),
-    (r"előre-terjedés",               "előreterjesztés",                re.I),
-    (r"előre irányú terjesztés",      "előreterjesztés",                re.I),
-    (r"Transzformer",                 "Transformer",                    0),
-    (r"objektumfelismerés",           "objektumdetektálás",             re.I),
-    # Gradient-descent family
-    (r"sztochasztikus gradiens descent", "sztochasztikus gradienscsökkenés", re.I),
-    # Bias context confusion
-    (r"gradiens ereszkedés",          "gradienscsökkenés",              re.I),
+    (r"minibatch(?![-\u2011]sgd)",       "mini-batch",                          re.I),
+    (r"batch normalizálás",              "batchnormalizáció",                   re.I),
+    (r"batch normalizáció",              "batchnormalizáció",                   re.I),
+    (r"batch norm\b",                    "batchnormalizáció",                   re.I),
+    (r"\bbackpropagation\b",             "visszaterjesztés",                    re.I),
+    (r"visszafelé irányú terjesztés",    "visszaterjesztés",                    re.I),
+    (r"előre-terjedés",                  "előreterjesztés",                     re.I),
+    (r"előre irányú terjesztés",         "előreterjesztés",                     re.I),
+    (r"előrepasszolás",                  "előreterjesztés",                     re.I),
+    (r"előre irányú menet",              "előremenet",                          re.I),
+    (r"forward propagation",             "előreterjesztés",                     re.I),
+    (r"objektumfelismerés",              "objektumdetektálás",                  re.I),
 ]
 
 # Patterns that are always OK regardless of context (suppress false positives)

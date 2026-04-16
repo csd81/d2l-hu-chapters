@@ -36,9 +36,9 @@ a Transformereket széles körben előtanították gazdag szöveges anyaggal.
 Eredetileg gépi fordításra javasolták,
 a :numref:`fig_transformer`-ben látható Transformer architektúra
 bemeneti szekvenciák reprezentálására szolgáló kódolóból
-és cél szekvenciák generálására szolgáló dekóderből áll.
+és cél szekvenciák generálására szolgáló dekódolóből áll.
 Elsődlegesen a Transformerek három különböző módban használhatók:
-*csupán kódoló*, *kódoló-dekóder*, és *csupán dekóder*.
+*csupán kódoló*, *kódoló-dekódoló*, és *csupán dekódoló*.
 A fejezet befejezéseként áttekintjük ezt a három módot
 és elmagyarázzuk a Transformerek előtanításának skálázhatóságát.
 
@@ -126,30 +126,30 @@ a DistilBERT (könnyűsúlyú, tudásdesztilláció révén) :cite:`sanh2019dist
 Emellett a BERT inspirálta a Transformer előtanítást a számítógépes látásban is,
 például látási Transformerekkel :cite:`Dosovitskiy.Beyer.Kolesnikov.ea.2021`,
 Swin Transformerekkel :cite:`liu2021swin`,
-és MAE-vel (maszkolt autoenkóderek) :cite:`he2022masked`.
+és MAE-vel (maszkolt autokódolóek) :cite:`he2022masked`.
 
-## Kódoló–Dekóder
+## Kódoló–dekódoló
 
 Mivel egy Transformer kódoló a bemeneti tokenek sorozatát
 azonos számú kimeneti reprezentációvá alakítja,
 a csupán kódolós mód nem képes tetszőleges hosszúságú sorozatot generálni,
 mint ahogy azt a gépi fordítás megkívánja.
 Ahogy eredetileg gépi fordításra javasolták,
-a Transformer architektúra kiegészíthető egy dekóderrel,
+a Transformer architektúra kiegészíthető egy dekódolórel,
 amely autoregresszív módon, tokenenként, tetszőleges hosszúságú
-célszekvenciát jósol meg a kódoló és a dekóder kimenetétől feltételesen:
-(i) a kódoló kimenetétől való feltételezéshez a kódoló–dekóder keresztfigyelelem
-(a dekóder többfejű figyelme a :numref:`fig_transformer`-ben)
+célszekvenciát jósol meg a kódoló és a dekódoló kimenetétől feltételesen:
+(i) a kódoló kimenetétől való feltételezéshez a kódoló–dekódoló keresztfigyelelem
+(a dekódoló többfejű figyelme a :numref:`fig_transformer`-ben)
 lehetővé teszi, hogy a cél tokenek *összes* bemeneti tokenre figyeljenek;
-(ii) a dekóder kimenetétől való feltételezés egy úgynevezett *kauzális* figyelem
+(ii) a dekódoló kimenetétől való feltételezés egy úgynevezett *kauzális* figyelem
 (ez az elnevezés elterjedt az irodalomban, de félrevezető,
 mivel kevés köze van az okozatiság tényleges tanulmányozásához)
-mintával valósul meg (a dekóder maszkolt többfejű figyelme a :numref:`fig_transformer`-ben),
+mintával valósul meg (a dekódoló maszkolt többfejű figyelme a :numref:`fig_transformer`-ben),
 ahol bármely cél token csak a célszekvencia *múltbeli* és *jelenlegi* tokenjeire figyelhet.
 
-A kódoló–dekóder Transformerek emberek által felcímkézett gépi fordítási adatokon
+A kódoló–dekódoló Transformerek emberek által felcímkézett gépi fordítási adatokon
 túli előtanításához a BART :cite:`lewis2019bart` és a T5 :cite:`raffel2020exploring`
-két párhuzamosan javasolt kódoló–dekóder Transformer,
+két párhuzamosan javasolt kódoló–dekódoló Transformer,
 amelyeket nagy méretű szövegkorpuszokon tanítottak elő.
 Mindkettő az eredeti szöveg rekonstruálására törekszik az előtanítási célokban,
 miközben az előbbi a bemenet zajosítását hangsúlyozza
@@ -161,19 +161,19 @@ az utóbbi pedig a többfeladatos egységesítést emeli ki
 ### A T5 Előtanítása
 
 
-Az előtanított Transformer kódoló–dekóder példájaként
+Az előtanított Transformer kódoló–dekódoló példájaként
 a T5 (Text-to-Text Transfer Transformer)
 sok feladatot ugyanolyan szöveg-szöveg problémává egységesít:
 bármely feladatnál a kódoló bemenete egy feladatleírás
 (pl. "Summarize", ":"), amelyet feladatbemenet követ
 (pl. egy cikkből származó tokensorozat),
-a dekóder pedig a feladatkimenetet jósolja meg
+a dekódoló pedig a feladatkimenetet jósolja meg
 (pl. a bemeneti cikket összefoglaló tokensorozat).
 Szöveg-szöveg teljesítményhez a T5-t arra tanítják,
 hogy bizonyos cél szöveget generáljon bemeneti szövegtől feltételesen.
 
 
-![Bal: A T5 előtanítása egymást követő szakaszok előrejelzésével. Az eredeti mondat: "I", "love", "this", "red", "car", ahol a "love"-t egy speciális "&lt;X&gt;" token, az egymást követő "red", "car" szavakat pedig egy speciális "&lt;Y&gt;" token helyettesíti. A célszekvencia egy speciális "&lt;Z&gt;" tokennel végződik. Jobb: Figyelemi minta a Transformer kódoló–dekóderben. A kódoló önfigyelemben (alsó négyzet) az összes bemeneti token egymásra figyel; a kódoló–dekóder keresztfigyelemben (felső téglalap) minden cél token az összes bemeneti tokenre figyel; a dekóder önfigyelemben (felső háromszög) minden cél token csak a jelenlegi és múltbeli cél tokenekre figyel (kauzális).](../img/t5-encoder-decoder.svg)
+![Bal: A T5 előtanítása egymást követő szakaszok előrejelzésével. Az eredeti mondat: "I", "love", "this", "red", "car", ahol a "love"-t egy speciális "&lt;X&gt;" token, az egymást követő "red", "car" szavakat pedig egy speciális "&lt;Y&gt;" token helyettesíti. A célszekvencia egy speciális "&lt;Z&gt;" tokennel végződik. Jobb: Figyelemi minta a Transformer kódoló–dekódolóben. A kódoló önfigyelemben (alsó négyzet) az összes bemeneti token egymásra figyel; a kódoló–dekódoló keresztfigyelemben (felső téglalap) minden cél token az összes bemeneti tokenre figyel; a dekódoló önfigyelemben (felső háromszög) minden cél token csak a jelenlegi és múltbeli cél tokenekre figyel (kauzális).](../img/t5-encoder-decoder.svg)
 :label:`fig_t5-encoder-decoder`
 
 Hogy bármely eredeti szövegből bemenetet és kimenetet kapjon,
@@ -191,7 +191,7 @@ a célszekvencia pedig:
 "&lt;X&gt;", "love", "&lt;Y&gt;", "red", "car", "&lt;Z&gt;",
 ahol "&lt;Z&gt;" egy másik speciális token, amely a végét jelöli.
 Ahogy a :numref:`fig_t5-encoder-decoder` mutatja,
-a dekóder kauzális figyelemi mintával rendelkezik, amely megakadályozza,
+a dekódoló kauzális figyelemi mintával rendelkezik, amely megakadályozza,
 hogy jövőbeli tokenekre figyeljen a szekvencia-előrejelzés során.
 
 A T5-ben az egymást követő szakaszok előrejelzése
@@ -208,7 +208,7 @@ feladatspecifikus tanítási adatokon az adott feladat elvégzéséhez.
 A BERT finomhangolásától való fő különbségek:
 (i) a T5 bemenete tartalmaz feladatleírásokat;
 (ii) a T5 tetszőleges hosszúságú sorozatokat tud generálni
-Transformer dekóderével;
+Transformer dekódolóével;
 (iii) nem szükségesek további rétegek.
 
 ![A T5 finomhangolása szövegösszefoglaláshoz. Mind a feladatleírás, mind a cikk tokenjei a Transformer kódolóba kerülnek az összefoglalás előrejelzéséhez.](../img/t5-finetune-summarization.svg)
@@ -240,15 +240,15 @@ képes szöveget reprezentálni finomhangolás nélkül is.
 :label:`fig_imagen`
 
 
-## Csak Dekóder
+## Csak dekódoló
 
 
-Áttekintettük a csupán kódolós és a kódoló–dekóder Transformereket.
-Alternatívaként a csupán dekóderes Transformerek
-az eredeti kódoló–dekóder architektúrából
+Áttekintettük a csupán kódolós és a kódoló–dekódoló Transformereket.
+Alternatívaként a csupán dekódolóes Transformerek
+az eredeti kódoló–dekódoló architektúrából
 (:numref:`fig_transformer`)
-eltávolítják a teljes kódolót és a kódoló–dekóder keresztfigyelemmel rendelkező dekóder alréteget.
-Napjainkban a csupán dekóderes Transformerek váltak a *de facto* architektúrává
+eltávolítják a teljes kódolót és a kódoló–dekódoló keresztfigyelemmel rendelkező dekódoló alréteget.
+Napjainkban a csupán dekódolóes Transformerek váltak a *de facto* architektúrává
 a nagy méretű nyelvi modellezésben (:numref:`sec_language-model`),
 amely önfelügyelt tanulással hasznosítja a világ gazdag, felcímkézetlen szövegkorpuszait.
 
@@ -258,10 +258,10 @@ amely önfelügyelt tanulással hasznosítja a világ gazdag, felcímkézetlen s
 
 Nyelvi modellezést alkalmazva tanítási célként,
 a GPT (generatív előtanítás) modell
-Transformer dekódert választ
+Transformer dekódolót választ
 gerincként :cite:`Radford.Narasimhan.Salimans.ea.2018`.
 
-![Bal: A GPT előtanítása nyelvi modellezéssel. A célszekvencia egy tokennel eltolt bemeneti szekvencia. A "&lt;bos&gt;" és "&lt;eos&gt;" speciális tokenek jelölik a szekvenciák elejét és végét. Jobb: Figyelemi minta a Transformer dekóderben. A függőleges tengely mentén lévő minden token csak a vízszintes tengely mentén lévő múltbeli tokenjeire figyel (kauzális).](../img/gpt-decoder-only.svg)
+![Bal: A GPT előtanítása nyelvi modellezéssel. A célszekvencia egy tokennel eltolt bemeneti szekvencia. A "&lt;bos&gt;" és "&lt;eos&gt;" speciális tokenek jelölik a szekvenciák elejét és végét. Jobb: Figyelemi minta a Transformer dekódolóben. A függőleges tengely mentén lévő minden token csak a vízszintes tengely mentén lévő múltbeli tokenjeire figyel (kauzális).](../img/gpt-decoder-only.svg)
 :label:`fig_gpt-decoder-only`
 
 A :numref:`subsec_partitioning-seqs`-ban leírt
@@ -269,16 +269,16 @@ autoregresszív nyelvi modell tanítást követve,
 a :numref:`fig_gpt-decoder-only` szemlélteti
 a GPT előtanítását Transformer kódolóval,
 ahol a célszekvencia egy tokennel eltolt bemeneti szekvencia.
-Megjegyzendő, hogy a Transformer dekóder figyelemi mintája
+Megjegyzendő, hogy a Transformer dekódoló figyelemi mintája
 kikényszeríti, hogy minden token csak a múltbeli tokenjeire figyeljen
 (a jövőbeli tokenekre nem lehet figyelni, mert azok még nem lettek kiválasztva).
 
 
 A GPT 100 millió paraméterrel rendelkezik, és finomhangolásra szorul
 az egyes alárendelt feladatokhoz.
-Egy sokkal nagyobb Transformer-dekóderes nyelvi modell,
+Egy sokkal nagyobb Transformer-dekódolóes nyelvi modell,
 a GPT-2, egy évvel később jelent meg :cite:`Radford.Wu.Child.ea.2019`.
-A GPT eredeti Transformer dekóderével összehasonlítva előnormalizálást
+A GPT eredeti Transformer dekódolóével összehasonlítva előnormalizálást
 (:numref:`subsec_vit-encoder`-ben tárgyalva)
 és továbbfejlesztett inicializálást és súlyméretre-skálázást alkalmaztak a GPT-2-ben.
 A 40 GB szövegen előtanított, 1,5 milliárd paraméteres
@@ -295,7 +295,7 @@ Ez számítási szempontból hatékonyabb, mint a finomhangolás,
 amely gradiens-számítással végzett modellfrissítéseket igényel.
 
 
-![Zero-shot, one-shot, few-shot kontextusbeli tanulás nyelvi modellekkel (Transformer dekóderek). Nincs szükség paraméterfrissítésre.](../img/gpt-3-xshot.svg)
+![Zero-shot, one-shot, few-shot kontextusbeli tanulás nyelvi modellekkel (Transformer dekódolóek). Nincs szükség paraméterfrissítésre.](../img/gpt-3-xshot.svg)
 :label:`fig_gpt-3-xshot`
 
 Mielőtt elmagyaráznánk a nyelvi modellek paraméterfrissítés nélküli,
@@ -320,7 +320,7 @@ amikor nincs, egy vagy néhány feladatspecifikus bemenet–kimenet példa áll 
 Ezt a három beállítást a GPT-3-ban tesztelték :cite:`brown2020language`,
 amelynek legnagyobb változata körülbelül két nagyságrenddel nagyobb
 adatot és modellméretet használ, mint a GPT-2.
-A GPT-3 ugyanazt a Transformer dekóder architektúrát alkalmazza,
+A GPT-3 ugyanazt a Transformer dekódoló architektúrát alkalmazza,
 mint közvetlen elődje, a GPT-2,
 azzal a különbséggel, hogy a figyelemi minták
 (:numref:`fig_gpt-decoder-only` jobb oldala)
@@ -379,10 +379,10 @@ A :citet:`kaplan2020scaling`-ban leírt empirikus skálázási viselkedéseket a
 ## Nagy Nyelvi Modellek
 
 A Transformerek skálázhatósága a GPT-sorozatban inspirálta a rákövetkező nagy nyelvi modelleket.
-A GPT-2 Transformer dekódert a 270 milliárd tanítási tokennel rendelkező 530 milliárd paraméteres Megatron-Turing NLG tanítására használták :cite:`smith2022using`. A GPT-2 tervezetét követve a 300 milliárd tokennel előtanított, 280 milliárd paraméteres Gopher :cite:`rae2021scaling` versenyképesen teljesített különböző feladatokon.
+A GPT-2 Transformer dekódolót a 270 milliárd tanítási tokennel rendelkező 530 milliárd paraméteres Megatron-Turing NLG tanítására használták :cite:`smith2022using`. A GPT-2 tervezetét követve a 300 milliárd tokennel előtanított, 280 milliárd paraméteres Gopher :cite:`rae2021scaling` versenyképesen teljesített különböző feladatokon.
 A Gopher azonos architektúráját örökölve és ugyanakkora számítási keretet felhasználva a Chinchilla :cite:`hoffmann2022training` egy lényegesen kisebb (70 milliárd paraméteres) modell, amely sokkal tovább tanul (1,4 trillió tanítási token), felülmúlja a Gophert sok feladaton, és nagyobb hangsúlyt fektet a tokenek számára, mint a paraméterek számára.
 A nyelvi modellezés skálázási vonalának folytatásaként
-a PaLM (Pathway Language Model) :cite:`chowdhery2022palm`, egy módosított tervezetű, 780 milliárd tokennel előtanított 540 milliárd paraméteres Transformer dekóder, felülmúlta az átlagos emberi teljesítményt a BIG-Bench benchmarkon :cite:`srivastava2022beyond`. Későbbi változata, a PaLM 2 :cite:`anil2023palm`, az adatokat és a modellt nagyjából 1:1 arányban skálázta, és javította a többnyelvű és érvelési képességeket.
+a PaLM (Pathway Language Model) :cite:`chowdhery2022palm`, egy módosított tervezetű, 780 milliárd tokennel előtanított 540 milliárd paraméteres Transformer dekódoló, felülmúlta az átlagos emberi teljesítményt a BIG-Bench benchmarkon :cite:`srivastava2022beyond`. Későbbi változata, a PaLM 2 :cite:`anil2023palm`, az adatokat és a modellt nagyjából 1:1 arányban skálázta, és javította a többnyelvű és érvelési képességeket.
 Más nagy nyelvi modellek, mint a Minerva :cite:`lewkowycz2022solving`, amely egy általános modellt (PaLM) tanít tovább, és a Galactica :cite:`taylor2022galactica`, amely nem általános korpuszon van tanítva, ígéretes kvantitatív és tudományos érvelési képességeket mutattak.
 
 
@@ -434,7 +434,7 @@ a nyelvi modellek magasabb pontossággal képesek multimodális gondolatlánc-é
 
 ## Összefoglalás és Megvitatás
 
-A Transformereket csupán kódolóként (pl. BERT), kódoló–dekóderként (pl. T5) és csupán dekóderként (pl. GPT-sorozat) tanítottak elő. Az előtanított modellek adaptálhatók különböző feladatok elvégzésére modellfrissítéssel (pl. finomhangolás) vagy anélkül (pl. few-shot). A Transformerek skálázhatósága azt sugallja, hogy a jobb teljesítmény nagyobb modellekből, több tanítási adatból és több tanítási számítási kapacitásból profitál. Mivel a Transformereket eredetileg szöveges adatokra tervezték és tanítottak elő, ez a fejezet kissé a természetes nyelvfeldolgozás felé hajlik. Mindazonáltal a fent tárgyalt modellek gyakran megtalálhatók a legújabb, több modalitást lefedő modellekben. Például:
+A Transformereket csupán kódolóként (pl. BERT), kódoló–dekódolóként (pl. T5) és csupán dekódolóként (pl. GPT-sorozat) tanítottak elő. Az előtanított modellek adaptálhatók különböző feladatok elvégzésére modellfrissítéssel (pl. finomhangolás) vagy anélkül (pl. few-shot). A Transformerek skálázhatósága azt sugallja, hogy a jobb teljesítmény nagyobb modellekből, több tanítási adatból és több tanítási számítási kapacitásból profitál. Mivel a Transformereket eredetileg szöveges adatokra tervezték és tanítottak elő, ez a fejezet kissé a természetes nyelvfeldolgozás felé hajlik. Mindazonáltal a fent tárgyalt modellek gyakran megtalálhatók a legújabb, több modalitást lefedő modellekben. Például:
 (i) a Chinchilla :cite:`hoffmann2022training` tovább bővült Flamingóvá :cite:`alayrac2022flamingo`, amely egy vizuális nyelvi modell few-shot tanuláshoz;
 (ii) a GPT-2 :cite:`Radford.Wu.Child.ea.2019` és a látási Transformer szöveget és képeket kódol a CLIP-ben (Contrastive Language-Image Pre-training) :cite:`radford2021learning`, amelynek kép- és szövegembedingjeit később a DALL-E 2 szöveg-képpé alakító rendszerben alkalmazták :cite:`ramesh2022hierarchical`. Bár a Transformer skálázhatóságáról multimodális előtanítás terén még nem készültek szisztematikus vizsgálatok, egy Parti nevű, teljes egészében Transformer alapú szöveg-képpé alakító modell :cite:`yu2022scaling` skálázhatósági potenciált mutat a különböző modalitások között:
 a nagyobb Parti képesebb nagy hűségű képgenerálásra és tartalomgazdag szövegmegértésre (:numref:`fig_parti`).
@@ -452,7 +452,7 @@ a nagyobb Parti képesebb nagy hűségű képgenerálásra és tartalomgazdag sz
 1. Lehetséges-e a T5 finomhangolása különböző feladatokból álló mini-batch segítségével? Miért igen vagy miért nem? Mi a helyzet a GPT-2 esetében?
 1. Egy hatékony nyelvi modell adottságával milyen alkalmazásokra gondolhat?
 1. Tegyük fel, hogy megkérnek egy nyelvi modell finomhangolására szövegosztályozás elvégzéséhez további rétegek hozzáadásával. Hová adnád hozzá őket? Miért?
-1. Vegyük figyelembe a szekvencia-szekvencia problémákat (pl. gépi fordítás), ahol a bemeneti szekvencia mindig elérhető a célszekvencia előrejelzése során. Milyen korlátai lehetnek a csupán dekóderes Transformerekkel való modellezésnek? Miért?
+1. Vegyük figyelembe a szekvencia-szekvencia problémákat (pl. gépi fordítás), ahol a bemeneti szekvencia mindig elérhető a célszekvencia előrejelzése során. Milyen korlátai lehetnek a csupán dekódolóes Transformerekkel való modellezésnek? Miért?
 
 
 [Discussions](https://discuss.d2l.ai/t/9232)

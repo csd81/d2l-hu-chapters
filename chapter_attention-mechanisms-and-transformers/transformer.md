@@ -253,16 +253,16 @@ azonnal rétegnormalizálás követ.
 Mindkettő kulcsfontosságú a hatékony mély architektúrákhoz.
 
 A :numref:`sec_batch_norm`-ban
-megmagyaráztuk, hogy a batch normalizálás hogyan
+megmagyaráztuk, hogy a batchnormalizáció hogyan
 tölti fel és skálázza újra a mini-batch-en belüli példányokat.
 Ahogy a :numref:`subsec_layer-normalization-in-bn`-ban tárgyaltuk,
-a rétegnormalizálás ugyanolyan, mint a batch normalizálás,
+a rétegnormalizálás ugyanolyan, mint a batchnormalizáció,
 kivéve, hogy az előbbi
 a jellemződimenziók mentén normalizál,
 így skálaindependens és batch-méret-független előnyöket élvez.
 Kiterjedt alkalmazásai ellenére
 a számítógépes látásban,
-a batch normalizálás
+a batchnormalizáció
 általában empirikusan
 kevésbé hatékony, mint a rétegnormalizálás
 a természetes nyelvfeldolgozási feladatokban,
@@ -271,7 +271,7 @@ változó hosszúságú szekvenciák.
 
 A következő kódrészlet
 [**összehasonlítja a normalizálást különböző dimenziók mentén
-rétegnormalizálással és batch normalizálással**].
+rétegnormalizálással és batchnormalizációsal**].
 
 ```{.python .input}
 %%tab mxnet

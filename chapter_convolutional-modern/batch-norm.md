@@ -513,7 +513,7 @@ class BNLeNetScratch(d2l.Classifier):
 ```
 
 :begin_tab:`jax`
-Mivel a `BatchNorm` rétegeknek ki kell számítaniuk a batch statisztikákat (átlag és variancia), a Flax nyomon követi a `batch_stats` szótárt, és minden mini-batch-csel frissíti azokat. Az olyan gyűjtemények, mint a `batch_stats`, tárolhatók a `TrainState` objektumban (a :numref:`oo-design-training` részben definiált `d2l.Trainer` osztályban) attribútumként, és a modell előrepasszolása során ezeket a `mutable` argumentumnak kell átadni, hogy a Flax visszaadja a módosított változókat.
+Mivel a `BatchNorm` rétegeknek ki kell számítaniuk a batch statisztikákat (átlag és variancia), a Flax nyomon követi a `batch_stats` szótárt, és minden mini-batch-csel frissíti azokat. Az olyan gyűjtemények, mint a `batch_stats`, tárolhatók a `TrainState` objektumban (a :numref:`oo-design-training` részben definiált `d2l.Trainer` osztályban) attribútumként, és a modell előreterjesztésa során ezeket a `mutable` argumentumnak kell átadni, hogy a Flax visszaadja a módosított változókat.
 :end_tab:
 
 ```{.python .input}

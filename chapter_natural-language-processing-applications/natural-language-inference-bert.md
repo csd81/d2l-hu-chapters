@@ -328,7 +328,7 @@ az előre tanított BERT modell `bert` kerül a `BERTClassifier` `net` példány
 a downstream alkalmazás számára.
 A BERT finomhangolásának általános implementációiban
 csak a kiegészítő MLP kimeneti rétegének paraméterei (`net.output`) kerülnek nulláról tanítva.
-Az előre tanított BERT enkóder összes paramétere (`net.encoder`) és a kiegészítő MLP rejtett rétege (`net.hidden`) finomhangolásra kerül.
+Az előre tanított BERT kódoló összes paramétere (`net.encoder`) és a kiegészítő MLP rejtett rétege (`net.hidden`) finomhangolásra kerül.
 
 ```{.python .input}
 #@tab mxnet

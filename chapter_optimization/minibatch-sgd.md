@@ -256,7 +256,7 @@ timer.stop()
 print(f'performance in Gigaflops: block {0.03 / timer.times[3]:.3f}')
 ```
 
-Ahogy látható, a mini-batch-en végzett számítás lényegében ugyanolyan hatékony, mint a teljes mátrixon. Egy megjegyzés azonban szükséges. A :numref:`sec_batch_norm` szakaszban egy olyan regularizálási típust alkalmaztunk, amely erősen függött a mini-batch-en belüli varianciától. Ahogy növeljük az utóbbit, a variancia csökken, és ezzel együtt a batch normalizálásból eredő zaj-injekció előnye is. A megfelelő tagok átskálázásáról és kiszámításáról részletekért lásd például :citet:`Ioffe.2017`.
+Ahogy látható, a mini-batch-en végzett számítás lényegében ugyanolyan hatékony, mint a teljes mátrixon. Egy megjegyzés azonban szükséges. A :numref:`sec_batch_norm` szakaszban egy olyan regularizálási típust alkalmaztunk, amely erősen függött a mini-batch-en belüli varianciától. Ahogy növeljük az utóbbit, a variancia csökken, és ezzel együtt a batchnormalizációból eredő zaj-injekció előnye is. A megfelelő tagok átskálázásáról és kiszámításáról részletekért lásd például :citet:`Ioffe.2017`.
 
 ## Az adathalmaz beolvasása
 

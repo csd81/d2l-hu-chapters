@@ -1,10 +1,10 @@
-# AutoRec: Értékbecslés autoenkóderekkel
+# AutoRec: Értékbecslés autokódolóekkel
 
-Bár a mátrixfaktorizációs modell elfogadható teljesítményt ér el az értékbecslési feladaton, lényegében lineáris modell. Ezért az ilyen modellek nem képesek megragadni az összetett, nemlineáris és finom kapcsolódásokat, amelyek a felhasználói preferenciák előrejelzésében hasznosak lehetnek. Ebben a szakaszban egy nemlineáris neurális hálózati kollaboratív szűrési modellt, az AutoRec-et :cite:`Sedhain.Menon.Sanner.ea.2015` mutatjuk be. Ez a kollaboratív szűrést (CF) autoenkóder-architektúrával azonosítja, és arra törekszik, hogy az explicit visszajelzés alapján nemlineáris transzformációkat építsen be a CF-be. A neurális hálózatokról bebizonyosodott, hogy bármely folytonos függvényt képesek közelíteni, ezért jól alkalmasak a mátrixfaktorizáció korlátainak kezelésére és kifejezőképességének növelésére.
+Bár a mátrixfaktorizációs modell elfogadható teljesítményt ér el az értékbecslési feladaton, lényegében lineáris modell. Ezért az ilyen modellek nem képesek megragadni az összetett, nemlineáris és finom kapcsolódásokat, amelyek a felhasználói preferenciák előrejelzésében hasznosak lehetnek. Ebben a szakaszban egy nemlineáris neurális hálózati kollaboratív szűrési modellt, az AutoRec-et :cite:`Sedhain.Menon.Sanner.ea.2015` mutatjuk be. Ez a kollaboratív szűrést (CF) autokódoló-architektúrával azonosítja, és arra törekszik, hogy az explicit visszajelzés alapján nemlineáris transzformációkat építsen be a CF-be. A neurális hálózatokról bebizonyosodott, hogy bármely folytonos függvényt képesek közelíteni, ezért jól alkalmasak a mátrixfaktorizáció korlátainak kezelésére és kifejezőképességének növelésére.
 
-Egyrészt az AutoRec ugyanazzal a szerkezettel rendelkezik, mint egy autoenkóder, vagyis bemeneti rétegből, rejtett rétegből és rekonstrukciós (kimeneti) rétegből áll. Az autoenkóder olyan neurális hálózat, amely megtanulja a bemenetét a kimenetére másolni, hogy a bemeneteket a rejtett, általában alacsony dimenziós reprezentációkba kódolja. Az AutoRec esetében a felhasználókat/elemeket nem explicit módon ágyazza be alacsony dimenziós térbe, hanem az interakciós mátrix adott oszlopát/sorát használja bemenetként, majd a kimeneti rétegben rekonstruálja az interakciós mátrixot.
+Egyrészt az AutoRec ugyanazzal a szerkezettel rendelkezik, mint egy autokódoló, vagyis bemeneti rétegből, rejtett rétegből és rekonstrukciós (kimeneti) rétegből áll. Az autokódoló olyan neurális hálózat, amely megtanulja a bemenetét a kimenetére másolni, hogy a bemeneteket a rejtett, általában alacsony dimenziós reprezentációkba kódolja. Az AutoRec esetében a felhasználókat/elemeket nem explicit módon ágyazza be alacsony dimenziós térbe, hanem az interakciós mátrix adott oszlopát/sorát használja bemenetként, majd a kimeneti rétegben rekonstruálja az interakciós mátrixot.
 
-Másrészt az AutoRec eltér a hagyományos autoenkódertől: ahelyett, hogy a rejtett reprezentációk megtanulására összpontosítana, az AutoRec a kimeneti réteg tanulására/rekonstrukciójára koncentrál. Részben megfigyelt interakciós mátrixot használ bemenetként, és egy teljes értékbecslési mátrix rekonstruálására törekszik. Eközben a bemenet hiányzó elemei a kimeneti rétegben, rekonstrukció útján kerülnek kitöltésre az ajánlás céljából.
+Másrészt az AutoRec eltér a hagyományos autokódolótől: ahelyett, hogy a rejtett reprezentációk megtanulására összpontosítana, az AutoRec a kimeneti réteg tanulására/rekonstrukciójára koncentrál. Részben megfigyelt interakciós mátrixot használ bemenetként, és egy teljes értékbecslési mátrix rekonstruálására törekszik. Eközben a bemenet hiányzó elemei a kimeneti rétegben, rekonstrukció útján kerülnek kitöltésre az ajánlás céljából.
 
 Az AutoRec-nek két változata van: felhasználó-alapú és elem-alapú. Rövidség kedvéért itt csak az elem-alapú AutoRec-et mutatjuk be. A felhasználó-alapú AutoRec ebből hasonlóan levezethető.
 
@@ -39,7 +39,7 @@ npx.set_np()
 
 ## A modell megvalósítása
 
-Egy tipikus autoenkóder egy enkóderből és egy dekóderből áll. Az enkóder a bemenetet rejtett reprezentációkba vetíti, a dekóder pedig a rejtett réteget a rekonstrukciós rétegbe képezi le. Ezt a gyakorlatot követjük, és a kódolót, illetve a dekódolót teljesen összekötött rétegekkel hozzuk létre. Az enkóder aktivációja alapértelmezés szerint `sigmoid`, a dekóderhez pedig nem alkalmazunk aktivációt. A túlillesztés csökkentésére a kódolási transzformáció után dropoutot használunk. A nem megfigyelt bemenetek gradiensét maszkoljuk, hogy csak a megfigyelt értékelések járuljanak hozzá a modell tanulási folyamatához.
+Egy tipikus autokódoló egy kódolóből és egy dekódolóből áll. Az kódoló a bemenetet rejtett reprezentációkba vetíti, a dekódoló pedig a rejtett réteget a rekonstrukciós rétegbe képezi le. Ezt a gyakorlatot követjük, és a kódolót, illetve a dekódolót teljesen összekötött rétegekkel hozzuk létre. Az kódoló aktivációja alapértelmezés szerint `sigmoid`, a dekódolóhez pedig nem alkalmazunk aktivációt. A túlillesztés csökkentésére a kódolási transzformáció után dropoutot használunk. A nem megfigyelt bemenetek gradiensét maszkoljuk, hogy csak a megfigyelt értékelések járuljanak hozzá a modell tanulási folyamatához.
 
 ```{.python .input  n=2}
 #@tab mxnet
@@ -111,7 +111,7 @@ d2l.train_recsys_rating(net, train_iter, test_iter, loss, trainer, num_epochs,
 
 ## Összefoglalás
 
-* Az autoenkóderekkel a mátrixfaktorizációs algoritmus nemlineáris rétegekkel és dropout regularizációval egészíthető ki.
+* Az autokódolóekkel a mátrixfaktorizációs algoritmus nemlineáris rétegekkel és dropout regularizációval egészíthető ki.
 * A MovieLens 100K adathalmazon végzett kísérletek azt mutatják, hogy az AutoRec jobb teljesítményt ér el, mint a mátrixfaktorizáció.
 
 
@@ -120,7 +120,7 @@ d2l.train_recsys_rating(net, train_iter, test_iter, loss, trainer, num_epochs,
 
 * Változtasd meg az AutoRec rejtett dimenzióját, és figyeld meg a modell teljesítményére gyakorolt hatását.
 * Próbálj meg több rejtett réteget hozzáadni. Segít ez javítani a modell teljesítményét?
-* Tudsz jobb kombinációt találni a dekóder és az enkóder aktivációs függvényeiből?
+* Tudsz jobb kombinációt találni a dekódoló és az kódoló aktivációs függvényeiből?
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/401)

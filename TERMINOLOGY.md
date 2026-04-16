@@ -76,6 +76,7 @@ Ha találat van, javítsd a táblázat alapján, mielőtt pusholsz.
 | 2026-04-16 | conv, rnn, attention | 5               | padding/stride/CNN/RNN felvétele; kötegméret, dot product figyelem, title-case javítások                  |
 | 2026-04-16 | Teljes repó          | 71              | mini-batch egységesítés (49 fájl), batchnormalizáció, torzítás→eltolás (25 fájl), szókincskészlet javítás |
 | 2026-04-16 | Teljes repó          | 32              | Linter hozzáadva (scripts/check_terminology.py + .pre-commit-config.yaml); 97 maradvány: Transzformer→Transformer (17), előre irányú terjesztés→előreterjesztés (14), tanítási/tesztelési halmaz→kanonikus alak (30+), backpropagation→visszaterjesztés (7) |
+| 2026-04-16 | Teljes repó          | 19              | Denylist bővítve (enkóder→kódoló, dekóder→dekódoló, batch normalizálás, visszafelé irányú terjesztés, előrepasszolás, gradiens módszer, forward propagation); 84 maradvány javítva; szerkesztési hiba és elírás javítva (bounding-box.md, rcnn.md) |
 
 ---
 

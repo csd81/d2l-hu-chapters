@@ -133,7 +133,7 @@ def bookkeeping(self, config: dict, error: float, runtime: float):
 
 ## Példa: egy konvolúciós neurális hálózat hiperparamétereinek optimalizálása
 
-Most az új véletlen kereső megvalósításunkat használjuk a :numref:`sec_lenet` szakaszban bemutatott `LeNet` konvolúciós neurális hálózat *batch size*-ának és *learning rate*-jének optimalizálására. Kezdjük a célfüggvény definiálásával, amely ezúttal ismét a validációs hiba lesz.
+Most az új véletlen kereső megvalósításunkat használjuk a :numref:`sec_lenet` szakaszban bemutatott `LeNet` konvolúciós neurális hálózat *batch méret*-ának és *tanulási ráta*-jének optimalizálására. Kezdjük a célfüggvény definiálásával, amely ezúttal ismét a validációs hiba lesz.
 
 ```{.python .input  n=9}
 %%tab pytorch

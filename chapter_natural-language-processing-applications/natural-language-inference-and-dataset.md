@@ -185,7 +185,7 @@ class SNLIDataset(torch.utils.data.Dataset):
 
 ### [**Összerakva az egészet**]
 
-Most meghívhatjuk a `read_snli` függvényt és az `SNLIDataset` osztályt az SNLI adathalmaz letöltéséhez, és `DataLoader` példányokat adunk vissza mind a tanítási, mind a tesztelési készlethez, a tanítóhalmaz szókincsével együtt. Fontos megjegyezni, hogy a teszthalmazhoz is a tanítóhalmazból felépített szókincset kell használni. Ennek következtében a teszthalmazban szereplő bármely új token ismeretlen lesz a tanítóhalmazon tanított modell számára.
+Most meghívhatjuk a `read_snli` függvényt és az `SNLIDataset` osztályt az SNLI adathalmaz letöltéséhez, és `DataLoader` példányokat adunk vissza mind a tanítási, mind a teszthalmazhez, a tanítóhalmaz szókincsével együtt. Fontos megjegyezni, hogy a teszthalmazhoz is a tanítóhalmazból felépített szókincset kell használni. Ennek következtében a teszthalmazban szereplő bármely új token ismeretlen lesz a tanítóhalmazon tanított modell számára.
 
 ```{.python .input}
 #@tab mxnet

@@ -130,7 +130,7 @@ class ConvBlock(nn.Module):
         return Y
 ```
 
-Egy *sűrű blokk* több konvolúciós blokkból áll, amelyek mindegyike azonos számú kimeneti csatornát alkalmaz. Az előrepasszolásban azonban minden konvolúciós blokk bemenetét és kimenetét összefűzzük a csatorna dimenzión. A lusta kiértékelés lehetővé teszi a dimenzionalitás automatikus beállítását.
+Egy *sűrű blokk* több konvolúciós blokkból áll, amelyek mindegyike azonos számú kimeneti csatornát alkalmaz. Az előreterjesztésban azonban minden konvolúciós blokk bemenetét és kimenetét összefűzzük a csatorna dimenzión. A lusta kiértékelés lehetővé teszi a dimenzionalitás automatikus beállítását.
 
 ```{.python .input}
 %%tab mxnet

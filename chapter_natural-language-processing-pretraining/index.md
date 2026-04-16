@@ -28,7 +28,7 @@ Például a „bank" szó vektoros reprezentációja azonos
 a „go to the bank to deposit some money"
 és a „go to the bank to sit down" mondatokban is.
 Ezért számos újabb előtanítási modell a kontextushoz igazítja az azonos tokenek reprezentációját.
-Ezek közé tartozik a BERT, egy sokkal mélyebb, Transformer-enkóderre épülő önfelügyelt modell.
+Ezek közé tartozik a BERT, egy sokkal mélyebb, Transformer-kódolóre épülő önfelügyelt modell.
 Ebben a fejezetben arra összpontosítunk, hogyan taníthatók elő ilyen szövegreprezentációk,
 ahogy az :numref:`fig_nlp-map-pretrain` ábrán is látható.
 

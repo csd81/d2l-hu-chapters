@@ -1,7 +1,7 @@
 # Régióalapú konvolúciós neurális hálózatok (R-CNN)
 :label:`sec_rcnn`
 
-A :numref:`sec_ssd` fejezetben leírt egylépéses többdobozos felismerés mellett a régióalapú konvolúciós neurális hálózatok, más néven régiók CNN jellemzőkkel (R-CNN-ek) szintén az úttörő megközelítések közé tartoznak a deep learning objektumdetektálásre való alkalmazásában :cite:`Girshick.Donahue.Darrell.ea.2014`.
+A :numref:`sec_ssd` fejezetben leírt egylépéses többdobozos felismerés mellett a régióalapú konvolúciós neurális hálózatok, más néven régiók CNN jellemzőkkel (R-CNN-ek) szintén az úttörő megközelítések közé tartoznak a deep learning objektumdetektálásra való alkalmazásában :cite:`Girshick.Donahue.Darrell.ea.2014`.
 Ebben a fejezetben bemutatjuk az R-CNN-t és fejlesztéseinek sorozatát: a gyors R-CNN-t :cite:`Girshick.2015`, a gyorsabb R-CNN-t :cite:`Ren.He.Girshick.ea.2015` és a maszk R-CNN-t :cite:`He.Gkioxari.Dollar.ea.2017`.
 Helyhiány miatt csak ezeknek a modelleknek a tervezésére összpontosítunk.
 

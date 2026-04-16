@@ -78,7 +78,7 @@ amikor $k=2$.
 
 
 Megjegyzendő, hogy a gyakorlatban $k$-szorosára *növeljük* a mini-batch méretét $k$ GPU-n való tanítás esetén, hogy minden GPU ugyanannyi munkát végezzen, mintha egyetlen GPU-n tanítanánk. Egy 16 GPU-s szerveren ez jelentősen megnövelheti a mini-batch méretet, és előfordulhat, hogy a tanulási rátát is ennek megfelelően kell növelni.
-Megjegyzendő az is, hogy a :numref:`sec_batch_norm` részben tárgyalt batch normalizálást módosítani kell, például GPU-nkénti külön batch normalizálási együttható fenntartásával.
+Megjegyzendő az is, hogy a :numref:`sec_batch_norm` részben tárgyalt batchnormalizációt módosítani kell, például GPU-nkénti külön batchnormalizációi együttható fenntartásával.
 A következőkben egy egyszerű hálózatot fogunk használni a több GPU-s tanítás szemléltetéséhez.
 
 ```{.python .input}

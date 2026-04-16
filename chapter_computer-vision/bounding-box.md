@@ -6,7 +6,7 @@ A korábbi fejezetekben (pl. :numref:`sec_alexnet`--:numref:`sec_googlenet`) kü
 A képosztályozási feladatokban feltételezzük, hogy a képen *egyetlen* fő objektum van, és csak arra összpontosítunk, hogyan ismerjük fel annak kategóriáját.
 Azonban a vizsgált képeken gyakran *több* objektum is megtalálható.
 Nemcsak a kategóriájukat szeretnénk tudni, hanem a képen belüli konkrét pozíciójukat is.
-A számítógépes látásban az ilyen feladatokat *objektumdetektálásnak* (vagy *objektumdetektálásnak*) nevezzük.
+A számítógépes látásban az ilyen feladatokat *objektumdetektálásnak* nevezzük.
 
 Az objektumdetektálást számos területen széles körben alkalmazzák.
 Például az önvezető autóknak az útvonalat kell megtervezniük az elfogott videóképeken lévő járművek, gyalogosok, utak és akadályok pozíciójának felismerésével.

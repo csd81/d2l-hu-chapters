@@ -133,7 +133,7 @@ class LeNet(d2l.Classifier):  #@save
         ])
 ```
 
-Bizonyos szabadságot vettünk a LeNet reprodukálásában annyiban, hogy a Gauss-aktivációs réteget egy softmax réteggel váltottuk fel. Ez nagymértékben egyszerűsíti az implementációt, nem is utolsósorban azért, mert a Gauss-dekódert manapság ritkán használják. Ettől eltekintve a hálózat megegyezik az eredeti LeNet-5 architektúrával.
+Bizonyos szabadságot vettünk a LeNet reprodukálásában annyiban, hogy a Gauss-aktivációs réteget egy softmax réteggel váltottuk fel. Ez nagymértékben egyszerűsíti az implementációt, nem is utolsósorban azért, mert a Gauss-dekódolót manapság ritkán használják. Ettől eltekintve a hálózat megegyezik az eredeti LeNet-5 architektúrával.
 
 :begin_tab:`pytorch, mxnet, tensorflow`
 Lássuk, mi történik a hálózaton belül. Egycsatornás (fekete-fehér) $28 \times 28$-as képet átadva a hálózaton, és minden rétegben kinyomtatva a kimeneti alakot, [**megvizsgálhatjuk a modellt**], hogy megbizonyosodjunk arról, hogy műveletei megegyeznek a :numref:`img_lenet_vert`-ben várással.

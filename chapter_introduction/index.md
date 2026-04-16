@@ -855,7 +855,7 @@ feltenni.
   Betanítás után egy generatív modellt használhatunk arra, hogy a példákat
   pontozzuk aszerint, mennyire valószínűek, vagy arra, hogy a megtanult
   eloszlásból szintetikus példákat mintavételezzünk. A generatív modellezés
-  korai deep learning áttörései a *variációs autoenkóderek*
+  korai deep learning áttörései a *variációs autokódolóek*
   :cite:`Kingma.Welling.2014,rezende2014stochastic` feltalálásával
   kezdődtek, majd a *generatív versengő hálózatok*
   :cite:`Goodfellow.Pouget-Abadie.Mirza.ea.2014` kifejlesztésével

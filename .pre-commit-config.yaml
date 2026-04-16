@@ -6,4 +6,5 @@ repos:
         entry: python scripts/check_terminology.py
         language: python
         types: [markdown]
+        files: ^chapter_.+\.md$
         pass_filenames: true

@@ -279,7 +279,7 @@ Bár az analitikus megoldások szép matematikai elemzést tesznek lehetővé,
 az analitikus megoldás követelménye annyira korlátozó,
 hogy szinte a deep learning összes izgalmas aspektusát kizárná.
 
-### mini-batch sztochasztikus gradiens módszer
+### mini-batch sztochasztikus gradienscsökkenés
 
 Szerencsére, még azokban az esetekben is, amikor a modelleket
 nem tudjuk analitikusan megoldani,
@@ -293,9 +293,9 @@ amelyre a könyvben végig támaszkodunk,
 a hiba iteratív csökkentéséből áll
 a paraméterek frissítésével abba az irányba,
 amely fokozatosan csökkenti a veszteségfüggvényt.
-Ezt az algoritmust *gradiens módszernek* (gradienscsökkenés) nevezzük.
+Ezt az algoritmust *gradienscsökkenésnek* (gradienscsökkenés) nevezzük.
 
-A gradiens módszer legalapvetőbb alkalmazása
+A gradienscsökkenés legalapvetőbb alkalmazása
 a veszteségfüggvény deriváltjának kiszámítása,
 amely az adathalmazban szereplő összes példán
 kiszámított veszteségek átlaga.
@@ -307,7 +307,7 @@ a teljes frissítés előnye korlátozott.
 
 A másik véglet az, hogy egyszerre csak egyetlen példát
 veszünk figyelembe, és egy megfigyelés alapján frissítünk.
-Az így kapott algoritmus, a *sztochasztikus gradiens módszer* (SGD)
+Az így kapott algoritmus, a *sztochasztikus gradienscsökkenés* (SGD)
 hatékony stratégia lehet :cite:`Bottou.2010`, akár nagy adathalmazok esetén is.
 Sajnos az SGD-nek számítási és statisztikai hátrányai is vannak.
 Az egyik probléma abból ered, hogy a processzorok
@@ -331,7 +331,7 @@ például a memória mennyiségétől, a gyorsítók számától,
 a rétegek választásától és a teljes adathalmaz méretétől.
 Mindezek ellenére a 32 és 256 közötti érték,
 lehetőleg egy nagy $2$-es hatvány többszöröse, jó kiindulópont.
-Ez elvezet minket a *mini-batch sztochasztikus gradiens módszerhez*.
+Ez elvezet minket a *mini-batch sztochasztikus gradienscsökkenéshez*.
 
 Legegyszerűbb formájában minden $t$ iterációban
 először véletlenszerűen kiveszünk egy $\mathcal{B}_t$ mini-batch-et,
@@ -715,7 +715,7 @@ Bár hamarosan teljesen elhagyjuk a lineáris modelleket,
 ezek elegendők ahhoz, hogy bevezessük
 az összes modellünk által igényelt összetevőket:
 paraméteres formák, differenciálható célfüggvények,
-optimalizálás mini-batch sztochasztikus gradiens módszerrel,
+optimalizálás mini-batch sztochasztikus gradienscsökkenésrel,
 és végső soron kiértékelés korábban nem látott adatokon.
 
 
@@ -732,11 +732,11 @@ optimalizálás mini-batch sztochasztikus gradiens módszerrel,
     1. Mi történik, ha ez nem teljesül?
     1. Hogyan lehetne javítani? Mi történik, ha kis koordinátánkénti független Gauss-zajt adunk $\mathbf{X}$ összes eleméhez?
     1. Mi a $\mathbf{X}^\top \mathbf{X}$ tervmátrix várható értéke ebben az esetben?
-    1. Mi történik a sztochasztikus gradiens módszerrel, ha $\mathbf{X}^\top \mathbf{X}$ nem teljes rangú?
+    1. Mi történik a sztochasztikus gradienscsökkenésrel, ha $\mathbf{X}^\top \mathbf{X}$ nem teljes rangú?
 1. Tegyük fel, hogy az additív $\epsilon$ zajt irányító zajmodell az exponenciális eloszlás. Azaz $p(\epsilon) = \frac{1}{2} \exp(-|\epsilon|)$.
     1. Írd fel az adatok negatív log-likelihood-ját a modell szerint: $-\log P(\mathbf y \mid \mathbf X)$.
     1. Találsz zárt alakú megoldást?
-    1. Javasolj mini-batch sztochasztikus gradiens módszer algoritmust ennek a feladatnak a megoldásához. Mi mehet félre (tipp: mi történik az álló pont közelében, miközben folyamatosan frissítjük a paramétereket)? Meg tudod javítani?
+    1. Javasolj mini-batch sztochasztikus gradienscsökkenés algoritmust ennek a feladatnak a megoldásához. Mi mehet félre (tipp: mi történik az álló pont közelében, miközben folyamatosan frissítjük a paramétereket)? Meg tudod javítani?
 1. Tegyük fel, hogy két rétegből álló neurális hálózatot szeretnénk tervezni két lineáris réteg összetételével. Azaz az első réteg kimenete a második réteg bemenete lesz. Miért nem működne egy ilyen naiv összetétel?
 1. Mi történik, ha regressziót szeretnél használni házak vagy részvényárak valósághű árbecsléséhez?
     1. Mutasd meg, hogy az additív Gauss-zaj feltételezése nem megfelelő. Tipp: lehetnek-e negatív árak? Mi a helyzet a fluktuációkkal?
