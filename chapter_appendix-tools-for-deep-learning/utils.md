@@ -874,15 +874,15 @@ def tokenize_nmt(text, num_examples=None):
     
 #@save
 def truncate_pad(line, num_steps, padding_token):
-    """Truncate or pad sequences."""
+    """Sorozatok levágása vagy kitöltése."""
     if len(line) > num_steps:
-        return line[:num_steps]  # Truncate
-    return line + [padding_token] * (num_steps - len(line))  # Pad
+        return line[:num_steps]  # Levágás
+    return line + [padding_token] * (num_steps - len(line))  # Kitöltés
 
 
 #@save
 def build_array_nmt(lines, vocab, num_steps):
-    """Transform text sequences of machine translation into minibatches."""
+    """A gépi fordítás szöveges sorozatait mini-batch-ekké alakítja."""
     lines = [vocab[l] for l in lines]
     lines = [l + [vocab['<eos>']] for l in lines]
     array = d2l.tensor([truncate_pad(

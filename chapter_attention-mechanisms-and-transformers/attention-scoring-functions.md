@@ -304,7 +304,7 @@ Vegyük észre, hogy amikor ezt mini-batch-re alkalmazzuk, szükségünk van a :
 ```{.python .input}
 %%tab mxnet
 class DotProductAttention(nn.Block):  #@save
-    """Scaled dot product attention."""
+    """Skálázott skalárisszorzat-alapú figyelem."""
     def __init__(self, dropout):
         super().__init__()
         self.dropout = nn.Dropout(dropout)
@@ -324,7 +324,7 @@ class DotProductAttention(nn.Block):  #@save
 ```{.python .input}
 %%tab pytorch
 class DotProductAttention(nn.Module):  #@save
-    """Scaled dot product attention."""
+    """Skálázott skalárisszorzat-alapú figyelem."""
     def __init__(self, dropout):
         super().__init__()
         self.dropout = nn.Dropout(dropout)
@@ -344,7 +344,7 @@ class DotProductAttention(nn.Module):  #@save
 ```{.python .input}
 %%tab tensorflow
 class DotProductAttention(tf.keras.layers.Layer):  #@save
-    """Scaled dot product attention."""
+    """Skálázott skalárisszorzat-alapú figyelem."""
     def __init__(self, dropout):
         super().__init__()
         self.dropout = tf.keras.layers.Dropout(dropout)
@@ -364,7 +364,7 @@ class DotProductAttention(tf.keras.layers.Layer):  #@save
 ```{.python .input}
 %%tab jax
 class DotProductAttention(nn.Module):  #@save
-    """Scaled dot product attention."""
+    """Skálázott skalárisszorzat-alapú figyelem."""
     dropout: float
 
     # A queries alakja: (batch_size, no. of queries, d)
@@ -470,11 +470,10 @@ az additív figyelmet a következőképpen implementáljuk:
 ```{.python .input}
 %%tab mxnet
 class AdditiveAttention(nn.Block):  #@save
-    """Additive attention."""
+    """Additív figyelem."""
     def __init__(self, num_hiddens, dropout, **kwargs):
         super(AdditiveAttention, self).__init__(**kwargs)
-        # Use flatten=False to only transform the last axis so that the
-        # shapes for the other axes are kept the same
+        # A flatten=False beállítást csak az utolsó tengelyen alkalmazzuk, hogy a többi tengely alakja változatlan maradjon
         self.W_k = nn.Dense(num_hiddens, use_bias=False, flatten=False)
         self.W_q = nn.Dense(num_hiddens, use_bias=False, flatten=False)
         self.w_v = nn.Dense(1, use_bias=False, flatten=False)
@@ -482,10 +481,7 @@ class AdditiveAttention(nn.Block):  #@save
 
     def forward(self, queries, keys, values, valid_lens):
         queries, keys = self.W_q(queries), self.W_k(keys)
-        # After dimension expansion, shape of queries: (batch_size, no. of
-        # queries, 1, num_hiddens) and shape of keys: (batch_size, 1,
-        # no. of key-value pairs, num_hiddens). Sum them up with
-        # broadcasting
+        # Alakbővítés után a lekérdezések és a kulcsok kiterjesztett alakban összeadódnak
         features = np.expand_dims(queries, axis=2) + np.expand_dims(
             keys, axis=1)
         features = np.tanh(features)
@@ -502,7 +498,7 @@ class AdditiveAttention(nn.Block):  #@save
 ```{.python .input}
 %%tab pytorch
 class AdditiveAttention(nn.Module):  #@save
-    """Additive attention."""
+    """Additív figyelem."""
     def __init__(self, num_hiddens, dropout, **kwargs):
         super(AdditiveAttention, self).__init__(**kwargs)
         self.W_k = nn.LazyLinear(num_hiddens, bias=False)
@@ -512,9 +508,7 @@ class AdditiveAttention(nn.Module):  #@save
 
     def forward(self, queries, keys, values, valid_lens):
         queries, keys = self.W_q(queries), self.W_k(keys)
-        # After dimension expansion, shape of queries: (batch_size, no. of
-        # queries, 1, num_hiddens) and shape of keys: (batch_size, 1, no. of
-        # key-value pairs, num_hiddens). Sum them up with broadcasting
+        # Alakbővítés után a lekérdezések és a kulcsok kiterjesztett alakban összeadódnak
         features = queries.unsqueeze(2) + keys.unsqueeze(1)
         features = torch.tanh(features)
         # A self.w_v kimenete egydimenziós, ezért eltávolítjuk az alak utolsó
@@ -530,7 +524,7 @@ class AdditiveAttention(nn.Module):  #@save
 ```{.python .input}
 %%tab tensorflow
 class AdditiveAttention(tf.keras.layers.Layer):  #@save
-    """Additive attention."""
+    """Additív figyelem."""
     def __init__(self, key_size, query_size, num_hiddens, dropout, **kwargs):
         super().__init__(**kwargs)
         self.W_k = tf.keras.layers.Dense(num_hiddens, use_bias=False)
@@ -540,9 +534,7 @@ class AdditiveAttention(tf.keras.layers.Layer):  #@save
         
     def call(self, queries, keys, values, valid_lens, **kwargs):
         queries, keys = self.W_q(queries), self.W_k(keys)
-        # After dimension expansion, shape of queries: (batch_size, no. of
-        # queries, 1, num_hiddens) and shape of keys: (batch_size, 1, no. of
-        # key-value pairs, num_hiddens). Sum them up with broadcasting
+        # Alakbővítés után a lekérdezések és a kulcsok kiterjesztett alakban összeadódnak
         features = tf.expand_dims(queries, axis=2) + tf.expand_dims(
             keys, axis=1)
         features = tf.nn.tanh(features)
@@ -571,9 +563,7 @@ class AdditiveAttention(nn.Module):  #@save
     @nn.compact
     def __call__(self, queries, keys, values, valid_lens, training=False):
         queries, keys = self.W_q(queries), self.W_k(keys)
-        # After dimension expansion, shape of queries: (batch_size, no. of
-        # queries, 1, num_hiddens) and shape of keys: (batch_size, 1, no. of
-        # key-value pairs, num_hiddens). Sum them up with broadcasting
+        # Alakbővítés után a lekérdezések és a kulcsok kiterjesztett alakban összeadódnak
         features = jnp.expand_dims(queries, axis=2) + jnp.expand_dims(keys, axis=1)
         features = nn.tanh(features)
         # A self.w_v kimenete egydimenziós, ezért eltávolítjuk az alak utolsó

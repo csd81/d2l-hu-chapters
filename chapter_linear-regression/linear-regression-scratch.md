@@ -217,7 +217,7 @@ Elfogad egy paraméter-gradiens párokat tartalmazó listát.
 ```{.python .input  n=11}
 %%tab mxnet, pytorch
 class SGD(d2l.HyperParameters):  #@save
-    """Minibatch sztochasztikus gradiens módszer."""
+    """Mini-batch sztochasztikus gradienscsökkenés."""
     def __init__(self, params, lr):
         self.save_hyperparameters()
 
@@ -240,7 +240,7 @@ class SGD(d2l.HyperParameters):  #@save
 ```{.python .input  n=12}
 %%tab tensorflow
 class SGD(d2l.HyperParameters):  #@save
-    """Minibatch sztochasztikus gradiens módszer."""
+    """Mini-batch sztochasztikus gradienscsökkenés."""
     def __init__(self, lr):
         self.save_hyperparameters()
 
@@ -252,7 +252,7 @@ class SGD(d2l.HyperParameters):  #@save
 ```{.python .input  n=13}
 %%tab jax
 class SGD(d2l.HyperParameters):  #@save
-    """Minibatch sztochasztikus gradiens módszer."""
+    """Mini-batch sztochasztikus gradienscsökkenés."""
     # Az Optax fő transzformációja a GradientTransformation,
     # amelyet két metódus definiál: az init és az update.
     # Az init inicializálja az állapotot, az update pedig transzformálja a gradienseket.

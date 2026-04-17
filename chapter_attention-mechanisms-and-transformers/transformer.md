@@ -157,7 +157,7 @@ alakú kimeneti tenzort eredményez.
 ```{.python .input}
 %%tab mxnet
 class PositionWiseFFN(nn.Block):  #@save
-    """The positionwise feed-forward network."""
+    """A pozíciószerinti előreirányított hálózat."""
     def __init__(self, ffn_num_hiddens, ffn_num_outputs):
         super().__init__()
         self.dense1 = nn.Dense(ffn_num_hiddens, flatten=False,
@@ -171,7 +171,7 @@ class PositionWiseFFN(nn.Block):  #@save
 ```{.python .input}
 %%tab pytorch
 class PositionWiseFFN(nn.Module):  #@save
-    """The positionwise feed-forward network."""
+    """A pozíciószerinti előreirányított hálózat."""
     def __init__(self, ffn_num_hiddens, ffn_num_outputs):
         super().__init__()
         self.dense1 = nn.LazyLinear(ffn_num_hiddens)
@@ -185,7 +185,7 @@ class PositionWiseFFN(nn.Module):  #@save
 ```{.python .input}
 %%tab tensorflow
 class PositionWiseFFN(tf.keras.layers.Layer):  #@save
-    """The positionwise feed-forward network."""
+    """A pozíciószerinti előreirányított hálózat."""
     def __init__(self, ffn_num_hiddens, ffn_num_outputs):
         super().__init__()
         self.dense1 = tf.keras.layers.Dense(ffn_num_hiddens)
@@ -199,7 +199,7 @@ class PositionWiseFFN(tf.keras.layers.Layer):  #@save
 ```{.python .input}
 %%tab jax
 class PositionWiseFFN(nn.Module):  #@save
-    """The positionwise feed-forward network."""
+    """A pozíciószerinti előreirányított hálózat."""
     ffn_num_hiddens: int
     ffn_num_outputs: int
 
@@ -320,7 +320,7 @@ Dropout-ot is alkalmazunk regularizációhoz.
 ```{.python .input}
 %%tab mxnet
 class AddNorm(nn.Block):  #@save
-    """The residual connection followed by layer normalization."""
+    """Maradékkapcsolat, amelyet rétegnormalizáció követ."""
     def __init__(self, dropout):
         super().__init__()
         self.dropout = nn.Dropout(dropout)
@@ -333,7 +333,7 @@ class AddNorm(nn.Block):  #@save
 ```{.python .input}
 %%tab pytorch
 class AddNorm(nn.Module):  #@save
-    """The residual connection followed by layer normalization."""
+    """Maradékkapcsolat, amelyet rétegnormalizáció követ."""
     def __init__(self, norm_shape, dropout):
         super().__init__()
         self.dropout = nn.Dropout(dropout)
@@ -346,7 +346,7 @@ class AddNorm(nn.Module):  #@save
 ```{.python .input}
 %%tab tensorflow
 class AddNorm(tf.keras.layers.Layer):  #@save
-    """The residual connection followed by layer normalization."""
+    """Maradékkapcsolat, amelyet rétegnormalizáció követ."""
     def __init__(self, norm_shape, dropout):
         super().__init__()
         self.dropout = tf.keras.layers.Dropout(dropout)
@@ -359,7 +359,7 @@ class AddNorm(tf.keras.layers.Layer):  #@save
 ```{.python .input}
 %%tab jax
 class AddNorm(nn.Module):  #@save
-    """The residual connection followed by layer normalization."""
+    """Maradékkapcsolat, amelyet rétegnormalizáció követ."""
     dropout: int
 
     @nn.compact
@@ -417,7 +417,7 @@ ahol mindkét alréteg körül maradékkapcsolatot alkalmaznak, amelyet rétegno
 ```{.python .input}
 %%tab mxnet
 class TransformerEncoderBlock(nn.Block):  #@save
-    """The Transformer encoder block."""
+    """A Transformer kódolóblokk."""
     def __init__(self, num_hiddens, ffn_num_hiddens, num_heads, dropout,
                  use_bias=False):
         super().__init__()
@@ -435,7 +435,7 @@ class TransformerEncoderBlock(nn.Block):  #@save
 ```{.python .input}
 %%tab pytorch
 class TransformerEncoderBlock(nn.Module):  #@save
-    """The Transformer encoder block."""
+    """A Transformer kódolóblokk."""
     def __init__(self, num_hiddens, ffn_num_hiddens, num_heads, dropout,
                  use_bias=False):
         super().__init__()
@@ -453,7 +453,7 @@ class TransformerEncoderBlock(nn.Module):  #@save
 ```{.python .input}
 %%tab tensorflow
 class TransformerEncoderBlock(tf.keras.layers.Layer):  #@save
-    """The Transformer encoder block."""
+    """A Transformer kódolóblokk."""
     def __init__(self, key_size, query_size, value_size, num_hiddens,
                  norm_shape, ffn_num_hiddens, num_heads, dropout, bias=False):
         super().__init__()
@@ -473,7 +473,7 @@ class TransformerEncoderBlock(tf.keras.layers.Layer):  #@save
 ```{.python .input}
 %%tab jax
 class TransformerEncoderBlock(nn.Module):  #@save
-    """The Transformer encoder block."""
+    """A Transformer kódolóblokk."""
     num_hiddens: int
     ffn_num_hiddens: int
     num_heads: int
@@ -545,7 +545,7 @@ hogy újraskálázzuk, mielőtt összeadjuk a bemeneti beágyazást és a pozíc
 ```{.python .input}
 %%tab mxnet
 class TransformerEncoder(d2l.Encoder):  #@save
-    """The Transformer encoder."""
+    """A Transformer kódoló."""
     def __init__(self, vocab_size, num_hiddens, ffn_num_hiddens,
                  num_heads, num_blks, dropout, use_bias=False):
         super().__init__()
@@ -574,7 +574,7 @@ class TransformerEncoder(d2l.Encoder):  #@save
 ```{.python .input}
 %%tab pytorch
 class TransformerEncoder(d2l.Encoder):  #@save
-    """The Transformer encoder."""
+    """A Transformer kódoló."""
     def __init__(self, vocab_size, num_hiddens, ffn_num_hiddens,
                  num_heads, num_blks, dropout, use_bias=False):
         super().__init__()
@@ -602,7 +602,7 @@ class TransformerEncoder(d2l.Encoder):  #@save
 ```{.python .input}
 %%tab tensorflow
 class TransformerEncoder(d2l.Encoder):  #@save
-    """The Transformer encoder."""
+    """A Transformer kódoló."""
     def __init__(self, vocab_size, key_size, query_size, value_size,
                  num_hiddens, norm_shape, ffn_num_hiddens, num_heads,
                  num_blks, dropout, bias=False):
@@ -632,7 +632,7 @@ class TransformerEncoder(d2l.Encoder):  #@save
 ```{.python .input}
 %%tab jax
 class TransformerEncoder(d2l.Encoder):  #@save
-    """The Transformer encoder."""
+    """A Transformer kódoló."""
     vocab_size: int
     num_hiddens:int
     ffn_num_hiddens: int
@@ -660,7 +660,7 @@ class TransformerEncoder(d2l.Encoder):  #@save
         for i, blk in enumerate(self.blks):
             X, attention_w = blk(X, valid_lens, training=training)
             attention_weights[i] = attention_w
-        # Flax sow API is used to capture intermediate variables
+        # A Flax sow API-t a köztes változók rögzítésére használjuk
         self.sow('intermediates', 'enc_attention_weights', attention_weights)
         return X
 ```
@@ -738,7 +738,7 @@ figyeljen a dekódoló összes pozíciójára.
 ```{.python .input}
 %%tab mxnet
 class TransformerDecoderBlock(nn.Block):
-    # The i-th block in the Transformer decoder
+    # A Transformer dekódoló i-edik blokkja
     def __init__(self, num_hiddens, ffn_num_hiddens, num_heads, dropout, i):
         super().__init__()
         self.i = i
@@ -753,11 +753,11 @@ class TransformerDecoderBlock(nn.Block):
 
     def forward(self, X, state):
         enc_outputs, enc_valid_lens = state[0], state[1]
-        # During training, all the tokens of any output sequence are processed
-        # at the same time, so state[2][self.i] is None as initialized. When
-        # decoding any output sequence token by token during prediction,
-        # state[2][self.i] contains representations of the decoded output at
-        # the i-th block up to the current time step
+        # Tanítás közben bármely kimeneti szekvencia összes tokenjét egyszerre
+        # dolgozzuk fel, ezért a kezdetben beállított state[2][self.i] értéke
+        # None. Előrejelzéskor viszont tokenről tokenre dekódoljuk a kimeneti
+        # szekvenciát, ezért state[2][self.i] az i-edik blokkban az aktuális
+        # időlépésig dekódolt kimenet reprezentációit tartalmazza.
         if state[2][self.i] is None:
             key_values = X
         else:
@@ -772,7 +772,7 @@ class TransformerDecoderBlock(nn.Block):
                                      (batch_size, 1))
         else:
             dec_valid_lens = None
-        # Self-attention
+        # Önfigyelem
         X2 = self.attention1(X, key_values, key_values, dec_valid_lens)
         Y = self.addnorm1(X, X2)
         # Kódoló-dekódoló figyelem. Az enc_outputs alakja:
@@ -785,7 +785,7 @@ class TransformerDecoderBlock(nn.Block):
 ```{.python .input}
 %%tab pytorch
 class TransformerDecoderBlock(nn.Module):
-    # The i-th block in the Transformer decoder
+    # A Transformer dekódoló i-edik blokkja
     def __init__(self, num_hiddens, ffn_num_hiddens, num_heads, dropout, i):
         super().__init__()
         self.i = i
@@ -800,11 +800,11 @@ class TransformerDecoderBlock(nn.Module):
 
     def forward(self, X, state):
         enc_outputs, enc_valid_lens = state[0], state[1]
-        # During training, all the tokens of any output sequence are processed
-        # at the same time, so state[2][self.i] is None as initialized. When
-        # decoding any output sequence token by token during prediction,
-        # state[2][self.i] contains representations of the decoded output at
-        # the i-th block up to the current time step
+        # Tanítás közben bármely kimeneti szekvencia összes tokenjét egyszerre
+        # dolgozzuk fel, ezért a kezdetben beállított state[2][self.i] értéke
+        # None. Előrejelzéskor viszont tokenről tokenre dekódoljuk a kimeneti
+        # szekvenciát, ezért state[2][self.i] az i-edik blokkban az aktuális
+        # időlépésig dekódolt kimenet reprezentációit tartalmazza.
         if state[2][self.i] is None:
             key_values = X
         else:
@@ -818,7 +818,7 @@ class TransformerDecoderBlock(nn.Module):
                 1, num_steps + 1, device=X.device).repeat(batch_size, 1)
         else:
             dec_valid_lens = None
-        # Self-attention
+        # Önfigyelem
         X2 = self.attention1(X, key_values, key_values, dec_valid_lens)
         Y = self.addnorm1(X, X2)
         # Kódoló-dekódoló figyelem. Az enc_outputs alakja:
@@ -831,7 +831,7 @@ class TransformerDecoderBlock(nn.Module):
 ```{.python .input}
 %%tab tensorflow
 class TransformerDecoderBlock(tf.keras.layers.Layer):
-    # The i-th block in the Transformer decoder
+    # A Transformer dekódoló i-edik blokkja
     def __init__(self, key_size, query_size, value_size, num_hiddens,
                  norm_shape, ffn_num_hiddens, num_heads, dropout, i):
         super().__init__()
@@ -847,11 +847,11 @@ class TransformerDecoderBlock(tf.keras.layers.Layer):
 
     def call(self, X, state, **kwargs):
         enc_outputs, enc_valid_lens = state[0], state[1]
-        # During training, all the tokens of any output sequence are processed
-        # at the same time, so state[2][self.i] is None as initialized. When
-        # decoding any output sequence token by token during prediction,
-        # state[2][self.i] contains representations of the decoded output at
-        # the i-th block up to the current time step
+        # Tanítás közben bármely kimeneti szekvencia összes tokenjét egyszerre
+        # dolgozzuk fel, ezért a kezdetben beállított state[2][self.i] értéke
+        # None. Előrejelzéskor viszont tokenről tokenre dekódoljuk a kimeneti
+        # szekvenciát, ezért state[2][self.i] az i-edik blokkban az aktuális
+        # időlépésig dekódolt kimenet reprezentációit tartalmazza.
         if state[2][self.i] is None:
             key_values = X
         else:
@@ -866,7 +866,7 @@ class TransformerDecoderBlock(tf.keras.layers.Layer):
                            shape=(-1, num_steps)), repeats=batch_size, axis=0)
         else:
             dec_valid_lens = None
-        # Self-attention
+        # Önfigyelem
         X2 = self.attention1(X, key_values, key_values, dec_valid_lens,
                              **kwargs)
         Y = self.addnorm1(X, X2, **kwargs)
@@ -881,7 +881,7 @@ class TransformerDecoderBlock(tf.keras.layers.Layer):
 ```{.python .input}
 %%tab jax
 class TransformerDecoderBlock(nn.Module):
-    # The i-th block in the Transformer decoder
+    # A Transformer dekódoló i-edik blokkja
     num_hiddens: int
     ffn_num_hiddens: int
     num_heads: int
@@ -902,11 +902,11 @@ class TransformerDecoderBlock(nn.Module):
 
     def __call__(self, X, state, training=False):
         enc_outputs, enc_valid_lens = state[0], state[1]
-        # During training, all the tokens of any output sequence are processed
-        # at the same time, so state[2][self.i] is None as initialized. When
-        # decoding any output sequence token by token during prediction,
-        # state[2][self.i] contains representations of the decoded output at
-        # the i-th block up to the current time step
+        # Tanítás közben bármely kimeneti szekvencia összes tokenjét egyszerre
+        # dolgozzuk fel, ezért a kezdetben beállított state[2][self.i] értéke
+        # None. Előrejelzéskor viszont tokenről tokenre dekódoljuk a kimeneti
+        # szekvenciát, ezért state[2][self.i] az i-edik blokkban az aktuális
+        # időlépésig dekódolt kimenet reprezentációit tartalmazza.
         if state[2][self.i] is None:
             key_values = X
         else:
@@ -920,7 +920,7 @@ class TransformerDecoderBlock(nn.Module):
                                       (batch_size, 1))
         else:
             dec_valid_lens = None
-        # Self-attention
+        # Önfigyelem
         X2, attention_w1 = self.attention1(X, key_values, key_values,
                                            dec_valid_lens, training=training)
         Y = self.addnorm1(X, X2, training=training)
@@ -1005,10 +1005,10 @@ class TransformerDecoder(d2l.AttentionDecoder):
         self._attention_weights = [[None] * len(self.blks) for _ in range (2)]
         for i, blk in enumerate(self.blks):
             X, state = blk(X, state)
-            # A dekóder önfigyelmi súlyai
+            # A dekódoló önfigyelemsúlyai
             self._attention_weights[0][
                 i] = blk.attention1.attention.attention_weights
-            # A kódoló-dekódoló figyelmi súlyai
+            # A kódoló–dekódoló figyelemsúlyai
             self._attention_weights[1][
                 i] = blk.attention2.attention.attention_weights
         return self.dense(X), state
@@ -1042,10 +1042,10 @@ class TransformerDecoder(d2l.AttentionDecoder):
         self._attention_weights = [[None] * len(self.blks) for _ in range (2)]
         for i, blk in enumerate(self.blks):
             X, state = blk(X, state)
-            # A dekóder önfigyelmi súlyai
+            # A dekódoló önfigyelemsúlyai
             self._attention_weights[0][
                 i] = blk.attention1.attention.attention_weights
-            # A kódoló-dekódoló figyelmi súlyai
+            # A kódoló–dekódoló figyelemsúlyai
             self._attention_weights[1][
                 i] = blk.attention2.attention.attention_weights
         return self.dense(X), state
@@ -1078,14 +1078,14 @@ class TransformerDecoder(d2l.AttentionDecoder):
     def call(self, X, state, **kwargs):
         X = self.pos_encoding(self.embedding(X) * tf.math.sqrt(
             tf.cast(self.num_hiddens, dtype=tf.float32)), **kwargs)
-        # 2 attention layers in decoder
+        # A dekódolóban két figyelemréteg van.
         self._attention_weights = [[None] * len(self.blks) for _ in range(2)]
         for i, blk in enumerate(self.blks):
             X, state = blk(X, state, **kwargs)
-            # A dekóder önfigyelmi súlyai
+            # A dekódoló önfigyelemsúlyai
             self._attention_weights[0][i] = (
                 blk.attention1.attention.attention_weights)
-            # A kódoló-dekódoló figyelmi súlyai
+            # A kódoló–dekódoló figyelemsúlyai
             self._attention_weights[1][i] = (
                 blk.attention2.attention.attention_weights)
         return self.dense(X), state
@@ -1125,11 +1125,11 @@ class TransformerDecoder(nn.Module):
         for i, blk in enumerate(self.blks):
             X, state, attention_w1, attention_w2 = blk(X, state,
                                                        training=training)
-            # A dekóder önfigyelmi súlyai
+            # A dekódoló önfigyelemsúlyai
             attention_weights[0][i] = attention_w1
-            # A kódoló-dekódoló figyelmi súlyai
+            # A kódoló–dekódoló figyelemsúlyai
             attention_weights[1][i] = attention_w2
-        # Flax sow API is used to capture intermediate variables
+        # A Flax sow API-t a köztes változók rögzítésére használjuk
         self.sow('intermediates', 'dec_attention_weights', attention_weights)
         return self.dense(X), state
 ```

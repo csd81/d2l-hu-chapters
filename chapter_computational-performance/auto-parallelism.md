@@ -154,7 +154,7 @@ Ez kissé nem hatékony. Vegyük figyelembe, hogy már elkezdhetjük a `y` rész
 :end_tab:
 
 :begin_tab:`pytorch`
-Ez kissé nem hatékony. Vegyük figyelembe, hogy már elkezdhetjük a `y` részeinek másolását a CPU-ra, miközben a lista többi részét még mindig számítjuk. Ez a helyzet például akkor fordul elő, amikor egy mini-batch (backprop) gradiensét számítjuk. Néhány paraméter gradiensei korábban lesznek elérhetők, mint másoké. Ezért az a javunkra válik, ha elkezdjük kihasználni a PCI-Express busz sávszélességét, miközben a GPU még fut. A PyTorch-ban számos függvény, mint a `to()` és a `copy_()`, explicit `non_blocking` argumentumot fogad, amely lehetővé teszi a hívónak, hogy megkerülje a szinkronizálást, ha arra nincs szükség. A `non_blocking=True` beállítása lehetővé teszi, hogy szimuláljuk ezt a forgatókönyvet.
+Ez kissé nem hatékony. Vegyük figyelembe, hogy már elkezdhetjük a `y` részeinek másolását a CPU-ra, miközben a lista többi részét még mindig számítjuk. Ez a helyzet például akkor fordul elő, amikor egy mini-batch visszaterjesztési gradiensét számítjuk. Néhány paraméter gradiensei korábban lesznek elérhetők, mint másoké. Ezért az a javunkra válik, ha elkezdjük kihasználni a PCI-Express busz sávszélességét, miközben a GPU még fut. A PyTorch-ban számos függvény, mint a `to()` és a `copy_()`, explicit `non_blocking` argumentumot fogad, amely lehetővé teszi a hívónak, hogy megkerülje a szinkronizálást, ha arra nincs szükség. A `non_blocking=True` beállítása lehetővé teszi, hogy szimuláljuk ezt a forgatókönyvet.
 :end_tab:
 
 ```{.python .input}

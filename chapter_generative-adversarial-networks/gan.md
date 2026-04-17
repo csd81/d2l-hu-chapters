@@ -171,8 +171,7 @@ def update_D(X, Z, net_D, net_G, loss, trainer_D):
     with autograd.record():
         real_Y = net_D(X)
         fake_X = net_G(Z)
-        # Nem kell gradienseket számítani a `net_G`-hez, leválasztjuk a
-        # gradiens-számításból.
+        # A `net_G`-hez nem kell gradienseket számítani, ezért leválasztjuk a gradiensszámításból.
         fake_Y = net_D(fake_X.detach())
         loss_D = (loss(real_Y, ones) + loss(fake_Y, zeros)) / 2
     loss_D.backward()
@@ -209,7 +208,7 @@ def update_D(X, Z, net_D, net_G, loss, optimizer_D):
     batch_size = X.shape[0]
     ones = tf.ones((batch_size,)) # Valódi adatokhoz tartozó címkék
     zeros = tf.zeros((batch_size,)) # Hamis adatokhoz tartozó címkék
-    # Nem kell gradienseket számítani a `net_G`-hez, így kívül van a GradientTape-en
+    # A `net_G`-hez nem kell gradienseket számítani, így a GradientTape-en kívül marad.
     fake_X = net_G(Z)
     with tf.GradientTape() as tape:
         real_Y = net_D(X)
@@ -232,9 +231,9 @@ def update_G(Z, net_D, net_G, loss, trainer_G):
     batch_size = Z.shape[0]
     ones = np.ones((batch_size,), ctx=Z.ctx)
     with autograd.record():
-        # Az `update_D`-ből újra felhasználhatnánk a `fake_X`-et a számítás megtakarításához
+        # Az `update_D`-ből újra felhasználhatnánk a `fake_X`-et, hogy számítást takarítsunk meg.
         fake_X = net_G(Z)
-        # A `fake_Y` újraszámítása szükséges, mivel `net_D` megváltozott
+        # A `fake_Y`-t újra kell számítani, mert a `net_D` megváltozott.
         fake_Y = net_D(fake_X)
         loss_G = loss(fake_Y, ones)
     loss_G.backward()
@@ -268,9 +267,9 @@ def update_G(Z, net_D, net_G, loss, optimizer_G):
     batch_size = Z.shape[0]
     ones = tf.ones((batch_size,))
     with tf.GradientTape() as tape:
-        # Az `update_D`-ből újra felhasználhatnánk a `fake_X`-et a számítás megtakarításához
+        # Az `update_D`-ből újra felhasználhatnánk a `fake_X`-et, hogy számítást takarítsunk meg.
         fake_X = net_G(Z)
-        # A `fake_Y` újraszámítása szükséges, mivel `net_D` megváltozott
+        # A `fake_Y`-t újra kell számítani, mert a `net_D` megváltozott.
         fake_Y = net_D(fake_X)
         # A veszteséget megszorozzuk batch_size-zal, hogy megfeleljen a PyTorch BCEWithLogits loss-ának
         loss_G = loss(ones, tf.squeeze(fake_Y)) * batch_size

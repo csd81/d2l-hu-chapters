@@ -124,7 +124,7 @@ Ez már elegendő ahhoz, hogy kódban is kipróbáljuk. Tegyük fel például, h
 def L(x):
     return x**2 + 1701*(x-4)**3
 
-# Print the difference divided by epsilon for several epsilon
+# Írjuk ki a különbség és az epsilon hányadosát több epsilonértékre
 for epsilon in [0.1, 0.001, 0.0001, 0.00001]:
     print(f'epsilon = {epsilon:.5f} -> {(L(4+epsilon) - L(4)) / epsilon:.5f}')
 ```

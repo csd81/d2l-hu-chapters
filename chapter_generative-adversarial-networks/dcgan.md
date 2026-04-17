@@ -250,13 +250,13 @@ A generátor négy alap blokkból áll, amelyek a bemenet szélességét és mag
 #@tab mxnet
 n_G = 64
 net_G = nn.Sequential()
-net_G.add(G_block(n_G*8, strides=1, padding=0),  # Output: (64 * 8, 4, 4)
-          G_block(n_G*4),  # Output: (64 * 4, 8, 8)
-          G_block(n_G*2),  # Output: (64 * 2, 16, 16)
-          G_block(n_G),    # Output: (64, 32, 32)
+net_G.add(G_block(n_G*8, strides=1, padding=0),  # Kimenet: (64 * 8, 4, 4)
+          G_block(n_G*4),  # Kimenet: (64 * 4, 8, 8)
+          G_block(n_G*2),  # Kimenet: (64 * 2, 16, 16)
+          G_block(n_G),    # Kimenet: (64, 32, 32)
           nn.Conv2DTranspose(
               3, kernel_size=4, strides=2, padding=1, use_bias=False,
-              activation='tanh'))  # Output: (3, 64, 64)
+              activation='tanh'))  # Kimenet: (3, 64, 64)
 ```
 
 ```{.python .input}
@@ -264,25 +264,25 @@ net_G.add(G_block(n_G*8, strides=1, padding=0),  # Output: (64 * 8, 4, 4)
 n_G = 64
 net_G = nn.Sequential(
     G_block(in_channels=100, out_channels=n_G*8,
-            strides=1, padding=0),                  # Output: (64 * 8, 4, 4)
-    G_block(in_channels=n_G*8, out_channels=n_G*4), # Output: (64 * 4, 8, 8)
-    G_block(in_channels=n_G*4, out_channels=n_G*2), # Output: (64 * 2, 16, 16)
-    G_block(in_channels=n_G*2, out_channels=n_G),   # Output: (64, 32, 32)
+            strides=1, padding=0),                  # Kimenet: (64 * 8, 4, 4)
+    G_block(in_channels=n_G*8, out_channels=n_G*4), # Kimenet: (64 * 4, 8, 8)
+    G_block(in_channels=n_G*4, out_channels=n_G*2), # Kimenet: (64 * 2, 16, 16)
+    G_block(in_channels=n_G*2, out_channels=n_G),   # Kimenet: (64, 32, 32)
     nn.ConvTranspose2d(in_channels=n_G, out_channels=3,
                        kernel_size=4, stride=2, padding=1, bias=False),
-    nn.Tanh())  # Output: (3, 64, 64)
+    nn.Tanh())  # Kimenet: (3, 64, 64)
 ```
 
 ```{.python .input}
 #@tab tensorflow
 n_G = 64
 net_G = tf.keras.Sequential([
-    # Output: (4, 4, 64 * 8)
+    # Kimenet: (4, 4, 64 * 8)
     G_block(out_channels=n_G*8, strides=1, padding="valid"),
-    G_block(out_channels=n_G*4), # Output: (8, 8, 64 * 4)
-    G_block(out_channels=n_G*2), # Output: (16, 16, 64 * 2)
-    G_block(out_channels=n_G), # Output: (32, 32, 64)
-    # Output: (64, 64, 3)
+    G_block(out_channels=n_G*4), # Kimenet: (8, 8, 64 * 4)
+    G_block(out_channels=n_G*2), # Kimenet: (16, 16, 64 * 2)
+    G_block(out_channels=n_G), # Kimenet: (32, 32, 64)
+    # Kimenet: (64, 64, 3)
     tf.keras.layers.Conv2DTranspose(
         3, kernel_size=4, strides=2, padding="same", use_bias=False,
         activation="tanh")
@@ -419,34 +419,34 @@ A diszkriminátor a generátor tükörképe.
 #@tab mxnet
 n_D = 64
 net_D = nn.Sequential()
-net_D.add(D_block(n_D),   # Output: (64, 32, 32)
-          D_block(n_D*2),  # Output: (64 * 2, 16, 16)
-          D_block(n_D*4),  # Output: (64 * 4, 8, 8)
-          D_block(n_D*8),  # Output: (64 * 8, 4, 4)
-          nn.Conv2D(1, kernel_size=4, use_bias=False))  # Output: (1, 1, 1)
+net_D.add(D_block(n_D),   # Kimenet: (64, 32, 32)
+          D_block(n_D*2),  # Kimenet: (64 * 2, 16, 16)
+          D_block(n_D*4),  # Kimenet: (64 * 4, 8, 8)
+          D_block(n_D*8),  # Kimenet: (64 * 8, 4, 4)
+          nn.Conv2D(1, kernel_size=4, use_bias=False))  # Kimenet: (1, 1, 1)
 ```
 
 ```{.python .input}
 #@tab pytorch
 n_D = 64
 net_D = nn.Sequential(
-    D_block(n_D),  # Output: (64, 32, 32)
-    D_block(in_channels=n_D, out_channels=n_D*2),  # Output: (64 * 2, 16, 16)
-    D_block(in_channels=n_D*2, out_channels=n_D*4),  # Output: (64 * 4, 8, 8)
-    D_block(in_channels=n_D*4, out_channels=n_D*8),  # Output: (64 * 8, 4, 4)
+    D_block(n_D),  # Kimenet: (64, 32, 32)
+    D_block(in_channels=n_D, out_channels=n_D*2),  # Kimenet: (64 * 2, 16, 16)
+    D_block(in_channels=n_D*2, out_channels=n_D*4),  # Kimenet: (64 * 4, 8, 8)
+    D_block(in_channels=n_D*4, out_channels=n_D*8),  # Kimenet: (64 * 8, 4, 4)
     nn.Conv2d(in_channels=n_D*8, out_channels=1,
-              kernel_size=4, bias=False))  # Output: (1, 1, 1)
+              kernel_size=4, bias=False))  # Kimenet: (1, 1, 1)
 ```
 
 ```{.python .input}
 #@tab tensorflow
 n_D = 64
 net_D = tf.keras.Sequential([
-    D_block(n_D), # Output: (32, 32, 64)
-    D_block(out_channels=n_D*2), # Output: (16, 16, 64 * 2)
-    D_block(out_channels=n_D*4), # Output: (8, 8, 64 * 4)
+    D_block(n_D), # Kimenet: (32, 32, 64)
+    D_block(out_channels=n_D*2), # Kimenet: (16, 16, 64 * 2)
+    D_block(out_channels=n_D*4), # Kimenet: (8, 8, 64 * 4)
     D_block(out_channels=n_D*8), # Outupt: (4, 4, 64 * 64)
-    # Output: (1, 1, 1)
+    # Kimenet: (1, 1, 1)
     tf.keras.layers.Conv2D(1, kernel_size=4, use_bias=False)
 ])
 ```
@@ -491,7 +491,7 @@ def train(net_D, net_G, data_iter, num_epochs, lr, latent_dim,
                             legend=['discriminator', 'generator'])
     animator.fig.subplots_adjust(hspace=0.3)
     for epoch in range(1, num_epochs + 1):
-        # Egy korszak tanítása
+        # Egy epoch tanítása
         timer = d2l.Timer()
         metric = d2l.Accumulator(3)  # loss_D, loss_G, num_examples
         for X, _ in data_iter:
@@ -535,7 +535,7 @@ def train(net_D, net_G, data_iter, num_epochs, lr, latent_dim,
                             legend=['discriminator', 'generator'])
     animator.fig.subplots_adjust(hspace=0.3)
     for epoch in range(1, num_epochs + 1):
-        # Egy korszak tanítása
+        # Egy epoch tanítása
         timer = d2l.Timer()
         metric = d2l.Accumulator(3)  # loss_D, loss_G, num_examples
         for X, _ in data_iter:
@@ -584,7 +584,7 @@ def train(net_D, net_G, data_iter, num_epochs, lr, latent_dim,
     animator.fig.subplots_adjust(hspace=0.3)
 
     for epoch in range(1, num_epochs + 1):
-        # Egy korszak tanítása
+        # Egy epoch tanítása
         timer = d2l.Timer()
         metric = d2l.Accumulator(3) # loss_D, loss_G, num_examples
         for X, _ in data_iter:

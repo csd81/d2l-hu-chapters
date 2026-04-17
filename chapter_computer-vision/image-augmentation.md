@@ -268,7 +268,7 @@ A következőkben [**definiálunk egy függvényt a modell több GPU-val való t
 #@save
 def train_batch_ch13(net, features, labels, loss, trainer, devices,
                      split_f=d2l.split_batch):
-    """Tanítás egy minibatch-re több GPU-val (a 13. fejezetben definiálva)."""
+    """Tanítás egy mini-batch-re több GPU-val (a 13. fejezetben definiálva)."""
     X_shards, y_shards = split_f(features, labels, devices)
     with autograd.record():
         pred_shards = [net(X_shard) for X_shard in X_shards]
@@ -289,7 +289,7 @@ def train_batch_ch13(net, features, labels, loss, trainer, devices,
 #@tab pytorch
 #@save
 def train_batch_ch13(net, X, y, loss, trainer, devices):
-    """Tanítás egy minibatch-re több GPU-val (a 13. fejezetben definiálva)."""
+    """Tanítás egy mini-batch-re több GPU-val (a 13. fejezetben definiálva)."""
     if isinstance(X, list):
         # A BERT finomhangoláshoz szükséges (később tárgyaljuk)
         X = [x.to(devices[0]) for x in X]

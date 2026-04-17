@@ -107,7 +107,7 @@ def constant_lr():
     return 1
 
 eta = 0.1
-lr = constant_lr  # Állandó tanulási sebesség
+lr = constant_lr  # Állandó tanulási ráta
 d2l.show_trace_2d(f, d2l.train_2d(sgd, steps=50, f_grad=f_grad))
 ```
 

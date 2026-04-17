@@ -392,8 +392,7 @@ Most már ellenőrizhetjük, hogy helyes-e a jóslat.
 
 ```{.python .input}
 #@tab mxnet
-# Convert label which is a scalar tensor of int32 dtype to a Python scalar
-# integer for comparison
+# Alakítsuk át a címkét, amely int32 típusú skalár tenzor, Python skalárrá az összehasonlításhoz
 py.argmax(axis=0) == int(label)
 ```
 
@@ -450,7 +449,7 @@ Végül számítsuk ki az osztályozó összesített pontosságát.
 #@tab mxnet
 X, y = mnist_test[:]
 preds = np.array(predict(X), dtype=np.int32)
-float((preds == y).sum()) / len(y)  # Validation accuracy
+float((preds == y).sum()) / len(y)  # Validációs pontosság
 ```
 
 ```{.python .input}
@@ -458,7 +457,7 @@ float((preds == y).sum()) / len(y)  # Validation accuracy
 X = torch.stack([mnist_test[i][0] for i in range(len(mnist_test))], dim=0)
 y = torch.tensor([mnist_test[i][1] for i in range(len(mnist_test))])
 preds = torch.tensor(predict(X), dtype=torch.int32)
-float((preds == y).sum()) / len(y)  # Validation accuracy
+float((preds == y).sum()) / len(y)  # Validációs pontosság
 ```
 
 ```{.python .input}
@@ -466,7 +465,7 @@ float((preds == y).sum()) / len(y)  # Validation accuracy
 X = test_images
 y = test_labels
 preds = tf.constant(predict(X), dtype=tf.int32)
-# Validation accuracy
+# Validációs pontosság
 tf.reduce_sum(tf.cast(preds == y, tf.float32)).numpy() / len(y)
 ```
 

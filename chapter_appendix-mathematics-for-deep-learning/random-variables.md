@@ -668,7 +668,7 @@ A szemléltetés érdekében nézzük meg a különféle kovarianciaértékű va
 
 ```{.python .input}
 #@tab mxnet
-# Plot a few random variables adjustable covariance
+# Néhány véletlen változó ábrázolása állítható kovarianciával
 covs = [-0.9, 0.0, 1.2]
 d2l.plt.figure(figsize=(12, 3))
 for i in range(3):
@@ -685,7 +685,7 @@ d2l.plt.show()
 
 ```{.python .input}
 #@tab pytorch
-# Plot a few random variables adjustable covariance
+# Néhány véletlen változó ábrázolása állítható kovarianciával
 covs = [-0.9, 0.0, 1.2]
 d2l.plt.figure(figsize=(12, 3))
 for i in range(3):
@@ -702,7 +702,7 @@ d2l.plt.show()
 
 ```{.python .input}
 #@tab tensorflow
-# Plot a few random variables adjustable covariance
+# Néhány véletlen változó ábrázolása állítható kovarianciával
 covs = [-0.9, 0.0, 1.2]
 d2l.plt.figure(figsize=(12, 3))
 for i in range(3):
@@ -774,7 +774,7 @@ Rajzoljuk fel ismét a különféle korrelációjú valószínűségi változók
 
 ```{.python .input}
 #@tab mxnet
-# Plot a few random variables adjustable correlations
+# Néhány véletlen változó ábrázolása állítható korrelációval
 cors = [-0.9, 0.0, 1.0]
 d2l.plt.figure(figsize=(12, 3))
 for i in range(3):
@@ -791,7 +791,7 @@ d2l.plt.show()
 
 ```{.python .input}
 #@tab pytorch
-# Plot a few random variables adjustable correlations
+# Néhány véletlen változó ábrázolása állítható korrelációval
 cors = [-0.9, 0.0, 1.0]
 d2l.plt.figure(figsize=(12, 3))
 for i in range(3):
@@ -809,7 +809,7 @@ d2l.plt.show()
 
 ```{.python .input}
 #@tab tensorflow
-# Plot a few random variables adjustable correlations
+# Néhány véletlen változó ábrázolása állítható korrelációval
 cors = [-0.9, 0.0, 1.0]
 d2l.plt.figure(figsize=(12, 3))
 for i in range(3):

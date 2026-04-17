@@ -54,7 +54,7 @@ d2l.DATA_HUB['ptb'] = (d2l.DATA_URL + 'ptb.zip',
 def read_ptb():
     """A PTB adathalmazt szövegsorok listájába tölti be."""
     data_dir = d2l.download_extract('ptb')
-    # A tanítókészlet beolvasása
+    # A tanítóhalmaz beolvasása
     with open(os.path.join(data_dir, 'ptb.train.txt')) as f:
         raw_text = f.read()
     return [line.split() for line in raw_text.split('\n')]
@@ -355,7 +355,7 @@ beleértve a maszk változót.
 #@tab all
 #@save
 def batchify(data):
-    """Egy minibatch példát ad vissza skip-gram negatív mintavételezéssel."""
+    """Egy mini-batch példát ad vissza skip-gram negatív mintavételezéssel."""
     max_len = max(len(c) + len(n) for _, c, n in data)
     centers, contexts_negatives, masks, labels = [], [], [], []
     for center, context, negative in data:

@@ -78,7 +78,7 @@ meglepően tömör kódot írhatunk,
 
 
 Programozási szempontból a modult egy *osztály* képviseli.
-Bármely alosztályának definiálnia kell egy előreterjedési metódust,
+Bármely alosztályának definiálnia kell egy előreterjesztési metódust,
 amely a bemenetet kimenetté alakítja,
 és el kell tárolnia a szükséges paramétereket.
 Vegyük észre, hogy néhány modulnak egyáltalán nincsenek paraméterei.
@@ -89,7 +89,7 @@ háttérbeli mágia miatt
 (amelyet :numref:`sec_autograd` részben mutattunk be),
 saját modulunk definiálásakor
 csak a paraméterekkel és
-az előreterjedési metódussal kell foglalkoznunk.
+az előreterjesztési metódussal kell foglalkoznunk.
 
 ```{.python .input}
 %%tab mxnet
@@ -182,7 +182,7 @@ Az `add` metódus egyszerűen megkönnyíti
 minden egymást követő `Block` listához való hozzáadását.
 Vegyük észre, hogy minden réteg a `Dense` osztály egy példánya,
 amely maga is a `Block` alosztálya.
-Az előreterjedési (`forward`) metódus is feltűnően egyszerű:
+Az előreterjesztési (`forward`) metódus is feltűnően egyszerű:
 láncolja a lista minden `Block`-ját egymáshoz,
 mindegyik kimenetét a következő bemenetéül adva át.
 Vegyük észre, hogy mostanáig a modelleinket
@@ -201,7 +201,7 @@ a PyTorch-ban a modult megjelenítő osztályt.
 Megőriz egy rendezett listát az alkotó `Module`-okről.
 Vegyük észre, hogy mindkét teljesen összefüggő réteg a `Linear` osztály egy példánya,
 amely maga is a `Module` alosztálya.
-Az előreterjedési (`forward`) metódus is feltűnően egyszerű:
+Az előreterjesztési (`forward`) metódus is feltűnően egyszerű:
 láncolja a lista minden modulját egymáshoz,
 mindegyik kimenetét a következő bemenetéül adva át.
 Vegyük észre, hogy mostanáig a modelleinket
@@ -218,7 +218,7 @@ a Keras-ban a modult megjelenítő osztályt.
 Megőriz egy rendezett listát az alkotó `Model`-ekről.
 Vegyük észre, hogy mindkét teljesen összefüggő réteg a `Dense` osztály egy példánya,
 amely maga is a `Model` alosztálya.
-Az előreterjedési (`call`) metódus is feltűnően egyszerű:
+Az előreterjesztési (`call`) metódus is feltűnően egyszerű:
 láncolja a lista minden modulját egymáshoz,
 mindegyik kimenetét a következő bemenetéül adva át.
 Vegyük észre, hogy mostanáig a modelleinket
@@ -237,11 +237,11 @@ röviden összefoglaljuk az alapvető funkcionalitást,
 amelyet minden modulnak biztosítania kell:
 
 
-1. Bemeneti adatok fogadása argumentumként az előreterjedési metódusban.
-1. Kimenet generálása az előreterjedési metódus által visszaadott értékkel. Vegyük észre, hogy a kimenet eltérő alakzatú lehet a bemenettől. Például a fenti modellünkben az első teljesen összefüggő réteg tetszőleges dimenziójú bemenetet fogad, de 256 dimenziójú kimenetet ad vissza.
+1. Bemeneti adatok fogadása argumentumként az előreterjesztési metódusban.
+1. Kimenet generálása az előreterjesztési metódus által visszaadott értékkel. Vegyük észre, hogy a kimenet eltérő alakzatú lehet a bemenettől. Például a fenti modellünkben az első teljesen összefüggő réteg tetszőleges dimenziójú bemenetet fogad, de 256 dimenziójú kimenetet ad vissza.
 1. A kimenet gradiensének kiszámítása a bemenethez képest, amely a visszaterjedési metóduson keresztül érhető el. Általában ez automatikusan történik.
 1. A szükséges paraméterek tárolása és hozzáférhetővé tétele
-   az előreterjedési számítás végrehajtásához.
+   az előreterjesztési számítás végrehajtásához.
 1. A modell paramétereinek inicializálása szükség esetén.
 
 
@@ -252,7 +252,7 @@ amely egy rejtett réteggel rendelkező MLP-nek felel meg
 és 10 dimenziós kimeneti réteggel.
 Vegyük észre, hogy az alábbi `MLP` osztály örökli a modult megjelenítő osztályt.
 Nagymértékben támaszkodunk a szülőosztály metódusaira,
-csak a saját konstruktorunkat (Pythonban az `__init__` metódust) és az előreterjedési metódust adjuk meg.
+csak a saját konstruktorunkat (Pythonban az `__init__` metódust) és az előreterjesztési metódust adjuk meg.
 
 ```{.python .input}
 %%tab mxnet
@@ -264,7 +264,7 @@ class MLP(nn.Block):
         self.hidden = nn.Dense(256, activation='relu')
         self.out = nn.Dense(10)
 
-    # A modell előreterjedésének definiálása, azaz hogyan adjuk vissza
+    # A modell előreterjesztésének definiálása, azaz hogyan adjuk vissza
     # a szükséges modellkimenetet az X bemenet alapján
     def forward(self, X):
         return self.out(self.hidden(X))
@@ -280,7 +280,7 @@ class MLP(nn.Module):
         self.hidden = nn.LazyLinear(256)
         self.out = nn.LazyLinear(10)
 
-    # A modell előreterjedésének definiálása, azaz hogyan adjuk vissza
+    # A modell előreterjesztésének definiálása, azaz hogyan adjuk vissza
     # a szükséges modellkimenetet az X bemenet alapján
     def forward(self, X):
         return self.out(F.relu(self.hidden(X)))
@@ -296,7 +296,7 @@ class MLP(tf.keras.Model):
         self.hidden = tf.keras.layers.Dense(units=256, activation=tf.nn.relu)
         self.out = tf.keras.layers.Dense(units=10)
 
-    # A modell előreterjedésének definiálása, azaz hogyan adjuk vissza
+    # A modell előreterjesztésének definiálása, azaz hogyan adjuk vissza
     # a szükséges modellkimenetet az X bemenet alapján
     def call(self, X):
         return self.out(self.hidden((X)))
@@ -310,13 +310,13 @@ class MLP(nn.Module):
         self.hidden = nn.Dense(256)
         self.out = nn.Dense(10)
 
-    # A modell előreterjedésének definiálása, azaz hogyan adjuk vissza
+    # A modell előreterjesztésének definiálása, azaz hogyan adjuk vissza
     # a szükséges modellkimenetet az X bemenet alapján
     def __call__(self, X):
         return self.out(nn.relu(self.hidden(X)))
 ```
 
-Először az előreterjedési metódusra összpontosítsunk.
+Először az előreterjesztési metódusra összpontosítsunk.
 Vegyük észre, hogy bemenetként fogadja az `X`-et,
 kiszámítja az alkalmazott aktivációs függvénnyel ellátott rejtett reprezentációt,
 és kimeneti logitokat ad vissza.
@@ -331,7 +331,7 @@ hogy két különböző tanított modellt képviseljenek.
 [**Az MLP rétegeinek példányosítása**]
 a konstruktorban történik
 (**és ezeket a rétegeket ezt követően hívjuk meg**)
-az előreterjedési metódus minden egyes meghívásakor.
+az előreterjesztési metódus minden egyes meghívásakor.
 Vegyünk észre néhány kulcsfontosságú részletet.
 Először is, a testreszabott `__init__` metódusunk
 meghívja a szülőosztály `__init__` metódusát
@@ -382,7 +382,7 @@ A saját egyszerűsített `MySequential`-unk felépítéséhez
 csupán két kulcsfontosságú metódust kell definiálnunk:
 
 1. Egy metódust a modulok egyenkénti listához való hozzáfűzéséhez.
-1. Egy előreterjedési metódust a bemenet átadásához a modulok láncolatán, ugyanabban a sorrendben, ahogy hozzá lettek fűzve.
+1. Egy előreterjesztési metódust a bemenet átadásához a modulok láncolatán, ugyanabban a sorrendben, ahogy hozzá lettek fűzve.
 
 A következő `MySequential` osztály ugyanazt a
 funkcionalitást nyújtja, mint az alapértelmezett `Sequential` osztály.
@@ -464,7 +464,7 @@ Ily módon a rendszer tudja a hozzáadott modulokat,
 és megfelelően inicializálja minden modul paramétereit.
 :end_tab:
 
-Amikor a `MySequential` előreterjedési metódusa meghívódik,
+Amikor a `MySequential` előreterjesztési metódusa meghívódik,
 minden hozzáadott modul végrehajtásra kerül
 abban a sorrendben, amelyben hozzá lettek adva.
 Most újraimplementálhatunk egy MLP-t
@@ -506,7 +506,7 @@ a `Sequential` osztályhoz
 (amint azt :numref:`sec_mlp` részben leírtuk).
 
 
-## [**Kód végrehajtása az előreterjedési metódusban**]
+## [**Kód végrehajtása az előreterjesztési metódusban**]
 
 A `Sequential` osztály megkönnyíti a modellépítést,
 lehetővé téve, hogy új architektúrákat állítsunk össze
@@ -515,7 +515,7 @@ Azonban nem minden architektúra egyszerű lánc.
 Ha nagyobb rugalmasságra van szükség,
 saját blokkokat kell definiálnunk.
 Például érdemes lehet
-Python vezérlési folyamatot végrehajtani az előreterjedési metóduson belül.
+Python vezérlési folyamatot végrehajtani az előreterjesztési metóduson belül.
 Sőt, tetszőleges matematikai műveleteket is érdemes elvégezni,
 nem csupán előre meghatározott neurális hálózati rétegekre hagyatkozni.
 
@@ -759,7 +759,7 @@ A rétegek és modulok szekvenciális összefűzését a `Sequential` modul keze
 ## Feladatok
 
 1. Milyen problémák léphetnek fel, ha megváltoztatjuk a `MySequential`-t úgy, hogy a modulokat egy Python listában tárolja?
-1. Implementálj egy modult, amely két modult vesz argumentumként, mondjuk `net1`-et és `net2`-t, és az előreterjedés során mindkét hálózat összefűzött kimenetét adja vissza. Ezt *párhuzamos modulnak* is nevezik.
+1. Implementálj egy modult, amely két modult vesz argumentumként, mondjuk `net1`-et és `net2`-t, és az előreterjesztés során mindkét hálózat összefűzött kimenetét adja vissza. Ezt *párhuzamos modulnak* is nevezik.
 1. Tegyük fel, hogy ugyanannak a hálózatnak több példányát szeretnénk összefűzni. Implementálj egy gyártó függvényt, amely több példányt generál ugyanabból a modulból, és ezekből épít fel egy nagyobb hálózatot.
 
 :begin_tab:`mxnet`

@@ -400,7 +400,7 @@ Egy teljesen gépileg tanult megoldás esetén a küszöbértéket az adathalmaz
 
 ```{.python .input}
 #@tab mxnet
-# A tesztkészlet pontosságának kiíratása szemre becsült küszöbértékkel
+# A teszthalmaz pontosságának kiíratása szemre becsült küszöbértékkel
 w = (ave_1 - ave_0).T
 predictions = X_test.reshape(2000, -1).dot(w.flatten()) > -1500000
 
@@ -410,7 +410,7 @@ np.mean(predictions.astype(y_test.dtype) == y_test, dtype=np.float64)
 
 ```{.python .input}
 #@tab pytorch
-# A tesztkészlet pontosságának kiíratása szemre becsült küszöbértékkel
+# A teszthalmaz pontosságának kiíratása szemre becsült küszöbértékkel
 w = (ave_1 - ave_0).T
 # Az `@` operátor a mátrixszorzás jele a PyTorchban.
 predictions = X_test.reshape(2000, -1) @ (w.flatten()) > -1500000
@@ -421,7 +421,7 @@ torch.mean((predictions.type(y_test.dtype) == y_test).float(), dtype=torch.float
 
 ```{.python .input}
 #@tab tensorflow
-# A tesztkészlet pontosságának kiíratása szemre becsült küszöbértékkel
+# A teszthalmaz pontosságának kiíratása szemre becsült küszöbértékkel
 w = tf.transpose(ave_1 - ave_0)
 predictions = tf.reduce_sum(X_test * tf.nest.flatten(w), axis=0) > -1500000
 
