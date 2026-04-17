@@ -115,7 +115,7 @@ $p_o$ a `num_hiddens` argumentumon keresztül kerül megadásra.
 ```{.python .input}
 %%tab mxnet
 class MultiHeadAttention(d2l.Module):  #@save
-    """Multi-head attention."""
+    """Többfejű figyelem."""
     def __init__(self, num_hiddens, num_heads, dropout, use_bias=False,
                  **kwargs):
         super().__init__()
@@ -154,7 +154,7 @@ class MultiHeadAttention(d2l.Module):  #@save
 ```{.python .input}
 %%tab pytorch
 class MultiHeadAttention(d2l.Module):  #@save
-    """Multi-head attention."""
+    """Többfejű figyelem."""
     def __init__(self, num_hiddens, num_heads, dropout, bias=False, **kwargs):
         super().__init__()
         self.num_heads = num_heads
@@ -192,7 +192,7 @@ class MultiHeadAttention(d2l.Module):  #@save
 ```{.python .input}
 %%tab tensorflow
 class MultiHeadAttention(d2l.Module):  #@save
-    """Multi-head attention."""
+    """Többfejű figyelem."""
     def __init__(self, key_size, query_size, value_size, num_hiddens,
                  num_heads, dropout, bias=False, **kwargs):
         super().__init__()

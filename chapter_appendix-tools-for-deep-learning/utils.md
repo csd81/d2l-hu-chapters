@@ -299,28 +299,28 @@ Az alábbi függvények elavulóban vannak:
 ```{.python .input}
 %%tab mxnet
 def load_array(data_arrays, batch_size, is_train=True):  #@save
-    """Construct a Gluon data iterator."""
+    """Gluon adat-iterátor létrehozása."""
     dataset = gluon.data.ArrayDataset(*data_arrays)
     return gluon.data.DataLoader(dataset, batch_size, shuffle=is_train)
 
 def synthetic_data(w, b, num_examples):  #@save
-    """Generate y = Xw + b + noise."""
+    """y = Xw + b + zaj generálása."""
     X = d2l.normal(0, 1, (num_examples, len(w)))
     y = d2l.matmul(X, w) + b
     y += d2l.normal(0, 0.01, y.shape)
     return X, d2l.reshape(y, (-1, 1))
 
 def sgd(params, lr, batch_size):  #@save
-    """Minibatch stochastic gradient descent."""
+    """Mini-batch sztochasztikus gradienscsökkenés."""
     for param in params:
         param[:] = param - lr * param.grad / batch_size
 
 def get_dataloader_workers():  #@save
-    """Use 4 processes to read the data except for Windows."""
+    """4 folyamattal olvassa be az adatokat (Windowson kívül)."""
     return 0 if sys.platform.startswith('win') else 4
 
 def load_data_fashion_mnist(batch_size, resize=None):  #@save
-    """Download the Fashion-MNIST dataset and then load it into memory."""
+    """A Fashion-MNIST adathalmaz letöltése és memóriába töltése."""
     dataset = gluon.data.vision
     trans = [dataset.transforms.ToTensor()]
     if resize:
@@ -334,7 +334,7 @@ def load_data_fashion_mnist(batch_size, resize=None):  #@save
                                   num_workers=get_dataloader_workers()))
 
 def evaluate_accuracy_gpu(net, data_iter, device=None):  #@save
-    """Compute the accuracy for a model on a dataset using a GPU."""
+    """A modell pontosságának kiszámítása GPU-val."""
     if not device:  # Query the first device where the first parameter is on
         device = list(net.collect_params().values())[0].list_ctx()[0]
     # No. of correct predictions, no. of predictions
@@ -346,7 +346,7 @@ def evaluate_accuracy_gpu(net, data_iter, device=None):  #@save
 
 #@save
 def train_ch6(net, train_iter, test_iter, num_epochs, lr, device):
-    """Train a model with a GPU (defined in Chapter 6)."""
+    """Modell tanítása GPU-val (6. fejezet alapján)."""
     net.initialize(force_reinit=True, ctx=device, init=init.Xavier())
     loss = gluon.loss.SoftmaxCrossEntropyLoss()
     trainer = gluon.Trainer(net.collect_params(),
@@ -381,7 +381,7 @@ def train_ch6(net, train_iter, test_iter, num_epochs, lr, device):
           f'on {str(device)}')
     
 def grad_clipping(net, theta):  #@save
-    """Clip the gradient."""
+    """A gradiens levágása."""
     if isinstance(net, gluon.Block):
         params = [p.data() for p in net.collect_params().values()]
     else:
@@ -396,30 +396,30 @@ def grad_clipping(net, theta):  #@save
 %%tab pytorch
 
 def load_array(data_arrays, batch_size, is_train=True):  #@save
-    """Construct a PyTorch data iterator."""
+    """PyTorch adat-iterátor létrehozása."""
     dataset = torch.utils.data.TensorDataset(*data_arrays)
     return torch.utils.data.DataLoader(dataset, batch_size, shuffle=is_train)
 
 def synthetic_data(w, b, num_examples):  #@save
-    """Generate y = Xw + b + noise."""
+    """y = Xw + b + zaj generálása."""
     X = d2l.normal(0, 1, (num_examples, len(w)))
     y = d2l.matmul(X, w) + b
     y += d2l.normal(0, 0.01, y.shape)
     return X, d2l.reshape(y, (-1, 1))
 
 def sgd(params, lr, batch_size): #@save
-    """Minibatch stochastic gradient descent."""
+    """Mini-batch sztochasztikus gradienscsökkenés."""
     with torch.no_grad():
         for param in params:
             param -= lr * param.grad / batch_size
             param.grad.zero_()
 
 def get_dataloader_workers():  #@save
-    """Use 4 processes to read the data."""
+    """4 folyamattal olvassa be az adatokat."""
     return 4
 
 def load_data_fashion_mnist(batch_size, resize=None):  #@save
-    """Download the Fashion-MNIST dataset and then load it into memory."""
+    """A Fashion-MNIST adathalmaz letöltése és memóriába töltése."""
     trans = [transforms.ToTensor()]
     if resize:
         trans.insert(0, transforms.Resize(resize))
@@ -434,7 +434,7 @@ def load_data_fashion_mnist(batch_size, resize=None):  #@save
                                         num_workers=get_dataloader_workers()))
 
 def evaluate_accuracy_gpu(net, data_iter, device=None): #@save
-    """Compute the accuracy for a model on a dataset using a GPU."""
+    """A modell pontosságának kiszámítása GPU-val."""
     if isinstance(net, nn.Module):
         net.eval()  # Set the model to evaluation mode
         if not device:
@@ -456,7 +456,7 @@ def evaluate_accuracy_gpu(net, data_iter, device=None): #@save
 
 #@save
 def train_ch6(net, train_iter, test_iter, num_epochs, lr, device):
-    """Train a model with a GPU (defined in Chapter 6)."""
+    """Modell tanítása GPU-val (6. fejezet alapján)."""
     def init_weights(m):
         if type(m) == nn.Linear or type(m) == nn.Conv2d:
             nn.init.xavier_uniform_(m.weight)
@@ -500,7 +500,7 @@ def train_ch6(net, train_iter, test_iter, num_epochs, lr, device):
 %%tab tensorflow
 
 def load_array(data_arrays, batch_size, is_train=True):  #@save
-    """Construct a TensorFlow data iterator."""
+    """TensorFlow adat-iterátor létrehozása."""
     dataset = tf.data.Dataset.from_tensor_slices(data_arrays)
     if is_train:
         dataset = dataset.shuffle(buffer_size=1000)
@@ -508,7 +508,7 @@ def load_array(data_arrays, batch_size, is_train=True):  #@save
     return dataset
 
 def synthetic_data(w, b, num_examples):  #@save
-    """Generate y = Xw + b + noise."""
+    """y = Xw + b + zaj generálása."""
     X = tf.zeros((num_examples, w.shape[0]))
     X += tf.random.normal(shape=X.shape)
     y = tf.matmul(X, tf.reshape(w, (-1, 1))) + b
@@ -518,12 +518,12 @@ def synthetic_data(w, b, num_examples):  #@save
 
 
 def sgd(params, grads, lr, batch_size):  #@save
-    """Minibatch stochastic gradient descent."""
+    """Mini-batch sztochasztikus gradienscsökkenés."""
     for param, grad in zip(params, grads):
         param.assign_sub(lr * grad / batch_size)
 
 def load_data_fashion_mnist(batch_size, resize=None):   #@save
-    """Download the Fashion-MNIST dataset and then load it into memory."""
+    """A Fashion-MNIST adathalmaz letöltése és memóriába töltése."""
     mnist_train, mnist_test = tf.keras.datasets.fashion_mnist.load_data()
     # Divide all numbers by 255 so that all pixel values are between
     # 0 and 1, add a batch dimension at the last. And cast label to int32
@@ -538,7 +538,7 @@ def load_data_fashion_mnist(batch_size, resize=None):   #@save
             batch_size).map(resize_fn))
 
 class TrainCallback(tf.keras.callbacks.Callback):  #@save
-    """A callback to visiualize the training progress."""
+    """Visszahívás a tanítási folyamat vizualizálásához."""
     def __init__(self, net, train_iter, test_iter, num_epochs, device_name):
         self.timer = d2l.Timer()
         self.animator = d2l.Animator(
@@ -568,7 +568,7 @@ class TrainCallback(tf.keras.callbacks.Callback):  #@save
 
 #@save
 def train_ch6(net_fn, train_iter, test_iter, num_epochs, lr, device):
-    """Train a model with a GPU (defined in Chapter 6)."""
+    """Modell tanítása GPU-val (6. fejezet alapján)."""
     device_name = device._device_name
     strategy = tf.distribute.OneDeviceStrategy(device_name)
     with strategy.scope():
@@ -585,7 +585,7 @@ def train_ch6(net_fn, train_iter, test_iter, num_epochs, lr, device):
 ```{.python .input}
 %%tab mxnet, tensorflow
 def evaluate_accuracy(net, data_iter):  #@save
-    """Compute the accuracy for a model on a dataset."""
+    """A modell pontosságának kiszámítása adathalmazon."""
     metric = Accumulator(2)  # No. of correct predictions, no. of predictions
     for X, y in data_iter:
         metric.add(accuracy(net(X), y), d2l.size(y))
@@ -595,7 +595,7 @@ def evaluate_accuracy(net, data_iter):  #@save
 ```{.python .input}
 %%tab all
 def show_images(imgs, num_rows, num_cols, titles=None, scale=1.5):  #@save
-    """Plot a list of images."""
+    """Képek listájának megjelenítése."""
     figsize = (num_cols * scale, num_rows * scale)
     _, axes = d2l.plt.subplots(num_rows, num_cols, figsize=figsize)
     axes = axes.flatten()
@@ -616,22 +616,22 @@ def show_images(imgs, num_rows, num_cols, titles=None, scale=1.5):  #@save
 %%tab pytorch, mxnet, tensorflow
 
 def linreg(X, w, b):  #@save
-    """The linear regression model."""
+    """Lineáris regressziós modell."""
     return d2l.matmul(X, w) + b
 
 def squared_loss(y_hat, y):  #@save
-    """Squared loss."""
+    """Négyzetes veszteség."""
     return (y_hat - d2l.reshape(y, y_hat.shape)) ** 2 / 2
 
 def get_fashion_mnist_labels(labels):  #@save
-    """Return text labels for the Fashion-MNIST dataset."""
+    """A Fashion-MNIST adathalmaz szöveges címkéinek visszaadása."""
     text_labels = ['t-shirt', 'trouser', 'pullover', 'dress', 'coat',
                    'sandal', 'shirt', 'sneaker', 'bag', 'ankle boot']
     return [text_labels[int(i)] for i in labels]
 
 #@tab pytorch, mxnet, tensorflow
 class Animator:  #@save
-    """For plotting data in animation."""
+    """Adatok animált megjelenítéséhez."""
     def __init__(self, xlabel=None, ylabel=None, legend=None, xlim=None,
                  ylim=None, xscale='linear', yscale='linear',
                  fmts=('-', 'm--', 'g-.', 'r:'), nrows=1, ncols=1,
@@ -672,7 +672,7 @@ class Animator:  #@save
 
 #@tab pytorch, mxnet, tensorflow
 class Accumulator:  #@save
-    """For accumulating sums over `n` variables."""
+    """`n` változó összegének akkumulálásához."""
     def __init__(self, n):
         self.data = [0.0] * n
 
@@ -688,7 +688,7 @@ class Accumulator:  #@save
 
 #@tab pytorch, mxnet, tensorflow
 def accuracy(y_hat, y):  #@save
-    """Compute the number of correct predictions."""
+    """Helyes előrejelzések számának kiszámítása."""
     if len(y_hat.shape) > 1 and y_hat.shape[1] > 1:
         y_hat = d2l.argmax(y_hat, axis=1)
     cmp = d2l.astype(y_hat, y.dtype) == y
@@ -705,7 +705,7 @@ import tarfile
 import hashlib
 
 def download(url, folder='../data', sha1_hash=None):  #@save
-    """Download a file to folder and return the local filepath."""
+    """Fájl letöltése mappába, és a helyi fájlútvonal visszaadása."""
     if not url.startswith('http'):
         # For back compatability
         url, sha1_hash = DATA_HUB[url]
@@ -730,7 +730,7 @@ def download(url, folder='../data', sha1_hash=None):  #@save
     return fname
 
 def extract(filename, folder=None):  #@save
-    """Extract a zip/tar file into folder."""
+    """Zip/tar fájl kicsomagolása mappába."""
     base_dir = os.path.dirname(filename)
     _, ext = os.path.splitext(filename)
     assert ext in ('.zip', '.tar', '.gz'), 'Only support zip/tar files.'
@@ -747,7 +747,7 @@ def extract(filename, folder=None):  #@save
 %%tab pytorch, mxnet, tensorflow
 
 def download_extract(name, folder=None):  #@save
-    """Download and extract a zip/tar file."""
+    """Zip/tar fájl letöltése és kicsomagolása."""
     fname = download(name)
     base_dir = os.path.dirname(fname)
     data_dir, ext = os.path.splitext(fname)
@@ -762,7 +762,7 @@ def download_extract(name, folder=None):  #@save
 
 
 def tokenize(lines, token='word'):  #@save
-    """Split text lines into word or character tokens."""
+    """Szövegsorok felosztása szó- vagy karaktertokenekre."""
     assert token in ('word', 'char'), 'Unknown token type: ' + token
     return [line.split() if token == 'word' else list(line) for line in lines]
 
@@ -772,7 +772,7 @@ def tokenize(lines, token='word'):  #@save
 %%tab pytorch
 
 def evaluate_loss(net, data_iter, loss):  #@save
-    """Evaluate the loss of a model on the given dataset."""
+    """A modell veszteségének kiértékelése az adott adathalmazon."""
     metric = d2l.Accumulator(2)  # Sum of losses, no. of examples
     for X, y in data_iter:
         out = net(X)
@@ -785,7 +785,7 @@ def evaluate_loss(net, data_iter, loss):  #@save
 ```{.python .input}
 %%tab mxnet, tensorflow
 def evaluate_loss(net, data_iter, loss):  #@save
-    """Evaluate the loss of a model on the given dataset."""
+    """A modell veszteségének kiértékelése az adott adathalmazon."""
     metric = d2l.Accumulator(2)  # Sum of losses, no. of examples
     for X, y in data_iter:
         l = loss(net(X), y)
@@ -796,7 +796,7 @@ def evaluate_loss(net, data_iter, loss):  #@save
 ```{.python .input}
 %%tab pytorch
 def grad_clipping(net, theta):  #@save
-    """Clip the gradient."""
+    """A gradiens levágása."""
     if isinstance(net, nn.Module):
         params = [p for p in net.parameters() if p.requires_grad]
     else:
@@ -810,7 +810,7 @@ def grad_clipping(net, theta):  #@save
 ```{.python .input}
 %%tab tensorflow
 def grad_clipping(grads, theta):  #@save
-    """Clip the gradient."""
+    """A gradiens levágása."""
     theta = tf.constant(theta, dtype=tf.float32)
     new_grad = []
     for grad in grads:
@@ -839,14 +839,14 @@ d2l.DATA_HUB['fra-eng'] = (d2l.DATA_URL + 'fra-eng.zip',
 
 #@save
 def read_data_nmt():
-    """Load the English-French dataset."""
+    """Az angol–francia adathalmaz betöltése."""
     data_dir = d2l.download_extract('fra-eng')
     with open(os.path.join(data_dir, 'fra.txt'), 'r', encoding='utf-8') as f:
         return f.read()
 
 #@save
 def preprocess_nmt(text):
-    """Preprocess the English-French dataset."""
+    """Az angol–francia adathalmaz előfeldolgozása."""
     def no_space(char, prev_char):
         return char in set(',.!?') and prev_char != ' '
 
@@ -860,7 +860,7 @@ def preprocess_nmt(text):
 
 #@save
 def tokenize_nmt(text, num_examples=None):
-    """Tokenize the English-French dataset."""
+    """Az angol–francia adathalmaz tokenizálása."""
     source, target = [], []
     for i, line in enumerate(text.split('\n')):
         if num_examples and i > num_examples:
@@ -894,7 +894,7 @@ def build_array_nmt(lines, vocab, num_steps):
 
 #@save
 def load_data_nmt(batch_size, num_steps, num_examples=600):
-    """Return the iterator and the vocabularies of the translation dataset."""
+    """A fordítási adathalmaz iterátorának és szókészletének visszaadása."""
     text = preprocess_nmt(read_data_nmt())
     source, target = tokenize_nmt(text, num_examples)
     src_vocab = d2l.Vocab(source, min_freq=2,
@@ -913,7 +913,7 @@ def load_data_nmt(batch_size, num_steps, num_examples=600):
     
 #@save
 class MaskedSoftmaxCELoss(gluon.loss.SoftmaxCELoss):
-    """The softmax cross-entropy loss with masks."""
+    """Maszkolt softmax keresztentrópia-veszteség."""
     # `pred` shape: (`batch_size`, `num_steps`, `vocab_size`)
     # `label` shape: (`batch_size`, `num_steps`)
     # `valid_len` shape: (`batch_size`,)
@@ -925,7 +925,7 @@ class MaskedSoftmaxCELoss(gluon.loss.SoftmaxCELoss):
 
 #@save
 def train_seq2seq(net, data_iter, lr, num_epochs, tgt_vocab, device):
-    """Train a model for sequence to sequence."""
+    """Sorozatból sorozatba modell tanítása."""
     net.initialize(init.Xavier(), force_reinit=True, ctx=device)
     trainer = gluon.Trainer(net.collect_params(), 'adam',
                             {'learning_rate': lr})
@@ -957,7 +957,7 @@ def train_seq2seq(net, data_iter, lr, num_epochs, tgt_vocab, device):
 #@save
 def predict_seq2seq(net, src_sentence, src_vocab, tgt_vocab, num_steps,
                     device, save_attention_weights=False):
-    """Predict for sequence to sequence."""
+    """Sorozatból sorozatba előrejelzés."""
     src_tokens = src_vocab[src_sentence.lower().split(' ')] + [
         src_vocab['<eos>']]
     enc_valid_len = np.array([len(src_tokens)], ctx=device)
@@ -990,7 +990,7 @@ def predict_seq2seq(net, src_sentence, src_vocab, tgt_vocab, num_steps,
 %%tab pytorch
 #@save
 def sequence_mask(X, valid_len, value=0):
-    """Mask irrelevant entries in sequences."""
+    """Irreleváns elemek maszkolása sorozatokban."""
     maxlen = X.size(1)
     mask = torch.arange((maxlen), dtype=torch.float32,
                         device=X.device)[None, :] < valid_len[:, None]
@@ -1000,7 +1000,7 @@ def sequence_mask(X, valid_len, value=0):
     
 #@save
 class MaskedSoftmaxCELoss(nn.CrossEntropyLoss):
-    """The softmax cross-entropy loss with masks."""
+    """Maszkolt softmax keresztentrópia-veszteség."""
     # `pred` shape: (`batch_size`, `num_steps`, `vocab_size`)
     # `label` shape: (`batch_size`, `num_steps`)
     # `valid_len` shape: (`batch_size`,)
@@ -1015,7 +1015,7 @@ class MaskedSoftmaxCELoss(nn.CrossEntropyLoss):
     
 #@save
 def train_seq2seq(net, data_iter, lr, num_epochs, tgt_vocab, device):
-    """Train a model for sequence to sequence."""
+    """Sorozatból sorozatba modell tanítása."""
     def xavier_init_weights(m):
         if type(m) == nn.Linear:
             nn.init.xavier_uniform_(m.weight)
@@ -1056,7 +1056,7 @@ def train_seq2seq(net, data_iter, lr, num_epochs, tgt_vocab, device):
 #@save
 def predict_seq2seq(net, src_sentence, src_vocab, tgt_vocab, num_steps,
                     device, save_attention_weights=False):
-    """Predict for sequence to sequence."""
+    """Sorozatból sorozatba előrejelzés."""
     # Set `net` to eval mode for inference
     net.eval()
     src_tokens = src_vocab[src_sentence.lower().split(' ')] + [
@@ -1093,7 +1093,7 @@ def predict_seq2seq(net, src_sentence, src_vocab, tgt_vocab, num_steps,
 %%tab tensorflow
 #@save
 def sequence_mask(X, valid_len, value=0):
-    """Mask irrelevant entries in sequences."""
+    """Irreleváns elemek maszkolása sorozatokban."""
     maxlen = X.shape[1]
     mask = tf.range(start=0, limit=maxlen, dtype=tf.float32)[
         None, :] < tf.cast(valid_len[:, None], dtype=tf.float32)
@@ -1106,7 +1106,7 @@ def sequence_mask(X, valid_len, value=0):
     
 #@save
 class MaskedSoftmaxCELoss(tf.keras.losses.Loss):
-    """The softmax cross-entropy loss with masks."""
+    """Maszkolt softmax keresztentrópia-veszteség."""
     def __init__(self, valid_len):
         super().__init__(reduction='none')
         self.valid_len = valid_len
@@ -1125,7 +1125,7 @@ class MaskedSoftmaxCELoss(tf.keras.losses.Loss):
     
 #@save
 def train_seq2seq(net, data_iter, lr, num_epochs, tgt_vocab, device):
-    """Train a model for sequence to sequence."""
+    """Sorozatból sorozatba modell tanítása."""
     optimizer = tf.keras.optimizers.Adam(learning_rate=lr)
     animator = d2l.Animator(xlabel="epoch", ylabel="loss",
                             xlim=[10, num_epochs])
@@ -1153,7 +1153,7 @@ def train_seq2seq(net, data_iter, lr, num_epochs, tgt_vocab, device):
 #@save
 def predict_seq2seq(net, src_sentence, src_vocab, tgt_vocab, num_steps,
                     save_attention_weights=False):
-    """Predict for sequence to sequence."""
+    """Sorozatból sorozatba előrejelzés."""
     src_tokens = src_vocab[src_sentence.lower().split(' ')] + [
         src_vocab['<eos>']]
     enc_valid_len = tf.constant([len(src_tokens)])
